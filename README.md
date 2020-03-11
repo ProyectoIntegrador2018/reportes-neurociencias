@@ -48,8 +48,8 @@ Generación de Reportes Automáticos a partir de Prubas Neuropsicológicas (◠�
 ### Management tools
 
 * [Github repo](https://github.com/ProyectoIntegrador2018/reportes-neurociencias)
-* [Backlog](https://teams.microsoft.com)
-* [Documentation](https://teams.microsoft.com)
+* [Backlog](https://teams.microsoft.com/_#/school/tab::e4ebf4b1-cad0-4ba5-af36-7f7e5656e077/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
+* [Documentation](https://teams.microsoft.com/_#/school/files/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
 
 ## Development
 
