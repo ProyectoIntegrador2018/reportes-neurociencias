@@ -1,6 +1,6 @@
 # Nombre del proyecto
 
-Application to be awesome
+Generación de Reportes Automáticos a partir de Prubas Neuropsicológicas (◠‿◠✿)
 
 ## Table of contents
 
@@ -20,9 +20,9 @@ Application to be awesome
 
 ### Client Details
 
-| Name               | Email             | Role |
-| ------------------ | ----------------- | ---- |
-| Nombre del cliente | prueba@prueba.com | CEO  |
+| Name               | Web Page                       | Role                       |
+| ------------------ | -------------------------------| ---------------------------|
+| Beatriz Freymann   | www.neurocienciascognitivas.mx | Analista de investigación  |
 
 
 ### Environment URLS
@@ -32,27 +32,24 @@ Application to be awesome
 
 ### Da team
 
-| Name           | Email             | Role        |
-| -------------- | ----------------- | ----------- |
-| Nombre miembro | prueba@prueba.com | Development |
-| Nombre miembro | prueba@prueba.com | Development |
-| Nombre miembro | prueba@prueba.com | Development |
+| Name            | Email              | Role                |
+| --------------- | -------------------| --------------------|
+| Fernando Romero | A01039364@itesm.mx | Scrum Master        |
+| Emilio López    | A01651283@itesm.mx | Product Owner Proxy |
+| Laura Santacruz | A01196377@itesm.mx | Project Admin       |
+| Melanie Vielma  | A00818905@itesm.mx | Config Admin        |
 
 ### Technology Stack
 | Technology    | Version      |
 | ------------- | -------------|
-| Technology 1  | ##.##.##     |
-| Technology 2  | ##.##.##     |
-| Technology 3  | ##.##.##     |
+| Python        | 3.7.4        |
+| PyQt5         | 5.0.0        |
 
 ### Management tools
 
-You should ask for access to this tools if you don't have it already:
-
-* [Github repo](https://github.com/)
-* [Backlog]()
-* [Heroku](https://crowdfront-staging.herokuapp.com/)
-* [Documentation](https://drive.com)
+* [Github repo](https://github.com/ProyectoIntegrador2018/reportes-neurociencias)
+* [Backlog](https://teams.microsoft.com/_#/school/tab::e4ebf4b1-cad0-4ba5-af36-7f7e5656e077/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
+* [Documentation](https://teams.microsoft.com/_#/school/files/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
 
 ## Development
 
