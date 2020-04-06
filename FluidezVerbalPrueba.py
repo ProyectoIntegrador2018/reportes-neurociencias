@@ -17,17 +17,27 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 		"""
 		tablaFV = self.baremos[0]
 		tablaEscolaridad = self.baremos[1]
+
+		print("animalesConP: " + str(self.valores[1]))
+		print("palabrasConP: " + str(self.valores[0]))
+		
 		
 		palabrasConP = self.valores[0]
 		animalesConP = self.valores[1]
 		escolaridad = datos[0]
+
+		if escolaridad < 8:
+			escolaridad = 8
+		elif escolaridad > 20:
+			escolaridad = 20
+
 		ajustes = tablaEscolaridad[tablaEscolaridad['Escolaridad']==escolaridad].iloc[0]
 
-		temp = tablaFV[tablaFV['AnimalesMin']>=animalesConP].iloc[0]
+		temp = tablaFV[(animalesConP >= tablaFV['AnimalesMin']) & (tablaFV['AnimalesMax']>=animalesConP)].iloc[0]
 		puntuacionEscalarAnim = temp['PuntuacionEscalar'] + ajustes['Animales']
 		puntuacionPercentilAnim = (temp['RangoDePercentilMin'], temp['RangoDePercentilMax'])
 
-		tempPal = tablaFV[tablaFV['PalabrasMin']>=palabrasConP].iloc[0]
+		tempPal = tablaFV[(palabrasConP >= tablaFV['PalabrasMin']) & (tablaFV['PalabrasMax']>=palabrasConP)].iloc[0]
 		puntuacionEscalarPal = tempPal['PuntuacionEscalar'] + ajustes['Palabras']
 		puntuacionPercentilPal = (tempPal['RangoDePercentilMin'], tempPal['RangoDePercentilMax'])
 

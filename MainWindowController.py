@@ -15,14 +15,7 @@ class MainWindowController(QtWidgets.QWidget):
 	def __init__(self, mainWindow):
 		QtWidgets.QWidget.__init__(self)
 		self.mainWindowView = MainWindowWithListWidget(mainWindow)
-		
-		self.listMenu = self.mainWindowView.lWVistas
-
 		self.missingArguments = list()
-
-		self.menuController = MenuController(self.listMenu)
-		self.menuController.poblarLista()
-
 		self.reporte = None
 
 		generoItems = ["Femenino", "Masculino"]
@@ -63,6 +56,8 @@ class MainWindowController(QtWidgets.QWidget):
 			self.addMissingArg("ID")
 		if (len(examinador) == 0):
 			self.addMissingArg("Examinador")
+		if (edad == 0):
+			self.addMissingArg("Edad debe ser mayor a 0")
 		if (len(fechaNacimiento) == 0):
 			self.addMissingArg("Fecha de Nacimiento")
 		if (len(lateralidad) == 0):
@@ -102,4 +97,11 @@ class MainWindowController(QtWidgets.QWidget):
 			tempList = self.missingArguments
 			tempList.append(missingElem)
 			self.missingArguments = tempList
+
+	def getListMenu(self):
+		"""
+		 Método que se encarga de regresar el valor del menú en la vista
+		"""
+		return self.mainWindowView.lWVistas
+
 

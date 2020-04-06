@@ -15,7 +15,7 @@ class ReporteModel:
 			"semestre" : semestre,
 			"educacion" : educacion,
 			"equipo" : equipo,
-			"resultados" : tuple()
+			"resultados" : list()
 			}
 	instance = None
 	
@@ -24,10 +24,6 @@ class ReporteModel:
 			ReporteModel.instance = ReporteModel.__ReporteModel(nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo)
 		else:
 			addPrueba(prueba)
-	
-	@classmethod
-	def getReporte(cls):
-		return ReporteModel.instance
 
 	def addPrueba(self, prueba):
 		"""
@@ -35,7 +31,12 @@ class ReporteModel:
 		 Args:
 		  prueba: Elemento de la Clase Prueba
 		"""
-		self.instance.reporte["resultados"] = self.instance.reporte["resultados"].append(prueba)
+		tempReporte = self.instance.reporte["resultados"]
+		if (len(tempReporte) == 0):
+			self.instance.reporte["resultados"] = [prueba]
+		else:
+			tempReporte = tempReporte.append(prueba)
+			self.instance.reporte["resultados"] = tempReporte
 
 	def printReporte(self):
 		"""
