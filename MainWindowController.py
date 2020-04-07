@@ -5,9 +5,10 @@ from FluidezVerbalController import *
 from MainWindowWithListWidget import *
 from ReporteModel import *
 from datetime import datetime
+from ControllerModel import *
 
 
-class MainWindowController(QtWidgets.QWidget):
+class MainWindowController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 

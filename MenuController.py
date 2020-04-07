@@ -29,9 +29,9 @@ class MenuController(QtWidgets.QWidget):
 				item.setFlags(QtCore.Qt.ItemIsEnabled)
 
 			if index == self.currentWindow:
-				item.setBackground(QtGui.QColor('#386cb0'))
+				item.setBackground(QtGui.QColor('#06367e'))
 			else:
-				item.setBackground(QtGui.QColor('#beaed4'))
+				item.setBackground(QtGui.QColor('#dcd7d1'))
 
 			tempItem = QtWidgets.QListWidgetItem(item)
 			self.listView.addItem(tempItem)

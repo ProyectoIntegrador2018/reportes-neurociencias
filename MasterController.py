@@ -7,7 +7,7 @@ from MenuController import *
 class MasterController:
 	def __init__(self):
 		self.modalController = ModalController()
-		
+
 		self.dummyWindow = QtWidgets.QWidget()
 		self.mainWindow = QtWidgets.QWidget()
 		self.fluidezWindow = QtWidgets.QWidget()
@@ -59,7 +59,6 @@ class MasterController:
 		 Args:
 		  elemSelected: Lista que contiene el elemento seleccionado
 		"""
-		print(elemSelected)
 		if elemSelected == 0:
 			self.nextWindow = self.mainWindow
 			currentController = self.mainWindowController
@@ -75,6 +74,9 @@ class MasterController:
 
 
 	def windowsAreDifferent(self):
+		"""
+		 Método que evalúa si las variables de currentWindow y nextWindow son diferentes
+		"""
 		return self.currentWindow != self.nextWindow
 
 	def showMainWindow(self):
