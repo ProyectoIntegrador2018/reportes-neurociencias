@@ -6,7 +6,6 @@ from ReporteModel import *
 from FluidezVerbalPrueba import *
 from PruebaModel import *
 
-
 class FluidezVerbalController(QtWidgets.QWidget):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
@@ -77,7 +76,6 @@ class FluidezVerbalController(QtWidgets.QWidget):
 		"""
 		 Método que se regresa el id del menu en la vista de Fluidez Verbal
 		"""
-		
 		return self.fluidezVerbalView.lWVistas
 
 """

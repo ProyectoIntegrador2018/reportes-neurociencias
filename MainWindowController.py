@@ -5,7 +5,6 @@ from FluidezVerbalController import *
 from MainWindowWithListWidget import *
 from ReporteModel import *
 from datetime import datetime
-from MenuController import *
 
 
 class MainWindowController(QtWidgets.QWidget):
