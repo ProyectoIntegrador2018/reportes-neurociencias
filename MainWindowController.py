@@ -103,5 +103,3 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		 Método que se encarga de regresar el valor del menú en la vista
 		"""
 		return self.mainWindowView.lWVistas
-
-
