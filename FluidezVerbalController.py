@@ -39,11 +39,8 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		
 		self.fluidezVerbalPrueba = FluidezVerbalPrueba(valores)
 		
-		####Se obtienen los datos de escolaridad del reporte
-		#reporteModel = ReporteModel.getReporte()
-		#datos = [reporteModel.reporte['educacion']]
-		datos = [21]
-
+		datos = [self.reporteModel.reporte['educacion']]
+		
 		if palabrasConP == 0:
 			self.addInvalidArg("Palabras con P")
 		if animalesConP == 0:
