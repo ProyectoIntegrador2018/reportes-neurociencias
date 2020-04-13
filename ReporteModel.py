@@ -23,7 +23,7 @@ class ReporteModel:
 		if not ReporteModel.instance:
 			ReporteModel.instance = ReporteModel.__ReporteModel(nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo)
 		else:
-			addPrueba(prueba)
+			self.addPrueba(prueba)
 
 	def addPrueba(self, prueba):
 		"""

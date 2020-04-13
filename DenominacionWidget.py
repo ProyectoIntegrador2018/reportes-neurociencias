@@ -2,7 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class FluidezVerbalWindowWidget(object):
+class DenominacionWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = FluidezVerbalWindowWidget(Form)
+    ui = DenominacionWidget(Form)
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
