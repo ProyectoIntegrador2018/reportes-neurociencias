@@ -7,7 +7,7 @@ class MenuController(QtWidgets.QWidget):
 
 	def __init__(self, pagesVisited):
 		QtWidgets.QWidget.__init__(self)
-		self.entries = ['Información de Sujeto', 'Prueba Fluidez Verbal']
+		self.entries = ['Información de Sujeto', 'Prueba Fluidez Verbal', 'Prueba Denominación']
 		self.pagesVisited = pagesVisited
 		self.qListItems = QtWidgets.QListWidget(self)
 		self.qListItems.addItems(self.entries)
@@ -29,7 +29,7 @@ class MenuController(QtWidgets.QWidget):
 				item.setFlags(QtCore.Qt.ItemIsEnabled)
 
 			if index == self.currentWindow:
-				item.setBackground(QtGui.QColor('#06367e'))
+				item.setBackground(QtGui.QColor('#85C1E9'))
 			else:
 				item.setBackground(QtGui.QColor('#dcd7d1'))
 
