@@ -36,13 +36,16 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
     
     def getListMenu(self):
         """
+
         Regresa el id del menu en la vista Memoria visoespacia
         """
         return self.memoriaVisoespaciaView.lWVistas
 
 
 
+
 """
+
 #Pruebas unitarias
 if __name__ == "__main__":
     import sys
@@ -51,5 +54,5 @@ if __name__ == "__main__":
     memoriaVisoespaciaController = MemoriaVisoespaciaController(memoriaVisoespaciaWindow)
     memoriaVisoespaciaWindow.show()
     sys.exit(app.exec_())
-"""
 
+"""
