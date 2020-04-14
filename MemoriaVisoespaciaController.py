@@ -42,7 +42,6 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
 
 
 """
-
 #Pruebas unitarias
 if __name__ == "__main__":
     import sys
