@@ -4,6 +4,7 @@ from FluidezVerbalController import *
 from ModalController import *
 from MenuController import *
 from DenominacionController import *
+from MemoriaVisoespaciaController import * 
 
 class MasterController:
 	def __init__(self):
@@ -72,6 +73,10 @@ class MasterController:
 			self.nextWindow = self.denominacionWindow
 			currentController = self.denominacionController
 			self.menuController.updateCurrentWindow(2)
+		if elemSelected == 3:
+			self.nextWindow = self.memoriaVisoespaciaWindow
+			currentController = self.memoriaVisoespaciaController
+			self.menuController.updateCurrentWindow(3)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -122,7 +127,7 @@ class MasterController:
 	def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
 		self.denominacionWindow = QtWidgets.QWidget()
 		self.denominacionController = DenominacionController(self.denominacionWindow)
-		self.denominacionController.switch_window.connect(self.tempEnd)
+		self.fluidezVerbalController.switch_window.connect(self.tempEnd)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
@@ -139,6 +144,28 @@ class MasterController:
 		self.menuController.updatePagesVisited(self.paginasVisitadas)
 		self.showSpecificWindowMenu(2)
 
+
+	def showMemoriaVisoespacia(self, invalidArgs, fluidezVerbalPrueba):
+		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
+		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
+		self.denominacionController.switch_window.connect(self.tempEnd)
+
+		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Deben de ser mayor a 0:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.denominacionController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(fluidezVerbalPrueba)
+			self.reporteModel.printReporte()
+		# self.nextWindow = self.denominacionWindow
+		# self.connectMenu(self.denominacionController)
+		# self.loadView()
+		self.addPaginaVisitada(3)
+		self.menuController.updatePagesVisited(self.paginasVisitadas)
+		self.showSpecificWindowMenu(3)
+
+
 	def tempEnd(self, invalidArgs, denominacionPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
@@ -146,6 +173,8 @@ class MasterController:
 			self.modalController.showModal()
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
+
+		
 			self.reporteModel.addPrueba(denominacionPrueba)
 			self.reporteModel.printReporte()
 
