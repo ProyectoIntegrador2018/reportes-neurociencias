@@ -124,7 +124,6 @@ class MasterController:
 		self.denominacionController = DenominacionController(self.denominacionWindow)
 		self.denominacionController.switch_window.connect(self.tempEnd)
 
-
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
