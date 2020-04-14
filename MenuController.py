@@ -29,7 +29,7 @@ class MenuController(QtWidgets.QWidget):
 				item.setFlags(QtCore.Qt.ItemIsEnabled)
 
 			if index == self.currentWindow:
-				item.setBackground(QtGui.QColor('#06367e'))
+				item.setBackground(QtGui.QColor('#85C1E9'))
 			else:
 				item.setBackground(QtGui.QColor('#dcd7d1'))
 
