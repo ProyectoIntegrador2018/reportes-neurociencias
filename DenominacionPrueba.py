@@ -9,7 +9,7 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos)
 
-    def calcularPERP(denomimgs, denomimgT):
+    def calcularPERP(self):
         """
         Metodo que se encarga de calcular la puntiacion escalar y percentil de la prueba de 
         Denominacion
