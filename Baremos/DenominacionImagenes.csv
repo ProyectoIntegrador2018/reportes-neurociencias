@@ -1,9 +1,10 @@
 Denominacion imagenes,Denominacion imagenes T,Puntuacion Escalar,Percentil
-0,0,1,N/A
-4,8,2,N/A
-6,16,3,N/A
-9,24,4,N/A
+0,0,1,1
+4,8,2,1
+6,16,3,1
+9,24,4,1
 12,34,5,5
 13,39,6,10
 14,42,15,95
-N/A,41,7,20
+1000,41,7,20
+
