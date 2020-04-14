@@ -1,8 +1,8 @@
-#Vista de la prueba de Fluidez Verbal
+#Vista de la prueba de Memoria Visoespacia
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class DenominacionWidget(object):
+class MemoriaVisoespaciaWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -99,16 +99,17 @@ class DenominacionWidget(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Denominación"))
-        self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
-        self.label_9.setText(_translate("Form", "Denon imágenes T:"))
+        self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba de Memoria Visoespacia"))
+        self.label_8.setText(_translate("Form", "Total recall: "))
+        self.label_9.setText(_translate("Form", "Delayed recall:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = DenominacionWidget(Form)
+    ui = MemoriaVisoespaciaWidget(Form)
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+
