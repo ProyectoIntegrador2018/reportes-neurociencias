@@ -104,7 +104,6 @@ class MemoriaVisoespaciaWidget(object):
         self.label_9.setText(_translate("Form", "Delayed recall:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
-
 """
 if __name__ == "__main__":
     import sys
@@ -115,3 +114,4 @@ if __name__ == "__main__":
     Form.show()
     sys.exit(app.exec_())
 """
+

@@ -32,13 +32,20 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
         delayed_recall = view.sbDenomImgT.value()
         print("Valor delayed recall: ", delayed_recall)
 
-        MemoriaVisoespaciaPrueba.calcularPERP(total_recall, delayed_recall)
+        valores = (total_recall, delayed_recall)
+
+        self.memoriaVisoespaciaPrueba = MemoriaVisoespaciaPrueba(valores)
+
+        self.memoriaVisoespaciaPrueba.calcularPERP()
+
+        self.changeView()
     
     def getListMenu(self):
         """
         Regresa el id del menu en la vista Memoria visoespacia
         """
         return self.memoriaVisoespaciaView.lWVistas
+
 
 
 """
@@ -51,3 +58,4 @@ if __name__ == "__main__":
     memoriaVisoespaciaWindow.show()
     sys.exit(app.exec_())
 """
+

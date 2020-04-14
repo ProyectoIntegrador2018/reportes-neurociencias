@@ -5,7 +5,7 @@ from ModalController import *
 from MenuController import *
 from DenominacionController import *
 from MVCController import *
-
+from MemoriaVisoespaciaController import *
 
 class MasterController:
 	def __init__(self):
@@ -14,7 +14,6 @@ class MasterController:
 		self.dummyWindow = QtWidgets.QWidget()
 		self.mainWindow = QtWidgets.QWidget()
 		self.fluidezWindow = QtWidgets.QWidget()
-		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
 		
 		self.mainWindowController = MainWindowController(self.mainWindow)
 		
@@ -79,7 +78,10 @@ class MasterController:
 			self.nextWindow = self.MVCWindow
 			currentController = self.mvcController
 			self.menuController.updateCurrentWindow(3)
-
+		if elemSelected == 4:
+			self.nextWindow = self.memoriaVisoespaciaWindow
+			currentController = self.memoriaVisoespaciaController
+			self.menuController.updateCurrentWindow(4)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -132,7 +134,6 @@ class MasterController:
 		self.denominacionController = DenominacionController(self.denominacionWindow)
 		self.denominacionController.switch_window.connect(self.showMVC)
 
-
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
@@ -152,7 +153,7 @@ class MasterController:
 		print("LOGRO ENTRAR")
 		self.MVCWindow = QtWidgets.QWidget()
 		self.mvcController = MVCController(self.MVCWindow)
-		self.mvcController.switch_window.connect(self.tempEnd)
+		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no validos:")
@@ -168,37 +169,34 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(3)
 
-
-
-
-	def showMemoriaVisoespacia(self, invalidArgs, fluidezVerbalPrueba):
+	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
 		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
 		self.memoriaVisoespaciaController.switch_window.connect(self.tempEnd)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Deben de ser mayor a 0:")
-
+			self.modalController.setHeader("Elementos no validos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.denominacionController.emptyInvalidArgs()
+			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(denominacionPrueba)
+			MVCPrueba.printInfo()
+			self.reporteModel.addPrueba(MVCPrueba)
 			self.reporteModel.printReporte()
 
-		self.addPaginaVisitada(3)
-		self.menuController.updatePagesVisited(self.paginasVisitadas)
-		self.showSpecificWindowMenu(3)
+			self.addPaginaVisitada(4)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(4)
 
-	def tempEnd(self, invalidArgs, denominacionPrueba):
+
+	def tempEnd(self, invalidArgs, memoriaVisoespaciaPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
-
-			self.reporteModel.addPrueba(denominacionPrueba)
+			self.reporteModel.addPrueba(memoriaVisoespaciaPrueba)
 			self.reporteModel.printReporte()
 
 def main():
