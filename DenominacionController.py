@@ -31,23 +31,23 @@ class DenominacionController(QtWidgets.QWidget):
         print("Valor denominacion imagenes: ", denomimgs)
         denomimgT = view.sbDenomImgT.value()
         print("Valor denominacion imagenes T: ", denomimgT)
-        verbalComplejo = view.sVerbalComplejo.value()
-        print("Valor material verbal complejo: ", verbalComplejo)
-        verbalComplejoT  = view.sbVerbalComplejoT.value()
-        print("Valor material verbal complejot T: ", verbalComplejoT)
-        semejanza = view.sbSemejanzaAbs.value()
-        print("Valor semejanza abstraccion: ", semejanza)
 
-        DenominacionPrueba.calcularPERP(denomimgs, denomimgT, verbalComplejo, verbalComplejoT, semejanza)
+        DenominacionPrueba.calcularPERP(denomimgs, denomimgT)
+    
+    def getListMenu(self):
+        """
+        Regresa el id del meni en la vista Denominacion
+        """
+        return self.denominacionView.lWVistas
 
 
 
 
 # Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    denominacionWindow = QtWidgets.QWidget()
-    denominacionController = DenominacionController(denominacionWindow)
-    denominacionWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     denominacionWindow = QtWidgets.QWidget()
+#     denominacionController = DenominacionController(denominacionWindow)
+#     denominacionWindow.show()
+#     sys.exit(app.exec_())

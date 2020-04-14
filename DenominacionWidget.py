@@ -63,27 +63,6 @@ class DenominacionWidget(object):
         self.sbDenomImgT.setObjectName("sbDenomImgT")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
 
-        self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_10.setObjectName("label_10")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_10)
-        self.sVerbalComplejo = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sVerbalComplejo.setObjectName("sVerbalComplejo")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.sVerbalComplejo)
-
-        self.label_11 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_11.setObjectName("label_11")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_11)
-        self.sbVerbalComplejoT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbVerbalComplejoT.setObjectName("sbVerbalComplejoT")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbVerbalComplejoT)
-
-        self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_12.setObjectName("label_12")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_12)
-        self.sbSemejanzaAbs = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbSemejanzaAbs.setObjectName("sbSemejanzaAbs")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbSemejanzaAbs)
-
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -120,12 +99,9 @@ class DenominacionWidget(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
+        self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Denominación"))
         self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
         self.label_9.setText(_translate("Form", "Denon imágenes T:"))
-        self.label_10.setText(_translate("Form", "Material Verbal Complejo:"))
-        self.label_11.setText(_translate("Form", "Material Verbal Complejo T"))
-        self.label_12.setText(_translate("Form", "Semejanza Abstracción:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
