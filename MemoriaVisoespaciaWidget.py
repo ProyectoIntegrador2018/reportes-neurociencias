@@ -104,6 +104,7 @@ class MemoriaVisoespaciaWidget(object):
         self.label_9.setText(_translate("Form", "Delayed recall:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
+"""
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -112,4 +113,5 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+"""
 

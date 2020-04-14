@@ -10,8 +10,8 @@ class MemoriaVisoespaciaPrueba():
     def calcularPERP(totalRecall, delayedRecall):
         """
         Metodo que se encarga de calcular la puntiacion escalar y percentil de la prueba de 
-        Denominacion
-        Parametros: los valores necesarios para realizar los calculos
+        Memoria Visoespacia
+        Parametros: total recall y delayed recall, que arrojan dos resultados diferentes
         """
 
         baremoData = pd.read_csv('./Baremos/Baremo_BVMT-R-1.csv')
