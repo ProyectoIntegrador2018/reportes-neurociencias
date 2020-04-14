@@ -5,9 +5,10 @@ from MainWindowController import *
 from ReporteModel import *
 from FluidezVerbalPrueba import *
 from PruebaModel import *
+from ControllerModel import *
 
 
-class FluidezVerbalController(QtWidgets.QWidget):
+class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
@@ -38,11 +39,8 @@ class FluidezVerbalController(QtWidgets.QWidget):
 		
 		self.fluidezVerbalPrueba = FluidezVerbalPrueba(valores)
 		
-		####Se obtienen los datos de escolaridad del reporte
-		#reporteModel = ReporteModel.getReporte()
-		#datos = [reporteModel.reporte['educacion']]
-		datos = [21]
-
+		datos = [self.reporteModel.reporte['educacion']]
+		
 		if palabrasConP == 0:
 			self.addInvalidArg("Palabras con P")
 		if animalesConP == 0:
@@ -77,7 +75,6 @@ class FluidezVerbalController(QtWidgets.QWidget):
 		"""
 		 Método que se regresa el id del menu en la vista de Fluidez Verbal
 		"""
-		
 		return self.fluidezVerbalView.lWVistas
 
 """

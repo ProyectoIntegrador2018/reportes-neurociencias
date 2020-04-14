@@ -1,8 +1,7 @@
 # Modelo del Reporte a generar
 class ReporteModel:
-	class __ReporteModel:
-		def __init__(self, nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo):
-			self.reporte = { 
+	def __init__(self, nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo, prueba = None):
+		self.reporte = { 
 			"nombreExaminado" : nombreExaminado,
 			"id" : identificador,
 			"fecha" : fecha,
@@ -15,15 +14,8 @@ class ReporteModel:
 			"semestre" : semestre,
 			"educacion" : educacion,
 			"equipo" : equipo,
-			"resultados" : list()
-			}
-	instance = None
-	
-	def __init__(self, nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo, prueba = None):
-		if not ReporteModel.instance:
-			ReporteModel.instance = ReporteModel.__ReporteModel(nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo)
-		else:
-			addPrueba(prueba)
+			"resultados" : dict()
+		}
 
 	def addPrueba(self, prueba):
 		"""
@@ -31,28 +23,25 @@ class ReporteModel:
 		 Args:
 		  prueba: Elemento de la Clase Prueba
 		"""
-		tempReporte = self.instance.reporte["resultados"]
-		if (len(tempReporte) == 0):
-			self.instance.reporte["resultados"] = [prueba]
-		else:
-			tempReporte = tempReporte.append(prueba)
-			self.instance.reporte["resultados"] = tempReporte
+		tempReporte = self.reporte["resultados"]
+		tempReporte[prueba.nombre] = prueba
+		self.reporte["resultados"] = tempReporte
 
 	def printReporte(self):
 		"""
 		 Despliega el contenido del reporte
 		"""
-		print("nombreExaminado: " + self.instance.reporte["nombreExaminado"])
-		print("id: " + self.instance.reporte["id"])
-		print("fecha: " + self.instance.reporte["fecha"])
-		print("genero: " + self.instance.reporte["genero"])
-		print("edad: " + str(self.instance.reporte["edad"]))
-		print("fechaNacimiento: " + self.instance.reporte["fechaNacimiento"])
-		print("lateralidad: " + self.instance.reporte["lateralidad"])
-		print("nombreExaminador: " + self.instance.reporte["nombreExaminador"])
-		print("carrera: " + self.instance.reporte["carrera"])
-		print("semestre: " + str(self.instance.reporte["semestre"]))
-		print("educacion: " + str(self.instance.reporte["educacion"]))
-		print("equipo: " + self.instance.reporte["equipo"])
-		for prueba in self.instance.reporte["resultados"]:
+		print("nombreExaminado: " + self.reporte["nombreExaminado"])
+		print("id: " + self.reporte["id"])
+		print("fecha: " + self.reporte["fecha"])
+		print("genero: " + self.reporte["genero"])
+		print("edad: " + str(self.reporte["edad"]))
+		print("fechaNacimiento: " + self.reporte["fechaNacimiento"])
+		print("lateralidad: " + self.reporte["lateralidad"])
+		print("nombreExaminador: " + self.reporte["nombreExaminador"])
+		print("carrera: " + self.reporte["carrera"])
+		print("semestre: " + str(self.reporte["semestre"]))
+		print("educacion: " + str(self.reporte["educacion"]))
+		print("equipo: " + self.reporte["equipo"])
+		for nombre, prueba in self.reporte["resultados"].items():
 			prueba.printInfo()
