@@ -1,14 +1,14 @@
 #Controlador de la vista MainWindow
 import sys
 from PyQt5 import QtWidgets, QtCore
-from MVCController import *
+from FluidezVerbalController import *
 from MainWindowWithListWidget import *
 from ReporteModel import *
 from datetime import datetime
-from MenuController import *
+from ControllerModel import *
 
 
-class MainWindowController(QtWidgets.QWidget):
+class MainWindowController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
@@ -103,5 +103,3 @@ class MainWindowController(QtWidgets.QWidget):
 		 Método que se encarga de regresar el valor del menú en la vista
 		"""
 		return self.mainWindowView.lWVistas
-
-

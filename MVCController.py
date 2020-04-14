@@ -3,18 +3,20 @@ from MVCWindowWidget import *
 from MainWindowController import *
 from MVCPrueba import *
 from PruebaModel import *
+from ReporteModel import *
 
 class MVCController(QtWidgets.QWidget):
 	switch_window = QtCore.pyqtSignal(object, object)
 
-	def __init__(self, mainWindow):
+	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.MVCView = MVCWindowWidget(mainWindow)
 		self.MVCView.pbStart.clicked.connect(self.getDatos)
+		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
 	def changeView(self):
-		self.switch_window.emit(self.invalidArgs,self.MVCPrueba)
+		self.switch_window.emit(self.invalidArgs, self.MVCPrueba)
 
 
 	def getDatos(self):
