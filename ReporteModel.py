@@ -14,15 +14,8 @@ class ReporteModel:
 			"semestre" : semestre,
 			"educacion" : educacion,
 			"equipo" : equipo,
-			"resultados" : list()
-			}
-	instance = None
-	
-	def __init__(self, nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo, prueba = None):
-		if not ReporteModel.instance:
-			ReporteModel.instance = ReporteModel.__ReporteModel(nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo)
-		else:
-			self.addPrueba(prueba)
+			"resultados" : dict()
+		}
 
 	def addPrueba(self, prueba):
 		"""
