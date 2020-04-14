@@ -7,6 +7,7 @@ from PruebaModel import *
 from ControllerModel import * 
 
 class DenominacionController(QtWidgets.QWidget, ControllerModel):
+
     switch_window = QtCore.pyqtSignal(object, object)
 
     def __init__(self, mainWindow, reporteModel=None):
@@ -41,6 +42,7 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
 
 
         self.changeView()
+
     
     def getListMenu(self):
         """

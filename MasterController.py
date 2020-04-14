@@ -6,6 +6,7 @@ from MenuController import *
 from DenominacionController import *
 from MVCController import *
 
+
 class MasterController:
 	def __init__(self):
 		self.modalController = ModalController()
@@ -130,6 +131,7 @@ class MasterController:
 		self.denominacionController = DenominacionController(self.denominacionWindow)
 		self.denominacionController.switch_window.connect(self.showMVC)
 
+
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
@@ -166,14 +168,15 @@ class MasterController:
 			self.showSpecificWindowMenu(3)
 
 
-	def tempEnd(self, invalidArgs, MVCPrueba):
+	def tempEnd(self, invalidArgs, denominacionPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(MVCPrueba)
+
+			self.reporteModel.addPrueba(denominacionPrueba)
 			self.reporteModel.printReporte()
 
 def main():

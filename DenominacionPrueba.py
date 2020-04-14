@@ -9,7 +9,7 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos)
 
-    def calcularPERP(self):
+    def calcularPERP(denomimgs, denomimgT):
         """
         Metodo que se encarga de calcular la puntiacion escalar y percentil de la prueba de 
         Denominacion
@@ -33,6 +33,7 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
             #print("Resultados denominacion imagenes")
             #print("escalar:", escalarDenomImg)
             #print("percentil:",percentilDenomImg)
+
         
         tmpDenomImgT = baremoDenomImg[baremoDenomImg["Denominacion imagenes T"] == denomimgT]
         if not tmpDenomImgT.empty:
@@ -45,6 +46,7 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
 
         self.puntuacionEscalar = (int(escalarDenomImg), int(escalarDenomImgT))
         self.rangoPercentil = (int(percentilDenomImg), int(percentilDenomImgT))
+
 
 # # Pruebas unitarias
 # if __name__ == "__main__":
