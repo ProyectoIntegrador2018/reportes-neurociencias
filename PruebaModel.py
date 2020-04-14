@@ -6,6 +6,7 @@ class PruebaModel:
 		self.puntuacionEscalar = puntuacionEscalar
 		self.rangoPercentil = rangoPercentil
 		self.baremos = baremos
+		#self.campos = campos AGREGAR LISTA DE NOMBRES DE CAMPOS SIGUIENTE SPRINT
 
 	def printInfo(self):
 		"""

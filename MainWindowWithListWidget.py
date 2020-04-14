@@ -180,7 +180,7 @@ class MainWindowWithListWidget(object):
         self.label_7.setText(_translate("Form", "Carrera:"))
         self.label_13.setText(_translate("Form", "Semestre:"))
         self.label_14.setText(_translate("Form", "Equipo:"))
-        self.pbStart.setText(_translate("Form", "Comenzar Camptura"))
+        self.pbStart.setText(_translate("Form", "Comenzar Captura"))
 
 """
 if __name__ == "__main__":
