@@ -19,8 +19,6 @@ class MenuController(QtWidgets.QWidget):
 		 Método encargado de llenar la lista con los elementos especificados en el atributo entries.
 		"""
 		model = self.qListItems
-		print("Ando en poblarLista")
-		print(self.pagesVisited)
 		for index in range(model.count()):
 			item = model.item(index)
 			if (index not in self.pagesVisited):
@@ -45,8 +43,6 @@ class MenuController(QtWidgets.QWidget):
 		 Args:
 		  pagesVisited: Lista de enteros que representan las páginas ya visitadas. 
 		"""
-		print("ando en updatePagesVisited")
-		print(pagesVisited)
 		self.pagesVisited = pagesVisited
 
 	def updateListView(self, listView):
