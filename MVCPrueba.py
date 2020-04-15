@@ -23,12 +23,12 @@ class MVCPrueba(PruebaModel.PruebaModel):
 		MVCT = self.valores[1]
 
 		auxMVC = tablaMVC.loc[tablaMVC['MVC'] == MVC]
-		puntuacionEscalarMVC = auxMVC['Escalar']
-		puntuacionPercentilMVC = auxMVC['Percentil']
+		puntuacionEscalarMVC = auxMVC['MVC_Escalar']
+		puntuacionPercentilMVC = auxMVC['MVC_Percentil']
 
 		auxMVCT = tablaMVC.loc[tablaMVC['MVCT'] == MVCT]
-		puntuacionEscalarMCVT = auxMVCT['Escalar']
-		puntuacionPercentilMVCT = auxMVCT['Percentil']
+		puntuacionEscalarMVCT = auxMVCT['MVCT_Escalar']
+		puntuacionPercentilMVCT = auxMVCT['MVCT_Percentil']
 
-		self.puntuacionEscalar = (int(puntuacionEscalarMVC), int(puntuacionEscalarMCVT))
+		self.puntuacionEscalar = (int(puntuacionEscalarMVC), int(puntuacionEscalarMVCT))
 		self.rangoPercentil = (int(puntuacionPercentilMVC), int(puntuacionPercentilMVCT))

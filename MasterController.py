@@ -151,7 +151,6 @@ class MasterController:
 			self.showSpecificWindowMenu(2)
 
 	def showMVC(self, invalidArgs, denominacionPrueba):
-		print("LOGRO ENTRAR")
 		self.MVCWindow = QtWidgets.QWidget()
 		self.mvcController = MVCController(self.MVCWindow)
 		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
@@ -169,6 +168,7 @@ class MasterController:
 			self.addPaginaVisitada(3)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(3)
+
 
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
