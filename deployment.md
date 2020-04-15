@@ -1,6 +1,6 @@
 # DEPLOYMENT
 
-Generación de Reportes Automáticos a partir de Prubas Neuropsicológicas (◠‿◠✿)
+Generación de Reportes Automáticos a partir de Pruebas Neuropsicológicas (◠‿◠✿)
 
 ## Tabla de contenidos
 

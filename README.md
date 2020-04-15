@@ -1,6 +1,6 @@
 # Nombre del proyecto
 
-Generación de Reportes Automáticos a partir de Prubas Neuropsicológicas (◠‿◠✿)
+Generación de Reportes Automáticos a partir de Pruebas Neuropsicológicas (◠‿◠✿)
 
 ## Table of contents
 
@@ -55,29 +55,30 @@ Generación de Reportes Automáticos a partir de Prubas Neuropsicológicas (◠�
 
 ### Setup the project
 
-You'll definitely want to install [`plis`](https://github.com/IcaliaLabs/plis), as in this case will
-let you bring up the containers needed for development. This is done by running the command
-`plis start`, which will start up the services in the `development` group (i.e. rails
-and sidekiq), along with their dependencies (posgres, redis, etc).
+Please install the following programs/libraries: 
+
+* Git [Instrucciones](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* Python [Instrucciones](https://www.python.org/downloads/)
+* Pandas [Instrucciones](https://pandas.pydata.org/pandas-docs/version/0.23.3/install.html)
 
 After installing please you can follow this simple steps:
 
 1. Clone this repository into your local machine
 
 ```bash
-$ git clone git@github.com:IcaliaLabs/crowdfront.git
+$ git clone https://github.com/ProyectoIntegrador2018/reportes-neurociencias.git
 ```
 
-2. Fire up a terminal and run:
-
-```bash
-$ plis run web bash
-```
-
-3. Inside the container you need to migrate the database:
+2. Open a terminal and look for the repository. An example:
 
 ```
-% rails db:migrate
+C:\Users\melanievielma> cd Desktop/reportes-neurociencias
+```
+
+3. Run:
+
+```
+C:\Users\melanievielma\Desktop\reportes-neurociencias> py MasterController.py
 ```
 
 ### Running the stack for Development
