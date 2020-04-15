@@ -104,11 +104,12 @@ class DenominacionWidget(object):
         self.label_9.setText(_translate("Form", "Denon imágenes T:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = DenominacionWidget(Form)
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
+
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Form = QtWidgets.QWidget()
+#     ui = DenominacionWidget(Form)
+#     ui.setupUi(Form)
+#     Form.show()
+#     sys.exit(app.exec_())
