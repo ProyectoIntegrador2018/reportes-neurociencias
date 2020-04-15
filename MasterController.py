@@ -130,6 +130,9 @@ class MasterController:
 			self.showSpecificWindowMenu(1)
 	
 	def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
+		"""
+		Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
+		"""
 		self.denominacionWindow = QtWidgets.QWidget()
 		self.denominacionController = DenominacionController(self.denominacionWindow)
 		self.denominacionController.switch_window.connect(self.showMVC)
@@ -142,9 +145,7 @@ class MasterController:
 		else:
 			self.reporteModel.addPrueba(fluidezVerbalPrueba)
 			self.reporteModel.printReporte()
-		# self.nextWindow = self.denominacionWindow
-		# self.connectMenu(self.denominacionController)
-		# self.loadView()
+
 			self.addPaginaVisitada(2)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(2)
