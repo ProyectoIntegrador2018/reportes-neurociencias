@@ -24,7 +24,7 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
 		print("Ando en changeView de FluidezVerbal")
-		self.switch_window.emit(self.invalidArgs,self.fluidezVerbalPrueba)
+		self.switch_window.emit(self.invalidArgs, self.fluidezVerbalPrueba)
 
 
 	def getDatos(self):

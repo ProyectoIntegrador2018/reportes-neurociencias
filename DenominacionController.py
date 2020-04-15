@@ -4,8 +4,10 @@ from MainWindowController import *
 from ReporteModel import *
 from DenominacionPrueba import *
 from PruebaModel import *
+from ControllerModel import * 
 
-class DenominacionController(QtWidgets.QWidget):
+class DenominacionController(QtWidgets.QWidget, ControllerModel):
+
     switch_window = QtCore.pyqtSignal(object, object)
 
     def __init__(self, mainWindow, reporteModel=None):
@@ -32,7 +34,15 @@ class DenominacionController(QtWidgets.QWidget):
         denomimgT = view.sbDenomImgT.value()
         print("Valor denominacion imagenes T: ", denomimgT)
 
-        DenominacionPrueba.calcularPERP(denomimgs, denomimgT)
+        valores = (denomimgs, denomimgT) 
+
+        self.denominacionPrueba = DenominacionPrueba(valores)
+
+        self.denominacionPrueba.calcularPERP()
+
+
+        self.changeView()
+
     
     def getListMenu(self):
         """
@@ -44,10 +54,10 @@ class DenominacionController(QtWidgets.QWidget):
 
 
 # Pruebas unitarias
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     denominacionWindow = QtWidgets.QWidget()
-#     denominacionController = DenominacionController(denominacionWindow)
-#     denominacionWindow.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    denominacionWindow = QtWidgets.QWidget()
+    denominacionController = DenominacionController(denominacionWindow)
+    denominacionWindow.show()
+    sys.exit(app.exec_())
