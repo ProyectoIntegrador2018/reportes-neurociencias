@@ -20,11 +20,16 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 
 		generoItems = ["Femenino", "Masculino"]
 		self.mainWindowView.cbSexo.addItems(generoItems)
+		
+		lateralidadItems = ["Diestro", "Zurdo", "Ambidiestro"]
+		self.mainWindowView.cbLateralidad.addItems(lateralidadItems)
+		
 		dateTimeObj = datetime.now()
 		timestampStr = dateTimeObj.strftime("%d/%b/%Y")
 		self.mainWindowView.leFecha.setText(timestampStr)
-
+		
 		self.mainWindowView.pbStart.clicked.connect(self.getDatos)
+
 
 	def changeView(self):
 		"""
@@ -44,7 +49,7 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		educacion = vista.sbEscolaridad.value()
 		genero = str(vista.cbSexo.currentText())
 		fechaNacimiento = vista.leFechaNacimiento.text()
-		lateralidad = vista.leLateralidad.text()
+		lateralidad = str(vista.cbLateralidad.currentText())
 		fecha = vista.leFecha.text()
 		carrera = vista.leCarrera.text()
 		semestre = vista.sbSemestre.value()
@@ -58,10 +63,10 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 			self.addMissingArg("Examinador")
 		if (edad == 0):
 			self.addMissingArg("Edad debe ser mayor a 0")
+		if (educacion == 0):
+			self.addMissingArg("Educación debe ser mayor a 0")
 		if (len(fechaNacimiento) == 0):
 			self.addMissingArg("Fecha de Nacimiento")
-		if (len(lateralidad) == 0):
-			self.addMissingArg("Lateralidad")
 		if (len(fecha) == 0):
 			self.addMissingArg("Fecha")
 		if (len(carrera) == 0):

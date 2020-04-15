@@ -1,21 +1,23 @@
-# Vista de la Pantalla Principal
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'mainWindow.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class MainWindowWithListWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
-
-    def setupUi(self, Form):
-        """
-         Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
-         Args:
-          Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
-        """
-        Form.setObjectName("Form")
-        Form.resize(800, 598)
-        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(220, 0, 581, 541))
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(803, 600)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 801, 551))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -95,44 +97,6 @@ class MainWindowWithListWidget(object):
         self.cbSexo.setEditable(False)
         self.cbSexo.setObjectName("cbSexo")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.cbSexo)
-        self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.leFechaNacimiento = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leFechaNacimiento.setObjectName("leFechaNacimiento")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.leFechaNacimiento)
-        self.label_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_5.setObjectName("label_5")
-        self.formLayout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.label_5)
-        self.cbLateralidad = QtWidgets.QComboBox(self.verticalLayoutWidget)
-        self.cbLateralidad.setEnabled(True)
-        self.cbLateralidad.setEditable(False)
-        self.cbLateralidad.setObjectName("cbLateralidad")
-        self.formLayout.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.cbLateralidad)
-        self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_6.setObjectName("label_6")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.LabelRole, self.label_6)
-        self.leFecha = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leFecha.setObjectName("leFecha")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.leFecha)
-        self.label_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_7.setObjectName("label_7")
-        self.formLayout.setWidget(9, QtWidgets.QFormLayout.LabelRole, self.label_7)
-        self.leCarrera = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leCarrera.setObjectName("leCarrera")
-        self.formLayout.setWidget(9, QtWidgets.QFormLayout.FieldRole, self.leCarrera)
-        self.label_13 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_13.setObjectName("label_13")
-        self.formLayout.setWidget(10, QtWidgets.QFormLayout.LabelRole, self.label_13)
-        self.sbSemestre = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbSemestre.setObjectName("sbSemestre")
-        self.formLayout.setWidget(10, QtWidgets.QFormLayout.FieldRole, self.sbSemestre)
-        self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_14.setObjectName("label_14")
-        self.formLayout.setWidget(11, QtWidgets.QFormLayout.LabelRole, self.label_14)
-        self.leEquipo = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leEquipo.setObjectName("leEquipo")
-        self.formLayout.setWidget(11, QtWidgets.QFormLayout.FieldRole, self.leEquipo)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -148,45 +112,42 @@ class MainWindowWithListWidget(object):
         self.horizontalLayout_2.addWidget(self.pbStart)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.verticalLayout_2.setStretch(0, 1)
-        self.verticalLayout_2.setStretch(1, 8)
+        self.verticalLayout_2.setStretch(1, 4)
         self.verticalLayout.addLayout(self.verticalLayout_2)
-        self.verticalLayout.setStretch(0, 6)
-        self.verticalLayout.setStretch(1, 1)
-        self.lWVistas = QtWidgets.QListWidget(Form)
-        self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
-        self.lWVistas.setObjectName("lWVistas")
+        self.verticalLayout.setStretch(0, 1)
+        self.verticalLayout.setStretch(1, 6)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 803, 26))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, Form):
-        """
-         Método empleado paraasignar el contenido de la Interfáz gráfica, es generado por pyuic5.
-         Args:
-          Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
-        """
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.lblLogo.setText(_translate("Form", "Logo"))
-        self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
-        self.label_10.setText(_translate("Form", "Nombre:"))
-        self.label_11.setText(_translate("Form", "ID:"))
-        self.label_3.setText(_translate("Form", "Examinador:"))
-        self.label_8.setText(_translate("Form", "Edad:"))
-        self.label_9.setText(_translate("Form", "Educación (Años):"))
-        self.label_12.setText(_translate("Form", "Género:"))
-        self.label_2.setText(_translate("Form", "Fecha de Nacimiento:"))
-        self.label_5.setText(_translate("Form", "Lateralidad:"))
-        self.label_6.setText(_translate("Form", "Fecha:"))
-        self.label_7.setText(_translate("Form", "Carrera:"))
-        self.label_13.setText(_translate("Form", "Semestre:"))
-        self.label_14.setText(_translate("Form", "Equipo:"))
-        self.pbStart.setText(_translate("Form", "Comenzar Captura"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.lblLogo.setText(_translate("MainWindow", "Logo"))
+        self.label.setText(_translate("MainWindow", "SYNAPPS"))
+        self.label_4.setText(_translate("MainWindow", "Ingrese los datos del paciente"))
+        self.label_10.setText(_translate("MainWindow", "Nombre:"))
+        self.label_11.setText(_translate("MainWindow", "ID:"))
+        self.label_3.setText(_translate("MainWindow", "Examinador:"))
+        self.label_8.setText(_translate("MainWindow", "Edad:"))
+        self.label_9.setText(_translate("MainWindow", "Escolaridad (Años):"))
+        self.label_12.setText(_translate("MainWindow", "Sexo:"))
+        self.pbStart.setText(_translate("MainWindow", "Comenzar Camptura"))
 
-"""
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
-"""
