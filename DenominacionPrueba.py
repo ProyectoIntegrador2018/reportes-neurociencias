@@ -30,9 +30,9 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
             # print(tmpDenominImg)
             escalarDenomImg = tmpDenominImg["DenomImgEscalar"].iloc[0]
             percentilDenomImg = tmpDenominImg["DenomImgPercentil"].iloc[0]
-            print("Resultados denominacion imagenes")
-            print("escalar:", escalarDenomImg)
-            print("percentil:",percentilDenomImg)
+            # print("Resultados denominacion imagenes")
+            # print("escalar:", escalarDenomImg)
+            # print("percentil:",percentilDenomImg)
 
         
         tmpDenomImgT = baremoDenomImg[baremoDenomImg["Denominacion imagenes T"] == denomimgT]
@@ -40,9 +40,9 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
             # print(tmpDenomImgT)
             escalarDenomImgT = tmpDenomImgT["DenomImgTEscalar"].iloc[0]
             percentilDenomImgT = tmpDenomImgT["DenomImgTPercentil"].iloc[0]
-            print("Resultados denominacion imagenes T")
-            print("escalar:", escalarDenomImgT)
-            print("percentil:",percentilDenomImgT)
+            # print("Resultados denominacion imagenes T")
+            # print("escalar:", escalarDenomImgT)
+            # print("percentil:",percentilDenomImgT)
 
         self.puntuacionEscalar = (int(escalarDenomImg), int(escalarDenomImgT))
         self.rangoPercentil = (int(percentilDenomImg), int(percentilDenomImgT))
