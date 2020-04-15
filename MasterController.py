@@ -151,9 +151,9 @@ class MasterController:
 			self.showSpecificWindowMenu(2)
 
 	def showMVC(self, invalidArgs, denominacionPrueba):
-		print("LOGRO ENTRAR")
 		self.MVCWindow = QtWidgets.QWidget()
 		self.mvcController = MVCController(self.MVCWindow)
+		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no validos:")
