@@ -1,7 +1,7 @@
 #Controlador de la vista MainWindow
 import sys
 from PyQt5 import QtWidgets, QtCore
-from FluidezVerbalController import *
+# from FluidezVerbalController import *
 from MainWindowWithListWidget import *
 from ReporteModel import *
 from datetime import datetime

@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
-from MVCWindowWidget import *
+from vistas.MVCWindowWidget import *
 from MainWindowController import *
-from MVCPrueba import *
+from pruebas.MVCPrueba import *
 from PruebaModel import *
 from ReporteModel import *
 
@@ -66,13 +66,12 @@ class MVCController(QtWidgets.QWidget):
 		
 		return self.MVCView.lWVistas
 
-"""
+
 # Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MVCWindow = QtWidgets.QWidget()
-    MVCController = MVCController(MVCWindow)
-    MVCWindow.show()
-    sys.exit(app.exec_())
-"""
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MVCWindow = QtWidgets.QWidget()
+#     MVCController = MVCController(MVCWindow)
+#     MVCWindow.show()
+#     sys.exit(app.exec_())
