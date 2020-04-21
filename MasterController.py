@@ -1,11 +1,11 @@
 #Controlador principal de todo el programa
 from MainWindowController import *
-from FluidezVerbalController import *
+from controladores.FluidezVerbalController import FluidezVerbalController
 from ModalController import *
 from MenuController import *
-from DenominacionController import *
-from MVCController import *
-from MemoriaVisoespaciaController import *
+from controladores.DenominacionController import *
+from controladores.MVCController import *
+from controladores.MemoriaVisoespaciaController import *
 
 class MasterController:
 	def __init__(self):

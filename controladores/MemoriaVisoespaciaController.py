@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets, QtCore
-from MemoriaVisoespaciaWidget import *
+from vistas.MemoriaVisoespaciaWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from MemoriaVisoespaciaPrueba import *
-from PruebaModel import *
+from pruebas.MemoriaVisoespaciaPrueba import *
+# from PruebaModel import *
 
 class MemoriaVisoespaciaController(QtWidgets.QWidget):
     switch_window = QtCore.pyqtSignal(object, object)
@@ -48,14 +48,14 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
 
 
 
-"""
+
 #Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    memoriaVisoespaciaWindow = QtWidgets.QWidget()
-    memoriaVisoespaciaController = MemoriaVisoespaciaController(memoriaVisoespaciaWindow)
-    memoriaVisoespaciaWindow.show()
-    sys.exit(app.exec_())
-"""
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     memoriaVisoespaciaWindow = QtWidgets.QWidget()
+#     memoriaVisoespaciaController = MemoriaVisoespaciaController(memoriaVisoespaciaWindow)
+#     memoriaVisoespaciaWindow.show()
+#     sys.exit(app.exec_())
+
 

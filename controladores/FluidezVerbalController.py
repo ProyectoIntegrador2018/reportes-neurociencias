@@ -1,9 +1,9 @@
 #Controlador de la vista de FluidezVerbalWindow
 from PyQt5 import QtWidgets, QtCore
-from FluidezVerbalWindowWidget import *
+from vistas.FluidezVerbalWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from FluidezVerbalPrueba import *
+from pruebas.FluidezVerbalPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
@@ -77,7 +77,7 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.fluidezVerbalView.lWVistas
 
-"""
+
 # Pruebas unitarias
 if __name__ == "__main__":
     import sys
@@ -86,4 +86,3 @@ if __name__ == "__main__":
     fluidezVerbalController = FluidezVerbalController(fluidezWindow)
     fluidezWindow.show()
     sys.exit(app.exec_())
-"""
