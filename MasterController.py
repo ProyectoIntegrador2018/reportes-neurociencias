@@ -1,11 +1,11 @@
 #Controlador principal de todo el programa
 from MainWindowController import *
-from FluidezVerbalController import *
+from controladores.FluidezVerbalController import FluidezVerbalController
 from ModalController import *
 from MenuController import *
-from DenominacionController import *
-from MVCController import *
-from MemoriaVisoespaciaController import *
+from controladores.DenominacionController import *
+from controladores.MVCController import *
+from controladores.MemoriaVisoespaciaController import *
 
 class MasterController:
 	def __init__(self):
@@ -130,6 +130,9 @@ class MasterController:
 			self.showSpecificWindowMenu(1)
 	
 	def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
+		"""
+		Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
+		"""
 		self.denominacionWindow = QtWidgets.QWidget()
 		self.denominacionController = DenominacionController(self.denominacionWindow)
 		self.denominacionController.switch_window.connect(self.showMVC)
@@ -142,15 +145,12 @@ class MasterController:
 		else:
 			self.reporteModel.addPrueba(fluidezVerbalPrueba)
 			self.reporteModel.printReporte()
-		# self.nextWindow = self.denominacionWindow
-		# self.connectMenu(self.denominacionController)
-		# self.loadView()
+
 			self.addPaginaVisitada(2)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(2)
 
 	def showMVC(self, invalidArgs, denominacionPrueba):
-		print("LOGRO ENTRAR")
 		self.MVCWindow = QtWidgets.QWidget()
 		self.mvcController = MVCController(self.MVCWindow)
 		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
@@ -168,6 +168,7 @@ class MasterController:
 			self.addPaginaVisitada(3)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(3)
+
 
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()

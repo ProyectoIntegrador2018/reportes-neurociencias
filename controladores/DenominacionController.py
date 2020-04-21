@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets, QtCore
-from DenominacionWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from DenominacionPrueba import *
-from PruebaModel import *
+from vistas.DenominacionWidget import DenominacionWidget
+# from MainWindowController import *
+# from ReporteModel import *
+from pruebas.DenominacionPrueba import DenominacionPrueba
+# from PruebaModel import *
 from ControllerModel import * 
 
 class DenominacionController(QtWidgets.QWidget, ControllerModel):
@@ -54,10 +54,10 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
 
 
 # Pruebas unitarias
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     denominacionWindow = QtWidgets.QWidget()
-#     denominacionController = DenominacionController(denominacionWindow)
-#     denominacionWindow.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    denominacionWindow = QtWidgets.QWidget()
+    denominacionController = DenominacionController(denominacionWindow)
+    denominacionWindow.show()
+    sys.exit(app.exec_())

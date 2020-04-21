@@ -2,7 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class FluidezVerbalWindowWidget(object):
+class DenominacionWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -48,18 +48,21 @@ class FluidezVerbalWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbAnimals = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbAnimals.setObjectName("sbAnimals")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAnimals)
+        self.sbDenomImg = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbDenomImg.setObjectName("sbDenomImg")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDenomImg)
+
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbWords = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbWords.setObjectName("sbWords")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbWords)
+        self.sbDenomImgT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbDenomImgT.setObjectName("sbDenomImgT")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
+
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -96,18 +99,17 @@ class FluidezVerbalWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
-        self.label_8.setText(_translate("Form", "Animales con P: "))
-        self.label_9.setText(_translate("Form", "Palabras con P:"))
+        self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Denominación"))
+        self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
+        self.label_9.setText(_translate("Form", "Denon imágenes T:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
-"""
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
-"""
+
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Form = QtWidgets.QWidget()
+#     ui = DenominacionWidget(Form)
+#     ui.setupUi(Form)
+#     Form.show()
+#     sys.exit(app.exec_())
