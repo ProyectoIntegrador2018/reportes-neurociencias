@@ -53,12 +53,14 @@ class FluidezVerbalWindowWidget(object):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbAnimals = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbAnimals.setObjectName("sbAnimals")
+        self.sbAnimals.setRange(1,1000)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAnimals)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbWords = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbWords.setObjectName("sbWords")
+        self.sbWords.setRange(1,1000)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbWords)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -93,7 +95,7 @@ class FluidezVerbalWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Prueba Fluidez Verbal"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
