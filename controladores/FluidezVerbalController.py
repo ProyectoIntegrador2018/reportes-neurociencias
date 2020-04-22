@@ -79,10 +79,10 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 
 
 # Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    fluidezWindow = QtWidgets.QWidget()
-    fluidezVerbalController = FluidezVerbalController(fluidezWindow)
-    fluidezWindow.show()
-    sys.exit(app.exec_())
+#if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    fluidezWindow = QtWidgets.QWidget()
+#    fluidezVerbalController = FluidezVerbalController(fluidezWindow)
+#    fluidezWindow.show()
+#    sys.exit(app.exec_())
