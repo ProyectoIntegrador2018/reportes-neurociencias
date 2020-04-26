@@ -18,7 +18,7 @@ class TMTPrueba(PruebaModel.PruebaModel):
 		"""
 		tablaTMT = self.baremos[0]
 		tablaEscolaridadTMTA = self.baremos[1]
-		tablaEscolaridadTMTB = self.baremos[1]
+		tablaEscolaridadTMTB = self.baremos[2]
 
 		tmtA = self.valores[0]
 		tmtB = self.valores[1]
@@ -40,14 +40,26 @@ class TMTPrueba(PruebaModel.PruebaModel):
 
 		tempA = tablaTMT[tablaTMT['TMTAMIN'] <= tmtA].iloc[0]
 		puntuacionEscalarA = tempA['PuntuacionEscalar'] + ajustesTMTA
+		
+		if puntuacionEscalarA < 2:
+			puntuacionEscalarA = 2
+		elif puntuacionEscalarA > 18:
+			puntuacionEscalarA = 18
+
 		tempA = tablaTMT[tablaTMT['PuntuacionEscalar'] == puntuacionEscalarA].iloc[0]
 		puntuacionPercentilA = (tempA['RangoDePercentilMin'], tempA['RangoDePercentilMax'])
 
 
-		ajustesTMTB = tablaEscolaridadTMTB[tablaEscolaridadTMTB['Escolaridad']==escolaridad].iloc[0]
-
+		ajustesTMTB = tablaEscolaridadTMTB[tablaEscolaridadTMTB['Escolaridad'] == escolaridad].iloc[0]
 		temp = tablaTMT[tablaTMT['TMTBMIN'] <= tmtB].iloc[0]
-		puntuacionEscalarB = temp['PuntuacionEscalar'] + ajustesTMTB
+		puntuacionEscalarB = temp['PuntuacionEscalar'] + ajustesTMTB['TMTB']
+		
+		if puntuacionEscalarB < 2:
+			puntuacionEscalarB = 2
+		elif puntuacionEscalarB > 18:
+			puntuacionEscalarB = 18
+
+
 		temp = tablaTMT[tablaTMT['PuntuacionEscalar'] == puntuacionEscalarB].iloc[0]
 		puntuacionPercentilB = (temp['RangoDePercentilMin'], temp['RangoDePercentilMax'])
 
