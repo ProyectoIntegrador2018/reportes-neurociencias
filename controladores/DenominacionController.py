@@ -54,10 +54,10 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
 
 
 # Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    denominacionWindow = QtWidgets.QWidget()
-    denominacionController = DenominacionController(denominacionWindow)
-    denominacionWindow.show()
-    sys.exit(app.exec_())
+#if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    denominacionWindow = QtWidgets.QWidget()
+#    denominacionController = DenominacionController(denominacionWindow)
+#    denominacionWindow.show()
+#    sys.exit(app.exec_())

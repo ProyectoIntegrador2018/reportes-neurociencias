@@ -1,11 +1,13 @@
 #Controlador principal de todo el programa
 from MainWindowController import *
-from controladores.FluidezVerbalController import FluidezVerbalController
 from ModalController import *
 from MenuController import *
+from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
 from controladores.MemoriaVisoespaciaController import *
+from controladores.TMTController import *
+
 
 class MasterController:
 	def __init__(self):
@@ -82,6 +84,11 @@ class MasterController:
 			self.nextWindow = self.memoriaVisoespaciaWindow
 			currentController = self.memoriaVisoespaciaController
 			self.menuController.updateCurrentWindow(4)
+		if elemSelected == 5:
+			self.nextWindow = self.tmtWindow
+			currentController = self.tmtController
+			self.menuController.updateCurrentWindow(5)
+
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -144,7 +151,7 @@ class MasterController:
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(fluidezVerbalPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(2)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -159,11 +166,11 @@ class MasterController:
 			self.modalController.setHeader("Elementos no validos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.fluidezVerbalController.emptyInvalidArgs()
+			self.denominacionController.emptyInvalidArgs()
 		else:
 			denominacionPrueba.printInfo()
 			self.reporteModel.addPrueba(denominacionPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(3)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -173,31 +180,49 @@ class MasterController:
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
 		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
-		self.memoriaVisoespaciaController.switch_window.connect(self.tempEnd)
+		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no validos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.fluidezVerbalController.emptyInvalidArgs()
+			self.mvcController.emptyInvalidArgs()
 		else:
 			MVCPrueba.printInfo()
 			self.reporteModel.addPrueba(MVCPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(4)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(4)
 
+	def showTMT(self, invalidArgs, memoriaVisoespaciaPrueba):
+		self.tmtWindow = QtWidgets.QWidget()
+		self.tmtController = TMTController(self.tmtWindow, self.reporteModel)
+		self.tmtController.switch_window.connect(self.tempEnd)
 
-	def tempEnd(self, invalidArgs, memoriaVisoespaciaPrueba):
+		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.memoriaVisoespaciaController.emptyInvalidArgs()
+		else:
+			memoriaVisoespaciaPrueba.printInfo()
+			self.reporteModel.addPrueba(memoriaVisoespaciaPrueba)
+			#self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(5)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(5)
+
+	def tempEnd(self, invalidArgs, tmtPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.fluidezVerbalController.emptyInvalidArgs()
+			self.tmtPrueba.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(memoriaVisoespaciaPrueba)
+			self.reporteModel.addPrueba(tmtPrueba)
 			self.reporteModel.printReporte()
 
 def main():

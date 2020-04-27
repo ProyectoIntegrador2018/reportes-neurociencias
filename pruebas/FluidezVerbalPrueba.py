@@ -6,8 +6,9 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "FluidezVerbal"
 		baremos = (pd.read_csv('./Baremos/TablaFluidezVerbal.csv'), pd.read_csv('./Baremos/EscolaridadFluidezVerbal.csv'))
+		campos = ("Animales con P", "Palabras con P")
 
-		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos)
+		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos, campos)
 
 	def calcularPERP(self, datos):
 		"""
@@ -18,10 +19,6 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 		tablaFV = self.baremos[0]
 		tablaEscolaridad = self.baremos[1]
 
-		print("animalesConP: " + str(self.valores[1]))
-		print("palabrasConP: " + str(self.valores[0]))
-		
-		
 		palabrasConP = self.valores[0]
 		animalesConP = self.valores[1]
 		escolaridad = datos[0]
@@ -35,10 +32,25 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 
 		temp = tablaFV[(animalesConP >= tablaFV['AnimalesMin']) & (tablaFV['AnimalesMax']>=animalesConP)].iloc[0]
 		puntuacionEscalarAnim = temp['PuntuacionEscalar'] + ajustes['Animales']
+		
+		if puntuacionEscalarAnim < 2:
+			puntuacionEscalarAnim = 2
+		elif puntuacionEscalarAnim > 18:
+			puntuacionEscalarAnim = 18
+
+		temp = tablaFV[tablaFV['PuntuacionEscalar'] == puntuacionEscalarAnim].iloc[0]
 		puntuacionPercentilAnim = (temp['RangoDePercentilMin'], temp['RangoDePercentilMax'])
+
 
 		tempPal = tablaFV[(palabrasConP >= tablaFV['PalabrasMin']) & (tablaFV['PalabrasMax']>=palabrasConP)].iloc[0]
 		puntuacionEscalarPal = tempPal['PuntuacionEscalar'] + ajustes['Palabras']
+		
+		if puntuacionEscalarPal < 2:
+			puntuacionEscalarPal = 2
+		elif puntuacionEscalarPal > 18:
+			puntuacionEscalarPal = 18
+
+		tempPal = tablaFV[tablaFV['PuntuacionEscalar'] == puntuacionEscalarPal].iloc[0]
 		puntuacionPercentilPal = (tempPal['RangoDePercentilMin'], tempPal['RangoDePercentilMax'])
 
 		self.puntuacionEscalar = (puntuacionEscalarAnim, puntuacionEscalarPal)

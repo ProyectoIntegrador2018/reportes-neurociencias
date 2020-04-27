@@ -1,12 +1,12 @@
 # Modelo de Prueba
 class PruebaModel:
-	def __init__(self, nombre, valores, baremos, puntuacionEscalar=0, rangoPercentil=0):
+	def __init__(self, nombre, valores, baremos, campos="", puntuacionEscalar=0, rangoPercentil=0):
 		self.nombre = nombre
 		self.valores = valores
 		self.puntuacionEscalar = puntuacionEscalar
 		self.rangoPercentil = rangoPercentil
 		self.baremos = baremos
-		#self.campos = campos AGREGAR LISTA DE NOMBRES DE CAMPOS SIGUIENTE SPRINT
+		self.campos = campos
 
 	def printInfo(self):
 		"""
