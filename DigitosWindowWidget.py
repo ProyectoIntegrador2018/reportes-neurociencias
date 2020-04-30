@@ -1,8 +1,8 @@
-#Vista de la prueba de Fluidez Verbal
+#Vista de la prueba de Digitos
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class DigitosWidget(object):
+class DigitosWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -109,7 +109,7 @@ class DigitosWidget(object):
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)
 #     Form = QtWidgets.QWidget()
-#     ui = DigitosWidget(Form)
+#     ui = DigitosWindowWidget(Form)
 #     ui.setupUi(Form)
 #     Form.show()
 #     sys.exit(app.exec_())
