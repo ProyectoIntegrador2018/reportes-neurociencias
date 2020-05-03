@@ -35,13 +35,7 @@ class DigitosController(QtWidgets.QWidget, ControllerModel):
 
         datos = [self.reporteModel.reporte['educacion']]
 
-        if directos > 9:
-            self.addInvalidArgs("Directos")
-        if inversos > 8:
-            self.addInvalidArgs("Inversos")
-        
-        if len(self.invalidArgs) == 0:
-            self.digitosPrueba.calcularPERP(datos)
+        self.digitosPrueba.calcularPERP(datos)
 
         self.changeView()
     

@@ -1,8 +1,8 @@
-#Vista de la prueba de Digitos
+#Vista de la prueba de SDMT
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class DigitosWindowWidget(object):
+class SDMTWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -48,22 +48,15 @@ class DigitosWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbDirectos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbDirectos.setObjectName("sbDirectos")
-        self.sbDirectos.setRange(0,9)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDirectos)
 
-        self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_9.setObjectName("label_9")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbInversos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbInversos.setObjectName("sbInversos")
-        self.sbInversos.setRange(0,8)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbInversos)
+        self.sbSDMT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbSDMT.setObjectName("sbSDMT")
+        #no estoy muy segura del rango, checar con Beatriz
+        self.sbSDMT.setRange(1,100)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSDMT)
 
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -98,12 +91,11 @@ class DigitosWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Prueba SDMT"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Digitos"))
-        self.label_8.setText(_translate("Form", "Directos (span): "))
-        self.label_9.setText(_translate("Form", "Inversos (span):"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba SDMT"))
+        self.label_8.setText(_translate("Form", "SDMT: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -111,7 +103,7 @@ class DigitosWindowWidget(object):
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)
 #     Form = QtWidgets.QWidget()
-#     ui = DigitosWindowWidget(Form)
+#     ui = SDMTWindowWidget(Form)
 #     ui.setupUi(Form)
 #     Form.show()
 #     sys.exit(app.exec_())

@@ -9,6 +9,7 @@ from controladores.MemoriaVisoespaciaController import *
 from controladores.DigitosController import *
 from controladores.TMTController import *
 from controladores.AbstraccionController import *
+from controladores.SDMTController import *
 
 class MasterController:
 	def __init__(self):
@@ -97,6 +98,10 @@ class MasterController:
 			self.nextWindow = self.digitosView
 			currentController = self.digitosController
 			self.menuController.updateCurrentWindow(7)
+		if elemSelected == 8:
+			self.nextWindow = self.sdmtView
+			currentController = self.sdmtController
+			self.menuController.updateCurrentWindow(8)
 
 			
 		if self.windowsAreDifferent():
@@ -243,13 +248,11 @@ class MasterController:
 	def showDigitos(self, invalidArgs, pruebaAbstraccion):
 		self.digitosView = QtWidgets.QWidget()
 		self.digitosController = DigitosController(self.digitosView, self.reporteModel)
-		self.digitosController.switch_window.connect(self.tempEnd)
+		self.digitosController.switch_window.connect(self.showSDMT)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Deben ser mayor a 0:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
-			self.fluidezVerbalController.emptyInvalidArgs()
+			self.displayModal(invalidArgs)
+			self.abstraccionController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(pruebaAbstraccion)
 			self.reporteModel.printReporte()
@@ -257,6 +260,22 @@ class MasterController:
 			self.addPaginaVisitada(7)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(7)
+	
+	def showSDMT(self, invalidArgs, digitosPrueba):
+		self.sdmtView = QtWidgets.QWidget()
+		self.sdmtController = SDMTController(self.sdmtView, self.reporteModel)
+		self.sdmtController.switch_window.connect(self.tempEnd)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.digitosController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(digitosPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(8)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(8)
 
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
@@ -272,14 +291,14 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, digitosPrueba):
+	def tempEnd(self, invalidArgs, sdmtPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no válidos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
 			self.digitosController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(digitosPrueba)
+			self.reporteModel.addPrueba(sdmtPrueba)
 			self.reporteModel.printReporte()
 
 def main():
