@@ -1,8 +1,8 @@
-#Vista de la prueba de Fluidez Verbal
+#Vista de la prueba TMT
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class DenominacionWidget(object):
+class TMTWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -48,21 +48,20 @@ class DenominacionWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbDenomImg = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbDenomImg.setObjectName("sbDenomImg")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDenomImg)
-
+        self.sbTMTA = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTMTA.setObjectName("sbTMTA")
+        self.sbTMTA.setRange(1,1000)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbTMTA)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbDenomImgT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbDenomImgT.setObjectName("sbDenomImgT")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
-
+        self.sbTMTB = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTMTB.setObjectName("sbTMTB")
+        self.sbTMTB.setRange(1,1000)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbTMTB)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -96,12 +95,12 @@ class DenominacionWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Prueba TMT"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Denominación"))
-        self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
-        self.label_9.setText(_translate("Form", "Denon imágenes T:"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba TMT"))
+        self.label_8.setText(_translate("Form", "Puntuación en TMT A: "))
+        self.label_9.setText(_translate("Form", "Puntuación en TMT B: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -109,7 +108,8 @@ class DenominacionWidget(object):
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)
 #     Form = QtWidgets.QWidget()
-#     ui = DenominacionWidget(Form)
+#     ui = TMTWindowWidget(Form)
 #     ui.setupUi(Form)
 #     Form.show()
 #     sys.exit(app.exec_())
+# 

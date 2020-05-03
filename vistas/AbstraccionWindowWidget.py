@@ -1,8 +1,8 @@
-#Vista de la prueba de Fluidez Verbal
+#Vista de la prueba de Abstraccion
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class DenominacionWidget(object):
+class AbstraccionWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -48,21 +48,13 @@ class DenominacionWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbDenomImg = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbDenomImg.setObjectName("sbDenomImg")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDenomImg)
-
-        self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_9.setObjectName("label_9")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbDenomImgT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbDenomImgT.setObjectName("sbDenomImgT")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
-
+        self.sbAbstraccion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbAbstraccion.setObjectName("sbAbstraccion")
+        self.sbAbstraccion.setRange(0,12)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAbstraccion)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -96,12 +88,11 @@ class DenominacionWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Prueba Abstracción"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Denominación"))
-        self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
-        self.label_9.setText(_translate("Form", "Denon imágenes T:"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Abstracción"))
+        self.label_8.setText(_translate("Form", "Puntuación en semejanza-abstracción: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -109,7 +100,7 @@ class DenominacionWidget(object):
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)
 #     Form = QtWidgets.QWidget()
-#     ui = DenominacionWidget(Form)
+#     ui = AbstraccionWindowWidget(Form)
 #     ui.setupUi(Form)
 #     Form.show()
 #     sys.exit(app.exec_())

@@ -1,12 +1,14 @@
 #Controlador principal de todo el programa
 from MainWindowController import *
-from controladores.FluidezVerbalController import FluidezVerbalController
 from ModalController import *
 from MenuController import *
+from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
 from controladores.MemoriaVisoespaciaController import *
 from controladores.DigitosController import *
+from controladores.TMTController import *
+from controladores.AbstraccionController import *
 
 class MasterController:
 	def __init__(self):
@@ -83,10 +85,19 @@ class MasterController:
 			self.nextWindow = self.memoriaVisoespaciaWindow
 			currentController = self.memoriaVisoespaciaController
 			self.menuController.updateCurrentWindow(4)
+		if elemSelected == 5:
+			self.nextWindow = self.tmtWindow
+			currentController = self.tmtController
+			self.menuController.updateCurrentWindow(5)
+		if elemSelected == 6:
+			self.nextWindow = self.abstraccionWindow
+			currentController = self.abstraccionController
+			self.menuController.updateCurrentWindow(6)
 		if elemSelected == 7:
 			self.nextWindow = self.digitosView
 			currentController = self.digitosController
 			self.menuController.updateCurrentWindow(7)
+
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -99,6 +110,12 @@ class MasterController:
 		"""
 		return self.currentWindow != self.nextWindow
 
+	def displayModal(self, listMissingElem, modalTitle="Elementos no válidos", modalHeader="Elementos: "):
+		self.modalController.setWindowTitle(modalTitle)
+		self.modalController.setHeader(modalHeader)
+		self.modalController.setContenido(listMissingElem)
+		self.modalController.showModal()
+
 	def showMainWindow(self):
 		"""
 		 Método que se encarga de cargar la vista de la pantalla a MainWindow, así como el controlador de la misma.
@@ -106,6 +123,7 @@ class MasterController:
 		self.mainWindowController.switch_window.connect(self.showFluidezVerbal)
 		self.showSpecificWindowMenu(0)
 	
+
 
 	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
 	def showFluidezVerbal(self, listMissingElem, reporte):
@@ -122,10 +140,7 @@ class MasterController:
 				
 			
 		if(len(listMissingElem) != 0):
-			self.modalController.setWindowTitle("Elementos no válidos")
-			self.modalController.setHeader("Elementos:")
-			self.modalController.setContenido(listMissingElem)
-			self.modalController.showModal()
+			self.displayModal(listMissingElem)
 			self.mainWindowController.emptyMissingArgs()
 		else:
 			print("Toda la info fue llenada")
@@ -145,13 +160,11 @@ class MasterController:
 		self.denominacionController.switch_window.connect(self.showMVC)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Deben de ser mayor a 0:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
+			self.displayModal(invalidArgs, modalHeader="Deben de ser mayor a 0:")
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(fluidezVerbalPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(2)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -163,14 +176,12 @@ class MasterController:
 		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no validos:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
-			self.fluidezVerbalController.emptyInvalidArgs()
+			self.displayModal(invalidArgs)
+			self.denominacionController.emptyInvalidArgs()
 		else:
 			denominacionPrueba.printInfo()
 			self.reporteModel.addPrueba(denominacionPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(3)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -180,23 +191,56 @@ class MasterController:
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
 		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
-		self.memoriaVisoespaciaController.switch_window.connect(self.showDigitos)
+		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no validos:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
-			self.fluidezVerbalController.emptyInvalidArgs()
+			self.displayModal(invalidArgs)
+			self.mvcController.emptyInvalidArgs()
 		else:
 			MVCPrueba.printInfo()
 			self.reporteModel.addPrueba(MVCPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(4)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(4)
-	
-	def showDigitos(self, invalidArgs, memoriaVisoespaciaPrueba):
+
+	def showTMT(self, invalidArgs, memoriaVisoespaciaPrueba):
+		self.tmtWindow = QtWidgets.QWidget()
+		self.tmtController = TMTController(self.tmtWindow, self.reporteModel)
+		self.tmtController.switch_window.connect(self.showAbstraccion)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.memoriaVisoespaciaController.emptyInvalidArgs()
+		else:
+			memoriaVisoespaciaPrueba.printInfo()
+			self.reporteModel.addPrueba(memoriaVisoespaciaPrueba)
+			#self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(5)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(5)
+
+	def showAbstraccion(self, invalidArgs, tmtPrueba):
+		self.abstraccionWindow = QtWidgets.QWidget()
+		self.abstraccionController = AbstraccionController(self.abstraccionWindow, self.reporteModel)
+		self.abstraccionController.switch_window.connect(self.showDigitos)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.tmtController.emptyInvalidArgs()
+		else:
+			tmtPrueba.printInfo()
+			self.reporteModel.addPrueba(tmtPrueba)
+			#self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(6)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(6)
+
+
+	def showDigitos(self, invalidArgs, pruebaAbstraccion):
 		self.digitosView = QtWidgets.QWidget()
 		self.digitosController = DigitosController(self.digitosView, self.reporteModel)
 		self.digitosController.switch_window.connect(self.tempEnd)
@@ -207,12 +251,25 @@ class MasterController:
 			self.modalController.showModal()
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(memoriaVisoespaciaPrueba)
+			self.reporteModel.addPrueba(pruebaAbstraccion)
 			self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(7)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(7)
+
+
+	# def tempEnd(self, invalidArgs, pruebaDigitos):
+	# 	if len(invalidArgs) != 0:
+	# 		self.displayModal(invalidArgs)
+	# 		self.tmtPrueba.emptyInvalidArgs()
+	# 	else:
+	# 		self.reporteModel.addPrueba(pruebaDigitos)
+	# 		self.reporteModel.printReporte()
+
+	# 		self.addPaginaVisitada(7)
+	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
+	# 		self.showSpecificWindowMenu(7)
 
 
 	def tempEnd(self, invalidArgs, digitosPrueba):

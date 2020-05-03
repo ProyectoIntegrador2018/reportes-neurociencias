@@ -30,9 +30,9 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
         """
         view = self.denominacionView
         denomimgs = view.sbDenomImg.value()
-        print("Valor denominacion imagenes: ", denomimgs)
+        # print("Valor denominacion imagenes: ", denomimgs)
         denomimgT = view.sbDenomImgT.value()
-        print("Valor denominacion imagenes T: ", denomimgT)
+        # print("Valor denominacion imagenes T: ", denomimgT)
 
         valores = (denomimgs, denomimgT) 
 
@@ -54,10 +54,10 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
 
 
 # Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    denominacionWindow = QtWidgets.QWidget()
-    denominacionController = DenominacionController(denominacionWindow)
-    denominacionWindow.show()
-    sys.exit(app.exec_())
+#if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    denominacionWindow = QtWidgets.QWidget()
+#    denominacionController = DenominacionController(denominacionWindow)
+#    denominacionWindow.show()
+#    sys.exit(app.exec_())
