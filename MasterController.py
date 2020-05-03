@@ -6,7 +6,7 @@ from MenuController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
 from controladores.MemoriaVisoespaciaController import *
-from DigitosController import *
+from controladores.DigitosController import *
 
 class MasterController:
 	def __init__(self):

@@ -1,9 +1,9 @@
 # controlador de la vista de Digitis
 from PyQt5 import QtWidgets, QtCore
-from DigitosWindowWidget import *
+from vistas.DigitosWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from DigitosPrueba import *
+from pruebas.DigitosPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
