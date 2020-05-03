@@ -54,7 +54,7 @@ class SDMTWindowWidget(object):
 
         self.sbSDMT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbSDMT.setObjectName("sbSDMT")
-        self.sbSDMT.setRange(0,9)
+        self.sbSDMT.setRange(1,100)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSDMT)
 
         self.verticalLayout_2.addLayout(self.formLayout)
@@ -98,11 +98,11 @@ class SDMTWindowWidget(object):
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = SDMTWindowWidget(Form)
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Form = QtWidgets.QWidget()
+#     ui = SDMTWindowWidget(Form)
+#     ui.setupUi(Form)
+#     Form.show()
+#     sys.exit(app.exec_())
