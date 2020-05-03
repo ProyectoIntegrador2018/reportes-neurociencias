@@ -96,7 +96,7 @@ class MVCWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes del paciente"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Comprensión Verbal"))
         self.label_8.setText(_translate("Form", "Material Verbal Complejo: "))
         self.label_9.setText(_translate("Form", "Material Verbal Complejo T:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
