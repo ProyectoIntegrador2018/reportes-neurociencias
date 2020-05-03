@@ -72,17 +72,21 @@ class MasterController:
 			currentController = self.fluidezVerbalController
 			self.menuController.updateCurrentWindow(1)
 		if elemSelected == 2:
+			self.nextWindow = self.denominacionWindow
+			currentController = self.denominacionController
+			self.menuController.updateCurrentWindow(2)
+		if elemSelected == 3:
+			self.nextWindow = self.MVCWindow
+			currentController = self.mvcController
+			self.menuController.updateCurrentWindow(3)
+		if elemSelected == 4:
+			self.nextWindow = self.memoriaVisoespaciaWindow
+			currentController = self.memoriaVisoespaciaController
+			self.menuController.updateCurrentWindow(4)
+		if elemSelected == 7:
 			self.nextWindow = self.digitosView
 			currentController = self.digitosController
-			self.menuController.updateCurrentWindow(2)
-		# if elemSelected == 3:
-		# 	self.nextWindow = self.MVCWindow
-		# 	currentController = self.mvcController
-		# 	self.menuController.updateCurrentWindow(3)
-		# if elemSelected == 4:
-		# 	self.nextWindow = self.memoriaVisoespaciaWindow
-		# 	currentController = self.memoriaVisoespaciaController
-		# 	self.menuController.updateCurrentWindow(4)
+			self.menuController.updateCurrentWindow(7)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -114,7 +118,7 @@ class MasterController:
 		self.reporteModel = reporte
 		
 		self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
-		self.fluidezVerbalController.switch_window.connect(self.showDigitos)
+		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
 				
 			
 		if(len(listMissingElem) != 0):
@@ -130,11 +134,15 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			
 			self.showSpecificWindowMenu(1)
+
 	
-	def showDigitos(self, invalidArgs, fluidezVerbalPrueba):
-		self.digitosView = QtWidgets.QWidget()
-		self.digitosController = DigitosController(self.digitosView)
-		self.digitosController.switch_window.connect(self.tempEnd)
+	def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
+		"""
+		Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
+		"""
+		self.denominacionWindow = QtWidgets.QWidget()
+		self.denominacionController = DenominacionController(self.denominacionWindow)
+		self.denominacionController.switch_window.connect(self.showMVC)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
@@ -149,76 +157,72 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(2)
 
-	
-	# def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
-	# 	"""
-	# 	Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
-	# 	"""
-	# 	self.denominacionWindow = QtWidgets.QWidget()
-	# 	self.denominacionController = DenominacionController(self.denominacionWindow)
-	# 	self.denominacionController.switch_window.connect(self.showMVC)
+	def showMVC(self, invalidArgs, denominacionPrueba):
+		self.MVCWindow = QtWidgets.QWidget()
+		self.mvcController = MVCController(self.MVCWindow)
+		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
-	# 	if len(invalidArgs) != 0:
-	# 		self.modalController.setHeader("Deben de ser mayor a 0:")
-	# 		self.modalController.setContenido(invalidArgs)
-	# 		self.modalController.showModal()
-	# 		self.fluidezVerbalController.emptyInvalidArgs()
-	# 	else:
-	# 		self.reporteModel.addPrueba(fluidezVerbalPrueba)
-	# 		self.reporteModel.printReporte()
-
-	# 		self.addPaginaVisitada(2)
-	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
-	# 		self.showSpecificWindowMenu(2)
-
-	# def showMVC(self, invalidArgs, denominacionPrueba):
-	# 	self.MVCWindow = QtWidgets.QWidget()
-	# 	self.mvcController = MVCController(self.MVCWindow)
-	# 	self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
-
-	# 	if len(invalidArgs) != 0:
-	# 		self.modalController.setHeader("Elementos no validos:")
-	# 		self.modalController.setContenido(invalidArgs)
-	# 		self.modalController.showModal()
-	# 		self.fluidezVerbalController.emptyInvalidArgs()
-	# 	else:
-	# 		denominacionPrueba.printInfo()
-	# 		self.reporteModel.addPrueba(denominacionPrueba)
-	# 		self.reporteModel.printReporte()
-
-	# 		self.addPaginaVisitada(3)
-	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
-	# 		self.showSpecificWindowMenu(3)
-
-
-	# def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
-	# 	self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
-	# 	self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
-	# 	self.memoriaVisoespaciaController.switch_window.connect(self.tempEnd)
-
-	# 	if len(invalidArgs) != 0:
-	# 		self.modalController.setHeader("Elementos no validos:")
-	# 		self.modalController.setContenido(invalidArgs)
-	# 		self.modalController.showModal()
-	# 		self.fluidezVerbalController.emptyInvalidArgs()
-	# 	else:
-	# 		MVCPrueba.printInfo()
-	# 		self.reporteModel.addPrueba(MVCPrueba)
-	# 		self.reporteModel.printReporte()
-
-	# 		self.addPaginaVisitada(4)
-	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
-	# 		self.showSpecificWindowMenu(4)
-
-
-	def tempEnd(self, invalidArgs, memoriaVisoespaciaPrueba):
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Deben de ser mayor a 0:")
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.fluidezVerbalController.emptyInvalidArgs()
+		else:
+			denominacionPrueba.printInfo()
+			self.reporteModel.addPrueba(denominacionPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(3)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(3)
+
+
+	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
+		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
+		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
+		self.memoriaVisoespaciaController.switch_window.connect(self.showDigitos)
+
+		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.fluidezVerbalController.emptyInvalidArgs()
+		else:
+			MVCPrueba.printInfo()
+			self.reporteModel.addPrueba(MVCPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(4)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(4)
+	
+	def showDigitos(self, invalidArgs, memoriaVisoespaciaPrueba):
+		self.digitosView = QtWidgets.QWidget()
+		self.digitosController = DigitosController(self.digitosView, self.reporteModel)
+		self.digitosController.switch_window.connect(self.tempEnd)
+
+		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Deben ser mayor a 0:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(memoriaVisoespaciaPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(7)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(7)
+
+
+	def tempEnd(self, invalidArgs, digitosPrueba):
+		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no válidos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.digitosController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(digitosPrueba)
 			self.reporteModel.printReporte()
 
 def main():

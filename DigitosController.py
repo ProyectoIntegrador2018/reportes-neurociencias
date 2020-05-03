@@ -33,12 +33,35 @@ class DigitosController(QtWidgets.QWidget, ControllerModel):
 
         self.digitosPrueba = DigitosPrueba(valores)
 
-        # datos = [self.reporteModel.reporte['educacion']]
-        datos = 8
+        datos = [self.reporteModel.reporte['educacion']]
 
-        self.digitosPrueba.calcularPERP(datos)
+        if directos > 9:
+            self.addInvalidArgs("Directos")
+        if inversos > 8:
+            self.addInvalidArgs("Inversos")
+        
+        if len(self.invalidArgs) == 0:
+            self.digitosPrueba.calcularPERP(datos)
 
         self.changeView()
+    
+    def emptyInvalidArgs(self):
+        """
+        Metodo para vaciar la lista de elementos invalidos
+        """
+        self.invalidArgs = list()
+    
+    def addInvalidArgs(self,arg):
+        """
+        Metodo para agregar elementos invalidos
+        arg = el string a añadir
+        """
+        if len(self.invalidArgs) == 0:
+            self.invalidArgs = [arg]
+        else:
+            tempList = self.invalidArgs
+            tempList.append(arg)
+            self.invalidArgs = tempList
     
     def getListMenu(self):
         """

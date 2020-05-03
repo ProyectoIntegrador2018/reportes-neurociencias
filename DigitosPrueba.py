@@ -24,7 +24,7 @@ class DigitosPrueba(PruebaModel.PruebaModel):
 
         tablaDigitos = self.baremos[0]
         tablaEscolaridadDigitos = self.baremos[1]
-        escolaridad = datos
+        escolaridad = datos[0]
 
         if escolaridad < 8:
             escolaridad = 8
@@ -51,3 +51,5 @@ class DigitosPrueba(PruebaModel.PruebaModel):
 
         self.puntuacionEscalar = (escalarDirectos, escalarInversos)
         self.rangoPercentil = (percentilDirectos, percentilInversos)
+        print( self.puntuacionEscalar)
+        print(self.rangoPercentil)
