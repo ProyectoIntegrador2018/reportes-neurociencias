@@ -2,6 +2,7 @@
 from MainWindowController import *
 from ModalController import *
 from MenuController import *
+from ProgressBarController import *
 from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
@@ -21,6 +22,10 @@ class MasterController:
 		self.mainWindow = QtWidgets.QWidget()
 		self.fluidezWindow = QtWidgets.QWidget()
 		
+
+		#self.mainWindow.setStyleSheet(open('app.css').read())
+	
+
 		self.mainWindowController = MainWindowController(self.mainWindow)
 		
 		self.paginasVisitadas = [0]
@@ -28,6 +33,8 @@ class MasterController:
 		
 		self.menuController = MenuController(self.paginasVisitadas)
 		self.menuController.switch_window.connect(self.showSpecificWindowMenu)
+
+		self.progressBarController = ProgressBarController(len(self.menuController.entries))
 
 		self.currentWindow = self.dummyWindow
 		self.nextWindow = self.mainWindow
@@ -60,6 +67,10 @@ class MasterController:
 		self.listMenu = currentController.getListMenu()
 		self.menuController.updateListView(self.listMenu)
 		self.menuController.poblarLista()
+
+	def connectProgressBar(self, currentController):
+		self.progressBarController.updateProgress(max(self.paginasVisitadas))
+		self.progressBarController.setProgressBar(currentController.getProgressBar())
 
 
 	def showSpecificWindowMenu(self, elemSelected):
@@ -115,6 +126,7 @@ class MasterController:
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
+			self.connectProgressBar(currentController)
 			self.loadView()
 
 
@@ -137,6 +149,7 @@ class MasterController:
 		self.mainWindowController.switch_window.connect(self.showFluidezVerbal)
 		self.showSpecificWindowMenu(0)
 	
+
 
 
 	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
@@ -174,6 +187,9 @@ class MasterController:
 		self.denominacionController.switch_window.connect(self.showMVC)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Deben de ser mayor a 0:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs, modalHeader="Deben de ser mayor a 0:")
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
@@ -190,6 +206,9 @@ class MasterController:
 		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.denominacionController.emptyInvalidArgs()
 		else:
@@ -208,6 +227,9 @@ class MasterController:
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.mvcController.emptyInvalidArgs()
 		else:
@@ -225,6 +247,9 @@ class MasterController:
 		self.tmtController.switch_window.connect(self.showAbstraccion)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.memoriaVisoespaciaController.emptyInvalidArgs()
 		else:
@@ -260,6 +285,10 @@ class MasterController:
 		self.digitosController.switch_window.connect(self.showSDMT)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Deben de ser mayor a 0:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.tmtPrueba.emptyInvalidArgs()
 			self.displayModal(invalidArgs)
 			self.abstraccionController.emptyInvalidArgs()
 		else:
@@ -347,6 +376,7 @@ def main():
 	 Método principal en la ejecución del programa
 	"""
 	app = QtWidgets.QApplication(sys.argv)
+	#app.setStyleSheet(open('app.css').read())
 	masterController = MasterController()
 	masterController.showMainWindow()
 	sys.exit(app.exec_())

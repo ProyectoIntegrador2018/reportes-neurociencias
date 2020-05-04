@@ -31,16 +31,17 @@ class MenuController(QtWidgets.QWidget):
 		model = self.qListItems
 		for index in range(model.count()):
 			item = model.item(index)
+			
 			if (index not in self.pagesVisited):
 				item.setFlags(QtCore.Qt.NoItemFlags)
 			else:
 				item.setFlags(QtCore.Qt.ItemIsEnabled)
 
+			
 			if index == self.currentWindow:
 				item.setBackground(QtGui.QColor('#85C1E9'))
 			else:
 				item.setBackground(QtGui.QColor('#dcd7d1'))
-
 			tempItem = QtWidgets.QListWidgetItem(item)
 			self.listView.addItem(tempItem)
 		

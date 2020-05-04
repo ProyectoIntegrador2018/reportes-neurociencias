@@ -46,6 +46,12 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
         """
         return self.memoriaVisoespaciaView.lWVistas
 
+    def getProgressBar(self):
+        """
+         Método que se encarga de regresar el valor de la barra de progreso
+        """
+        return self.memoriaVisoespaciaView.progressBar
+
 
 
 

@@ -72,6 +72,13 @@ class LNSController(QtWidgets.QWidget, ControllerModel):
 		return self.lnsView.lWVistas
 
 
+	def getProgressBar(self):
+		"""
+		 Método que se encarga de regresar el valor de la barra de progreso
+		"""
+		return self.lnsView.progressBar
+
+
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys

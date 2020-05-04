@@ -50,6 +50,12 @@ class SDMTController(QtWidgets.QWidget, ControllerModel):
 
     def getListMenu(self):
         return self.sdmtView.lWVistas
+
+    def getProgressBar(self):
+        """
+         Método que se encarga de regresar el valor de la barra de progreso
+        """
+        return self.sdmtView.progressBar
     
 # Pruebas unitarias
 # if __name__ == "__main__":
