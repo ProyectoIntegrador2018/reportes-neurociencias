@@ -15,7 +15,7 @@ class SDMTPrueba(PruebaModel.PruebaModel):
         tablaescolaridadSDMT = self.baremos[1]
 
         sdmtVal = self.valores
-        escolaridad = datos
+        escolaridad = datos[0]
 
         if escolaridad < 8:
             escolaridad = 8
@@ -37,6 +37,9 @@ class SDMTPrueba(PruebaModel.PruebaModel):
         # print("Puntuacion escalar: ", puntuacionEscalar)
         # print("Rango Percentil:", rangoPercentil)
 
-        self.puntuacionEscalar = puntuacionEscalar
+        self.puntuacionEscalar = (puntuacionEscalar)
         self.rangoPercentil = (rangoPercentil)
+
+        print(self.puntuacionEscalar)
+        print(self.rangoPercentil)
 

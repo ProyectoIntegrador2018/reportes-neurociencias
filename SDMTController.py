@@ -27,8 +27,8 @@ class SDMTController(QtWidgets.QWidget, ControllerModel):
 
         self.sdmtPrueba = SDMTPrueba(valores)
 
-        datos = 20
-        # datos = [self.reporteModel.reporte['educacion']]
+        # datos = 11
+        datos = [self.reporteModel.reporte['educacion']]
 
         if sdmtVal == 0:
             self.addInvalidArgs("SDMT")
@@ -56,10 +56,10 @@ class SDMTController(QtWidgets.QWidget, ControllerModel):
         return self.sdmtView.lWVistas
     
 # Pruebas unitarias
-if __name__ == "__main__":
-   import sys
-   app = QtWidgets.QApplication(sys.argv)
-   sdmtWindow = QtWidgets.QWidget()
-   fluidezVerbalController = SDMTController(sdmtWindow)
-   sdmtWindow.show()
-   sys.exit(app.exec_())
+# if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    sdmtWindow = QtWidgets.QWidget()
+#    fluidezVerbalController = SDMTController(sdmtWindow)
+#    sdmtWindow.show()
+#    sys.exit(app.exec_())

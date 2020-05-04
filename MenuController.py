@@ -13,7 +13,8 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba Material Verbal Complejo', 
 						'Prueba Memoria Visoespacial',
 						'Prueba TMT',
-						'Prueba Abstracción']
+						'Prueba Abstracción',
+						'Prueba SDMT']
 		self.pagesVisited = pagesVisited
 		self.qListItems = QtWidgets.QListWidget(self)
 		self.qListItems.addItems(self.entries)

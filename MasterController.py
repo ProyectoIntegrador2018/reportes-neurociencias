@@ -9,6 +9,7 @@ from controladores.MemoriaVisoespaciaController import *
 # from controladores.DigitosController import *
 from controladores.TMTController import *
 from controladores.AbstraccionController import *
+from SDMTController import *
 
 class MasterController:
 	def __init__(self):
@@ -93,9 +94,13 @@ class MasterController:
 			self.nextWindow = self.abstraccionWindow
 			currentController = self.abstraccionController
 			self.menuController.updateCurrentWindow(6)
+		# if elemSelected == 7:
+		# 	self.nextWindow = self.digitosView
+		# 	currentController = self.digitosController
+		# 	self.menuController.updateCurrentWindow(7)
 		if elemSelected == 7:
-			self.nextWindow = self.digitosView
-			currentController = self.digitosController
+			self.nextWindow = self.sdmtView
+			currentController = self.sdmtController
 			self.menuController.updateCurrentWindow(7)
 
 			
@@ -225,7 +230,7 @@ class MasterController:
 	def showAbstraccion(self, invalidArgs, tmtPrueba):
 		self.abstraccionWindow = QtWidgets.QWidget()
 		self.abstraccionController = AbstraccionController(self.abstraccionWindow, self.reporteModel)
-		self.abstraccionController.switch_window.connect(self.tempEnd)
+		self.abstraccionController.switch_window.connect(self.showSDMT)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -258,6 +263,23 @@ class MasterController:
 	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
 	# 		self.showSpecificWindowMenu(7)
 
+	def showSDMT(self, invalidArgs, abstraccionPrueba):
+		self.sdmtView = QtWidgets.QWidget()
+		self.sdmtController = SDMTController(self.sdmtView, self.reporteModel)
+		self.abstraccionController.switch_window.connect(self.tempEnd)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.tmtController.emptyInvalidArgs()
+		else:
+			abstraccionPrueba.printInfo()
+			self.reporteModel.addPrueba(abstraccionPrueba)
+			#self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(7)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(7)
+
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
 	# 	if len(invalidArgs) != 0:
@@ -272,15 +294,15 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, abstraccionPrueba):
+	def tempEnd(self, invalidArgs, SDMTPrueba):
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no válidos:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
-			self.abstraccionController.emptyInvalidArgs()
+			self.displayModal(invalidArgs)
+			self.sdmtController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(abstraccionPrueba)
+			SDMTPrueba.printInfo()
+			self.reporteModel.addPrueba(SDMTPrueba)
 			self.reporteModel.printReporte()
+			
 
 def main():
 	"""
