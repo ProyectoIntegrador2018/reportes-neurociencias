@@ -257,9 +257,7 @@ def main():
 	 Método principal en la ejecución del programa
 	"""
 	app = QtWidgets.QApplication(sys.argv)
-	
-	app.setStyleSheet(open('app.css').read())
-
+	#app.setStyleSheet(open('app.css').read())
 	masterController = MasterController()
 	masterController.showMainWindow()
 	sys.exit(app.exec_())
