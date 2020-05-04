@@ -63,8 +63,13 @@ class MVCController(QtWidgets.QWidget):
 		"""
 		 Método que se regresa el id del menu en la vista de Material Verbal Complejo
 		"""
-		
 		return self.MVCView.lWVistas
+
+	def getProgressBar(self):
+		"""
+		 Método que se encarga de regresar el valor de la barra de progreso
+		"""
+		return self.MVCView.progressBar
 
 
 # Pruebas unitarias

@@ -155,6 +155,12 @@ class MainWindowWithListWidget(object):
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
+        
+        self.progressBar = QtWidgets.QProgressBar(Form)
+        self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
+
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -166,7 +172,7 @@ class MainWindowWithListWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Información de Sujeto"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))

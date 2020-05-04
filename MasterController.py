@@ -2,6 +2,7 @@
 from MainWindowController import *
 from ModalController import *
 from MenuController import *
+from ProgressBarController import *
 from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
@@ -17,6 +18,10 @@ class MasterController:
 		self.mainWindow = QtWidgets.QWidget()
 		self.fluidezWindow = QtWidgets.QWidget()
 		
+
+		#self.mainWindow.setStyleSheet(open('app.css').read())
+	
+
 		self.mainWindowController = MainWindowController(self.mainWindow)
 		
 		self.paginasVisitadas = [0]
@@ -24,6 +29,8 @@ class MasterController:
 		
 		self.menuController = MenuController(self.paginasVisitadas)
 		self.menuController.switch_window.connect(self.showSpecificWindowMenu)
+
+		self.progressBarController = ProgressBarController(len(self.menuController.entries))
 
 		self.currentWindow = self.dummyWindow
 		self.nextWindow = self.mainWindow
@@ -56,6 +63,10 @@ class MasterController:
 		self.listMenu = currentController.getListMenu()
 		self.menuController.updateListView(self.listMenu)
 		self.menuController.poblarLista()
+
+	def connectProgressBar(self, currentController):
+		self.progressBarController.updateProgress(max(self.paginasVisitadas))
+		self.progressBarController.setProgressBar(currentController.getProgressBar())
 
 
 	def showSpecificWindowMenu(self, elemSelected):
@@ -96,6 +107,7 @@ class MasterController:
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
+			self.connectProgressBar(currentController)
 			self.loadView()
 
 
@@ -130,7 +142,7 @@ class MasterController:
 		self.reporteModel = reporte
 		
 		self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
-		self.fluidezVerbalController.switch_window.connect(self.showAbstraccion)
+		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
 				
 			
 		if(len(listMissingElem) != 0):
@@ -245,6 +257,9 @@ def main():
 	 Método principal en la ejecución del programa
 	"""
 	app = QtWidgets.QApplication(sys.argv)
+	
+	app.setStyleSheet(open('app.css').read())
+
 	masterController = MasterController()
 	masterController.showMainWindow()
 	sys.exit(app.exec_())
