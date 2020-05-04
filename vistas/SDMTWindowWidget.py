@@ -1,8 +1,8 @@
-#Vista de la prueba de Fluidez Verbal
+#Vista de la prueba de SDMT
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class FluidezVerbalWindowWidget(object):
+class SDMTWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -51,17 +51,13 @@ class FluidezVerbalWindowWidget(object):
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbAnimals = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbAnimals.setObjectName("sbAnimals")
-        self.sbAnimals.setRange(1,1000)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAnimals)
-        self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_9.setObjectName("label_9")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbWords = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbWords.setObjectName("sbWords")
-        self.sbWords.setRange(1,1000)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbWords)
+
+        self.sbSDMT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbSDMT.setObjectName("sbSDMT")
+        #no estoy muy segura del rango, checar con Beatriz
+        self.sbSDMT.setRange(1,100)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSDMT)
+
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -95,12 +91,11 @@ class FluidezVerbalWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba Fluidez Verbal"))
+        Form.setWindowTitle(_translate("Form", "Prueba SDMT"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Fluidez Verbal"))
-        self.label_8.setText(_translate("Form", "Animales con P: "))
-        self.label_9.setText(_translate("Form", "Palabras con P:"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba SDMT"))
+        self.label_8.setText(_translate("Form", "SDMT: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -108,7 +103,7 @@ class FluidezVerbalWindowWidget(object):
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)
 #     Form = QtWidgets.QWidget()
-#     ui = FluidezVerbalWindowWidget(Form)
+#     ui = SDMTWindowWidget(Form)
 #     ui.setupUi(Form)
 #     Form.show()
 #     sys.exit(app.exec_())

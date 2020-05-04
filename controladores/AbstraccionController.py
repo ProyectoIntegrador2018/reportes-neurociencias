@@ -1,21 +1,21 @@
-#Controlador de la vista de FluidezVerbalWindow
+#Controlador de la vista de AbstraccionWindow
 from PyQt5 import QtWidgets, QtCore
-from vistas.FluidezVerbalWindowWidget import *
+from vistas.AbstraccionWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.FluidezVerbalPrueba import *
+from pruebas.AbstraccionPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
+class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.fluidezVerbalView = FluidezVerbalWindowWidget(mainWindow)
-		self.fluidezVerbalView.pbStart.clicked.connect(self.getDatos)
+		self.abstraccionView = AbstraccionWindowWidget(mainWindow)
+		self.abstraccionView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,30 +23,27 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.fluidezVerbalPrueba)
+		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de Fluidez Verbal
+		 Método que toma los datos ingresados en la vista de TMT
 		"""
-		view = self.fluidezVerbalView
-		palabrasConP = view.sbWords.value()
-		animalesConP = view.sbAnimals.value()
+		view = self.abstraccionView
+		valSemAbs = view.sbAbstraccion.value()
 
-		valores = (palabrasConP, animalesConP)
+		valores = (valSemAbs)
 		
-		self.fluidezVerbalPrueba = FluidezVerbalPrueba(valores)
+		self.abstraccionPrueba = AbstraccionPrueba(valores)
 		
-		datos = [self.reporteModel.reporte['educacion']]
+		datos = [self.reporteModel.reporte['edad']]
 		
-		if palabrasConP == 0:
-			self.addInvalidArg("Palabras con P")
-		if animalesConP == 0:
-			self.addInvalidArg("Animales con P")
+		if (valSemAbs < 0 or valSemAbs > 12):
+			self.addInvalidArg("TMT A")
 
 		if len(self.invalidArgs) == 0:
-			self.fluidezVerbalPrueba.calcularPERP(datos)
+			self.abstraccionPrueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -72,9 +69,9 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de Fluidez Verbal
+		 Método que se regresa el id del menu en la vista de TMT
 		"""
-		return self.fluidezVerbalView.lWVistas
+		return self.abstraccionView.lWVistas
 
 
 # Pruebas unitarias
@@ -82,6 +79,6 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
 #    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = FluidezVerbalController(fluidezWindow)
+#    fluidezVerbalController = TMTController(fluidezWindow)
 #    fluidezWindow.show()
 #    sys.exit(app.exec_())

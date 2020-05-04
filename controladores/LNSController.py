@@ -1,21 +1,21 @@
-#Controlador de la vista de FluidezVerbalWindow
+#Controlador de la vista de LNSWindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.FluidezVerbalWindowWidget import *
+from vistas.LNSWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.FluidezVerbalPrueba import *
+from pruebas.LNSPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
+class LNSController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.fluidezVerbalView = FluidezVerbalWindowWidget(mainWindow)
-		self.fluidezVerbalView.pbStart.clicked.connect(self.getDatos)
+		self.lnsView = LNSWindowWidget(mainWindow)
+		self.lnsView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,30 +23,25 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.fluidezVerbalPrueba)
+		self.switch_window.emit(self.invalidArgs, self.lnsPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de Fluidez Verbal
+		 Método que toma los datos ingresados en la vista de LNS
 		"""
-		view = self.fluidezVerbalView
-		palabrasConP = view.sbWords.value()
-		animalesConP = view.sbAnimals.value()
+		view = self.lnsView
+		span = view.sbSpan.value()
+		total = view.sbTotal.value()
 
-		valores = (palabrasConP, animalesConP)
+		valores = (span, total)
 		
-		self.fluidezVerbalPrueba = FluidezVerbalPrueba(valores)
-		
-		datos = [self.reporteModel.reporte['educacion']]
-		
-		if palabrasConP == 0:
-			self.addInvalidArg("Palabras con P")
-		if animalesConP == 0:
-			self.addInvalidArg("Animales con P")
+		self.lnsPrueba = LNSPrueba(valores)
 
-		if len(self.invalidArgs) == 0:
-			self.fluidezVerbalPrueba.calcularPERP(datos)
+		#toma anos de escolaridad del paciente
+		datos = self.reporteModel.reporte['educacion']
+		
+		self.lnsPrueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -72,9 +67,9 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de Fluidez Verbal
+		 Método que se regresa el id del menu en la vista de LNS
 		"""
-		return self.fluidezVerbalView.lWVistas
+		return self.lnsView.lWVistas
 
 
 # Pruebas unitarias
@@ -82,6 +77,6 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
 #    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = FluidezVerbalController(fluidezWindow)
+#    fluidezVerbalController = LNSController(fluidezWindow)
 #    fluidezWindow.show()
 #    sys.exit(app.exec_())

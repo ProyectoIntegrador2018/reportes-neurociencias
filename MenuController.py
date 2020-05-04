@@ -7,7 +7,17 @@ class MenuController(QtWidgets.QWidget):
 
 	def __init__(self, pagesVisited):
 		QtWidgets.QWidget.__init__(self)
-		self.entries = ['Información de Sujeto', 'Prueba Fluidez Verbal', 'Prueba Denominación', 'Prueba Material Verbal Complejo', 'Prueba Memoria Visoespacial']
+		self.entries = ['Información de Sujeto', 
+						'Prueba Fluidez Verbal', 
+						'Prueba Denominación', 
+						'Prueba Material Verbal Complejo', 
+						'Prueba Memoria Visoespacial',
+						'Prueba TMT',
+						'Prueba Abstracción',
+						'Prueba Dígitos',
+						'Prueba SDMT',
+						'Prueba LNS', 
+						'Prueba D2']
 		self.pagesVisited = pagesVisited
 		self.qListItems = QtWidgets.QListWidget(self)
 		self.qListItems.addItems(self.entries)
