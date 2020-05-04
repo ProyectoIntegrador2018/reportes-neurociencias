@@ -1,8 +1,8 @@
-#Vista de la prueba de Abstraccion
+#Vista de la prueba de Digitos
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class AbstraccionWindowWidget(object):
+class DigitosWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -48,13 +48,23 @@ class AbstraccionWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbAbstraccion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbAbstraccion.setObjectName("sbAbstraccion")
-        self.sbAbstraccion.setRange(0,12)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAbstraccion)
+        self.sbDirectos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbDirectos.setObjectName("sbDirectos")
+        self.sbDirectos.setRange(0,9)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDirectos)
+
+        self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_9.setObjectName("label_9")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
+        self.sbInversos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbInversos.setObjectName("sbInversos")
+        self.sbInversos.setRange(0,8)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbInversos)
+
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -88,11 +98,12 @@ class AbstraccionWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba Abstracción"))
+        Form.setWindowTitle(_translate("Form", "Form"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Abstracción"))
-        self.label_8.setText(_translate("Form", "Puntuación en semejanza-abstracción: "))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Digitos"))
+        self.label_8.setText(_translate("Form", "Directos (span): "))
+        self.label_9.setText(_translate("Form", "Inversos (span):"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -100,7 +111,7 @@ class AbstraccionWindowWidget(object):
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)
 #     Form = QtWidgets.QWidget()
-#     ui = AbstraccionWindowWidget(Form)
+#     ui = DigitosWindowWidget(Form)
 #     ui.setupUi(Form)
 #     Form.show()
 #     sys.exit(app.exec_())

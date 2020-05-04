@@ -6,7 +6,7 @@ from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
 from controladores.MemoriaVisoespaciaController import *
-# from controladores.DigitosController import *
+from controladores.DigitosController import *
 from controladores.TMTController import *
 from controladores.AbstraccionController import *
 from SDMTController import *
@@ -94,14 +94,14 @@ class MasterController:
 			self.nextWindow = self.abstraccionWindow
 			currentController = self.abstraccionController
 			self.menuController.updateCurrentWindow(6)
-		# if elemSelected == 7:
-		# 	self.nextWindow = self.digitosView
-		# 	currentController = self.digitosController
-		# 	self.menuController.updateCurrentWindow(7)
 		if elemSelected == 7:
+			self.nextWindow = self.digitosView
+			currentController = self.digitosController
+			self.menuController.updateCurrentWindow(7)
+		if elemSelected == 8:
 			self.nextWindow = self.sdmtView
 			currentController = self.sdmtController
-			self.menuController.updateCurrentWindow(7)
+			self.menuController.updateCurrentWindow(8)
 
 			
 		if self.windowsAreDifferent():
@@ -230,7 +230,7 @@ class MasterController:
 	def showAbstraccion(self, invalidArgs, tmtPrueba):
 		self.abstraccionWindow = QtWidgets.QWidget()
 		self.abstraccionController = AbstraccionController(self.abstraccionWindow, self.reporteModel)
-		self.abstraccionController.switch_window.connect(self.showSDMT)
+		self.abstraccionController.switch_window.connect(self.showDigitos)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -263,7 +263,24 @@ class MasterController:
 	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
 	# 		self.showSpecificWindowMenu(7)
 
-	def showSDMT(self, invalidArgs, abstraccionPrueba):
+	def showDigitos(self, invalidArgs, pruebaAbstraccion):
+		self.digitosView = QtWidgets.QWidget()
+		self.digitosController = DigitosController(self.digitosView, self.reporteModel)
+		self.digitosController.switch_window.connect(self.showSDMT)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.fluidezVerbalController.emptyInvalidArgs()
+		else:
+			pruebaAbstraccion.printInfo()
+			self.reporteModel.addPrueba(pruebaAbstraccion)
+			# self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(7)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(7)
+	
+	def showSDMT(self, invalidArgs, digitosPrueba):
 		self.sdmtView = QtWidgets.QWidget()
 		self.sdmtController = SDMTController(self.sdmtView, self.reporteModel)
 		self.abstraccionController.switch_window.connect(self.tempEnd)
@@ -272,35 +289,24 @@ class MasterController:
 			self.displayModal(invalidArgs)
 			self.tmtController.emptyInvalidArgs()
 		else:
-			abstraccionPrueba.printInfo()
-			self.reporteModel.addPrueba(abstraccionPrueba)
-			#self.reporteModel.printReporte()
+			digitosPrueba.printInfo()
+			self.reporteModel.addPrueba(digitosPrueba)
+			self.reporteModel.printReporte()
 
-			self.addPaginaVisitada(7)
+			self.addPaginaVisitada(8)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(7)
+			self.showSpecificWindowMenu(8)
 
 
-	# def tempEnd(self, invalidArgs, pruebaDigitos):
-	# 	if len(invalidArgs) != 0:
-	# 		self.displayModal(invalidArgs)
-	# 		self.tmtPrueba.emptyInvalidArgs()
-	# 	else:
-	# 		self.reporteModel.addPrueba(pruebaDigitos)
-	# 		self.reporteModel.printReporte()
-
-	# 		self.addPaginaVisitada(7)
-	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
-	# 		self.showSpecificWindowMenu(7)
-
-
-	def tempEnd(self, invalidArgs, SDMTPrueba):
+	def tempEnd(self, invalidArgs, sdmtPrueba):
 		if len(invalidArgs) != 0:
-			self.displayModal(invalidArgs)
-			self.sdmtController.emptyInvalidArgs()
+			self.modalController.setHeader("Deben ser mayor a 0:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.digitosController.emptyInvalidArgs()
 		else:
-			SDMTPrueba.printInfo()
-			self.reporteModel.addPrueba(SDMTPrueba)
+			sdmtPrueba.printInfo()
+			self.reporteModel.addPrueba(sdmtPrueba)
 			self.reporteModel.printReporte()
 			
 

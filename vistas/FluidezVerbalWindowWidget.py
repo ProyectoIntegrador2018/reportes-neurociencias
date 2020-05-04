@@ -98,7 +98,7 @@ class FluidezVerbalWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Prueba Fluidez Verbal"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Fluidez Verbal"))
         self.label_8.setText(_translate("Form", "Animales con P: "))
         self.label_9.setText(_translate("Form", "Palabras con P:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))

@@ -54,7 +54,7 @@ class DenominacionWidget(object):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbDenomImg = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDenomImg.setObjectName("sbDenomImg")
-        self.sbDenomImg.setRange(1,14)
+        self.sbDenomImg.setRange(0,14)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDenomImg)
 
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -62,7 +62,7 @@ class DenominacionWidget(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbDenomImgT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDenomImgT.setObjectName("sbDenomImgT")
-        self.sbDenomImgT.setRange(1,42)
+        self.sbDenomImgT.setRange(0,42)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
 
         self.verticalLayout_2.addLayout(self.formLayout)
@@ -101,7 +101,7 @@ class DenominacionWidget(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Denominación"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Denominación"))
         self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
         self.label_9.setText(_translate("Form", "Denon imágenes T:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
