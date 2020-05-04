@@ -1,21 +1,21 @@
-#Controlador de la vista de AbstraccionWindow
+#Controlador de la vista de LNSWindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.AbstraccionWindowWidget import *
+from vistas.LNSWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.AbstraccionPrueba import *
+from pruebas.LNSPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class AbstraccionController(QtWidgets.QWidget, ControllerModel):
+class LNSController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.abstraccionView = AbstraccionWindowWidget(mainWindow)
-		self.abstraccionView.pbStart.clicked.connect(self.getDatos)
+		self.lnsView = LNSWindowWidget(mainWindow)
+		self.lnsView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,27 +23,25 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba)
+		self.switch_window.emit(self.invalidArgs, self.lnsPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de TMT
+		 Método que toma los datos ingresados en la vista de LNS
 		"""
-		view = self.abstraccionView
-		valSemAbs = view.sbAbstraccion.value()
+		view = self.lnsView
+		span = view.sbSpan.value()
+		total = view.sbTotal.value()
 
-		valores = (valSemAbs)
+		valores = (span, total)
 		
-		self.abstraccionPrueba = AbstraccionPrueba(valores)
-		
-		datos = [self.reporteModel.reporte['edad']]
-		
-		if (valSemAbs < 0 or valSemAbs > 12):
-			self.addInvalidArg("TMT A")
+		self.lnsPrueba = LNSPrueba(valores)
 
-		if len(self.invalidArgs) == 0:
-			self.abstraccionPrueba.calcularPERP(datos)
+		#toma anos de escolaridad del paciente
+		datos = self.reporteModel.reporte['educacion']
+		
+		self.lnsPrueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -69,15 +67,16 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de TMT
+		 Método que se regresa el id del menu en la vista de LNS
 		"""
-		return self.abstraccionView.lWVistas
+		return self.lnsView.lWVistas
+
 
 	def getProgressBar(self):
 		"""
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
-		return self.abstraccionView.progressBar
+		return self.lnsView.progressBar
 
 
 # Pruebas unitarias
@@ -85,6 +84,6 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
 #    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = TMTController(fluidezWindow)
+#    fluidezVerbalController = LNSController(fluidezWindow)
 #    fluidezWindow.show()
 #    sys.exit(app.exec_())

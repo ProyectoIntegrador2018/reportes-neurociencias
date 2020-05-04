@@ -28,14 +28,7 @@ class MVCController(QtWidgets.QWidget):
 		
 		self.MVCPrueba = MVCPrueba(valores)
 		
-		#validacion de datos de entrada
-		if MVC == 0:
-			self.addInvalidArg("MVC")
-		if MVCT == 0:
-			self.addInvalidArg("MVCT")
-
-		if len(self.invalidArgs) == 0:
-			self.MVCPrueba.calcularPERP()
+		self.MVCPrueba.calcularPERP()
 			
 		self.changeView()
 

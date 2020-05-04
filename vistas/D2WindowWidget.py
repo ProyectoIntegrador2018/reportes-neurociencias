@@ -1,8 +1,8 @@
-#Vista de la prueba de Material Verbal Complejo
+#Vista de la prueba D2
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class MVCWindowWidget(object):
+class D2WindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -51,17 +51,24 @@ class MVCWindowWidget(object):
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbMVC = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbMVC.setObjectName("sbMVC")
-        self.sbMVC.setRange(0,9)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbMVC)
+        self.sbTOT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTOT.setObjectName("sbTOT")
+        self.sbTOT.setRange(0,658)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbTOT)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbMVCT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbMVCT.setObjectName("sbMVCT")
-        self.sbMVCT.setRange(0,27)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbMVCT)
+        self.sbCON = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbCON.setObjectName("sbCON")
+        self.sbCON.setRange(0,299)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbCON)
+        self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_10.setObjectName("label_10")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_10)
+        self.sbVAR = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbVAR.setObjectName("sbVAR")
+        self.sbVAR.setRange(0,47)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.sbVAR)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -100,10 +107,22 @@ class MVCWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Prueba D2"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Comprensión Verbal"))
-        self.label_8.setText(_translate("Form", "Material Verbal Complejo: "))
-        self.label_9.setText(_translate("Form", "Material Verbal Complejo T:"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba D2"))
+        self.label_8.setText(_translate("Form", "TOT: "))
+        self.label_9.setText(_translate("Form", "CON: "))
+        self.label_10.setText(_translate("Form", "VAR: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+
+
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Form = QtWidgets.QWidget()
+#     ui = D2WindowWidget(Form)
+#     ui.setupUi(Form)
+#     Form.show()
+#     sys.exit(app.exec_())
+# 

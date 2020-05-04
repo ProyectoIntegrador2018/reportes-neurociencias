@@ -1,21 +1,21 @@
-#Controlador de la vista de AbstraccionWindow
+#Controlador de la vista de D2WindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.AbstraccionWindowWidget import *
+from vistas.D2WindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.AbstraccionPrueba import *
+from pruebas.D2Prueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class AbstraccionController(QtWidgets.QWidget, ControllerModel):
+class D2Controller(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.abstraccionView = AbstraccionWindowWidget(mainWindow)
-		self.abstraccionView.pbStart.clicked.connect(self.getDatos)
+		self.d2View = D2WindowWidget(mainWindow)
+		self.d2View.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,27 +23,26 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba)
+		self.switch_window.emit(self.invalidArgs, self.d2Prueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de TMT
+		 Método que toma los datos ingresados en la vista de D2
 		"""
-		view = self.abstraccionView
-		valSemAbs = view.sbAbstraccion.value()
+		view = self.d2View
+		TOT = view.sbTOT.value()
+		CON = view.sbCON.value()
+		VAR = view.sbVAR.value()
 
-		valores = (valSemAbs)
+		valores = [TOT, CON, VAR]
 		
-		self.abstraccionPrueba = AbstraccionPrueba(valores)
-		
-		datos = [self.reporteModel.reporte['edad']]
-		
-		if (valSemAbs < 0 or valSemAbs > 12):
-			self.addInvalidArg("TMT A")
+		self.d2Prueba = D2Prueba(valores)
 
-		if len(self.invalidArgs) == 0:
-			self.abstraccionPrueba.calcularPERP(datos)
+		#toma la edad del paciente. MUY IMPORTANTE
+		datos = self.reporteModel.reporte['edad']
+		
+		self.d2Prueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -69,22 +68,22 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de TMT
+		 Método que se regresa el id del menu en la vista de D2
 		"""
-		return self.abstraccionView.lWVistas
+		return self.d2View.lWVistas
 
 	def getProgressBar(self):
 		"""
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
-		return self.abstraccionView.progressBar
+		return self.d2View.progressBar
 
 
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = TMTController(fluidezWindow)
-#    fluidezWindow.show()
+#    d2Window = QtWidgets.QWidget()
+#    d2Controller = D2Controller(d2Window)
+#    d2Window.show()
 #    sys.exit(app.exec_())

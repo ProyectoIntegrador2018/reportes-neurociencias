@@ -103,7 +103,7 @@ class TMTWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Prueba TMT"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba TMT"))
         self.label_8.setText(_translate("Form", "Puntuación en TMT A: "))
         self.label_9.setText(_translate("Form", "Puntuación en TMT B: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
