@@ -60,5 +60,5 @@ class LNSPrueba(PruebaModel.PruebaModel):
 		puntuacionPercentilTotal = (auxTotal['PercentilMin'], auxTotal['PercentilMax'])
 
 		
-		self.puntuacionEscalar = puntuacionEscalarSpan, puntuacionEscalarTotal
-		self.rangoPercentil = puntuacionPercentilSpan, puntuacionPercentilTotal
+		self.puntuacionEscalar = (puntuacionEscalarSpan, puntuacionEscalarTotal)
+		self.rangoPercentil = (puntuacionPercentilSpan, puntuacionPercentilTotal)

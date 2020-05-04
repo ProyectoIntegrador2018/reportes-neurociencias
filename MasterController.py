@@ -11,6 +11,7 @@ from controladores.TMTController import *
 from controladores.AbstraccionController import *
 from controladores.SDMTController import *
 from controladores.LNSController import *
+from controladores.D2Controller import *
 
 class MasterController:
 	def __init__(self):
@@ -107,6 +108,10 @@ class MasterController:
 			self.nextWindow = self.lnsView
 			currentController = self.lnsController
 			self.menuController.updateCurrentWindow(9)
+		if elemSelected == 10:
+			self.nextWindow = self.d2View
+			currentController = self.d2Controller
+			self.menuController.updateCurrentWindow(10)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -284,7 +289,7 @@ class MasterController:
 	def showLNS(self, invalidArgs, sdmtPrueba):
 		self.lnsView = QtWidgets.QWidget()
 		self.lnsController = LNSController(self.lnsView, self.reporteModel)
-		self.lnsController.switch_window.connect(self.tempEnd) 
+		self.lnsController.switch_window.connect(self.showD2) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -296,6 +301,22 @@ class MasterController:
 			self.addPaginaVisitada(9)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(9)
+
+	def showD2(self, invalidArgs, lnsPrueba):
+		self.d2View = QtWidgets.QWidget()
+		self.d2Controller = D2Controller(self.d2View, self.reporteModel)
+		self.d2Controller.switch_window.connect(self.tempEnd) 
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.lnsController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(lnsPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(10)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(10)
 
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
@@ -311,14 +332,14 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, lnsPrueba):
+	def tempEnd(self, invalidArgs, d2Prueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no válidos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.digitosController.emptyInvalidArgs()
+			self.d2Controller.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(lnsPrueba)
+			self.reporteModel.addPrueba(d2Prueba)
 			self.reporteModel.printReporte()
 
 def main():
