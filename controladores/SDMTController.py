@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtCore
-from SDMTPrueba import *
-from SDMTWindowWidget import *
+from pruebas.SDMTPrueba import *
+from vistas.SDMTWindowWidget import *
 from ReporteModel import *
 from ControllerModel import *
 
@@ -27,14 +27,10 @@ class SDMTController(QtWidgets.QWidget, ControllerModel):
 
         self.sdmtPrueba = SDMTPrueba(valores)
 
-        # datos = 11
         datos = [self.reporteModel.reporte['educacion']]
 
-        if sdmtVal == 0:
-            self.addInvalidArgs("SDMT")
-        
-        if len(self.invalidArgs) == 0:
-            self.sdmtPrueba.calcularPERP(datos)
+       
+        self.sdmtPrueba.calcularPERP(datos)
         
         self.changeView()
     

@@ -54,6 +54,7 @@ class SDMTWindowWidget(object):
 
         self.sbSDMT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbSDMT.setObjectName("sbSDMT")
+        #no estoy muy segura del rango, checar con Beatriz
         self.sbSDMT.setRange(1,100)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSDMT)
 
