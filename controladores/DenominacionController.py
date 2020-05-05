@@ -50,6 +50,11 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
         """
         return self.denominacionView.lWVistas
 
+    def getProgressBar(self):
+        """
+         Método que se encarga de regresar el valor de la barra de progreso
+        """
+        return self.denominacionView.progressBar
 
 
 

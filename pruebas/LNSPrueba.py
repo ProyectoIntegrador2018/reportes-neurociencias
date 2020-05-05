@@ -58,7 +58,6 @@ class LNSPrueba(PruebaModel.PruebaModel):
 
 		auxTotal = tablaLNS[tablaLNS['Escalar'] == puntuacionEscalarTotal].iloc[0]
 		puntuacionPercentilTotal = (auxTotal['PercentilMin'], auxTotal['PercentilMax'])
-
-		
-		self.puntuacionEscalar = puntuacionEscalarSpan, puntuacionEscalarTotal
-		self.rangoPercentil = puntuacionPercentilSpan, puntuacionPercentilTotal
+    
+		self.puntuacionEscalar = (puntuacionEscalarSpan, puntuacionEscalarTotal)
+		self.rangoPercentil = (puntuacionPercentilSpan, puntuacionPercentilTotal)

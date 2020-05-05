@@ -2,6 +2,7 @@
 from MainWindowController import *
 from ModalController import *
 from MenuController import *
+from ProgressBarController import *
 from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
@@ -11,6 +12,7 @@ from controladores.TMTController import *
 from controladores.AbstraccionController import *
 from controladores.SDMTController import *
 from controladores.LNSController import *
+from controladores.D2Controller import *
 
 class MasterController:
 	def __init__(self):
@@ -20,6 +22,10 @@ class MasterController:
 		self.mainWindow = QtWidgets.QWidget()
 		self.fluidezWindow = QtWidgets.QWidget()
 		
+
+		#self.mainWindow.setStyleSheet(open('app.css').read())
+	
+
 		self.mainWindowController = MainWindowController(self.mainWindow)
 		
 		self.paginasVisitadas = [0]
@@ -27,6 +33,8 @@ class MasterController:
 		
 		self.menuController = MenuController(self.paginasVisitadas)
 		self.menuController.switch_window.connect(self.showSpecificWindowMenu)
+
+		self.progressBarController = ProgressBarController(len(self.menuController.entries))
 
 		self.currentWindow = self.dummyWindow
 		self.nextWindow = self.mainWindow
@@ -59,6 +67,10 @@ class MasterController:
 		self.listMenu = currentController.getListMenu()
 		self.menuController.updateListView(self.listMenu)
 		self.menuController.poblarLista()
+
+	def connectProgressBar(self, currentController):
+		self.progressBarController.updateProgress(max(self.paginasVisitadas))
+		self.progressBarController.setProgressBar(currentController.getProgressBar())
 
 
 	def showSpecificWindowMenu(self, elemSelected):
@@ -107,9 +119,14 @@ class MasterController:
 			self.nextWindow = self.lnsView
 			currentController = self.lnsController
 			self.menuController.updateCurrentWindow(9)
+		if elemSelected == 10:
+			self.nextWindow = self.d2View
+			currentController = self.d2Controller
+			self.menuController.updateCurrentWindow(10)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
+			self.connectProgressBar(currentController)
 			self.loadView()
 
 
@@ -132,6 +149,7 @@ class MasterController:
 		self.mainWindowController.switch_window.connect(self.showFluidezVerbal)
 		self.showSpecificWindowMenu(0)
 	
+
 
 
 	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
@@ -169,6 +187,9 @@ class MasterController:
 		self.denominacionController.switch_window.connect(self.showMVC)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Deben de ser mayor a 0:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs, modalHeader="Deben de ser mayor a 0:")
 			self.fluidezVerbalController.emptyInvalidArgs()
 		else:
@@ -185,6 +206,9 @@ class MasterController:
 		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.denominacionController.emptyInvalidArgs()
 		else:
@@ -203,6 +227,9 @@ class MasterController:
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.mvcController.emptyInvalidArgs()
 		else:
@@ -220,6 +247,9 @@ class MasterController:
 		self.tmtController.switch_window.connect(self.showAbstraccion)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.memoriaVisoespaciaController.emptyInvalidArgs()
 		else:
@@ -255,6 +285,10 @@ class MasterController:
 		self.digitosController.switch_window.connect(self.showSDMT)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Deben de ser mayor a 0:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.tmtPrueba.emptyInvalidArgs()
 			self.displayModal(invalidArgs)
 			self.abstraccionController.emptyInvalidArgs()
 		else:
@@ -284,7 +318,7 @@ class MasterController:
 	def showLNS(self, invalidArgs, sdmtPrueba):
 		self.lnsView = QtWidgets.QWidget()
 		self.lnsController = LNSController(self.lnsView, self.reporteModel)
-		self.lnsController.switch_window.connect(self.tempEnd) 
+		self.lnsController.switch_window.connect(self.showD2) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -297,6 +331,21 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(9)
 
+	def showD2(self, invalidArgs, lnsPrueba):
+		self.d2View = QtWidgets.QWidget()
+		self.d2Controller = D2Controller(self.d2View, self.reporteModel)
+		self.d2Controller.switch_window.connect(self.tempEnd) 
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.lnsController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(lnsPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(10)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(10)
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
 	# 	if len(invalidArgs) != 0:
@@ -311,14 +360,14 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, lnsPrueba):
+	def tempEnd(self, invalidArgs, d2Prueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no válidos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.digitosController.emptyInvalidArgs()
+			self.d2Controller.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(lnsPrueba)
+			self.reporteModel.addPrueba(d2Prueba)
 			self.reporteModel.printReporte()
 
 def main():
@@ -326,6 +375,7 @@ def main():
 	 Método principal en la ejecución del programa
 	"""
 	app = QtWidgets.QApplication(sys.argv)
+	#app.setStyleSheet(open('app.css').read())
 	masterController = MasterController()
 	masterController.showMainWindow()
 	sys.exit(app.exec_())
