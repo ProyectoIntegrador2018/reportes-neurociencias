@@ -22,6 +22,12 @@ class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
         totalRecall = self.valores[0]
         delayedRecall = self.valores[1]
 
+        if totalRecall <= 18:
+            totalRecall = 18
+
+        if delayedRecall <= 7:
+            delayedRecall = 7
+            
         totalRecall = str(totalRecall)
         delayedRecall = str(delayedRecall)
         percentil_normal = baremoData.percentile[baremoData.total_recall == totalRecall].item()
