@@ -60,7 +60,7 @@ class LNSWindowWidget(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbTotal = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTotal.setObjectName("sbTotal")
-        self.sbTotal.setRange(0,100)
+        self.sbTotal.setRange(0,21)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbTotal)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -84,12 +84,10 @@ class LNSWindowWidget(object):
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
-
         self.progressBar = QtWidgets.QProgressBar(Form)
         self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 

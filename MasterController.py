@@ -347,7 +347,6 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(10)
 
-
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
 	# 	if len(invalidArgs) != 0:
 	# 		self.displayModal(invalidArgs)
