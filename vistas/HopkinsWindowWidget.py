@@ -1,8 +1,8 @@
-#Vista de la prueba Letras y Numeros (LNS)
+#Vista de la prueba de Memoria verbal de Hopkins
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class LNSWindowWidget(object):
+class HopkinsWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -53,14 +53,14 @@ class LNSWindowWidget(object):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbSpan = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbSpan.setObjectName("sbSpan")
-        self.sbSpan.setRange(1,7)
+        self.sbSpan.setRange(0,33)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSpan)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbTotal = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTotal.setObjectName("sbTotal")
-        self.sbTotal.setRange(0,100)
+        self.sbTotal.setRange(0,12)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbTotal)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -100,12 +100,12 @@ class LNSWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba LNS"))
+        Form.setWindowTitle(_translate("Form", "Prueba Hopkins"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba LNS"))
-        self.label_8.setText(_translate("Form", "Span: "))
-        self.label_9.setText(_translate("Form", "Total: "))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de memoria verbal de Hopkins"))
+        self.label_8.setText(_translate("Form", "Total recall: "))
+        self.label_9.setText(_translate("Form", "Delayed recall: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -113,7 +113,8 @@ class LNSWindowWidget(object):
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
 #    Form = QtWidgets.QWidget()
-#    ui = LNSWindowWidget(Form)
+#    ui = HopkinsWindowWidget(Form)
 #    ui.setupUi(Form)
 #    Form.show()
 #    sys.exit(app.exec_())
+ 
