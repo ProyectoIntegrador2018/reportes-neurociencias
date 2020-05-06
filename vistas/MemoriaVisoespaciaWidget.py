@@ -54,6 +54,7 @@ class MemoriaVisoespaciaWidget(object):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbDenomImg = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDenomImg.setObjectName("sbDenomImg")
+        self.sbDenomImg.setRange(0,36)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDenomImg)
 
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -61,6 +62,7 @@ class MemoriaVisoespaciaWidget(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbDenomImgT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDenomImgT.setObjectName("sbDenomImgT")
+        self.sbDenomImgT.setRange(0,12)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
 
         self.verticalLayout_2.addLayout(self.formLayout)
@@ -85,6 +87,11 @@ class MemoriaVisoespaciaWidget(object):
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
+
+        self.progressBar = QtWidgets.QProgressBar(Form)
+        self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

@@ -73,6 +73,12 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.abstraccionView.lWVistas
 
+	def getProgressBar(self):
+		"""
+		 Método que se encarga de regresar el valor de la barra de progreso
+		"""
+		return self.abstraccionView.progressBar
+
 
 # Pruebas unitarias
 #if __name__ == "__main__":

@@ -63,12 +63,18 @@ class DigitosController(QtWidgets.QWidget, ControllerModel):
 		"""
         return self.digitosView.lWVistas
 
+    def getProgressBar(self):
+        """
+         Método que se encarga de regresar el valor de la barra de progreso
+        """
+        return self.digitosView.progressBar
+
 
 #Pruebas unitarias
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    digitosWindow = QtWidgets.QWidget()
-    digitosController = DigitosController(digitosWindow)
-    digitosWindow.show()
-    sys.exit(app.exec_())
+#if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    digitosWindow = QtWidgets.QWidget()
+#    digitosController = DigitosController(digitosWindow)
+#    digitosWindow.show()
+#    sys.exit(app.exec_())

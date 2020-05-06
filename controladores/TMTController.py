@@ -76,6 +76,12 @@ class TMTController(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.tmtView.lWVistas
 
+	def getProgressBar(self):
+		"""
+		 Método que se encarga de regresar el valor de la barra de progreso
+		"""
+		return self.tmtView.progressBar
+
 
 # Pruebas unitarias
 #if __name__ == "__main__":
