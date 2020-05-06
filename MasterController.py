@@ -13,6 +13,7 @@ from controladores.AbstraccionController import *
 from controladores.SDMTController import *
 from controladores.LNSController import *
 from controladores.D2Controller import *
+from controladores.SCL90Controller import *
 
 class MasterController:
 	def __init__(self):
