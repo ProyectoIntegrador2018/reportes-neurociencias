@@ -25,10 +25,11 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 		total_recall = self.valores[0]
 		delayed_recall = self.valores[1]
 		edad = datos
-
+		
+		if edad < 18:
+			edad = 18
 		
 		if ((edad <= 22) and (edad >= 18)):
-			print("ENTRÉ AQUÍ")
 			if total_recall <= 19:
 				total_recall = 19
 			if delayed_recall <= 6:

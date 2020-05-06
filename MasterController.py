@@ -228,20 +228,15 @@ class MasterController:
 
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
-		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
+		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow,self.reporteModel)
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no validos:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
 			self.displayModal(invalidArgs)
-			self.mvcController.emptyInvalidArgs()
+			self.memoriaVisoespaciaController.emptyInvalidArgs()
 		else:
-			MVCPrueba.printInfo()
 			self.reporteModel.addPrueba(MVCPrueba)
-			#self.reporteModel.printReporte()
-
+			self.reporteModel.printReporte()
 			self.addPaginaVisitada(4)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(4)
