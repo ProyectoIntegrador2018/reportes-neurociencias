@@ -124,7 +124,10 @@ class MasterController:
 			self.nextWindow = self.d2View
 			currentController = self.d2Controller
 			self.menuController.updateCurrentWindow(10)
-			
+		if elemSelected == 12:
+			self.nextWindow = self.scl90View
+			currentController = self.scl90Controller
+			self.menuController.updateCurrentWindow(12)
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
 			self.connectProgressBar(currentController)
@@ -164,7 +167,7 @@ class MasterController:
 		self.reporteModel = reporte
 		
 		self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
-		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
+		self.fluidezVerbalController.switch_window.connect(self.showSCL90)
 				
 			
 		if(len(listMissingElem) != 0):
@@ -348,6 +351,23 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(10)
 
+	def showSCL90(self, invalidArgs, prevPrueba):
+		self.scl90View = QtWidgets.QWidget()
+		self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
+		self.scl90Controller.switch_window.connect(self.tempEnd)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			#Poner la del controller previo
+			#self..emptyInvalidArgs()
+
+		else:
+			self.reporteModel.addPrueba(prevPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(12)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(12)
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
 	# 	if len(invalidArgs) != 0:
@@ -362,14 +382,14 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, d2Prueba):
+	def tempEnd(self, invalidArgs, scl90Prueba):
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no válidos:")
+			self.modalController.setHeader("Elementos no válidos para sexo " + str(self.reporteModel.reporte['genero']) + ":")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.d2Controller.emptyInvalidArgs()
+			self.scl90Controller.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(d2Prueba)
+			self.reporteModel.addPrueba(scl90Prueba)
 			self.reporteModel.printReporte()
 
 def main():

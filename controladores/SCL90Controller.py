@@ -51,31 +51,56 @@ class SCL90Controller(QtWidgets.QWidget, ControllerModel):
 		self.SCL90Prueba = SCL90Prueba(valores)
 		
 		datos = self.reporteModel.reporte['genero']
-		
-		if somVal < 0.00 or somVal > 4.00:
-			self.addInvalidArg("SOM")
-		if obsVal < 0.00 or obsVal > 4.00:
-			self.addInvalidArg("OBS")
-		if intVal < 0.00 or intVal > 4.00:
-			self.addInvalidArg("INT")
-		if depVal < 0.00 or depVal > 4.00:
-			self.addInvalidArg("DEP")
-		if ansVal < 0.00 or ansVal > 4.00:
-			self.addInvalidArg("ANS")
-		if hosVal < 0.00 or hosVal > 4.00:
-			self.addInvalidArg("HOS")
-		if fobVal < 0.00 or fobVal > 3.95:
-			self.addInvalidArg("FOB")
-		if parVal < 0.00 or parVal > 4.00:
-			self.addInvalidArg("PAR")
-		if psiVal < 0.00 or psiVal > 3.89:
-			self.addInvalidArg("PSI")
-		if gsiVal < 0.08 or gsiVal > 3.86:
-			self.addInvalidArg("GSI")
-		if pstVal < 5 or pstVal > 90.0:
-			self.addInvalidArg("PST")
-		if psdiVal < 1.03 or psdiVal > 4.00:
-			self.addInvalidArg("PSDI")
+		if datos == 'Femenino':
+			if somVal < 0.00:
+				self.addInvalidArg("SOM(Min: 0.00, Max: 4.00")
+			if obsVal < 0.00:
+				self.addInvalidArg("OBS(Min: 0.00, Max: 3.96)")
+			if intVal < 0.00:
+				self.addInvalidArg("INT(Min: 0.00, Max: 3.96)")
+			if depVal < 0.08:
+				self.addInvalidArg("DEP(Min: 0.08, Max: 4.00)")
+			if ansVal < 0.00:
+				self.addInvalidArg("ANS(Min: 0.00, Max: 4.00)")
+			if hosVal < 0.00:
+				self.addInvalidArg("HOS(Min: 0.00, Max: 4.00)")
+			if fobVal < 0.00:
+				self.addInvalidArg("FOB(Min: 0.00, Max: 3.95)")
+			if parVal < 0.00:
+				self.addInvalidArg("PAR(Min: 0.00, Max: 4.00)")
+			if psiVal < 0.00:
+				self.addInvalidArg("PSI(Min: 0.00, Max: 3.96)")
+			if gsiVal < 0.08:
+				self.addInvalidArg("GSI(Min: 0.08, Max: 3.86)")
+			if pstVal < 5.00:
+				self.addInvalidArg("PST(Min: 5.00, Max: 90.00)")
+			if psdiVal < 1.10:
+				self.addInvalidArg("PSDI(Min: 1.10, Max: 3.92)")
+		else:
+			if somVal < 0.00:
+				self.addInvalidArg("SOM(Min: 0.00, Max: 3.58")
+			if obsVal < 0.00:
+				self.addInvalidArg("OBS(Min: 0.00, Max: 4.00)")
+			if intVal < 0.00:
+				self.addInvalidArg("INT(Min: 0.00, Max: 3.56)")
+			if depVal < 0.00:
+				self.addInvalidArg("DEP(Min: 0.08, Max: 3.54)")
+			if ansVal < 0.00:
+				self.addInvalidArg("ANS(Min: 0.00, Max: 4.00)")
+			if hosVal < 0.00:
+				self.addInvalidArg("HOS(Min: 0.00, Max: 3.83)")
+			if fobVal < 0.00:
+				self.addInvalidArg("FOB(Min: 0.00, Max: 3.86)")
+			if parVal < 0.00:
+				self.addInvalidArg("PAR(Min: 0.00, Max: 3.67)")
+			if psiVal < 0.00:
+				self.addInvalidArg("PSI(Min: 0.00, Max: 3.60)")
+			if gsiVal < 0.08:
+				self.addInvalidArg("GSI(Min: 0.08, Max: 3.48)")
+			if pstVal < 5.00:
+				self.addInvalidArg("PST(Min: 5.00, Max: 89.00)")
+			if psdiVal < 1.03:
+				self.addInvalidArg("PSDI(Min: 1.10, Max: 4.00)")
 
 		if len(self.invalidArgs) == 0:
 			self.SCL90Prueba.calcularPERP(datos)
