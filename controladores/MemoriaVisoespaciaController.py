@@ -3,9 +3,11 @@ from vistas.MemoriaVisoespaciaWidget import *
 from MainWindowController import *
 from ReporteModel import *
 from pruebas.MemoriaVisoespaciaPrueba import *
-# from PruebaModel import *
+from PruebaModel import *
+from ControllerModel import *
 
-class MemoriaVisoespaciaController(QtWidgets.QWidget):
+
+class MemoriaVisoespaciaController(QtWidgets.QWidget,ControllerModel):
     switch_window = QtCore.pyqtSignal(object, object)
 
     def __init__(self, mainWindow, reporteModel=None):
@@ -19,7 +21,6 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
         """
         Metodo de notificar los elementos que seran pasados a la siguiene vista como parametros
         """
-        print("Ando en changeView de MemoriaVisoespacia")
         self.switch_window.emit(self.invalidArgs, self.memoriaVisoespaciaPrueba)
     
     def getDatos(self):
@@ -27,16 +28,17 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget):
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia
         """
         view = self.memoriaVisoespaciaView
-        total_recall = view.sbDenomImg.value()
-        print("Valor total recall: ", total_recall)
-        delayed_recall = view.sbDenomImgT.value()
-        print("Valor delayed recall: ", delayed_recall)
+        total = view.sbDenomImg.value()
+        delayed = view.sbDenomImgT.value()
+        
 
-        valores = (total_recall, delayed_recall)
+        valores = [total, delayed]
 
         self.memoriaVisoespaciaPrueba = MemoriaVisoespaciaPrueba(valores)
 
-        self.memoriaVisoespaciaPrueba.calcularPERP()
+        datos = self.reporteModel.reporte['edad']
+
+        self.memoriaVisoespaciaPrueba.calcularPERP(datos)
 
         self.changeView()
     

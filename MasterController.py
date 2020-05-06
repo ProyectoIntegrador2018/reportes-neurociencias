@@ -13,6 +13,7 @@ from controladores.AbstraccionController import *
 from controladores.SDMTController import *
 from controladores.LNSController import *
 from controladores.D2Controller import *
+from controladores.HopkinsController import *
 
 class MasterController:
 	def __init__(self):
@@ -123,6 +124,10 @@ class MasterController:
 			self.nextWindow = self.d2View
 			currentController = self.d2Controller
 			self.menuController.updateCurrentWindow(10)
+		if elemSelected == 11:
+			self.nextWindow = self.hopkinsView
+			currentController = self.hopkinsController
+			self.menuController.updateCurrentWindow(11)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -223,20 +228,15 @@ class MasterController:
 
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
-		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
+		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow,self.reporteModel)
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no validos:")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
 			self.displayModal(invalidArgs)
-			self.mvcController.emptyInvalidArgs()
+			self.memoriaVisoespaciaController.emptyInvalidArgs()
 		else:
-			MVCPrueba.printInfo()
 			self.reporteModel.addPrueba(MVCPrueba)
-			#self.reporteModel.printReporte()
-
+			self.reporteModel.printReporte()
 			self.addPaginaVisitada(4)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(4)
@@ -334,7 +334,7 @@ class MasterController:
 	def showD2(self, invalidArgs, lnsPrueba):
 		self.d2View = QtWidgets.QWidget()
 		self.d2Controller = D2Controller(self.d2View, self.reporteModel)
-		self.d2Controller.switch_window.connect(self.tempEnd) 
+		self.d2Controller.switch_window.connect(self.showHopkins) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -346,6 +346,24 @@ class MasterController:
 			self.addPaginaVisitada(10)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(10)
+
+
+	def showHopkins(self, invalidArgs, d2Prueba):
+		self.hopkinsView = QtWidgets.QWidget()
+		self.hopkinsController = HopkinsController(self.hopkinsView, self.reporteModel)
+		self.hopkinsController.switch_window.connect(self.tempEnd) 
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.d2Controller.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(d2Prueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(11)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(11)
+
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
 	# 	if len(invalidArgs) != 0:
@@ -360,14 +378,14 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, d2Prueba):
+	def tempEnd(self, invalidArgs, hopkinsPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no válidos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.d2Controller.emptyInvalidArgs()
+			self.hopkinsController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(d2Prueba)
+			self.reporteModel.addPrueba(hopkinsPrueba)
 			self.reporteModel.printReporte()
 
 def main():
