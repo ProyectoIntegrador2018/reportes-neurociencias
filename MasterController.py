@@ -347,6 +347,7 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(10)
 
+
 	def showHopkins(self, invalidArgs, d2Prueba):
 		self.hopkinsView = QtWidgets.QWidget()
 		self.hopkinsController = HopkinsController(self.hopkinsView, self.reporteModel)
