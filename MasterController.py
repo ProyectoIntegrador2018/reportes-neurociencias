@@ -14,6 +14,7 @@ from controladores.SDMTController import *
 from controladores.LNSController import *
 from controladores.D2Controller import *
 from controladores.HopkinsController import *
+from controladores.StroopController import *
 
 class MasterController:
 	def __init__(self):
@@ -128,6 +129,10 @@ class MasterController:
 			self.nextWindow = self.hopkinsView
 			currentController = self.hopkinsController
 			self.menuController.updateCurrentWindow(11)
+		if elemSelected == 12:
+			self.nextWindow = self.stroopView
+			currentController = self.stroopController
+			self.menuController.updateCurrentWindow(12)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -351,7 +356,7 @@ class MasterController:
 	def showHopkins(self, invalidArgs, d2Prueba):
 		self.hopkinsView = QtWidgets.QWidget()
 		self.hopkinsController = HopkinsController(self.hopkinsView, self.reporteModel)
-		self.hopkinsController.switch_window.connect(self.tempEnd) 
+		self.hopkinsController.switch_window.connect(self.showStroop) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -363,6 +368,22 @@ class MasterController:
 			self.addPaginaVisitada(11)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(11)
+
+	def showStroop(self, invalidArgs, hopkinsPrueba):
+		self.stroopView = QtWidgets.QWidget()
+		self.stroopController = StroopController(self.stroopView, self.reporteModel)
+		self.stroopController.switch_window.connect(self.tempEnd) 
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.hopkinsController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(hopkinsPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(12)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(12)
 
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
@@ -378,14 +399,14 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, hopkinsPrueba):
+	def tempEnd(self, invalidArgs, stroopPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no válidos:")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
 			self.hopkinsController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(hopkinsPrueba)
+			self.reporteModel.addPrueba(stroopPrueba)
 			self.reporteModel.printReporte()
 
 def main():
