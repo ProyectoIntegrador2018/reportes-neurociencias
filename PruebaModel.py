@@ -1,6 +1,6 @@
 # Modelo de Prueba
 class PruebaModel:
-	def __init__(self, nombre, valores, baremos, campos="", puntuacionEscalar=0, rangoPercentil=0):
+	def __init__(self, nombre, valores, baremos, campos="", puntuacionEscalar="0", rangoPercentil="0"):
 		self.nombre = nombre
 		self.valores = valores
 		self.puntuacionEscalar = puntuacionEscalar

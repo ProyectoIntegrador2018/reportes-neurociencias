@@ -18,7 +18,8 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba SDMT',
 						'Prueba LNS', 
 						'Prueba D2',
-						'Prueba Hopkins']
+						'Prueba Hopkins',
+						'Prueba Stroop']
 
     
 
