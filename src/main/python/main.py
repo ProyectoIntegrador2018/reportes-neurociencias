@@ -1,4 +1,5 @@
 #Controlador principal de todo el programa
+from fbs_runtime.application_context.PyQt5 import ApplicationContext
 from MainWindowController import *
 from ModalController import *
 from MenuController import *
@@ -413,11 +414,12 @@ def main():
 	"""
 	 Método principal en la ejecución del programa
 	"""
-	app = QtWidgets.QApplication(sys.argv)
+	# app = QtWidgets.QApplication(sys.argv)
+	appctxt = ApplicationContext()
 	#app.setStyleSheet(open('app.css').read())
 	masterController = MasterController()
 	masterController.showMainWindow()
-	sys.exit(app.exec_())
+	sys.exit(appctxt.app.exec_())
 
 if __name__ == '__main__':
 	main()

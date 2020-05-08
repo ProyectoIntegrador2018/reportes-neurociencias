@@ -4,7 +4,7 @@ import PruebaModel
 class MVCPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "MVC"
-		baremos = (pd.read_csv('./Baremos/MaterialVerbalComplejo.csv'))
+		baremos = (pd.read_csv('src\main\python\Baremos/MaterialVerbalComplejo.csv'))
 
 		super(MVCPrueba,self).__init__(nombre, valores, baremos)
 

@@ -5,11 +5,11 @@ import PruebaModel
 class D2Prueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "D2"
-		baremos =	(pd.read_csv('./Baremos/TablaD2_15-16.csv'), 
-					pd.read_csv('./Baremos/TablaD2_17-18.csv'),
-					pd.read_csv('./Baremos/TablaD2_19-23.csv'),
-					pd.read_csv('./Baremos/TablaD2_24-29.csv'),
-					pd.read_csv('./Baremos/TablaD2_30-39.csv'))
+		baremos =	(pd.read_csv('src\main\python\Baremos/TablaD2_15-16.csv'), 
+					pd.read_csv('src\main\python\Baremos/TablaD2_17-18.csv'),
+					pd.read_csv('src\main\python\Baremos/TablaD2_19-23.csv'),
+					pd.read_csv('src\main\python\Baremos/TablaD2_24-29.csv'),
+					pd.read_csv('src\main\python\Baremos/TablaD2_30-39.csv'))
 		campos = ("TOT", "CON", "VAR")
 
 		super(D2Prueba,self).__init__(nombre, valores, baremos, campos)

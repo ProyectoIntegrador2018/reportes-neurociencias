@@ -5,7 +5,7 @@ import PruebaModel
 class AbstraccionPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "Abstración"
-		baremos = (pd.read_csv('./Baremos/TablaAbstraccion.csv'))
+		baremos = (pd.read_csv('src\main\python\Baremos/TablaAbstraccion.csv'))
 		campos = ("Semejanza-abstracción")
 
 		super(AbstraccionPrueba,self).__init__(nombre, valores, baremos, campos)

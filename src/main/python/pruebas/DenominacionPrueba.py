@@ -5,7 +5,7 @@ import PruebaModel
 class DenominacionPrueba(PruebaModel.PruebaModel):
     def __init__(self,valores):
         nombre = "Denominacion"
-        baremos = (pd.read_csv('./Baremos/DenominacionImagenes.csv'))
+        baremos = (pd.read_csv('src\main\python\Baremos/DenominacionImagenes.csv'))
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos)
 
