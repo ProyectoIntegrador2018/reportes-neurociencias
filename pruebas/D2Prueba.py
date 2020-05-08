@@ -49,7 +49,6 @@ class D2Prueba(PruebaModel.PruebaModel):
 		self.puntuacionEscalar = (peTR, peTA, peO, peC, peTOT, peCON, peVAR)
 		self.rangoPercentil = (ppTR, ppTA, ppO, ppC, ppTOT, ppCON, ppVAR)
 
-
 	def calcularPERP(self, datos):
 		"""
 	 	 Método que es empleado para calcular la Puntuación Escalar(PE), como la Percentil(RP)

@@ -1,21 +1,21 @@
-#Controlador de la vista de FluidezVerbalWindow
+#Controlador de la vista de StroopWindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.FluidezVerbalWindowWidget import *
+from vistas.StroopWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.FluidezVerbalPrueba import *
+from pruebas.StroopPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
+class StroopController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.fluidezVerbalView = FluidezVerbalWindowWidget(mainWindow)
-		self.fluidezVerbalView.pbStart.clicked.connect(self.getDatos)
+		self.stroopView = StroopWindowWidget(mainWindow)
+		self.stroopView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,30 +23,26 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.fluidezVerbalPrueba)
+		self.switch_window.emit(self.invalidArgs, self.stroopPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de Fluidez Verbal
+		 Método que toma los datos ingresados en la vista de D2
 		"""
-		view = self.fluidezVerbalView
-		palabrasConP = view.sbWords.value()
-		animalesConP = view.sbAnimals.value()
+		view = self.stroopView
+		P = view.P.value()
+		C = view.C.value()
+		PC = view.PC.value()
 
-		valores = (palabrasConP, animalesConP)
+		valores = [P, C, PC]
 		
-		self.fluidezVerbalPrueba = FluidezVerbalPrueba(valores)
-		
-		datos = [self.reporteModel.reporte['educacion']]
-		
-		if palabrasConP == 0:
-			self.addInvalidArg("Palabras con P")
-		if animalesConP == 0:
-			self.addInvalidArg("Animales con P")
+		self.stroopPrueba = StroopPrueba(valores)
 
-		if len(self.invalidArgs) == 0:
-			self.fluidezVerbalPrueba.calcularPERP(datos)
+		#toma la edad del paciente. MUY IMPORTANTE
+		datos = self.reporteModel.reporte['edad']
+		
+		self.stroopPrueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -72,22 +68,22 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de Fluidez Verbal
+		 Método que se regresa el id del menu en la vista de D2
 		"""
-		return self.fluidezVerbalView.lWVistas
+		return self.stroopView.lWVistas
 
 	def getProgressBar(self):
 		"""
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
-		return self.fluidezVerbalView.progressBar
+		return self.stroopView.progressBar
 
 
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = FluidezVerbalController(fluidezWindow)
-#    fluidezWindow.show()
+#    d2Window = QtWidgets.QWidget()
+#    d2Controller = D2Controller(d2Window)
+#    d2Window.show()
 #    sys.exit(app.exec_())

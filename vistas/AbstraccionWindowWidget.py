@@ -78,6 +78,11 @@ class AbstraccionWindowWidget(object):
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
 
+        self.progressBar = QtWidgets.QProgressBar(Form)
+        self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -91,7 +96,7 @@ class AbstraccionWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Prueba Abstracción"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Abstracción"))
+        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
         self.label_8.setText(_translate("Form", "Puntuación en semejanza-abstracción: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 

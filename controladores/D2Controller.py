@@ -31,6 +31,7 @@ class D2Controller(QtWidgets.QWidget, ControllerModel):
 		 Método que toma los datos ingresados en la vista de D2
 		"""
 		view = self.d2View
+
 		TR = view.sbTR.value()
 		TA = view.sbTA.value()
 		O = view.sbO.value()
@@ -74,6 +75,11 @@ class D2Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.d2View.lWVistas
 
+	def getProgressBar(self):
+		"""
+		 Método que se encarga de regresar el valor de la barra de progreso
+		"""
+		return self.d2View.progressBar
 
 # Pruebas unitarias
 #if __name__ == "__main__":
