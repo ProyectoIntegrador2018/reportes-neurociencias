@@ -1,8 +1,8 @@
-#Vista de la prueba Letras y Numeros (LNS)
+#Vista de la prueba D2
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class LNSWindowWidget(object):
+class StroopWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -51,17 +51,24 @@ class LNSWindowWidget(object):
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbSpan = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbSpan.setObjectName("sbSpan")
-        self.sbSpan.setRange(1,7)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSpan)
+        self.P = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.P.setObjectName("P")
+        self.P.setRange(0,658)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.P)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbTotal = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbTotal.setObjectName("sbTotal")
-        self.sbTotal.setRange(0,21)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbTotal)
+        self.C = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.C.setObjectName("C")
+        self.C.setRange(0,299)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.C)
+        self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_10.setObjectName("label_10")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_10)
+        self.PC = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.PC.setObjectName("PC")
+        self.PC.setRange(0,47)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.PC)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -84,10 +91,12 @@ class LNSWindowWidget(object):
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
+
         self.progressBar = QtWidgets.QProgressBar(Form)
         self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -98,12 +107,13 @@ class LNSWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba LNS"))
+        Form.setWindowTitle(_translate("Form", "Prueba de Stroop"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba LNS"))
-        self.label_8.setText(_translate("Form", "Span: "))
-        self.label_9.setText(_translate("Form", "Total: "))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Stroop"))
+        self.label_8.setText(_translate("Form", "P: "))
+        self.label_9.setText(_translate("Form", "C: "))
+        self.label_10.setText(_translate("Form", "PC: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
@@ -111,7 +121,7 @@ class LNSWindowWidget(object):
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
 #    Form = QtWidgets.QWidget()
-#    ui = LNSWindowWidget(Form)
+#    ui = StroopWindowWidget(Form)
 #    ui.setupUi(Form)
 #    Form.show()
 #    sys.exit(app.exec_())

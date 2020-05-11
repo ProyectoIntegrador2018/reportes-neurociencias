@@ -1,21 +1,22 @@
-#Controlador de la vista de LNSWindowWidget
+#Controlador de la vista de HopkinsWindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.LNSWindowWidget import *
+from vistas.HopkinsWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.LNSPrueba import *
+from pruebas.HopkinsPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class LNSController(QtWidgets.QWidget, ControllerModel):
+
+class HopkinsController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.lnsView = LNSWindowWidget(mainWindow)
-		self.lnsView.pbStart.clicked.connect(self.getDatos)
+		self.hopkinsView = HopkinsWindowWidget(mainWindow)
+		self.hopkinsView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,25 +24,24 @@ class LNSController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.lnsPrueba)
+		self.switch_window.emit(self.invalidArgs, self.hopkinsPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de LNS
+		 Método que toma los datos ingresados en la vista de Hopkins
 		"""
-		view = self.lnsView
-		span = view.sbSpan.value()
-		total = view.sbTotal.value()
+		view = self.hopkinsView
+		total_recall = view.sbSpan.value()
+		delayed_recall = view.sbTotal.value()
 
-		valores = (span, total)
-		
-		self.lnsPrueba = LNSPrueba(valores)
+		valores = [total_recall, delayed_recall]
+		self.hopkinsPrueba = HopkinsPrueba(valores)
 
 		#toma anos de escolaridad del paciente
-		datos = self.reporteModel.reporte['educacion']
+		datos = self.reporteModel.reporte['edad']
 		
-		self.lnsPrueba.calcularPERP(datos)
+		self.hopkinsPrueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -67,29 +67,23 @@ class LNSController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de LNS
+		 Método que se regresa el id del menu en la vista de Hopkins
 		"""
-		return self.lnsView.lWVistas
-
-	def getProgressBar(self):
-		"""
-		 Método que se encarga de regresar el valor de la barra de progreso
-		"""
-		return self.lnsView.progressBar
+		return self.hopkinsView.lWVistas
 
 
 	def getProgressBar(self):
 		"""
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
-		return self.lnsView.progressBar
+		return self.hopkinsView.progressBar
 
 
 # Pruebas unitarias
 #if __name__ == "__main__":
-#    import sys
-#    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = LNSController(fluidezWindow)
-#    fluidezWindow.show()
-#    sys.exit(app.exec_())
+#	import sys
+#	app = QtWidgets.QApplication(sys.argv)
+#	fluidezWindow = QtWidgets.QWidget()
+#	fluidezVerbalController = HopkinsController(fluidezWindow)
+#	fluidezWindow.show()
+#	sys.exit(app.exec_())

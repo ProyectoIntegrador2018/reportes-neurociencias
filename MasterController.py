@@ -14,6 +14,8 @@ from controladores.SDMTController import *
 from controladores.LNSController import *
 from controladores.D2Controller import *
 from controladores.SCL90Controller import *
+from controladores.HopkinsController import *
+from controladores.StroopController import *
 
 class MasterController:
 	def __init__(self):
@@ -124,10 +126,19 @@ class MasterController:
 			self.nextWindow = self.d2View
 			currentController = self.d2Controller
 			self.menuController.updateCurrentWindow(10)
+		if elemSelected == 11:
+			self.nextWindow = self.hopkinsView
+			currentController = self.hopkinsController
+			self.menuController.updateCurrentWindow(11)
 		if elemSelected == 12:
+			self.nextWindow = self.stroopView
+			currentController = self.stroopController
+			self.menuController.updateCurrentWindow(12)
+		if elemSelected == 13:
 			self.nextWindow = self.scl90View
 			currentController = self.scl90Controller
-			self.menuController.updateCurrentWindow(12)
+			self.menuController.updateCurrentWindow(13)
+			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
 			self.connectProgressBar(currentController)
@@ -152,8 +163,6 @@ class MasterController:
 		"""
 		self.mainWindowController.switch_window.connect(self.showFluidezVerbal)
 		self.showSpecificWindowMenu(0)
-	
-
 
 
 	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
@@ -167,7 +176,7 @@ class MasterController:
 		self.reporteModel = reporte
 		
 		self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
-		self.fluidezVerbalController.switch_window.connect(self.showSCL90)
+		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
 				
 			
 		if(len(listMissingElem) != 0):
@@ -227,7 +236,7 @@ class MasterController:
 
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
 		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
-		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow)
+		self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow,self.reporteModel)
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
@@ -235,12 +244,10 @@ class MasterController:
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
 			self.displayModal(invalidArgs)
-			self.mvcController.emptyInvalidArgs()
+			self.memoriaVisoespaciaController.emptyInvalidArgs()
 		else:
-			MVCPrueba.printInfo()
 			self.reporteModel.addPrueba(MVCPrueba)
-			#self.reporteModel.printReporte()
-
+			self.reporteModel.printReporte()
 			self.addPaginaVisitada(4)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(4)
@@ -338,7 +345,7 @@ class MasterController:
 	def showD2(self, invalidArgs, lnsPrueba):
 		self.d2View = QtWidgets.QWidget()
 		self.d2Controller = D2Controller(self.d2View, self.reporteModel)
-		self.d2Controller.switch_window.connect(self.tempEnd) 
+		self.d2Controller.switch_window.connect(self.showHopkins) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -351,6 +358,38 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(10)
 
+	def showHopkins(self, invalidArgs, d2Prueba):
+		self.hopkinsView = QtWidgets.QWidget()
+		self.hopkinsController = HopkinsController(self.hopkinsView, self.reporteModel)
+		self.hopkinsController.switch_window.connect(self.showStroop) 
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.d2Controller.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(d2Prueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(11)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(11)
+
+	def showStroop(self, invalidArgs, hopkinsPrueba):
+		self.stroopView = QtWidgets.QWidget()
+		self.stroopController = StroopController(self.stroopView, self.reporteModel)
+		self.stroopController.switch_window.connect(self.showSCL90) 
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.hopkinsController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(hopkinsPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(12)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(12)
+
 	def showSCL90(self, invalidArgs, prevPrueba):
 		self.scl90View = QtWidgets.QWidget()
 		self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
@@ -358,16 +397,15 @@ class MasterController:
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
-			#Poner la del controller previo
-			#self..emptyInvalidArgs()
-
+			self.stroopController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(prevPrueba)
 			self.reporteModel.printReporte()
 
-			self.addPaginaVisitada(12)
+			self.addPaginaVisitada(13)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(12)
+			self.showSpecificWindowMenu(13)
+
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
 	# 	if len(invalidArgs) != 0:
@@ -380,6 +418,7 @@ class MasterController:
 	# 		self.addPaginaVisitada(7)
 	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
 	# 		self.showSpecificWindowMenu(7)
+
 
 
 	def tempEnd(self, invalidArgs, scl90Prueba):

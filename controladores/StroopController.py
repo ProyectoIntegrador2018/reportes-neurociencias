@@ -1,21 +1,21 @@
-#Controlador de la vista de LNSWindowWidget
+#Controlador de la vista de StroopWindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.LNSWindowWidget import *
+from vistas.StroopWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.LNSPrueba import *
+from pruebas.StroopPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class LNSController(QtWidgets.QWidget, ControllerModel):
+class StroopController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.lnsView = LNSWindowWidget(mainWindow)
-		self.lnsView.pbStart.clicked.connect(self.getDatos)
+		self.stroopView = StroopWindowWidget(mainWindow)
+		self.stroopView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,25 +23,26 @@ class LNSController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.lnsPrueba)
+		self.switch_window.emit(self.invalidArgs, self.stroopPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de LNS
+		 Método que toma los datos ingresados en la vista de D2
 		"""
-		view = self.lnsView
-		span = view.sbSpan.value()
-		total = view.sbTotal.value()
+		view = self.stroopView
+		P = view.P.value()
+		C = view.C.value()
+		PC = view.PC.value()
 
-		valores = (span, total)
+		valores = [P, C, PC]
 		
-		self.lnsPrueba = LNSPrueba(valores)
+		self.stroopPrueba = StroopPrueba(valores)
 
-		#toma anos de escolaridad del paciente
-		datos = self.reporteModel.reporte['educacion']
+		#toma la edad del paciente. MUY IMPORTANTE
+		datos = self.reporteModel.reporte['edad']
 		
-		self.lnsPrueba.calcularPERP(datos)
+		self.stroopPrueba.calcularPERP(datos)
 			
 		self.changeView()
 
@@ -67,29 +68,22 @@ class LNSController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de LNS
+		 Método que se regresa el id del menu en la vista de D2
 		"""
-		return self.lnsView.lWVistas
+		return self.stroopView.lWVistas
 
 	def getProgressBar(self):
 		"""
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
-		return self.lnsView.progressBar
-
-
-	def getProgressBar(self):
-		"""
-		 Método que se encarga de regresar el valor de la barra de progreso
-		"""
-		return self.lnsView.progressBar
+		return self.stroopView.progressBar
 
 
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = LNSController(fluidezWindow)
-#    fluidezWindow.show()
+#    d2Window = QtWidgets.QWidget()
+#    d2Controller = D2Controller(d2Window)
+#    d2Window.show()
 #    sys.exit(app.exec_())
