@@ -16,6 +16,7 @@ from controladores.D2Controller import *
 from controladores.HopkinsController import *
 from controladores.StroopController import *
 
+
 class MasterController:
 	def __init__(self):
 		self.modalController = ModalController()
@@ -351,7 +352,6 @@ class MasterController:
 			self.addPaginaVisitada(10)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(10)
-
 
 	def showHopkins(self, invalidArgs, d2Prueba):
 		self.hopkinsView = QtWidgets.QWidget()
