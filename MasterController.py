@@ -17,6 +17,7 @@ from controladores.SCL90Controller import *
 from controladores.HopkinsController import *
 from controladores.StroopController import *
 
+
 class MasterController:
 	def __init__(self):
 		self.modalController = ModalController()
