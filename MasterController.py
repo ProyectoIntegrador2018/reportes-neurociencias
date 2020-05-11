@@ -13,6 +13,7 @@ from controladores.AbstraccionController import *
 from controladores.SDMTController import *
 from controladores.LNSController import *
 from controladores.D2Controller import *
+from controladores.SCL90Controller import *
 from controladores.HopkinsController import *
 from controladores.StroopController import *
 
@@ -134,6 +135,10 @@ class MasterController:
 			self.nextWindow = self.stroopView
 			currentController = self.stroopController
 			self.menuController.updateCurrentWindow(12)
+		if elemSelected == 13:
+			self.nextWindow = self.scl90View
+			currentController = self.scl90Controller
+			self.menuController.updateCurrentWindow(13)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -159,8 +164,6 @@ class MasterController:
 		"""
 		self.mainWindowController.switch_window.connect(self.showFluidezVerbal)
 		self.showSpecificWindowMenu(0)
-	
-
 
 
 	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
@@ -238,6 +241,9 @@ class MasterController:
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no validos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
 			self.displayModal(invalidArgs)
 			self.memoriaVisoespaciaController.emptyInvalidArgs()
 		else:
@@ -372,7 +378,7 @@ class MasterController:
 	def showStroop(self, invalidArgs, hopkinsPrueba):
 		self.stroopView = QtWidgets.QWidget()
 		self.stroopController = StroopController(self.stroopView, self.reporteModel)
-		self.stroopController.switch_window.connect(self.tempEnd) 
+		self.stroopController.switch_window.connect(self.showSCL90) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -384,6 +390,22 @@ class MasterController:
 			self.addPaginaVisitada(12)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(12)
+
+	def showSCL90(self, invalidArgs, prevPrueba):
+		self.scl90View = QtWidgets.QWidget()
+		self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
+		self.scl90Controller.switch_window.connect(self.tempEnd)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.stroopController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(prevPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(13)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(13)
 
 
 	# def tempEnd(self, invalidArgs, pruebaDigitos):
@@ -399,14 +421,15 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 
-	def tempEnd(self, invalidArgs, stroopPrueba):
+
+	def tempEnd(self, invalidArgs, scl90Prueba):
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no válidos:")
+			self.modalController.setHeader("Elementos no válidos para sexo " + str(self.reporteModel.reporte['genero']) + ":")
 			self.modalController.setContenido(invalidArgs)
 			self.modalController.showModal()
-			self.hopkinsController.emptyInvalidArgs()
+			self.scl90Controller.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(stroopPrueba)
+			self.reporteModel.addPrueba(scl90Prueba)
 			self.reporteModel.printReporte()
 
 def main():

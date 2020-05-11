@@ -80,6 +80,7 @@ class MainWindowWithListWidget(object):
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbAge = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbAge.setObjectName("sbAge")
+        self.sbAge.setRange(15, 49)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbAge)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
