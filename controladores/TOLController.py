@@ -1,9 +1,9 @@
 # Contolador de la vista de Torre de Londres
 from PyQt5 import QtWidgets, QtCore
-from TOLWindowWidget import *
+from vistas.TOLWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from TOLPrueba import *
+from pruebas.TOLPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
@@ -23,6 +23,7 @@ class TOLController(QtWidgets.QWidget, ControllerModel):
         """
         self.switch_window.emit(self.invalidArgs, self.tolPrueba)
     
+
     def getDatos(self):
         view = self.tolView
 
@@ -43,16 +44,25 @@ class TOLController(QtWidgets.QWidget, ControllerModel):
         
         self.tolPrueba = TOLPrueba(valores)
 
-        # datos = [self.reporteModel.reporte['educacion'], self.reporteModel.reporte['edad']]
-        datos = [8, 31]
+        datos = [self.reporteModel.reporte['educacion'], self.reporteModel.reporte['edad']]
+        # datos = [19, 31]
 
         self.tolPrueba.calcularPERP(datos)
+        self.changeView()
     
+
     def getListMenu(self):
         """
         Metodo que regresa el id del menu en la vista de Torre de Londres
         """
         return self.tolView.lWVistas
+    
+
+    def emptyInvalidArgs(self):
+        """
+        Metodo para vaciar la lista de elementos invalidos
+        """
+        self.invalidArgs = list()
     
 
     def getProgressBar(self):
@@ -62,6 +72,7 @@ class TOLController(QtWidgets.QWidget, ControllerModel):
         return self.tolView.progressBar
 
 
+# Pruebas unitarias
 if __name__ == "__main__":
    import sys
    app = QtWidgets.QApplication(sys.argv)

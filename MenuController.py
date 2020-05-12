@@ -20,7 +20,8 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba D2',
 						'Prueba Hopkins',
 						'Prueba Stroop',
-						'Prueba SCL-90']
+						'Prueba SCL-90',
+						'Prueba Torre de Londres']
 
 
 		self.pagesVisited = pagesVisited

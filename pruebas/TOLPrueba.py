@@ -3,7 +3,7 @@ import PruebaModel
 
 class TOLPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "TorreDeLondres"
+        nombre = "Torre De Londres"
         baremos = (pd.read_csv('./Baremos/Baremo_TOL.csv'),
             pd.read_csv('./Baremos/Baremo_TOL_VT_VR_16-19a.csv'),
             pd.read_csv('./Baremos/Baremo_TOL_VT_VR_20-29a.csv'),
@@ -53,45 +53,46 @@ class TOLPrueba(PruebaModel.PruebaModel):
         tmpTotalCorrectos = tablaTOLMovTotales[tablaTOLMovTotales["Total Correctos"] == totalCorrectos].iloc[0]
         escalarTotalCorrectos = tmpTotalCorrectos['Escalar']
         percentilTotalCorrectos = (tmpTotalCorrectos["PercentilMin"], tmpTotalCorrectos["PercentilMax"])
-        print("escalar total correctos: ", escalarTotalCorrectos)
-        print("percentil total correctos:", percentilTotalCorrectos)
+        # print("escalar total correctos: ", escalarTotalCorrectos)
+        # print("percentil total correctos:", percentilTotalCorrectos)
 
         tmpMovTotales = tablaTOL[(movimientosTotales >= tablaTOL["Mov Totales Min"]) & (movimientosTotales <= tablaTOL["Mov Totales Max"])].iloc[0]
-        escalarMovTotales = tmpMovTotales['Escalar'] + + ajustes["Movimientos Totales"]
-        percentilMovTotales = (tmpMovTotales["Percentil Min"] + ajustes["Movimientos Totales"], tmpMovTotales["Percentil Max"] + ajustes["Movimientos Totales"])
+        escalarMovTotales = tmpMovTotales['Escalar'] + ajustes["Movimientos Totales"]
+        percentilTotal = tablaTOL[tablaTOL['Escalar'] == escalarMovTotales].iloc[0]
+        percentilMovTotales = (percentilTotal["Percentil Min"], percentilTotal["Percentil Max"])
 
         if escalarMovTotales> 18:
             escalarMovTotales = 18
         elif escalarMovTotales < 2:
             escalarMovTotales = 2
 
-        print("escalar mov totales: ", escalarMovTotales)
-        print("percentil mov totales: ", percentilMovTotales)
+        # print("escalar mov totales: ", escalarMovTotales)
+        # print("percentil mov totales: ", percentilMovTotales)
 
 
         tmpLatencia = tablaTOL[(tiempoLatencia >= tablaTOL["T Latencia Min"]) & (tiempoLatencia <= tablaTOL["T Latencia Max"])].iloc[0]
         escalarLatencia = tmpLatencia["Escalar Invertido"] + ajustes["Tiempo de Latencia"]
-        percentilLatencia = (tmpLatencia["Percentil Invertido Min"] + ajustes["Tiempo de Latencia"], tmpLatencia["Percentil Invertido Max"] + ajustes["Tiempo de Latencia"])
+        percentilLatencia = (tmpLatencia["Percentil Invertido Min"], tmpLatencia["Percentil Invertido Max"])
 
         if escalarLatencia > 18:
             escalarLatencia = 18
         elif escalarLatencia < 2:
             escalarLatencia = 2
 
-        print("escalar tiempo latencia:", escalarLatencia)
-        print("percentil tiempo latencia: ", percentilLatencia)
+        # print("escalar tiempo latencia:", escalarLatencia)
+        # print("percentil tiempo latencia: ", percentilLatencia)
 
         tmpEjecucion = tablaTOL[(tiempoEjecucion >= tablaTOL["T Ejecucion Min"]) & (tiempoEjecucion <= tablaTOL["T Ejecucion Max"])].iloc[0]
         escalarEjecucion = tmpEjecucion['Escalar']
         percentilEjecucion = (tmpEjecucion["Percentil Min"], tmpEjecucion["Percentil Max"])
-        print("escalar ejecucion: ", escalarEjecucion)
-        print("percentil ejecucion: ", percentilEjecucion)
+        # print("escalar ejecucion: ", escalarEjecucion)
+        # print("percentil ejecucion: ", percentilEjecucion)
 
         tmpResolucion = tablaTOL[(tiempoResolucion >= tablaTOL["T Resolucion Min"]) & (tiempoResolucion <= tablaTOL["T Resolucion Max"])].iloc[0]
         escalarResolucion = tmpResolucion['Escalar']
         percentilResolucion = (tmpResolucion["Percentil Min"], tmpResolucion["Percentil Max"])
-        print("escalar resolucion: ", escalarResolucion)
-        print("percentil resolucion: ", percentilResolucion)
+        # print("escalar resolucion: ", escalarResolucion)
+        # print("percentil resolucion: ", percentilResolucion)
 
 
         escalarVT = None
@@ -144,10 +145,10 @@ class TOLPrueba(PruebaModel.PruebaModel):
                 percentilVR = tmpVR['Percentil']
 
         
-        print("escalar VT: ", escalarVT)
-        print("percentil VT: ", percentilVT)
-        print("escalar VR: ", escalarVR)
-        print("percentill VR: ", percentilVR)
+        # print("escalar VT: ", escalarVT)
+        # print("percentil VT: ", percentilVT)
+        # print("escalar VR: ", escalarVR)
+        # print("percentill VR: ", percentilVR)
 
         self.puntuacionEscalar = (escalarTotalCorrectos, escalarMovTotales, escalarLatencia, escalarEjecucion, escalarResolucion, escalarVT, escalarVR)
         self.rangoPercentil = (percentilTotalCorrectos, percentilMovTotales, percentilLatencia, percentilEjecucion, percentilResolucion, percentilVT, percentilVR)
