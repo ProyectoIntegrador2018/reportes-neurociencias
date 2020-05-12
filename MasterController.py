@@ -16,6 +16,7 @@ from controladores.D2Controller import *
 from controladores.SCL90Controller import *
 from controladores.HopkinsController import *
 from controladores.StroopController import *
+from controladores.TOLController import *
 
 
 class MasterController:
@@ -139,6 +140,10 @@ class MasterController:
 			self.nextWindow = self.scl90View
 			currentController = self.scl90Controller
 			self.menuController.updateCurrentWindow(13)
+		if elemSelected == 14:
+			self.nextWindow = self.tolView
+			currentController = self.tolController
+			self.menuController.updateCurrentWindow(14)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -394,7 +399,7 @@ class MasterController:
 	def showSCL90(self, invalidArgs, prevPrueba):
 		self.scl90View = QtWidgets.QWidget()
 		self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
-		self.scl90Controller.switch_window.connect(self.tempEnd)
+		self.scl90Controller.switch_window.connect(self.showTOL)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -406,30 +411,33 @@ class MasterController:
 			self.addPaginaVisitada(13)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(13)
+	
 
+	def showTOL(self, invalidArgs, scl90Prueba):
+		self.tolView = QtWidgets.QWidget()
+		self.tolController = TOLController(self.tolView, self.reporteModel)
+		self.tolController.switch_window.connect(self.tempEnd)
 
-	# def tempEnd(self, invalidArgs, pruebaDigitos):
-	# 	if len(invalidArgs) != 0:
-	# 		self.displayModal(invalidArgs)
-	# 		self.tmtPrueba.emptyInvalidArgs()
-	# 	else:
-	# 		self.reporteModel.addPrueba(pruebaDigitos)
-	# 		self.reporteModel.printReporte()
-
-	# 		self.addPaginaVisitada(7)
-	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
-	# 		self.showSpecificWindowMenu(7)
-
-
-
-	def tempEnd(self, invalidArgs, scl90Prueba):
 		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no válidos para sexo " + str(self.reporteModel.reporte['genero']) + ":")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
+			self.displayModal(invalidArgs)
 			self.scl90Controller.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(scl90Prueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(14)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(14)
+
+
+	def tempEnd(self, invalidArgs, tolPrueba):
+		if len(invalidArgs) != 0:
+			self.modalController.setHeader("Elementos no válidos:")
+			self.modalController.setContenido(invalidArgs)
+			self.modalController.showModal()
+			self.tolController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(tolPrueba)
 			self.reporteModel.printReporte()
 
 def main():
