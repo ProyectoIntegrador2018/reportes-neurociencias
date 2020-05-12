@@ -4,6 +4,7 @@ from ModalWindow import *
 class ModalController(QtWidgets.QWidget):
 	def __init__(self):
 		self.modalWindow = ModalWindow()
+		self.modalWindow.setWindowTitle("Error")
 		
 	def setContenido(self, displayText):
 		"""

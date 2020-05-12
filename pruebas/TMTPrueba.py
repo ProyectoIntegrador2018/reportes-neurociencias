@@ -6,7 +6,7 @@ class TMTPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "TMT"
 		baremos = (pd.read_csv('./Baremos/TablaTMT.csv'), pd.read_csv('./Baremos/EscolaridadTMTA.csv'), pd.read_csv('./Baremos/EscolaridadTMTB.csv'))
-		campos = ("TMT A", "TMT B")
+		campos = ("A", "B")
 
 		super(TMTPrueba,self).__init__(nombre, valores, baremos, campos)
 
