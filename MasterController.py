@@ -203,7 +203,7 @@ class MasterController:
 			currentController = self.reporteController
 			currentController.loadReporte()
 			self.menuController.updateCurrentWindow(15)
-			
+		
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
 			self.connectProgressBar(currentController)
@@ -222,64 +222,60 @@ class MasterController:
 		self.modalController.setHeader(modalHeader)
 		self.modalController.setContenido(listMissingElem)
 		self.modalController.showModal()
-
+        
 	def showMainWindow(self):
 		"""
 		 Método que se encarga de cargar la vista de la pantalla a MainWindow, así como el controlador de la misma.
-		"""
-		self.mainWindowController.switch_window.connect(self.showFluidezVerbal)
+         """
+		self.mainWindowController.switch_window.connect(self.asignaReporte)
 		self.showSpecificWindowMenu(0)
-
-	def asignaReporte(self, reporte):
-		listMissingElem = list()
-		if isinstance(self.reporteModel, type(None)):
-			self.reporteModel = reporte
+        
+	def asignaReporte(self, listMissingElem, reporte):
+		listModElem = list()
+		if len(listMissingElem) != 0:
+			self.displayModal(listMissingElem)
+			self.mainWindowController.emptyMissingArgs()
 		else:
-			if self.reporteModel.reporte['educacion'] != reporte.reporte['educacion']:
-				listMissingElem.append("Escolaridad")
-			if self.reporteModel.reporte['edad'] != reporte.reporte['edad']:
-				listMissingElem.append("Edad")
-			if self.reporteModel.reporte['genero'] != reporte.reporte['genero']:
-				listMissingElem.append("Género")
-		
-			if len(listMissingElem) == 0:
-				tempResultados = self.reporteModel.updateReporte(reporte)
-				self.reporteModel.updateResultados(tempResultados)
+			if isinstance(self.reporteModel, type(None)):
+				self.reporteModel = reporte
 			else:
-				modalTitle = "Favor de volver a ingresar las pruebas"
-				modalHeader = "Los cambios realizados a los siguientes elementos modifican el valor de algunas pruebas: "
-				self.displayModal(listMissingElem, modalTitle, modalHeader)
-				self.menuController.resetPagesVisited(self.resetPaginasVisitadas())
-
-				self.reporteModel = reporte		
-
+				if self.reporteModel.reporte['educacion'] != reporte.reporte['educacion']:
+					listModElem.append("Escolaridad")
+				if self.reporteModel.reporte['edad'] != reporte.reporte['edad']:
+					listModElem.append("Edad")
+				if self.reporteModel.reporte['genero'] != reporte.reporte['genero']:
+					listModElem.append("Género")
+			
+				if len(listModElem) == 0:
+					tempResultados = self.reporteModel.updateReporte(reporte)
+					self.reporteModel.updateResultados(tempResultados)
+				else:
+					modalTitle = "Favor de volver a ingresar las pruebas"
+					modalHeader = "Los cambios realizados a los siguientes elementos modifican el valor de algunas pruebas: "
+					self.displayModal(listModElem, modalTitle, modalHeader)
+					self.menuController.resetPagesVisited(self.resetPaginasVisitadas())
+					resetMainWindow = False
+					self.resetReport(resetMainWindow)
+					self.reporteModel = reporte
+			self.showFluidezVerbal(self.reporteModel)
+			
 
 	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
-	def showFluidezVerbal(self, listMissingElem, reporte):
+	def showFluidezVerbal(self, reporte):
 		"""
 		 Método que se encarga de cargar la vista de la pantalla Fluidez Verbal, así como el controlador de la misma.
 		 Args:
 		  listMissingElem: Elementos del reporte que no han sido llenados
 		  reporte: Tipo de dato ReporteModel que ha sido exitosamente creado
 		"""
-		self.asignaReporte(reporte)
-		
 		if isinstance(self.fluidezVerbalController, type(None)):
 			self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
-		
 		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
-				
+		
 			
-		if(len(listMissingElem) != 0):
-			self.displayModal(listMissingElem)
-			self.mainWindowController.emptyMissingArgs()
-		else:
-			print("Toda la info fue llenada")
-			#self.reporteModel.printReporte()
-			self.addPaginaVisitada(1)
-			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			
-			self.showSpecificWindowMenu(1)
+		self.addPaginaVisitada(1)
+		self.menuController.updatePagesVisited(self.paginasVisitadas)
+		self.showSpecificWindowMenu(1)
 
 	
 	def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
@@ -544,9 +540,86 @@ class MasterController:
 			self.showSpecificWindowMenu(15)	
 
 	def newReport(self):
-		self.menuController.resetPagesVisited(self.resetPaginasVisitadas())
+		self.resetReport(True)
 		self.showMainWindow()
 
+	def resetReport(self, resetMainWindow):
+		self.menuController.resetPagesVisited(self.resetPaginasVisitadas())
+
+		self.reporteModel = None
+		
+		del self.dummyWindow
+		del self.fluidezWindow
+		del self.abstraccionWindow
+		del self.d2View
+		del self.denominacionWindow
+		del self.digitosView
+		del self.hopkinsView
+		del self.lnsView
+		del self.memoriaVisoespaciaWindow
+		del self.MVCWindow
+		del self.reporteView
+		del self.scl90View
+		del self.sdmtView
+		del self.stroopView
+		del self.tmtWindow
+		del self.tolView
+
+		del self.abstraccionController
+		del self.d2Controller
+		del self.denominacionController
+		del self.fluidezVerbalController
+		del self.hopkinsController
+		del self.lnsController
+		del self.memoriaVisoespaciaController
+		del self.mvcController
+		del self.reporteController
+		del self.scl90Controller
+		del self.sdmtController
+		del self.stroopController
+		del self.tmtController
+		del self.digitosController
+		del self.tolController
+
+		if (resetMainWindow):
+			del self.mainWindow
+			del self.mainWindowController
+			self.mainWindow = QtWidgets.QWidget()
+			self.mainWindowController = MainWindowController(self.mainWindow)
+			
+
+		self.dummyWindow = QtWidgets.QWidget()
+		self.fluidezWindow = QtWidgets.QWidget()
+		self.abstraccionWindow = QtWidgets.QWidget()
+		self.d2View = QtWidgets.QWidget()
+		self.denominacionWindow = QtWidgets.QWidget()
+		self.digitosView = QtWidgets.QWidget()
+		self.hopkinsView = QtWidgets.QWidget()
+		self.lnsView = QtWidgets.QWidget()
+		self.memoriaVisoespaciaWindow = QtWidgets.QWidget()
+		self.MVCWindow = QtWidgets.QWidget()
+		self.reporteView = QtWidgets.QWidget()
+		self.scl90View = QtWidgets.QWidget()
+		self.sdmtView = QtWidgets.QWidget()
+		self.stroopView = QtWidgets.QWidget()
+		self.tmtWindow = QtWidgets.QWidget()
+		self.tolView = QtWidgets.QWidget()
+
+		self.abstraccionController = None
+		self.d2Controller = None
+		self.denominacionController = None
+		self.fluidezVerbalController = None
+		self.hopkinsController = None
+		self.lnsController = None
+		self.memoriaVisoespaciaController = None
+		self.mvcController = None
+		self.reporteController = None
+		self.scl90Controller = None
+		self.sdmtController = None
+		self.stroopController = None
+		self.tmtController = None
+		self.digitosController = None
+		self.tolController = None
 
 
 	def tempEnd(self, invalidArgs, scl90Prueba):

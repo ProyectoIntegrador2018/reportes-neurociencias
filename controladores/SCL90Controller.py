@@ -32,18 +32,18 @@ class SCL90Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		view = self.SCL90View
 		
-		somVal = view.dsbSOM.value()
-		obsVal = view.dsbOBS.value()
-		intVal = view.dsbINT.value()
-		depVal = view.dsbDEP.value()
-		ansVal = view.dsbANS.value()
-		hosVal = view.dsbHOS.value()
-		fobVal = view.dsbFOB.value()
-		parVal = view.dsbPAR.value()
-		psiVal = view.dsbPSI.value()
-		gsiVal = view.dsbGSI.value()
-		pstVal = view.dsbPST.value()
-		psdiVal = view.dsbPSDI.value()
+		somVal = float(f"{view.dsbSOM.value():.2f}")
+		obsVal = float(f"{view.dsbOBS.value():.2f}")
+		intVal = float(f"{view.dsbINT.value():.2f}")
+		depVal = float(f"{view.dsbDEP.value():.2f}")
+		ansVal = float(f"{view.dsbANS.value():.2f}")
+		hosVal = float(f"{view.dsbHOS.value():.2f}")
+		fobVal = float(f"{view.dsbFOB.value():.2f}")
+		parVal = float(f"{view.dsbPAR.value():.2f}")
+		psiVal = float(f"{view.dsbPSI.value():.2f}")
+		gsiVal = float(f"{view.dsbGSI.value():.2f}")
+		pstVal = float(f"{view.dsbPST.value():.2f}")
+		psdiVal = float(f"{view.dsbPSDI.value():.2f}")
 		
 		valores = (somVal, obsVal, intVal, depVal, ansVal, hosVal, 
 			fobVal, parVal, psiVal, gsiVal, pstVal, psdiVal)

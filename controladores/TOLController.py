@@ -71,6 +71,12 @@ class TOLController(QtWidgets.QWidget, ControllerModel):
 		"""
         return self.tolView.progressBar
 
+    def updateButtonText(self, text):
+        """
+         Método que se encarga de actulaizar el texto del botón de la vista
+        """
+        self.tolView.pbStart.setText(text)
+
 
 # Pruebas unitarias
 if __name__ == "__main__":
