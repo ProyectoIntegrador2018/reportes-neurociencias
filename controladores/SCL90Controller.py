@@ -139,6 +139,12 @@ class SCL90Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.SCL90View.progressBar
 
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.SCL90View.pbStart.setText(text)
+
 
 # Pruebas unitarias
 #if __name__ == "__main__":

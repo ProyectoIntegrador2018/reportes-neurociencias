@@ -56,6 +56,11 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
         """
         return self.denominacionView.progressBar
 
+    def updateButtonText(self, text):
+        """
+         Método que se encarga de actulaizar el texto del botón de la vista
+        """
+        self.denominacionView.pbStart.setText(text)
 
 
 # Pruebas unitarias

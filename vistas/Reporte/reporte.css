@@ -1,0 +1,31 @@
+table, th, td {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td{
+	text-align: center;
+}
+
+tr:nth-child(even) {
+	background-color: #dcd7d1;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.new-table {
+	margin: 2px;
+}
+
+.top-row {
+	border-top: 1px solid black;	
+}
+
+.table-PSQI, .table-BUTT {
+	float: left;
+	width: 50%;
+}

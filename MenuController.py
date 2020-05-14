@@ -21,7 +21,7 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba Hopkins',
 						'Prueba Stroop',
 						'Prueba SCL-90',
-						'Prueba Torre de Londres']
+						'Reporte']
 
 
 		self.pagesVisited = pagesVisited
@@ -82,3 +82,11 @@ class MenuController(QtWidgets.QWidget):
 		 Método que se encarga de vaciar el contenido del menú
 		"""
 		self.listView.clear()
+
+	def resetPagesVisited(self, pagesVisited):
+		"""
+		 Método que se encarga de restablecer el contenido de la variable Pages Visited
+		 Args:
+		  pagesVisited: Lista que contiene las páginas ya visitadas
+		"""
+		self.pagesVisited = pagesVisited

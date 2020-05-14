@@ -16,6 +16,7 @@ class StroopPrueba(PruebaModel.PruebaModel):
             Args:
             datos: Lista de información relevante del reporte para calcular los valores de PE y RP (escolaridad, edad)
             """
+            
             edad = datos
             stroopData = self.baremos[0]
             
