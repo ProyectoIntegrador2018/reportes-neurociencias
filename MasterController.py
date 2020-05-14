@@ -17,7 +17,7 @@ from controladores.SCL90Controller import *
 from controladores.HopkinsController import *
 from controladores.StroopController import *
 from controladores.ReporteController import *
-
+from controladores.TOLController import *
 
 class MasterController:
 	def __init__(self):
@@ -40,6 +40,7 @@ class MasterController:
 		self.sdmtView = QtWidgets.QWidget()
 		self.stroopView = QtWidgets.QWidget()
 		self.tmtWindow = QtWidgets.QWidget()
+		self.tolView = QtWidgets.QWidget()
 		
 		#self.mainWindow.setStyleSheet(open('app.css').read())
 	
@@ -59,6 +60,8 @@ class MasterController:
 		self.stroopController = None
 		self.tmtController = None
 		self.digitosController = None
+		self.tolController = None
+		
 		
 		self.paginasVisitadas = [0]
 		self.listMenu = self.mainWindowController.getListMenu()
@@ -192,10 +195,14 @@ class MasterController:
 			currentController = self.scl90Controller
 			self.menuController.updateCurrentWindow(13)
 		if elemSelected == 14:
+			self.nextWindow = self.tolView
+			currentController = self.tolController
+			self.menuController.updateCurrentWindow(14)
+		if elemSelected == 15:
 			self.nextWindow = self.reporteView
 			currentController = self.reporteController
 			currentController.loadReporte()
-			self.menuController.updateCurrentWindow(14)
+			self.menuController.updateCurrentWindow(15)
 			
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -477,7 +484,7 @@ class MasterController:
 	def showSCL90(self, invalidArgs, prevPrueba):
 		if isinstance(self.scl90Controller, type(None)):
 			self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
-		self.scl90Controller.switch_window.connect(self.showReporte)
+		self.scl90Controller.switch_window.connect(self.showTOL)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -503,10 +510,25 @@ class MasterController:
 	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
 	# 		self.showSpecificWindowMenu(7)
 
+	def showTOL(self, invalidArgs, scl90Prueba):
+		if isinstance(self.tolController, type(None)):
+			self.tolController = TOLController(self.tolView, self.reporteModel)
+		self.tolController.switch_window.connect(self.showReporte)
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.scl90Controller.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(scl90Prueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(14)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(14)
+
 	def showReporte(self, invalidArgs, prevPrueba):
 		if len(invalidArgs) != 0:
 			self.modalController.showModal(invalidArgs)
-			self.scl90Controller.emptyInvalidArgs()
+			self.tolController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(prevPrueba)
 			self.reporteModel.printReporte()
@@ -517,9 +539,9 @@ class MasterController:
 				self.reporteController = ReporteController(self.reporteView, tempUrl, self.reporteModel)
 			self.reporteController.switch_window.connect(self.newReport)
 
-			self.addPaginaVisitada(14)
+			self.addPaginaVisitada(15)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(14)	
+			self.showSpecificWindowMenu(15)	
 
 	def newReport(self):
 		self.menuController.resetPagesVisited(self.resetPaginasVisitadas())

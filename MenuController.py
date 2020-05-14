@@ -21,6 +21,7 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba Hopkins',
 						'Prueba Stroop',
 						'Prueba SCL-90',
+						'Prueba Torre de Londres',
 						'Reporte']
 
 
