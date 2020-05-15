@@ -31,6 +31,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html = '<!DOCTYPE html><html><head></head>'
 		raw_html += '<link rel="stylesheet" href="w3-layout.css">'
 		raw_html += '<link rel="stylesheet" href="reporte.css">'
+		raw_html += '<link rel="stylesheet" media="print" href="reporte.css" />'
 		raw_html += '<body>'
 		raw_html += '<div class="w3-container">'
 		raw_html += '<div class="w3-row">'
@@ -174,8 +175,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</th>'
 		raw_html += '</tr>'
 
+		iCantidadPruebas = -1
+
 		pruebasRegistradas = reporte["resultados"]
 		for pruebaName in pruebasRegistradas.keys():
+			iCantidadPruebas += 1
+			
 			if pruebaName != 'SCL-90':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
@@ -202,7 +207,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 				#print("cantCampos: " + str(cantCampos))
 
 				raw_html += '<tr>'
-				raw_html += '<th rowspan="' + str(cantCampos) + '">'
+				raw_html += '<th class="colored-background" rowspan="' + str(cantCampos) + '">'	
 				raw_html += pruebaName
 				raw_html += '</th>'
 
