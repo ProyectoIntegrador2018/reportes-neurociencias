@@ -79,6 +79,12 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.abstraccionView.progressBar
 
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.abstraccionView.pbStart.setText(text)
+
 
 # Pruebas unitarias
 #if __name__ == "__main__":

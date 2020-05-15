@@ -17,6 +17,16 @@ class ReporteModel:
 			"resultados" : dict()
 		}
 
+	def updateReporte(self, reporte):
+		tempResultados = self.reporte["resultados"]
+		self.reporte = reporte.reporte
+		return tempResultados
+
+	def updateResultados(self, resultados):
+		tempResultados = resultados
+		for nombre, prueba in tempResultados.items():
+			self.reporte["resultados"][nombre] = prueba
+
 	def addPrueba(self, prueba):
 		"""
 		 Adjunta la prueba especificada a la lista de resultados del Reporte

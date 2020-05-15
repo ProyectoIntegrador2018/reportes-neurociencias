@@ -36,6 +36,9 @@ class D2Prueba(PruebaModel.PruebaModel):
 		tot = tr - (o + c)
 		con = ta - c 
 
+		tempValores = self.valores
+		self.valores = (tempValores[0], tempValores[1], tempValores[2], tempValores[3], tot, con, self.valores[4])
+
 		auxTOT = bar[(tot >= bar['TOTmin']) & (bar['TOTmax'] >= tot)].iloc[0]
 		peTOT = auxTOT['Escalar']
 		ppTOT = auxTOT['Percentil']

@@ -82,6 +82,12 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.fluidezVerbalView.progressBar
 
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.fluidezVerbalView.pbStart.setText(text)
+
 
 # Pruebas unitarias
 #if __name__ == "__main__":

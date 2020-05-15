@@ -65,8 +65,6 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 		for idx in range(len(self.valores)):
 			puntuacionPercentilGeneral.append(self.getPuntuacionPercentil(tablaNoClinica, colNames[idx], valoresList[idx]))
 
-		print("PuntPercGeneral: ")
-		print(puntuacionPercentilGeneral)
 		pstIndex = colNames.index('GSI')
 
 		# Valor de GSI
@@ -79,14 +77,8 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 		dimGT90 = sum(list(map(lambda puntPerc: 1 if puntPerc >= 90.0 else 0, puntuacionPercentilGeneral)))
 
 		if gsiValue >= 80.0 or dimGT80 >= 2:
-			print("gsiValue: " + str(gsiValue))
-			print("dimGT80: " + str(dimGT80))
-			print("bDTM es True")
 			bDTM = True
 		if gsiValue >= 90.0 or dimGT90 >= 2:
-			print("gsiValue: " + str(gsiValue))
-			print("dimGT90: " + str(dimGT90))
-			print("gsiValue es True")
 			bMPsiq = True
 		
 		# Para que bMPsiq sea True, bDTM debe de ser True
