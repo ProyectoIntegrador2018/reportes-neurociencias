@@ -196,10 +196,10 @@ class SCL90WindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba Fluidez Verbal"))
+        Form.setWindowTitle(_translate("Form", "Prueba SCL-90"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Fluidez Verbal"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de SCL-90"))
         self.label_8.setText(_translate("Form", "SOM: "))
         self.label_9.setText(_translate("Form", "OBS:"))
         self.label_10.setText(_translate("Form", "INT:"))

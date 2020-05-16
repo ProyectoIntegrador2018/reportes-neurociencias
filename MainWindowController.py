@@ -24,9 +24,7 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		lateralidadItems = ["Diestro", "Zurdo", "Ambidiestro"]
 		self.mainWindowView.cbLateralidad.addItems(lateralidadItems)
 		
-		dateTimeObj = datetime.now()
-		timestampStr = dateTimeObj.strftime("%d/%b/%Y")
-		self.mainWindowView.leFecha.setText(timestampStr)
+		self.mainWindowView.deFecha.setDate(QtCore.QDate.currentDate())
 		
 		self.mainWindowView.pbStart.clicked.connect(self.getDatos)
 
@@ -48,9 +46,9 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		edad = vista.sbAge.value()
 		educacion = vista.sbEscolaridad.value()
 		genero = str(vista.cbSexo.currentText())
-		fechaNacimiento = vista.leFechaNacimiento.text()
+		fechaNacimiento = vista.deFechaNacimiento.date().toString("dd/MMMM/yyyy")
 		lateralidad = str(vista.cbLateralidad.currentText())
-		fecha = vista.leFecha.text()
+		fecha = vista.deFecha.date().toString("dd/MMMM/yyyy")
 		carrera = vista.leCarrera.text()
 		semestre = vista.sbSemestre.value()
 		equipo = vista.leEquipo.text()
@@ -65,10 +63,6 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 			self.addMissingArg("Edad debe ser mayor a 0")
 		if (educacion == 0):
 			self.addMissingArg("Educación debe ser mayor a 0")
-		if (len(fechaNacimiento) == 0):
-			self.addMissingArg("Fecha de Nacimiento")
-		if (len(fecha) == 0):
-			self.addMissingArg("Fecha")
 		if (len(carrera) == 0):
 			self.addMissingArg("Carrera")
 		if (len(equipo) == 0):
@@ -114,3 +108,9 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
 		return self.mainWindowView.progressBar
+
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.mainWindowView.pbStart.setText(text)

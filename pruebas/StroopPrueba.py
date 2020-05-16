@@ -9,6 +9,7 @@ class StroopPrueba(PruebaModel.PruebaModel):
         campos = ("P", "C", "PC")
         super(StroopPrueba,self).__init__(nombre, valores, baremos, campos)
         
+
     def calcularPERP(self, datos):
         """
         Método que es empleado para calcular la Puntuación Escalar(PE), como la Percentil(RP)
@@ -20,6 +21,7 @@ class StroopPrueba(PruebaModel.PruebaModel):
         C = self.valores[1]
         PC = self.valores[2]
         escolaridad = datos
+
 
 
         p_percentil = ((stroopData.percentile_inf[stroopData.P == P].iloc[0]),(stroopData.percentile_sup[stroopData.P == P].iloc[0]))

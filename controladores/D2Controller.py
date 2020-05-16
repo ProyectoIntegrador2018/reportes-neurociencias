@@ -81,6 +81,12 @@ class D2Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.d2View.progressBar
 
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.d2View.pbStart.setText(text)
+
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys

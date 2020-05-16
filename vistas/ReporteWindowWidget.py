@@ -1,12 +1,14 @@
-#Vista de la prueba de Abstraccion
+#Vista de la prueba del Reporte
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtCore import QDir, QUrl
 
 
-class AbstraccionWindowWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
+class ReporteWindowWidget(object):
+    def __init__(self, Form, url):
+        self.setupUi(Form, url)
 
-    def setupUi(self, Form):
+    def setupUi(self, Form, url):
         """
          Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
          Args:
@@ -44,21 +46,22 @@ class AbstraccionWindowWidget(object):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
-        self.formLayout = QtWidgets.QFormLayout()
-        self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.formLayout.setContentsMargins(7, -1, 7, -1)
-        self.formLayout.setObjectName("formLayout")
-        self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_8.setObjectName("label_8")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbAbstraccion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbAbstraccion.setObjectName("sbAbstraccion")
-        self.sbAbstraccion.setRange(0,12)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAbstraccion)
-        self.verticalLayout_2.addLayout(self.formLayout)
+
+
+
+        self.webEngineWidget = QWebEngineView(self.verticalLayoutWidget)
+        self.webEngineWidget.setObjectName("webEngineWidget")
+        self.webEngineWidget.setMinimumSize(QtCore.QSize(0, 381))
+        #url = QUrl.fromLocalFile(QDir.currentPath()+"/Reporte/reporte.html")
+        urlReporte = QUrl.fromLocalFile(url)
+        self.webEngineWidget.load(urlReporte)
+        self.verticalLayout_2.addWidget(self.webEngineWidget)
+
+
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        
         self.pbStart = QtWidgets.QPushButton(self.verticalLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -68,6 +71,17 @@ class AbstraccionWindowWidget(object):
         self.pbStart.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbStart.setObjectName("pbStart")
         self.horizontalLayout_2.addWidget(self.pbStart)
+
+        self.pbRestart = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pbRestart.sizePolicy().hasHeightForWidth())
+        self.pbRestart.setSizePolicy(sizePolicy)
+        self.pbRestart.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pbRestart.setObjectName("pbRestart")
+        self.horizontalLayout_2.addWidget(self.pbRestart)
+
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.verticalLayout_2.setStretch(0, 1)
         self.verticalLayout_2.setStretch(1, 5)
@@ -93,19 +107,20 @@ class AbstraccionWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba Abstracción"))
+        Form.setWindowTitle(_translate("Form", "Reporte"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Abstracción"))
-        self.label_8.setText(_translate("Form", "Puntuación en semejanza-abstracción: "))
-        self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+        self.label_4.setText(_translate("Form", "Vista previa del reporte"))
+        self.pbStart.setText(_translate("Form", "Abrir en Navegador"))
+        self.pbRestart.setText(_translate("Form", "Nuevo Reporte"))
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     Form = QtWidgets.QWidget()
-#     ui = AbstraccionWindowWidget(Form)
-#     ui.setupUi(Form)
-#     Form.show()
-#     sys.exit(app.exec_())
+#if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    Form = QtWidgets.QWidget()
+#    ui = ResporteWidget(Form)
+#    ui.setupUi(Form)
+#    Form.show()
+#    sys.exit(app.exec_())
+#
