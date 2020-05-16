@@ -21,14 +21,6 @@ class StroopPrueba(PruebaModel.PruebaModel):
         PC = self.valores[2]
         escolaridad = datos
 
-        if P<=71:
-            P=71
-
-        if C<=48:
-            C=48
-
-        if PC<=24:
-            PC = 24
 
         p_percentil = ((stroopData.percentile_inf[stroopData.P == P].iloc[0]),(stroopData.percentile_sup[stroopData.P == P].iloc[0]))
         c_percentil = ((stroopData.percentile_inf[stroopData.C == C].iloc[0]),(stroopData.percentile_sup[stroopData.C == C].iloc[0]))
