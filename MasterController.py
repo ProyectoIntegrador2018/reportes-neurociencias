@@ -118,6 +118,8 @@ class MasterController:
 	def connectMenu(self, currentController):
 		"""
 		 Método que se encarga de conectar el menú con la vista del controlador actual
+		 Args:
+		  currentController: Valor que contiene el controlador de la prueba actual
 		"""
 		self.menuController.clearMenu()
 		self.listMenu = currentController.getListMenu()
@@ -127,6 +129,8 @@ class MasterController:
 	def connectProgressBar(self, currentController):
 		"""
 		 Método que se encarga de conectar el menú con la vista del controlador actual
+		 Args:
+		  currentController: Valor que contiene el controlador de la prueba actual
 		"""
 		self.progressBarController.updateProgress(max(self.paginasVisitadas))
 		self.progressBarController.setProgressBar(currentController.getProgressBar())
@@ -218,6 +222,13 @@ class MasterController:
 		return self.currentWindow != self.nextWindow
 
 	def displayModal(self, listMissingElem, modalTitle="Elementos no válidos", modalHeader="Elementos: "):
+		"""
+		 Método que despliega la ventana de elementos faltantes o inválidos
+		 Args:
+		  listMissingElem: Lista que tiene los elementos faltantes de la prueba
+		  modalTitle: Título de la ventana
+		  modalHeader: Encabezado de la ventana
+		"""
 		self.modalController.setWindowTitle(modalTitle)
 		self.modalController.setHeader(modalHeader)
 		self.modalController.setContenido(listMissingElem)
@@ -226,11 +237,17 @@ class MasterController:
 	def showMainWindow(self):
 		"""
 		 Método que se encarga de cargar la vista de la pantalla a MainWindow, así como el controlador de la misma.
-         """
+        """
 		self.mainWindowController.switch_window.connect(self.asignaReporte)
 		self.showSpecificWindowMenu(0)
         
 	def asignaReporte(self, listMissingElem, reporte):
+		"""
+		 Método que se encarga de asignar los valores agregados al reporte
+		 Args:
+		  listMissingElem: Lista de elementos inválidos
+		  reporte: Objeto de tipo reporte que será asignado al reporte de todas las pruebas
+		"""
 		listModElem = list()
 		if len(listMissingElem) != 0:
 			self.displayModal(listMissingElem)
@@ -260,12 +277,10 @@ class MasterController:
 			self.showFluidezVerbal(self.reporteModel)
 			
 
-	###Actualizar para que la primera prueba a llenar sea la que reciba el reporte como paramatro
 	def showFluidezVerbal(self, reporte):
 		"""
 		 Método que se encarga de cargar la vista de la pantalla Fluidez Verbal, así como el controlador de la misma.
 		 Args:
-		  listMissingElem: Elementos del reporte que no han sido llenados
 		  reporte: Tipo de dato ReporteModel que ha sido exitosamente creado
 		"""
 		if isinstance(self.fluidezVerbalController, type(None)):
@@ -280,7 +295,10 @@ class MasterController:
 	
 	def showDenominacion(self, invalidArgs, fluidezVerbalPrueba):
 		"""
-		Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  fluidezVerbalPrueba: Prueba previa a la de Denominación
 		"""
 		if isinstance(self.denominacionController, type(None)):
 			self.denominacionController = DenominacionController(self.denominacionWindow)
@@ -301,6 +319,12 @@ class MasterController:
 			self.showSpecificWindowMenu(2)
 
 	def showMVC(self, invalidArgs, denominacionPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de MVC
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  denominacionPrueba: Prueba previa a la de MVC
+		"""
 		if isinstance(self.mvcController, type(None)):
 			self.mvcController = MVCController(self.MVCWindow)
 		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
@@ -322,7 +346,12 @@ class MasterController:
 
 
 	def showMemoriaVisoespacia(self, invalidArgs, MVCPrueba):
-		if isinstance(self.memoriaVisoespaciaController, type(None)):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de Memoria Visoespacial
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  MVCPrueba: Prueba previa a la de MEmoria Visoespacial
+		"""if isinstance(self.memoriaVisoespaciaController, type(None)):
 			self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow,self.reporteModel)
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
@@ -340,6 +369,12 @@ class MasterController:
 			self.showSpecificWindowMenu(4)
 
 	def showTMT(self, invalidArgs, memoriaVisoespaciaPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de TMT
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  memoriaVisoespacialPrueba: Prueba previa a la de TMT
+		"""
 		if isinstance(self.tmtController, type(None)):
 			self.tmtController = TMTController(self.tmtWindow, self.reporteModel)
 		self.tmtController.switch_window.connect(self.showAbstraccion)
@@ -360,6 +395,12 @@ class MasterController:
 			self.showSpecificWindowMenu(5)
 
 	def showAbstraccion(self, invalidArgs, tmtPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de Abstraccion
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  tmtPrueba: Prueba previa a la de Abstraccion
+		"""
 		if isinstance(self.abstraccionController, type(None)):
 			self.abstraccionController = AbstraccionController(self.abstraccionWindow, self.reporteModel)
 		self.abstraccionController.switch_window.connect(self.showDigitos)
@@ -378,6 +419,12 @@ class MasterController:
 
 
 	def showDigitos(self, invalidArgs, pruebaAbstraccion):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de Digitos
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  pruebaAbstraccion: Prueba previa a la de Digitos
+		"""
 		if isinstance(self.digitosController, type(None)):
 			self.digitosController = DigitosController(self.digitosView, self.reporteModel)
 		self.digitosController.switch_window.connect(self.showSDMT)
@@ -398,6 +445,12 @@ class MasterController:
 			self.showSpecificWindowMenu(7)
 	
 	def showSDMT(self, invalidArgs, digitosPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de SDMT
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  digitosPrueba: Prueba previa a la de SDMT
+		"""
 		if isinstance(self.sdmtController, type(None)):
 			self.sdmtController = SDMTController(self.sdmtView, self.reporteModel)
 		self.sdmtController.switch_window.connect(self.showLNS)
@@ -414,6 +467,12 @@ class MasterController:
 			self.showSpecificWindowMenu(8)
 
 	def showLNS(self, invalidArgs, sdmtPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de LNS
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  sdmtPrueba: Prueba previa a la de LNS
+		"""
 		if isinstance(self.lnsController, type(None)):
 			self.lnsController = LNSController(self.lnsView, self.reporteModel)
 		self.lnsController.switch_window.connect(self.showD2) 
@@ -430,6 +489,12 @@ class MasterController:
 			self.showSpecificWindowMenu(9)
 
 	def showD2(self, invalidArgs, lnsPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de D2
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  lnsPrueba: Prueba previa a la de D2
+		"""
 		if isinstance(self.d2Controller, type(None)):
 			self.d2Controller = D2Controller(self.d2View, self.reporteModel)
 		self.d2Controller.switch_window.connect(self.showHopkins) 
@@ -446,6 +511,12 @@ class MasterController:
 			self.showSpecificWindowMenu(10)
 
 	def showHopkins(self, invalidArgs, d2Prueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de Hopkins
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  d2Prueba: Prueba previa a la de Hopkins
+		"""
 		if isinstance(self.hopkinsController, type(None)):
 			self.hopkinsController = HopkinsController(self.hopkinsView, self.reporteModel)
 		self.hopkinsController.switch_window.connect(self.showStroop) 
@@ -462,6 +533,12 @@ class MasterController:
 			self.showSpecificWindowMenu(11)
 
 	def showStroop(self, invalidArgs, hopkinsPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de Stroop
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  hopkinsPrueba: Prueba previa a la de Stroop
+		"""
 		if isinstance(self.stroopController, type(None)):
 			self.stroopController = StroopController(self.stroopView, self.reporteModel)
 		self.stroopController.switch_window.connect(self.showSCL90) 
@@ -478,6 +555,12 @@ class MasterController:
 			self.showSpecificWindowMenu(12)
 
 	def showSCL90(self, invalidArgs, prevPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de SCL90
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  prevPrueba: Prueba previa a la de SCL90
+		"""
 		if isinstance(self.scl90Controller, type(None)):
 			self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
 		self.scl90Controller.switch_window.connect(self.showTOL)
@@ -486,7 +569,7 @@ class MasterController:
 			self.displayModal(invalidArgs)
 			self.stroopController.emptyInvalidArgs()
 		else:
-			#self.reporteModel.addPrueba(prevPrueba)
+			self.reporteModel.addPrueba(prevPrueba)
 			self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(13)
@@ -507,6 +590,12 @@ class MasterController:
 	# 		self.showSpecificWindowMenu(7)
 
 	def showTOL(self, invalidArgs, scl90Prueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  scl90Prueba: Prueba previa a la de TOL
+		"""
 		if isinstance(self.tolController, type(None)):
 			self.tolController = TOLController(self.tolView, self.reporteModel)
 		self.tolController.switch_window.connect(self.showReporte)
@@ -522,6 +611,12 @@ class MasterController:
 			self.showSpecificWindowMenu(14)
 
 	def showReporte(self, invalidArgs, prevPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador del Reporte
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  prevPrueba: Prueba previa al Reporte
+		"""
 		if len(invalidArgs) != 0:
 			self.modalController.showModal(invalidArgs)
 			self.tolController.emptyInvalidArgs()
@@ -540,10 +635,18 @@ class MasterController:
 			self.showSpecificWindowMenu(15)	
 
 	def newReport(self):
+		"""
+		 Metodo que se encarga de crear un nuevo reporte y regresar a la pantalla principal
+		"""
 		self.resetReport(True)
 		self.showMainWindow()
 
 	def resetReport(self, resetMainWindow):
+		"""
+		 Método que se encarga de eliminar todas las vistas y controladores de las mismas
+		 Args: 
+		  resetMainWindow: Booleano que se encarga de notificar si se debe de eliminar el controlador y vista de mainWindow
+		"""
 		self.menuController.resetPagesVisited(self.resetPaginasVisitadas())
 
 		self.reporteModel = None
@@ -620,17 +723,6 @@ class MasterController:
 		self.tmtController = None
 		self.digitosController = None
 		self.tolController = None
-
-
-	def tempEnd(self, invalidArgs, scl90Prueba):
-		if len(invalidArgs) != 0:
-			self.modalController.setHeader("Elementos no válidos para sexo " + str(self.reporteModel.reporte['genero']) + ":")
-			self.modalController.setContenido(invalidArgs)
-			self.modalController.showModal()
-			self.scl90Controller.emptyInvalidArgs()
-		else:
-			self.reporteModel.addPrueba(scl90Prueba)
-			self.reporteModel.printReporte()
 
 def main():
 	"""

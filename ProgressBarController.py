@@ -8,8 +8,18 @@ class ProgressBarController(QtWidgets.QWidget):
 		self.numDePruebas = numDePruebas
 	
 	def	setProgressBar(self, progressBar):
+		"""
+		 Método que se encarga de conectar la barra de progreso con la aqulla presente en la vista
+		 Args:
+		  progressBar: Objeto de tipo QtProgressBar que está presente en la vista de cada prueba
+		"""
 		progressBar.setMaximum(self.numDePruebas)
 		progressBar.setValue(self.pruebasRealizadas)
 
 	def updateProgress(self, numPrueba):
+		"""
+		 Método que se encarga de actualizar el atributo de pruebasRealizadas
+		 Args:
+		  numPrueba: Valor entero que contiene la cantidad de pruebas ya registradas
+		"""
 		self.pruebasRealizadas = numPrueba
