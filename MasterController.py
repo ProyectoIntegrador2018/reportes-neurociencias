@@ -351,7 +351,8 @@ class MasterController:
 		 Args: 
 		  invalidArgs: Lista de elementos inválidos
 		  MVCPrueba: Prueba previa a la de MEmoria Visoespacial
-		"""if isinstance(self.memoriaVisoespaciaController, type(None)):
+		"""
+		if isinstance(self.memoriaVisoespaciaController, type(None)):
 			self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow,self.reporteModel)
 		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 

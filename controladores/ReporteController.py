@@ -205,6 +205,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 					cantCampos = len(infoPrueba.valores)
 
 				#print("cantCampos: " + str(cantCampos))
+				print(pruebaName)
 
 				raw_html += '<tr>'
 				raw_html += '<th class="colored-background" rowspan="' + str(cantCampos) + '">'	
