@@ -90,7 +90,6 @@ class FluidezVerbalController(QtWidgets.QWidget, ControllerModel):
 		"""
 		self.fluidezVerbalView.pbStart.setText(text)
 
-
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys

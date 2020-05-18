@@ -577,19 +577,6 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(13)
 
-
-	# def tempEnd(self, invalidArgs, pruebaDigitos):
-	# 	if len(invalidArgs) != 0:
-	# 		self.displayModal(invalidArgs)
-	# 		self.tmtPrueba.emptyInvalidArgs()
-	# 	else:
-	# 		self.reporteModel.addPrueba(pruebaDigitos)
-	# 		self.reporteModel.printReporte()
-
-	# 		self.addPaginaVisitada(7)
-	# 		self.menuController.updatePagesVisited(self.paginasVisitadas)
-	# 		self.showSpecificWindowMenu(7)
-
 	def showTOL(self, invalidArgs, scl90Prueba):
 		"""
 		 Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
@@ -600,6 +587,7 @@ class MasterController:
 		if isinstance(self.tolController, type(None)):
 			self.tolController = TOLController(self.tolView, self.reporteModel)
 		self.tolController.switch_window.connect(self.showReporte)
+
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
 			self.scl90Controller.emptyInvalidArgs()

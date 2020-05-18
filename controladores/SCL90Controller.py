@@ -147,7 +147,6 @@ class SCL90Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		self.SCL90View.pbStart.setText(text)
 
-
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys

@@ -1,4 +1,4 @@
-#Controlador de la vista de StroopWindowWidget
+#Controlador de la vista de LNSWindowWidget
 from PyQt5 import QtWidgets, QtCore
 from vistas.StroopWindowWidget import *
 from MainWindowController import *
@@ -28,19 +28,19 @@ class StroopController(QtWidgets.QWidget, ControllerModel):
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de D2
+		 Método que toma los datos ingresados en la vista de LNS
 		"""
 		view = self.stroopView
-		P = view.P.value()
-		C = view.C.value()
-		PC = view.PC.value()
+		P = view.sbTR.value()
+		C = view.sbTA.value()
+		PC = view.sbO.value()
 
-		valores = [P, C, PC]
+		valores = (P, C, PC)
 		
 		self.stroopPrueba = StroopPrueba(valores)
 
-		#toma la edad del paciente. MUY IMPORTANTE
-		datos = self.reporteModel.reporte['edad']
+		#toma anos de escolaridad del paciente
+		datos = self.reporteModel.reporte['educacion']
 		
 		self.stroopPrueba.calcularPERP(datos)
 			
@@ -68,7 +68,7 @@ class StroopController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de D2
+		 Método que se regresa el id del menu en la vista de LNS
 		"""
 		return self.stroopView.lWVistas
 
@@ -89,7 +89,7 @@ class StroopController(QtWidgets.QWidget, ControllerModel):
 #if __name__ == "__main__":
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
-#    d2Window = QtWidgets.QWidget()
-#    d2Controller = D2Controller(d2Window)
-#    d2Window.show()
+#    fluidezWindow = QtWidgets.QWidget()
+#    fluidezVerbalController = LNSController(fluidezWindow)
+#    fluidezWindow.show()
 #    sys.exit(app.exec_())

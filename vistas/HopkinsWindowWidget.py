@@ -60,7 +60,7 @@ class HopkinsWindowWidget(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbTotal = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTotal.setObjectName("sbTotal")
-        self.sbTotal.setRange(5,12)
+        self.sbTotal.setRange(4,12)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbTotal)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()

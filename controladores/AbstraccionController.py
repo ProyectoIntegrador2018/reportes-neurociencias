@@ -87,7 +87,6 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 		"""
 		self.abstraccionView.pbStart.setText(text)
 
-
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys

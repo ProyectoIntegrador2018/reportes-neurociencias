@@ -90,7 +90,6 @@ class TMTController(QtWidgets.QWidget, ControllerModel):
 		"""
 		self.tmtView.pbStart.setText(text)
 
-
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys
