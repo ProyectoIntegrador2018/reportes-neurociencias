@@ -110,6 +110,8 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 			for idx in range(len(self.valores)):
 				puntuacionPercentilMPsiq.append(self.getPuntuacionPercentil(tablaPsiquiatrica, colNames[idx], valoresList[idx]))
 
-
+		#####################################################################################
+		# En los Baremos previstos, no se especifican los valores de la puntuación Escalar. #
+		#####################################################################################
 		self.puntuacionEscalar = (0, 0, 0)
 		self.rangoPercentil = (puntuacionPercentilGeneral, puntuacionPercentilDTM, puntuacionPercentilMPsiq)

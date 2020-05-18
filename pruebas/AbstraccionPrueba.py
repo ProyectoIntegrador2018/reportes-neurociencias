@@ -22,10 +22,6 @@ class AbstraccionPrueba(PruebaModel.PruebaModel):
 
 		edad = datos[0]
 
-		"""
-		 ****REVISAR CON BEATRIZ****
-		 LA PRUEBA DICE QUE SE DEBE DE TOMAR EN CUENTA LA EDAD PERO NO HAY NINGÚN REGISTRO DE CUÁLES AJUSTES SE DEBEN DE HACER
-		"""
 		if edad < 18:
 			edad = 18
 		elif edad > 50:

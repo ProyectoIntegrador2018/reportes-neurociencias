@@ -53,6 +53,11 @@ class MenuController(QtWidgets.QWidget):
 			self.listView.addItem(tempItem)
 		
 	def updateCurrentWindow(self, currentWindow):
+		"""
+		 Método empleado para actualizar la ventana actual en la que se encuentra la ListView de las pruebas
+		 Args:
+		  currentWindow: Vista de qt actualmente desplegada.
+		"""
 		self.currentWindow = currentWindow
 
 	def updatePagesVisited(self, pagesVisited):
