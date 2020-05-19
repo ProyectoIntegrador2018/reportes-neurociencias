@@ -1,6 +1,6 @@
 {
     "app_name": "reporte_neurociencias",
     "author": "synapps",
-    "main_module": "src/main/python/main.py",
+    "main_module": "src/main/python/MasterController.py",
     "version": "0.0.0"
 }
