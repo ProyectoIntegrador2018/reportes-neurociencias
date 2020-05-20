@@ -5,7 +5,9 @@ import PruebaModel
 class TMTPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "TMT"
-		baremos = (pd.read_csv('src\main\python\Baremos/TablaTMT.csv'), pd.read_csv('src\main\python\Baremos/EscolaridadTMTA.csv'), pd.read_csv('src\main\python\Baremos/EscolaridadTMTB.csv'))
+		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaTMT.csv"), 
+					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadTMTA.csv"), 
+					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadTMTB.csv"))
 		campos = ("TMT A", "TMT B")
 
 		super(TMTPrueba,self).__init__(nombre, valores, baremos, campos)

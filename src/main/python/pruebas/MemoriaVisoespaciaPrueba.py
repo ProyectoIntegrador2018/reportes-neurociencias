@@ -5,12 +5,12 @@ import PruebaModel
 class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "MemoriaVisoespacia"
-        baremos = (pd.read_csv('src\main\python\Baremos/Baremo_BVMT-R-1.csv'),
-                    pd.read_csv('src\main\python\Baremos/Baremo_BVMT-R-2.csv'),
-                    pd.read_csv('src\main\python\Baremos/Baremo_BVMT-R-3.csv'), 
-                    pd.read_csv('src\main\python\Baremos/Baremo_BVMT-R-4.csv'),
-                    pd.read_csv('src\main\python\Baremos/Baremo_BVMT-R-5.csv'),
-                    pd.read_csv('src\main\python\Baremos/Tabla_Conversión_Psicométrica_Completa.csv'))
+        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-1.csv"),
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-2.csv"),
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-3.csv"), 
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-4.csv"),
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-5.csv"),
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Tabla_Conversión_Psicométrica_Completa.csv"))
 
         super(MemoriaVisoespaciaPrueba,self).__init__(nombre, valores, baremos)
 

@@ -4,7 +4,8 @@ import PruebaModel
 class SDMTPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "SDMT"
-        baremos = (pd.read_csv('src\main\python\Baremos/TablaSDMT.csv'), pd.read_csv('src\main\python\Baremos/EscolaridadSDMT.csv'))
+        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaSDMT.csv"), 
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadSDMT.csv"))
         campos = ("SDMT")
 
         super(SDMTPrueba,self).__init__(nombre, valores, baremos, campos)

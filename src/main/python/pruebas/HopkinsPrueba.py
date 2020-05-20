@@ -5,9 +5,9 @@ import PruebaModel
 class HopkinsPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "Hopkins"
-		baremos = (pd.read_csv('src\main\python\Baremos/Baremo_Hopkins_Normal.csv'), 
-                    pd.read_csv('src\main\python\Baremos/Baremo_Hopkins_Diferido.csv'),
-                    pd.read_csv('src\main\python\Baremos/Tabla_Conversión_Psicométrica_Completa.csv'))
+		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_Hopkins_Normal.csv"), 
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_Hopkins_Diferido.csv"),
+                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Tabla_Conversión_Psicométrica_Completa.csv"))
 		campos = ("total_recall", "delayed_recall")
 
 		super(HopkinsPrueba,self).__init__(nombre, valores, baremos, campos)

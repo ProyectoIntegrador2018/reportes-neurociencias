@@ -5,7 +5,7 @@ import PruebaModel
 class FluidezVerbalPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "FluidezVerbal"
-		baremos = (pd.read_csv('src\main\python\Baremos\TablaFluidezVerbal.csv'), pd.read_csv('src\main\python\Baremos\EscolaridadFluidezVerbal.csv'))
+		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaFluidezVerbal.csv"), pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadFluidezVerbal.csv"))
 		campos = ("Animales con P", "Palabras con P")
 
 		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos, campos)

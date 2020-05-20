@@ -5,7 +5,8 @@ import PruebaModel
 class DigitosPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Dígitos"
-        baremos = (pd.read_csv('src\main\python\Baremos/Digitos.csv'), pd.read_csv('src\main\python\Baremos/EscolaridadDigitos.csv'))
+        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Digitos.csv"), 
+                pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadDigitos.csv"))
         campos = ("Directos", "Inversos")
 
         super(DigitosPrueba,self).__init__(nombre, valores, baremos)

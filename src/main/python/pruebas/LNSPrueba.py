@@ -5,7 +5,8 @@ import PruebaModel
 class LNSPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "LNS"
-		baremos = (pd.read_csv('src\main\python\Baremos/TablaLNS.csv'), pd.read_csv('src\main\python\Baremos/EscolaridadLNS.csv'))
+		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaLNS.csv"), 
+					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadLNS.csv"))
 		campos = ("LNS SPAN", "LNS TOTAL")
 
 		super(LNSPrueba,self).__init__(nombre, valores, baremos, campos)
