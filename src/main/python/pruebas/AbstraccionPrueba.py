@@ -1,11 +1,17 @@
 #Prueba de Abstraccion
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class AbstraccionPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "Abstración"
-		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaAbstraccion.csv"))
+		baremoAbstraccion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaAbstraccion.csv").toString()
+		baremos = (pd.read_csv(baremoAbstraccion))
+
+		# baremos = (pd.read_csv("c:/users/usuario/desktop/reportes-neurociencias/src/main/python/Baremos/TablaAbstraccion.csv"))
+		# baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaAbstraccion.csv"))
 		campos = ("Semejanza-abstracción")
 
 		super(AbstraccionPrueba,self).__init__(nombre, valores, baremos, campos)

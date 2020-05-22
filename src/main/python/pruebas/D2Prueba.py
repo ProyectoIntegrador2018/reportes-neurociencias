@@ -1,15 +1,22 @@
 #Prueba de D2
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class D2Prueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "D2"
-		baremos =	(pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaD2_15-16.csv"), 
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaD2_17-18.csv"),
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaD2_19-23.csv"),
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaD2_24-29.csv"),
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaD2_30-39.csv"))
+		tablaD2_15_16 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_15-16.csv").toString()
+		tablaD2_17_18 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_17-18.csv").toString()
+		tablaD2_19_23 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_19-23.csv").toString()
+		tablaD2_24_29 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_24-29.csv").toString()
+		tablaD2_30_39 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_30-39.csv").toString()
+		baremos =	(pd.read_csv(tablaD2_15_16), 
+					pd.read_csv(tablaD2_17_18),
+					pd.read_csv(tablaD2_19_23),
+					pd.read_csv(tablaD2_24_29),
+					pd.read_csv(tablaD2_30_39))
 		campos = ("TOT", "CON", "VAR")
 
 		super(D2Prueba,self).__init__(nombre, valores, baremos, campos)

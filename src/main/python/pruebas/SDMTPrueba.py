@@ -1,11 +1,17 @@
+# Prueba SDMT
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class SDMTPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "SDMT"
-        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaSDMT.csv"), 
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadSDMT.csv"))
+        tablaSDMT = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaSDMT.csv").toString()
+        escolaridadSDMT = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadSDMT.csv").toString()
+
+        baremos = (pd.read_csv(tablaSDMT), 
+                    pd.read_csv(escolaridadSDMT))
         campos = ("SDMT")
 
         super(SDMTPrueba,self).__init__(nombre, valores, baremos, campos)

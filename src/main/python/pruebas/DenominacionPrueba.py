@@ -1,11 +1,14 @@
 # Prueba Denominacion
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class DenominacionPrueba(PruebaModel.PruebaModel):
     def __init__(self,valores):
         nombre = "Denominacion"
-        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\DenominacionImagenes.csv"))
+        baremoDenominacion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/DenominacionImagenes.csv").toString()
+        baremos = (pd.read_csv(baremoDenominacion))
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos)
 

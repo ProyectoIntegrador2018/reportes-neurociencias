@@ -1,11 +1,21 @@
 #Prueba de Fluidez Verbal
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
+import os
 
 class FluidezVerbalPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "FluidezVerbal"
-		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaFluidezVerbal.csv"), pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadFluidezVerbal.csv"))
+
+		tempUrl = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaFluidezVerbal.csv")
+		tempUrl = tempUrl.toString()
+		tempUrl2 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadFluidezVerbal.csv").toString()
+		baremos = (pd.read_csv(tempUrl), pd.read_csv(tempUrl2))
+
+		# baremos = (pd.read_csv("c:\\Users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaFluidezVerbal.csv"), 
+				# pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadFluidezVerbal.csv"))
 		campos = ("Animales con P", "Palabras con P")
 
 		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos, campos)

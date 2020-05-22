@@ -1,13 +1,19 @@
 #Prueba de Hopkins
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class HopkinsPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "Hopkins"
-		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_Hopkins_Normal.csv"), 
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_Hopkins_Diferido.csv"),
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Tabla_Conversión_Psicométrica_Completa.csv"))
+		baremoHopkinsNormal = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_Hopkins_Normal.csv").toString()
+		baremoHopkinsDiferido = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_Hopkins_Diferido.csv").toString()
+		tablaConversion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
+
+		baremos = (pd.read_csv(baremoHopkinsNormal), 
+                    pd.read_csv(baremoHopkinsDiferido),
+                    pd.read_csv(tablaConversion))
 		campos = ("total_recall", "delayed_recall")
 
 		super(HopkinsPrueba,self).__init__(nombre, valores, baremos, campos)

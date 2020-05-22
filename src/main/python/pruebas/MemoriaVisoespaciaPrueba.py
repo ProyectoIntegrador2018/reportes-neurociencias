@@ -1,16 +1,26 @@
 # Prueba Memoria Visoespacia
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "MemoriaVisoespacia"
-        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-1.csv"),
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-2.csv"),
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-3.csv"), 
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-4.csv"),
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_BVMT-R-5.csv"),
-                    pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Tabla_Conversión_Psicométrica_Completa.csv"))
+        baremoR1 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-1.csv").toString()
+        baremoR2 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-2.csv").toString()
+        baremoR3 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-3.csv").toString()
+        baremoR4 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-4.csv").toString()
+        baremoR5 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-5.csv").toString()
+        tablaConversion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
+
+
+        baremos = (pd.read_csv(baremoR1),
+                    pd.read_csv(baremoR2),
+                    pd.read_csv(baremoR3), 
+                    pd.read_csv(baremoR4),
+                    pd.read_csv(baremoR5),
+                    pd.read_csv(tablaConversion))
 
         super(MemoriaVisoespaciaPrueba,self).__init__(nombre, valores, baremos)
 

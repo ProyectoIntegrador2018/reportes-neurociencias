@@ -1,12 +1,17 @@
 #Prueba de LNS
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class LNSPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "LNS"
-		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaLNS.csv"), 
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadLNS.csv"))
+		tablaLNS = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaLNS.csv").toString()
+		escolaridadLNS = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadLNS.csv").toString()
+
+		baremos = (pd.read_csv(tablaLNS), 
+					pd.read_csv(escolaridadLNS))
 		campos = ("LNS SPAN", "LNS TOTAL")
 
 		super(LNSPrueba,self).__init__(nombre, valores, baremos, campos)

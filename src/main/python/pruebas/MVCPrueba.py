@@ -1,10 +1,13 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class MVCPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "MVC"
-		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\MaterialVerbalComplejo.csv"))
+		baremoMVC = QUrl(QDir.currentPath()+"/src/main/python/Baremos/MaterialVerbalComplejo.csv").toString()
+		baremos = (pd.read_csv(baremoMVC))
 
 		super(MVCPrueba,self).__init__(nombre, valores, baremos)
 

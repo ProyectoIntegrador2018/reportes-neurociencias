@@ -1,11 +1,15 @@
 #Prueba de Stroop
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class StroopPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Stroop"
-        baremos =	(pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Baremo_Stroop.csv"))
+        baremoStroop = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_Stroop.csv").toString()
+
+        baremos =	(pd.read_csv(baremoStroop))
         campos = ("P", "C", "PC")
         
         super(StroopPrueba,self).__init__(nombre, valores, baremos, campos)

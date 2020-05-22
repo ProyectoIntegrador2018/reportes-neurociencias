@@ -1,13 +1,19 @@
 #Prueba de TMT
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class TMTPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "TMT"
-		baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaTMT.csv"), 
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadTMTA.csv"), 
-					pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadTMTB.csv"))
+		tablaTMT = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaTMT.csv").toString()
+		escolatidadTMTA = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadTMTA.csv").toString()
+		escolatidadTMTB = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadTMTB.csv").toString()
+
+		baremos = (pd.read_csv(tablaTMT), 
+					pd.read_csv(escolatidadTMTA), 
+					pd.read_csv(escolatidadTMTB))
 		campos = ("TMT A", "TMT B")
 
 		super(TMTPrueba,self).__init__(nombre, valores, baremos, campos)

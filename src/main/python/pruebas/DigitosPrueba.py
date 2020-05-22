@@ -1,12 +1,16 @@
 # Prueba Digitos
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class DigitosPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Dígitos"
-        baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\Digitos.csv"), 
-                pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadDigitos.csv"))
+        baremoDigitos = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Digitos.csv").toString()
+        escolaridadDigitos = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadDigitos.csv").toString()
+        baremos = (pd.read_csv(baremoDigitos), 
+                pd.read_csv(escolaridadDigitos))
         campos = ("Directos", "Inversos")
 
         super(DigitosPrueba,self).__init__(nombre, valores, baremos)
