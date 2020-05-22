@@ -7,11 +7,11 @@ import PruebaModel
 class D2Prueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "D2"
-		tablaD2_15_16 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_15-16.csv").toString()
-		tablaD2_17_18 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_17-18.csv").toString()
-		tablaD2_19_23 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_19-23.csv").toString()
-		tablaD2_24_29 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_24-29.csv").toString()
-		tablaD2_30_39 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaD2_30-39.csv").toString()
+		tablaD2_15_16 = QUrl(QDir.currentPath()+"/Baremos/TablaD2_15-16.csv").toString()
+		tablaD2_17_18 = QUrl(QDir.currentPath()+"/Baremos/TablaD2_17-18.csv").toString()
+		tablaD2_19_23 = QUrl(QDir.currentPath()+"/Baremos/TablaD2_19-23.csv").toString()
+		tablaD2_24_29 = QUrl(QDir.currentPath()+"/Baremos/TablaD2_24-29.csv").toString()
+		tablaD2_30_39 = QUrl(QDir.currentPath()+"/Baremos/TablaD2_30-39.csv").toString()
 		baremos =	(pd.read_csv(tablaD2_15_16), 
 					pd.read_csv(tablaD2_17_18),
 					pd.read_csv(tablaD2_19_23),

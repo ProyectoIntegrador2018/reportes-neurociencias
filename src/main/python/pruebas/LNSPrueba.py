@@ -7,8 +7,8 @@ import PruebaModel
 class LNSPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "LNS"
-		tablaLNS = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaLNS.csv").toString()
-		escolaridadLNS = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadLNS.csv").toString()
+		tablaLNS = QUrl(QDir.currentPath()+"/Baremos/TablaLNS.csv").toString()
+		escolaridadLNS = QUrl(QDir.currentPath()+"/Baremos/EscolaridadLNS.csv").toString()
 
 		baremos = (pd.read_csv(tablaLNS), 
 					pd.read_csv(escolaridadLNS))

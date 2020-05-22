@@ -7,8 +7,8 @@ import PruebaModel
 class DigitosPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Dígitos"
-        baremoDigitos = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Digitos.csv").toString()
-        escolaridadDigitos = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadDigitos.csv").toString()
+        baremoDigitos = QUrl(QDir.currentPath()+"/Baremos/Digitos.csv").toString()
+        escolaridadDigitos = QUrl(QDir.currentPath()+"/Baremos/EscolaridadDigitos.csv").toString()
         baremos = (pd.read_csv(baremoDigitos), 
                 pd.read_csv(escolaridadDigitos))
         campos = ("Directos", "Inversos")

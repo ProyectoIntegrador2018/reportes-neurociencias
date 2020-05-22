@@ -9,9 +9,9 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "FluidezVerbal"
 
-		tempUrl = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaFluidezVerbal.csv")
+		tempUrl = QUrl(QDir.currentPath()+"/Baremos/TablaFluidezVerbal.csv")
 		tempUrl = tempUrl.toString()
-		tempUrl2 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadFluidezVerbal.csv").toString()
+		tempUrl2 = QUrl(QDir.currentPath()+"/Baremos/EscolaridadFluidezVerbal.csv").toString()
 		baremos = (pd.read_csv(tempUrl), pd.read_csv(tempUrl2))
 
 		# baremos = (pd.read_csv("c:\\Users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaFluidezVerbal.csv"), 

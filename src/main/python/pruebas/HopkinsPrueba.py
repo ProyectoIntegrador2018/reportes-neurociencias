@@ -7,9 +7,9 @@ import PruebaModel
 class HopkinsPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "Hopkins"
-		baremoHopkinsNormal = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_Hopkins_Normal.csv").toString()
-		baremoHopkinsDiferido = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_Hopkins_Diferido.csv").toString()
-		tablaConversion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
+		baremoHopkinsNormal = QUrl(QDir.currentPath()+"/Baremos/Baremo_Hopkins_Normal.csv").toString()
+		baremoHopkinsDiferido = QUrl(QDir.currentPath()+"/Baremos/Baremo_Hopkins_Diferido.csv").toString()
+		tablaConversion = QUrl(QDir.currentPath()+"/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
 
 		baremos = (pd.read_csv(baremoHopkinsNormal), 
                     pd.read_csv(baremoHopkinsDiferido),

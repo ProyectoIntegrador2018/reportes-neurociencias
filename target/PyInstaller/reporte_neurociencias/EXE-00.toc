@@ -51,7 +51,7 @@
  [],
  False,
  False,
- 1589966644,
+ 1590134570,
  [('run.exe',
    'c:\\users\\usuario\\desktop\\reportes-neurociencias\\venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
    'EXECUTABLE')])

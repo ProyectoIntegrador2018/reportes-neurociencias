@@ -7,7 +7,7 @@ import PruebaModel
 class DenominacionPrueba(PruebaModel.PruebaModel):
     def __init__(self,valores):
         nombre = "Denominacion"
-        baremoDenominacion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/DenominacionImagenes.csv").toString()
+        baremoDenominacion = QUrl(QDir.currentPath()+"/Baremos/DenominacionImagenes.csv").toString()
         baremos = (pd.read_csv(baremoDenominacion))
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos)

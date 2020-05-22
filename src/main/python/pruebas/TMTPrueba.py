@@ -7,9 +7,9 @@ import PruebaModel
 class TMTPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "TMT"
-		tablaTMT = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaTMT.csv").toString()
-		escolatidadTMTA = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadTMTA.csv").toString()
-		escolatidadTMTB = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadTMTB.csv").toString()
+		tablaTMT = QUrl(QDir.currentPath()+"/Baremos/TablaTMT.csv").toString()
+		escolatidadTMTA = QUrl(QDir.currentPath()+"/Baremos/EscolaridadTMTA.csv").toString()
+		escolatidadTMTB = QUrl(QDir.currentPath()+"/Baremos/EscolaridadTMTB.csv").toString()
 
 		baremos = (pd.read_csv(tablaTMT), 
 					pd.read_csv(escolatidadTMTA), 

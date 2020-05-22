@@ -7,7 +7,7 @@ import PruebaModel
 class AbstraccionPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "Abstración"
-		baremoAbstraccion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaAbstraccion.csv").toString()
+		baremoAbstraccion = QUrl(QDir.currentPath()+"/Baremos/TablaAbstraccion.csv").toString()
 		baremos = (pd.read_csv(baremoAbstraccion))
 
 		# baremos = (pd.read_csv("c:/users/usuario/desktop/reportes-neurociencias/src/main/python/Baremos/TablaAbstraccion.csv"))

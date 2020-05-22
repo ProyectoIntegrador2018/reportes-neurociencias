@@ -7,12 +7,12 @@ import PruebaModel
 class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "MemoriaVisoespacia"
-        baremoR1 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-1.csv").toString()
-        baremoR2 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-2.csv").toString()
-        baremoR3 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-3.csv").toString()
-        baremoR4 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-4.csv").toString()
-        baremoR5 = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_BVMT-R-5.csv").toString()
-        tablaConversion = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
+        baremoR1 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-1.csv").toString()
+        baremoR2 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-2.csv").toString()
+        baremoR3 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-3.csv").toString()
+        baremoR4 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-4.csv").toString()
+        baremoR5 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-5.csv").toString()
+        tablaConversion = QUrl(QDir.currentPath()+"/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
 
 
         baremos = (pd.read_csv(baremoR1),

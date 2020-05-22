@@ -7,7 +7,7 @@ import PruebaModel
 class StroopPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Stroop"
-        baremoStroop = QUrl(QDir.currentPath()+"/src/main/python/Baremos/Baremo_Stroop.csv").toString()
+        baremoStroop = QUrl(QDir.currentPath()+"/Baremos/Baremo_Stroop.csv").toString()
 
         baremos =	(pd.read_csv(baremoStroop))
         campos = ("P", "C", "PC")

@@ -7,8 +7,8 @@ import PruebaModel
 class SDMTPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "SDMT"
-        tablaSDMT = QUrl(QDir.currentPath()+"/src/main/python/Baremos/TablaSDMT.csv").toString()
-        escolaridadSDMT = QUrl(QDir.currentPath()+"/src/main/python/Baremos/EscolaridadSDMT.csv").toString()
+        tablaSDMT = QUrl(QDir.currentPath()+"/Baremos/TablaSDMT.csv").toString()
+        escolaridadSDMT = QUrl(QDir.currentPath()+"/Baremos/EscolaridadSDMT.csv").toString()
 
         baremos = (pd.read_csv(tablaSDMT), 
                     pd.read_csv(escolaridadSDMT))
