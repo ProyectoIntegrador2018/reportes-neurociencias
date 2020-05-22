@@ -35,11 +35,14 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 		if edad < 18:
 			edad = 18
 		
+		if edad >42:
+			edad = 42
+		
 		if ((edad <= 22) and (edad >= 18)):
-			if total_recall <= 19:
-				total_recall = 19
-			if delayed_recall <= 6:
-				delayed_recall = 6
+			if total_recall <= 18:
+				total_recall = 18
+			if delayed_recall <= 5:
+				delayed_recall = 5
 			percentile_normal = totalDf.percentile[totalDf.rango18_22 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(int(percentile_normal))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango18_22 == delayed_recall].iloc[0]
@@ -47,15 +50,15 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 		elif ((edad <= 27) and (edad >= 23)):
 			if total_recall <= 18:
 				total_recall = 18
-			if delayed_recall <= 6:
-				delayed_recall = 6
+			if delayed_recall <= 5:
+				delayed_recall = 5
 			percentile_normal = totalDf.percentile[totalDf.rango23_27 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(int(percentile_normal))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango23_27 == delayed_recall].iloc[0]
 			escalar_delayed = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(int(percentile_delayed))].iloc[0]
 		elif ((edad <= 32) and (edad >= 28)):
-			if total_recall <= 18:
-				total_recall = 18
+			if total_recall <= 17:
+				total_recall = 17
 			if delayed_recall <= 5:
 				delayed_recall = 5
 			percentile_normal = totalDf.percentile[totalDf.rango28_32 == total_recall].iloc[0]
@@ -63,8 +66,8 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango28_32 == delayed_recall].iloc[0]
 			escalar_delayed = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(int(percentile_delayed))].iloc[0]
 		elif ((edad <= 37) and (edad >= 33)):
-			if total_recall <= 17:
-				total_recall = 17
+			if total_recall <= 16:
+				total_recall = 16
 			if delayed_recall <= 5:
 				delayed_recall = 5
 			percentile_normal = totalDf.percentile[totalDf.rango33_37 == total_recall].iloc[0]
@@ -74,8 +77,8 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 		elif ((edad <= 42) and (edad >= 38)):
 			if total_recall <= 16:
 				total_recall = 16
-			if delayed_recall <= 5:
-				delayed_recall = 5
+			if delayed_recall <= 4:
+				delayed_recall = 4
 			percentile_normal = totalDf.percentile[totalDf.rango38_42 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(int(percentile_normal))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango38_42 == delayed_recall].iloc[0]

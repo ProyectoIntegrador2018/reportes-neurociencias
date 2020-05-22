@@ -7,7 +7,6 @@ import os
 
 class FluidezVerbalPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "FluidezVerbal"
 
 		tempUrl = QUrl(QDir.currentPath()+"/Baremos/TablaFluidezVerbal.csv")
 		tempUrl = tempUrl.toString()
@@ -16,7 +15,8 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 
 		# baremos = (pd.read_csv("c:\\Users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaFluidezVerbal.csv"), 
 				# pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadFluidezVerbal.csv"))
-		campos = ("Animales con P", "Palabras con P")
+		nombre = "Fluidez"
+		campos = ("A", "P")
 
 		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos, campos)
 

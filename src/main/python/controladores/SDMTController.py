@@ -56,6 +56,12 @@ class SDMTController(QtWidgets.QWidget, ControllerModel):
          Método que se encarga de regresar el valor de la barra de progreso
         """
         return self.sdmtView.progressBar
+
+    def updateButtonText(self, text):
+        """
+         Método que se encarga de actulaizar el texto del botón de la vista
+        """
+        self.sdmtView.pbStart.setText(text)
     
 # Pruebas unitarias
 # if __name__ == "__main__":

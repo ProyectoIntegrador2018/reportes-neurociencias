@@ -54,6 +54,11 @@ class MemoriaVisoespaciaController(QtWidgets.QWidget,ControllerModel):
         """
         return self.memoriaVisoespaciaView.progressBar
 
+    def updateButtonText(self, text):
+        """
+         Método que se encarga de actulaizar el texto del botón de la vista
+        """
+        self.memoriaVisoespaciaView.pbStart.setText(text)
 
 
 

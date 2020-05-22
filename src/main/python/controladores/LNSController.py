@@ -78,6 +78,19 @@ class LNSController(QtWidgets.QWidget, ControllerModel):
 		return self.lnsView.progressBar
 
 
+	def getProgressBar(self):
+		"""
+		 Método que se encarga de regresar el valor de la barra de progreso
+		"""
+		return self.lnsView.progressBar
+
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.lnsView.pbStart.setText(text)
+
+
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys

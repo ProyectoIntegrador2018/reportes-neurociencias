@@ -1,23 +1,21 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'mainWindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
+#Vista de la prueba de Torre de Londres
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(803, 600)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 801, 551))
+class TOLWindowWidget(object):
+    def __init__(self, Form):
+        self.setupUi(Form)
+
+    def setupUi(self, Form):
+        """
+         Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
+         Args:
+          Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
+        """
+        Form.setObjectName("Form")
+        Form.resize(800, 598)
+        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(220, 0, 581, 541))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -47,56 +45,66 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
         self.formLayout = QtWidgets.QFormLayout()
+        self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-        self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
-        self.label_10.setSizePolicy(sizePolicy)
-        self.label_10.setObjectName("label_10")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_10)
-        self.leName = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.leName.sizePolicy().hasHeightForWidth())
-        self.leName.setSizePolicy(sizePolicy)
-        self.leName.setObjectName("leName")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.leName)
-        self.label_11 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_11.setObjectName("label_11")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_11)
-        self.leId = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leId.setObjectName("leId")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.leId)
-        self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
-        self.leExaminer = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leExaminer.setObjectName("leExaminer")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.leExaminer)
+
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbAge = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbAge.setObjectName("sbAge")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbAge)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
+        self.sbTotalCorrectos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTotalCorrectos.setObjectName("sbTotalCorrectos")
+        self.sbTotalCorrectos.setRange(0,10)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbTotalCorrectos)
+
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.sbEscolaridad = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbEscolaridad.setObjectName("sbEscolaridad")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbEscolaridad)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
+        self.sbMovimientosTotales = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbMovimientosTotales.setObjectName("sbMovimientosTotales")
+        self.sbMovimientosTotales.setRange(0,1000)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbMovimientosTotales)
+
+        self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_10.setObjectName("label_10")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_10)
+        self.sbTiempoLatencia = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTiempoLatencia.setObjectName("sbTiempoLatencia")
+        self.sbTiempoLatencia.setRange(0,1000)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.sbTiempoLatencia)
+
+        self.label_11 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_11.setObjectName("label_11")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_11)
+        self.sbTiempoEjecucion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTiempoEjecucion.setObjectName("sbTiempoEjecucion")
+        self.sbTiempoEjecucion.setRange(0,1000)
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbTiempoEjecucion)
+
         self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_12.setObjectName("label_12")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_12)
-        self.cbSexo = QtWidgets.QComboBox(self.verticalLayoutWidget)
-        self.cbSexo.setEnabled(True)
-        self.cbSexo.setEditable(False)
-        self.cbSexo.setObjectName("cbSexo")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.cbSexo)
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_12)
+        self.sbTiempoResolucion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbTiempoResolucion.setObjectName("sbTiempoResolucion")
+        self.sbTiempoResolucion.setRange(0,1000)
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbTiempoResolucion)
+
+        self.label_13 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_13.setObjectName("label_13")
+        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_13)
+        self.sbVT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbVT.setObjectName("sbVT")
+        self.sbVT.setRange(0,100)
+        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.sbVT)
+
+        self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_14.setObjectName("label_14")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_14)
+        self.sbVR = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbVR.setObjectName("sbVR")
+        self.sbVR.setRange(0,100)
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.sbVR)
+
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -112,42 +120,48 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.pbStart)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.verticalLayout_2.setStretch(0, 1)
-        self.verticalLayout_2.setStretch(1, 4)
+        self.verticalLayout_2.setStretch(1, 5)
         self.verticalLayout.addLayout(self.verticalLayout_2)
         self.verticalLayout.setStretch(0, 1)
         self.verticalLayout.setStretch(1, 6)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 803, 26))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.lWVistas = QtWidgets.QListWidget(Form)
+        self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
+        self.lWVistas.setObjectName("lWVistas")
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.progressBar = QtWidgets.QProgressBar(Form)
+        self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
 
-    def retranslateUi(self, MainWindow):
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        """
+         Método empleado paraasignar el contenido de la Interfáz gráfica, es generado por pyuic5.
+         Args:
+          Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
+        """
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Main Window"))
-        self.lblLogo.setText(_translate("MainWindow", "Logo"))
-        self.label.setText(_translate("MainWindow", "SYNAPPS"))
-        self.label_4.setText(_translate("MainWindow", "Ingrese los datos del paciente"))
-        self.label_10.setText(_translate("MainWindow", "Nombre:"))
-        self.label_11.setText(_translate("MainWindow", "ID:"))
-        self.label_3.setText(_translate("MainWindow", "Examinador:"))
-        self.label_8.setText(_translate("MainWindow", "Edad:"))
-        self.label_9.setText(_translate("MainWindow", "Escolaridad (Años):"))
-        self.label_12.setText(_translate("MainWindow", "Sexo:"))
-        self.pbStart.setText(_translate("MainWindow", "Comenzar Camptura"))
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.lblLogo.setText(_translate("Form", "Logo"))
+        self.label.setText(_translate("Form", "SYNAPPS"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Denominación"))
+        self.label_8.setText(_translate("Form", "Total Correctos: "))
+        self.label_9.setText(_translate("Form", "Movimimentos Totales:"))
+        self.label_10.setText(_translate("Form", "Tiempo de Latencia:"))
+        self.label_11.setText(_translate("Form", "Tiempo de Ejecución:"))
+        self.label_12.setText(_translate("Form", "Tiempo de Resolución:"))
+        self.label_13.setText(_translate("Form", "VT:"))
+        self.label_14.setText(_translate("Form", "VR:"))
+        self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
-#if __name__ == "__main__":
-#    import sys
-#    app = QtWidgets.QApplication(sys.argv)
-#    MainWindow = QtWidgets.QMainWindow()
-#    ui = Ui_MainWindow()
-#    ui.setupUi(MainWindow)
-#    MainWindow.show()
-#    sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = TOLWindowWidget(Form)
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())

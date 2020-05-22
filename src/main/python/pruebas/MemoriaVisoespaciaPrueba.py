@@ -42,43 +42,72 @@ class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
         totalRecall = self.valores[0]
         delayedRecall = self.valores[1]
 
-        if totalRecall <= 18:
-            totalRecall = 18
-
-        if delayedRecall <= 7:
-            delayedRecall = 7
-
-        totalRecall = str(totalRecall)
-        delayedRecall = str(delayedRecall)
-
-        print("EDAD:" + str(edad))
-        print("TOTAL:" + str(totalRecall))
+        if (edad<18):
+            edad = 18
+        elif (edad>49):
+            edad = 38
 
         if (edad>=18 and edad<=22):
+            if totalRecall <= 18:
+                totalRecall = 18
+            
+            if delayedRecall <= 7:
+                delayedRecall = 7
+
+            totalRecall = str(totalRecall)
+            delayedRecall = str(delayedRecall)
             percentil_normal = baremoData1.percentile[baremoData1.total_recall == totalRecall].iloc[0]
             escalar_normal  = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_normal].iloc[0]
             percentil_delayed = baremoData1.percentile[baremoData1.delayed_recall == delayedRecall].iloc[0]
             escalar_delayed = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_delayed].iloc[0]
 
         elif (edad>22 and edad<=26):
+            if totalRecall <= 17:
+                totalRecall = 17
+            
+            if delayedRecall <= 7:
+                delayedRecall = 7
+            totalRecall = str(totalRecall)
+            delayedRecall = str(delayedRecall)
             percentil_normal = baremoData2.percentile[baremoData2.total_recall == totalRecall].iloc[0]
             escalar_normal  = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_normal].iloc[0]
             percentil_delayed = baremoData2.percentile[baremoData2.delayed_recall == delayedRecall].iloc[0]
             escalar_delayed = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_delayed].iloc[0]
         
         elif (edad>26 and edad<=30):
+            if totalRecall <= 16:
+                totalRecall = 16
+
+            if delayedRecall <= 7:
+                delayedRecall = 7
+            totalRecall = str(totalRecall)
+            delayedRecall = str(delayedRecall)
             percentil_normal = baremoData3.percentile[baremoData3.total_recall == totalRecall].iloc[0]
             escalar_normal  = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_normal].iloc[0]
             percentil_delayed = baremoData3.percentile[baremoData3.delayed_recall == delayedRecall].iloc[0]
             escalar_delayed = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_delayed].iloc[0]
 
         elif (edad>30 and edad<=34):
+            if totalRecall <= 16:
+                totalRecall = 16
+            
+            if delayedRecall <= 7:
+                delayedRecall = 7
+            totalRecall = str(totalRecall)
+            delayedRecall = str(delayedRecall)
             percentil_normal = baremoData4.percentile[baremoData4.total_recall == totalRecall].iloc[0]
             escalar_normal  = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_normal].iloc[0]
             percentil_delayed = baremoData4.percentile[baremoData4.delayed_recall == delayedRecall].iloc[0]
             escalar_delayed = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_delayed].iloc[0]
         
         elif (edad>34 and edad<=38):
+            if totalRecall <= 15:
+                totalRecall = 15
+            
+            if delayedRecall <= 6:
+                delayedRecall = 6
+            totalRecall = str(totalRecall)
+            delayedRecall = str(delayedRecall)
             percentil_normal = baremoData5.percentile[baremoData5.total_recall == totalRecall].iloc[0]
             escalar_normal  = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_normal].iloc[0]
             percentil_delayed = baremoData5.percentile[baremoData5.delayed_recall == delayedRecall].iloc[0]

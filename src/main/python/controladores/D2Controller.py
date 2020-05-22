@@ -31,11 +31,14 @@ class D2Controller(QtWidgets.QWidget, ControllerModel):
 		 Método que toma los datos ingresados en la vista de D2
 		"""
 		view = self.d2View
-		TOT = view.sbTOT.value()
-		CON = view.sbCON.value()
+
+		TR = view.sbTR.value()
+		TA = view.sbTA.value()
+		O = view.sbO.value()
+		C = view.sbC.value()
 		VAR = view.sbVAR.value()
 
-		valores = [TOT, CON, VAR]
+		valores = [TR, TA, O, C, VAR]
 		
 		self.d2Prueba = D2Prueba(valores)
 
@@ -78,6 +81,11 @@ class D2Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.d2View.progressBar
 
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		"""
+		self.d2View.pbStart.setText(text)
 
 # Pruebas unitarias
 #if __name__ == "__main__":

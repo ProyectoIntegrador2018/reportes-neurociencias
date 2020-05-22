@@ -14,7 +14,7 @@ class TMTPrueba(PruebaModel.PruebaModel):
 		baremos = (pd.read_csv(tablaTMT), 
 					pd.read_csv(escolatidadTMTA), 
 					pd.read_csv(escolatidadTMTB))
-		campos = ("TMT A", "TMT B")
+		campos = ("A", "B")
 
 		super(TMTPrueba,self).__init__(nombre, valores, baremos, campos)
 

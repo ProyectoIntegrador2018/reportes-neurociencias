@@ -82,6 +82,13 @@ class TMTController(QtWidgets.QWidget, ControllerModel):
 		"""
 		return self.tmtView.progressBar
 
+	def updateButtonText(self, text):
+		"""
+		 Método que se encarga de actulaizar el texto del botón de la vista
+		 Args:
+		  text: Objeto de tipo str que contiene el nuevo valor a asignar al botón presente en las pruebas
+		"""
+		self.tmtView.pbStart.setText(text)
 
 # Pruebas unitarias
 #if __name__ == "__main__":

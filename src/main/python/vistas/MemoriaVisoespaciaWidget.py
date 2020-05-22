@@ -103,7 +103,7 @@ class MemoriaVisoespaciaWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "´Memoria Visoespacial"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba de Memoria Visoespacia"))

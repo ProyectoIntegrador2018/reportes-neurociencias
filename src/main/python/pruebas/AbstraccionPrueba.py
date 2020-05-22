@@ -6,13 +6,13 @@ import PruebaModel
 
 class AbstraccionPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "Abstración"
 		baremoAbstraccion = QUrl(QDir.currentPath()+"/Baremos/TablaAbstraccion.csv").toString()
 		baremos = (pd.read_csv(baremoAbstraccion))
 
 		# baremos = (pd.read_csv("c:/users/usuario/desktop/reportes-neurociencias/src/main/python/Baremos/TablaAbstraccion.csv"))
 		# baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaAbstraccion.csv"))
-		campos = ("Semejanza-abstracción")
+		nombre = "Abs"
+		campos = ("Abs")
 
 		super(AbstraccionPrueba,self).__init__(nombre, valores, baremos, campos)
 
@@ -28,10 +28,6 @@ class AbstraccionPrueba(PruebaModel.PruebaModel):
 
 		edad = datos[0]
 
-		"""
-		 ****REVISAR CON BEATRIZ****
-		 LA PRUEBA DICE QUE SE DEBE DE TOMAR EN CUENTA LA EDAD PERO NO HAY NINGÚN REGISTRO DE CUÁLES AJUSTES SE DEBEN DE HACER
-		"""
 		if edad < 18:
 			edad = 18
 		elif edad > 50:

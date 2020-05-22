@@ -78,8 +78,12 @@ class MainWindowWithListWidget(object):
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_8)
+        
+        ageMin = 15
+        ageMax = 49
         self.sbAge = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbAge.setObjectName("sbAge")
+        self.sbAge.setRange(ageMin, ageMax)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbAge)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
@@ -98,9 +102,25 @@ class MainWindowWithListWidget(object):
         self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.leFechaNacimiento = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leFechaNacimiento.setObjectName("leFechaNacimiento")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.leFechaNacimiento)
+        
+        fechaActual = QtCore.QDate.currentDate()
+        fechaMinYear = fechaActual.year() - ageMin
+        fechaMinimaNacimiento = QtCore.QDate(fechaMinYear, 12, 31)
+
+        fechaMaxYear = fechaActual.year() - ageMax
+        fechaMaximaNacimiento = QtCore.QDate(fechaMaxYear, 1, 1)
+
+        self.deFechaNacimiento = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        self.deFechaNacimiento.setObjectName("deFechaNacimiento")
+        self.deFechaNacimiento.setDisplayFormat("dd/MMMM/yyyy")
+        self.deFechaNacimiento.setDateRange(fechaMaximaNacimiento, fechaMinimaNacimiento)
+        
+        dateToShow = QtCore.QDate(fechaMinYear, 1, 1)
+        self.deFechaNacimiento.setDate(dateToShow)
+
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.deFechaNacimiento)
+        
+
         self.label_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_5.setObjectName("label_5")
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.label_5)
@@ -112,9 +132,13 @@ class MainWindowWithListWidget(object):
         self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_6.setObjectName("label_6")
         self.formLayout.setWidget(8, QtWidgets.QFormLayout.LabelRole, self.label_6)
-        self.leFecha = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.leFecha.setObjectName("leFecha")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.leFecha)
+        
+        self.deFecha = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        self.deFecha.setObjectName("deFecha")
+        self.deFecha.setDisplayFormat("dd/MMMM/yyyy")
+        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.deFecha)
+        
+
         self.label_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_7.setObjectName("label_7")
         self.formLayout.setWidget(9, QtWidgets.QFormLayout.LabelRole, self.label_7)
