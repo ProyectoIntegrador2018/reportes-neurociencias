@@ -59,6 +59,8 @@ class DenominacionController(QtWidgets.QWidget, ControllerModel):
     def updateButtonText(self, text):
         """
          Método que se encarga de actulaizar el texto del botón de la vista
+         Args:
+          text: Objeto de tipo str que contiene el nuevo valor a asignar al botón presente en las pruebas
         """
         self.denominacionView.pbStart.setText(text)
 

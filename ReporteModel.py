@@ -18,11 +18,21 @@ class ReporteModel:
 		}
 
 	def updateReporte(self, reporte):
+		"""
+		 Método que se encarga de actualizar los datos del reporte
+		 Args:
+		  reporte: Objeto de tipo Reporte que contiene los valores a actualizar
+		"""
 		tempResultados = self.reporte["resultados"]
 		self.reporte = reporte.reporte
 		return tempResultados
 
 	def updateResultados(self, resultados):
+		"""
+		 Método que se encarga de actualizar los resultados de las pruebas
+		 Args:
+		  resultados: Objeto de tipo dict que contiene los datos correspondientes a las pruebas previamente registradas
+		"""
 		tempResultados = resultados
 		for nombre, prueba in tempResultados.items():
 			self.reporte["resultados"][nombre] = prueba

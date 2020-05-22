@@ -31,6 +31,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html = '<!DOCTYPE html><html><head></head>'
 		raw_html += '<link rel="stylesheet" href="w3-layout.css">'
 		raw_html += '<link rel="stylesheet" href="reporte.css">'
+		raw_html += '<link rel="stylesheet" media="print" href="reporte.css" />'
 		raw_html += '<body>'
 		raw_html += '<div class="w3-container">'
 		raw_html += '<div class="w3-row">'
@@ -174,9 +175,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</th>'
 		raw_html += '</tr>'
 
+		iCantidadPruebas = -1
+
 		pruebasRegistradas = reporte["resultados"]
 		for pruebaName in pruebasRegistradas.keys():
-			if pruebaName != 'SCL-90':
+			iCantidadPruebas += 1
+			
+			if pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
 				bFaltaActualizarPrueba = False
@@ -200,9 +205,10 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 					cantCampos = len(infoPrueba.valores)
 
 				#print("cantCampos: " + str(cantCampos))
+				print(pruebaName)
 
 				raw_html += '<tr>'
-				raw_html += '<th rowspan="' + str(cantCampos) + '">'
+				raw_html += '<th class="colored-background" rowspan="' + str(cantCampos) + '">'	
 				raw_html += pruebaName
 				raw_html += '</th>'
 
@@ -433,14 +439,29 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += 'C'
 		raw_html += '</td>'
 
+		pruebaButt = pruebasRegistradas['Motivos Deportivos de Butt']
+		dirC = pruebaButt.valores[0]
+		dirR = pruebaButt.valores[1]
+		dirS = pruebaButt.valores[2]
+		dirCo = pruebaButt.valores[3]
+		dirA = pruebaButt.valores[4]
+		dirT = pruebaButt.valores[5]
+
+		intC = pruebaButt.rangoPercentil[0]
+		intR = pruebaButt.rangoPercentil[1]
+		intS = pruebaButt.rangoPercentil[2]
+		intCo = pruebaButt.rangoPercentil[3]
+		intA = pruebaButt.rangoPercentil[4]
+		intT = pruebaButt.rangoPercentil[5]
+
 		########## AQUÍ VA EL PD DE C ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirC)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE C ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intC)
 		raw_html += '</td>'
 
 		raw_html += '<td>'
@@ -449,12 +470,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE Co ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirCo)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE Co ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intCo)
 		raw_html += '</td>'
 
 		raw_html += '<tr>'
@@ -464,12 +485,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE R ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirR)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE R ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intR)
 		raw_html += '</td>'
 
 		raw_html += '<td>'
@@ -478,12 +499,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE A ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirA)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE A ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intA)
 		raw_html += '</td>'
 
 		raw_html += '</tr>'
@@ -496,12 +517,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE S ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirS)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE S ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intS)
 		raw_html += '</td>'
 		
 
@@ -511,12 +532,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE T ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirT)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE T ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intT)
 		raw_html += '</td>'
 		
 		raw_html += '</tr>'

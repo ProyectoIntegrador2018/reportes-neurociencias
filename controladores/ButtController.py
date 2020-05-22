@@ -1,21 +1,21 @@
-#Controlador de la vista de AbstraccionWindow
+#Controlador de la vista de ButtWindowWidget
 from PyQt5 import QtWidgets, QtCore
-from vistas.AbstraccionWindowWidget import *
+from vistas.ButtWindowWidget import *
 from MainWindowController import *
 from ReporteModel import *
-from pruebas.AbstraccionPrueba import *
+from pruebas.ButtPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
 
-class AbstraccionController(QtWidgets.QWidget, ControllerModel):
+class ButtController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
-		self.abstraccionView = AbstraccionWindowWidget(mainWindow)
-		self.abstraccionView.pbStart.clicked.connect(self.getDatos)
+		self.buttView = ButtWindowWidget(mainWindow)
+		self.buttView.pbStart.clicked.connect(self.getDatos)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
 	
@@ -23,27 +23,26 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba)
+		self.switch_window.emit(self.invalidArgs, self.buttPrueba)
 
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de TMT
+		 Método que toma los datos ingresados en la vista de Butt
 		"""
-		view = self.abstraccionView
-		valSemAbs = view.sbAbstraccion.value()
+		view = self.buttView
 
-		valores = (valSemAbs)
-		
-		self.abstraccionPrueba = AbstraccionPrueba(valores)
-		
-		datos = [self.reporteModel.reporte['edad']]
-		
-		if (valSemAbs < 0 or valSemAbs > 12):
-			self.addInvalidArg("TMT A")
+		CON = view.sbConflicto.value()
+		RIV = view.sbRivalidad.value()
+		SUF = view.sbSuficiencia.value()
+		COOP = view.sbCooperacion.value()
+		AGR = view.sbAgresividad.value()
 
-		if len(self.invalidArgs) == 0:
-			self.abstraccionPrueba.calcularPERP(datos)
+		valores = [CON, RIV, SUF, COOP, AGR]
+		
+		self.buttPrueba = ButtPrueba(valores)
+		
+		self.buttPrueba.calcularPERP()
 			
 		self.changeView()
 
@@ -69,29 +68,27 @@ class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 
 	def getListMenu(self):
 		"""
-		 Método que se regresa el id del menu en la vista de TMT
+		 Método que se regresa el id del menu en la vista de Butt
 		"""
-		return self.abstraccionView.lWVistas
+		return self.buttView.lWVistas
 
 	def getProgressBar(self):
 		"""
 		 Método que se encarga de regresar el valor de la barra de progreso
 		"""
-		return self.abstraccionView.progressBar
+		return self.buttView.progressBar
 
 	def updateButtonText(self, text):
 		"""
 		 Método que se encarga de actulaizar el texto del botón de la vista
-		 Args:
-		  text: Objeto de tipo str que contiene el nuevo valor a asignar al botón presente en las pruebas
 		"""
-		self.abstraccionView.pbStart.setText(text)
+		self.buttView.pbStart.setText(text)
 
 # Pruebas unitarias
 #if __name__ == "__main__":
 #    import sys
 #    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = TMTController(fluidezWindow)
-#    fluidezWindow.show()
+#    buttWindow = QtWidgets.QWidget()
+#    buttController = ButtController(buttWindow)
+#    buttWindow.show()
 #    sys.exit(app.exec_())

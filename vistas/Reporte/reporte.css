@@ -1,3 +1,4 @@
+
 table, th, td {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
@@ -9,8 +10,20 @@ th, td{
 	text-align: center;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
 	background-color: #dcd7d1;
+}
+
+tr:nth-child(even) {
+	background-color: white;
+}
+
+.colored-background {
+	background-color: #dcd7d1;
+}
+
+.no-colored-background {
+	background-color: white;
 }
 
 .center-text {
@@ -28,4 +41,11 @@ tr:nth-child(even) {
 .table-PSQI, .table-BUTT {
 	float: left;
 	width: 50%;
+}
+
+@media print and (color) {
+   * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+   }
 }
