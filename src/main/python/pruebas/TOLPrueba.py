@@ -1,15 +1,26 @@
+# Prueba torre de Londres
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class TOLPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Torre De Londres"
-        baremos = (pd.read_csv('./Baremos/Baremo_TOL.csv'),
-            pd.read_csv('./Baremos/Baremo_TOL_VT_VR_16-19a.csv'),
-            pd.read_csv('./Baremos/Baremo_TOL_VT_VR_20-29a.csv'),
-            pd.read_csv('./Baremos/Baremo_TOL_VT_VR_30-39a.csv'),
-            pd.read_csv('./Baremos/EscolaridadTOL.csv'),
-            pd.read_csv('./Baremos/Baremo_TOL_MovimientosTotales.csv'))
+        baremoTOL = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL.csv").toString()
+        baremoTOL_VT_VT_16_19 = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL_VT_VR_16-19a.csv").toString()
+        baremoTOL_VT_VT_20_29 = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL_VT_VR_20-29a.csv").toString()
+        baremoTOL_VT_VT_30_39 = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL_VT_VR_30-39a.csv").toString()
+        tablaEscolaridad = QUrl(QDir.currentPath()+"/Baremos/EscolaridadTOL.csv").toString()
+        baremoMovTotales = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL_MovimientosTotales.csv").toString()
+
+        baremos = (pd.read_csv(baremoTOL),
+            pd.read_csv(baremoTOL_VT_VT_16_19),
+            pd.read_csv(baremoTOL_VT_VT_20_29),
+            pd.read_csv(baremoTOL_VT_VT_30_39),
+            pd.read_csv(tablaEscolaridad),
+            pd.read_csv(baremoMovTotales))
+            
         campos = ("Total Correctos", "Movimientos Totales", "Tiempo de Latencia", "Tiempo de Ejecución", "Tiempo de Resolución", "VT", "VR")
         super(TOLPrueba,self).__init__(nombre, valores, baremos, campos)
     

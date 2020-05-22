@@ -614,7 +614,7 @@ class MasterController:
 			self.reporteModel.addPrueba(prevPrueba)
 			self.reporteModel.printReporte()
 
-			tempUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.html")
+			tempUrl = QUrl(QDir.currentPath()+"/Reporte/reporte.html")
 			tempUrl = tempUrl.toString()
 			if isinstance(self.reporteController, type(None)):
 				self.reporteController = ReporteController(self.reporteView, tempUrl, self.reporteModel)

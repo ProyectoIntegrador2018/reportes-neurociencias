@@ -42,6 +42,9 @@
   ('pyi_rth_qt5',
    'c:\\users\\usuario\\desktop\\reportes-neurociencias\\venv\\lib\\site-packages\\PyInstaller\\loader\\rthooks\\pyi_rth_qt5.py',
    'PYSOURCE'),
+  ('pyi_rth_qt5webengine',
+   'c:\\users\\usuario\\desktop\\reportes-neurociencias\\venv\\lib\\site-packages\\PyInstaller\\loader\\rthooks\\pyi_rth_qt5webengine.py',
+   'PYSOURCE'),
   ('MasterController',
    'C:\\Users\\usuario\\Desktop\\reportes-neurociencias\\src\\main\\python\\MasterController.py',
    'PYSOURCE'),
@@ -51,7 +54,7 @@
  [],
  False,
  False,
- 1590134570,
+ 1590145568,
  [('run.exe',
    'c:\\users\\usuario\\desktop\\reportes-neurociencias\\venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
    'EXECUTABLE')])

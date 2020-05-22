@@ -1,13 +1,24 @@
 #Prueba de SCL90
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
 import PruebaModel
 
 class SCL90Prueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
 		nombre = "SCL-90"
-		baremos = (pd.read_csv('./Baremos/SCL90R_MUJERES_NC_TABLA.csv'), pd.read_csv('./Baremos/SCL90R_VARONES_NC_TABLA.csv'), 
-			pd.read_csv('./Baremos/SCL90R_MUJERES_PSIQUIATRICA_TABLA.csv'), pd.read_csv('./Baremos/SCL90R_VARONES_PSIQUIATRICA_TABLA.csv'),
-			pd.read_csv('./Baremos/SCL90R_PSICOSOMATICA_TABLA.csv'))
+		tablaMujeresNC = QUrl(QDir.currentPath()+"/Baremos/SCL90R_MUJERES_NC_TABLA.csv").toString()
+		tablaVaronesNC = QUrl(QDir.currentPath()+"/Baremos/SCL90R_VARONES_NC_TABLA.csv").toString()
+		tablaMujeresPsiquiatrica = QUrl(QDir.currentPath()+"/Baremos/SCL90R_MUJERES_PSIQUIATRICA_TABLA.csv").toString()
+		tablaVaronesPsiquiatrica = QUrl(QDir.currentPath()+"/Baremos/SCL90R_VARONES_PSIQUIATRICA_TABLA.csv").toString()
+		tablaPsicomatica = QUrl(QDir.currentPath()+"/Baremos/SCL90R_PSICOSOMATICA_TABLA.csv").toString()
+
+		baremos = (pd.read_csv(tablaMujeresNC), 
+			pd.read_csv(tablaVaronesNC), 
+			pd.read_csv(tablaMujeresPsiquiatrica), 
+			pd.read_csv(tablaVaronesPsiquiatrica),
+			pd.read_csv(tablaPsicomatica))
+			
 		campos = ("SO", "OB", "IN", "DE", "AN", "HO", "FO", "PA", "PSI", "GSI", "PST", "PSDI")
 
 		super(SCL90Prueba,self).__init__(nombre, valores, baremos, campos)
