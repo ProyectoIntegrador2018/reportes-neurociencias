@@ -21,6 +21,7 @@ from controladores.TOLController import *
 from controladores.ButtController import*
 from controladores.PittsburghController import *
 
+
 class MasterController:
 	def __init__(self):
 		self.modalController = ModalController()
@@ -45,7 +46,7 @@ class MasterController:
 		self.tolView = QtWidgets.QWidget()
 		self.buttView = QtWidgets.QWidget()
 		self.pittsburghView = QtWidgets.QWidget()
-		#self.mainWindow.setStyleSheet(open('app.css').read())
+
 	
 		#Lista de todos los controllers
 		self.mainWindowController = MainWindowController(self.mainWindow)
@@ -66,6 +67,7 @@ class MasterController:
 		self.tolController = None
 		self.buttController = None
 		self.pittsburghController = None
+
 		
 		
 		self.paginasVisitadas = [0]
@@ -220,6 +222,7 @@ class MasterController:
 			currentController = self.reporteController
 			currentController.loadReporte()
 			self.menuController.updateCurrentWindow(17)
+
 		
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -623,6 +626,7 @@ class MasterController:
 			self.buttController = ButtController(self.buttView, self.reporteModel)
 		self.buttController.switch_window.connect(self.showPittsburgh)
 
+
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
 			self.tolController.emptyInvalidArgs()
@@ -633,6 +637,7 @@ class MasterController:
 			self.addPaginaVisitada(15)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(15)
+
 
 	def showPittsburgh(self, invalidArgs, buttPrueba):
 		"""
@@ -657,6 +662,7 @@ class MasterController:
 			self.showSpecificWindowMenu(16)
 
 	def showReporte(self, invalidArgs, pittsburghPrueba):
+
 		"""
 		 Metodo que se encarga de cargar la vista y el controlador del Reporte
 		 Args: 
@@ -668,6 +674,7 @@ class MasterController:
 			self.pittsburghController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(pittsburghPrueba)
+
 			self.reporteModel.printReporte()
 
 			tempUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.html")
@@ -676,9 +683,11 @@ class MasterController:
 				self.reporteController = ReporteController(self.reporteView, tempUrl, self.reporteModel)
 			self.reporteController.switch_window.connect(self.newReport)
 
+
 			self.addPaginaVisitada(17)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(17)	
+
 
 	def newReport(self):
 		"""

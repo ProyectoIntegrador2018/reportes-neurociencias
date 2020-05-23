@@ -181,6 +181,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
+
 			if pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
