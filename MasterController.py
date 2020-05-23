@@ -18,6 +18,8 @@ from controladores.HopkinsController import *
 from controladores.StroopController import *
 from controladores.ReporteController import *
 from controladores.TOLController import *
+from controladores.ButtController import*
+from controladores.PittsburghController import *
 
 class MasterController:
 	def __init__(self):
@@ -41,7 +43,8 @@ class MasterController:
 		self.stroopView = QtWidgets.QWidget()
 		self.tmtWindow = QtWidgets.QWidget()
 		self.tolView = QtWidgets.QWidget()
-		
+		self.buttView = QtWidgets.QWidget()
+		self.pittsburghView = QtWidgets.QWidget()
 		#self.mainWindow.setStyleSheet(open('app.css').read())
 	
 		#Lista de todos los controllers
@@ -61,6 +64,8 @@ class MasterController:
 		self.tmtController = None
 		self.digitosController = None
 		self.tolController = None
+		self.buttController = None
+		self.pittsburghController = None
 		
 		
 		self.paginasVisitadas = [0]
@@ -203,10 +208,18 @@ class MasterController:
 			currentController = self.tolController
 			self.menuController.updateCurrentWindow(14)
 		if elemSelected == 15:
+			self.nextWindow = self.buttView
+			currentController = self.buttController
+			self.menuController.updateCurrentWindow(15)
+		if elemSelected == 16:
+			self.nextWindow = self.pittsburghView
+			currentController = self.pittsburghController
+			self.menuController.updateCurrentWindow(16)
+		if elemSelected == 17:
 			self.nextWindow = self.reporteView
 			currentController = self.reporteController
 			currentController.loadReporte()
-			self.menuController.updateCurrentWindow(15)
+			self.menuController.updateCurrentWindow(17)
 		
 		if self.windowsAreDifferent():
 			self.connectMenu(currentController)
@@ -586,7 +599,7 @@ class MasterController:
 		"""
 		if isinstance(self.tolController, type(None)):
 			self.tolController = TOLController(self.tolView, self.reporteModel)
-		self.tolController.switch_window.connect(self.showReporte)
+		self.tolController.switch_window.connect(self.showButt)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -599,7 +612,51 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(14)
 
-	def showReporte(self, invalidArgs, prevPrueba):
+	def showButt(self, invalidArgs, tolPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  scl90Prueba: Prueba previa a la de TOL
+		"""
+		if isinstance(self.buttController, type(None)):
+			self.buttController = ButtController(self.buttView, self.reporteModel)
+		self.buttController.switch_window.connect(self.showPittsburgh)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.tolController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(tolPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(15)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(15)
+
+	def showPittsburgh(self, invalidArgs, buttPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  scl90Prueba: Prueba previa a la de TOL
+		"""
+		if isinstance(self.pittsburghController, type(None)):
+			self.pittsburghController = PittsburghController(self.pittsburghView, self.reporteModel)
+		self.pittsburghController.switch_window.connect(self.showReporte)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.buttController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(buttPrueba)
+			self.reporteModel.printReporte()
+
+			self.addPaginaVisitada(16)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(16)
+
+	def showReporte(self, invalidArgs, pittsburghPrueba):
 		"""
 		 Metodo que se encarga de cargar la vista y el controlador del Reporte
 		 Args: 
@@ -608,9 +665,9 @@ class MasterController:
 		"""
 		if len(invalidArgs) != 0:
 			self.modalController.showModal(invalidArgs)
-			self.tolController.emptyInvalidArgs()
+			self.pittsburghController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(prevPrueba)
+			self.reporteModel.addPrueba(pittsburghPrueba)
 			self.reporteModel.printReporte()
 
 			tempUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.html")
@@ -619,9 +676,9 @@ class MasterController:
 				self.reporteController = ReporteController(self.reporteView, tempUrl, self.reporteModel)
 			self.reporteController.switch_window.connect(self.newReport)
 
-			self.addPaginaVisitada(15)
+			self.addPaginaVisitada(17)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(15)	
+			self.showSpecificWindowMenu(17)	
 
 	def newReport(self):
 		"""
@@ -656,6 +713,7 @@ class MasterController:
 		del self.stroopView
 		del self.tmtWindow
 		del self.tolView
+	
 
 		del self.abstraccionController
 		del self.d2Controller
@@ -672,6 +730,7 @@ class MasterController:
 		del self.tmtController
 		del self.digitosController
 		del self.tolController
+
 
 		if (resetMainWindow):
 			del self.mainWindow

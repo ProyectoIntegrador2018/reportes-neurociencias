@@ -1,8 +1,8 @@
-#Vista de la prueba de Pittsburgh
+#Vista de la prueba Motivos de Butt
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class PittsburghWindowWidget(object):
+class ButtWindowWidget(object):
     def __init__(self, Form):
         self.setupUi(Form)
 
@@ -48,70 +48,41 @@ class PittsburghWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-        
-
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.comp1 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp1.setObjectName("comp1")
-        self.comp1.setRange(0.00,3.00)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.comp1)
-        
-
+        self.sbConflicto = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbConflicto.setObjectName("sbConflicto")
+        self.sbConflicto.setRange(0,5)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbConflicto)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
-        self.comp2 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp2.setObjectName("comp2")
-        self.comp2.setRange(0.00,3.00)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.comp2)
-
-
+        self.sbRivalidad = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbRivalidad.setObjectName("sbRivalidad")
+        self.sbRivalidad.setRange(0,5)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbRivalidad)
         self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_10.setObjectName("label_10")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_10)
-        self.comp3 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp3.setObjectName("comp3")
-        self.comp3.setRange(0.00,3.00)
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.comp3)
-
-
+        self.sbSuficiencia = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbSuficiencia.setObjectName("sbSuficiencia")
+        self.sbSuficiencia.setRange(0,5)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.sbSuficiencia)
         self.label_11 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_11.setObjectName("label_11")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_11)
-        self.comp4 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp4.setObjectName("comp4")
-        self.comp4.setRange(0.00,3.00)
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.comp4)
-
-
+        self.sbCooperacion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbCooperacion.setObjectName("sbCooperacion")
+        self.sbCooperacion.setRange(0,5)
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbCooperacion)
         self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_12.setObjectName("label_12")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_12)
-        self.comp5 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp5.setObjectName("comp5")
-        self.comp5.setRange(0.00,3.00)
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.comp5)
-
-
-        self.label_13 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_13.setObjectName("label_13")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_13)
-        self.comp6 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp6.setObjectName("comp6")
-        self.comp6.setRange(0.00,3.00)
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.comp6)
-
-
-        self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_14.setObjectName("label_14")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_14)
-        self.comp7 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
-        self.comp7.setObjectName("comp7")
-        self.comp7.setRange(0.00,3.00)
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.comp7)
-
+        self.sbAgresividad = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbAgresividad.setObjectName("sbAgresividada")
+        self.sbAgresividad.setRange(0,5)
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbAgresividad)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -134,12 +105,11 @@ class PittsburghWindowWidget(object):
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
-
         self.progressBar = QtWidgets.QProgressBar(Form)
         self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
-
+        
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -150,25 +120,25 @@ class PittsburghWindowWidget(object):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Prueba de Pittsburgh"))
+        Form.setWindowTitle(_translate("Form", "Prueba Motivos Deportivos de Butt"))
         self.lblLogo.setText(_translate("Form", "Logo"))
         self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de Pittsburgh"))
-        self.label_8.setText(_translate("Form", "Componente 1: "))
-        self.label_9.setText(_translate("Form", "Componente 2:"))
-        self.label_10.setText(_translate("Form", "Componente 3:"))
-        self.label_11.setText(_translate("Form", "Componente 4:"))
-        self.label_12.setText(_translate("Form", "Componente 5:"))
-        self.label_13.setText(_translate("Form", "Componente 6:"))
-        self.label_14.setText(_translate("Form", "Componente 7:"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Butt"))
+        self.label_8.setText(_translate("Form", "Conflicto: "))
+        self.label_9.setText(_translate("Form", "Rivalidad: "))
+        self.label_10.setText(_translate("Form", "Suficiencia: "))
+        self.label_11.setText(_translate("Form", "Cooperacion: "))
+        self.label_12.setText(_translate("Form", "Agresividad: "))
+
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
-#if __name__ == "__main__":
-#    import sys
-#    app = QtWidgets.QApplication(sys.argv)
-#    Form = QtWidgets.QWidget()
-#    ui = PittsburghWindowWidget(Form)
-#    ui.setupUi(Form)
-#    Form.show()
-#    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Form = QtWidgets.QWidget()
+#     ui = ButtWindowWidget(Form)
+#     ui.setupUi(Form)
+#     Form.show()
+#     sys.exit(app.exec_())
+# 

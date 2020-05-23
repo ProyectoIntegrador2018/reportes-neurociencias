@@ -22,6 +22,8 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba Stroop',
 						'Prueba SCL-90',
 						'Prueba Torre de Londres',
+						'Prueba Motivos Deportivos de Butt',
+						'Prueba de Pittsburgh',
 						'Reporte']
 
 

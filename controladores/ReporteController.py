@@ -181,7 +181,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
-			if pruebaName != 'SCL-90':
+			if pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
 				bFaltaActualizarPrueba = False
@@ -439,14 +439,29 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += 'C'
 		raw_html += '</td>'
 
+		pruebaButt = pruebasRegistradas['Motivos Deportivos de Butt']
+		dirC = pruebaButt.valores[0]
+		dirR = pruebaButt.valores[1]
+		dirS = pruebaButt.valores[2]
+		dirCo = pruebaButt.valores[3]
+		dirA = pruebaButt.valores[4]
+		dirT = pruebaButt.valores[5]
+
+		intC = pruebaButt.rangoPercentil[0]
+		intR = pruebaButt.rangoPercentil[1]
+		intS = pruebaButt.rangoPercentil[2]
+		intCo = pruebaButt.rangoPercentil[3]
+		intA = pruebaButt.rangoPercentil[4]
+		intT = pruebaButt.rangoPercentil[5]
+
 		########## AQUÍ VA EL PD DE C ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirC)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE C ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intC)
 		raw_html += '</td>'
 
 		raw_html += '<td>'
@@ -455,12 +470,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE Co ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirCo)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE Co ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intCo)
 		raw_html += '</td>'
 
 		raw_html += '<tr>'
@@ -470,12 +485,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE R ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirR)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE R ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intR)
 		raw_html += '</td>'
 
 		raw_html += '<td>'
@@ -484,12 +499,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE A ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirA)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE A ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intA)
 		raw_html += '</td>'
 
 		raw_html += '</tr>'
@@ -502,12 +517,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE S ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirS)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE S ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intS)
 		raw_html += '</td>'
 		
 
@@ -517,12 +532,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		########## AQUÍ VA EL PD DE T ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dirT)
 		raw_html += '</td>'
 
 		########## AQUÍ VA EL V DE T ##########
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(intT)
 		raw_html += '</td>'
 		
 		raw_html += '</tr>'
@@ -557,9 +572,19 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += 'Cal.'
 		raw_html += '</td>'
 		
+		pruebaPittsburgh = pruebasRegistradas['PSQI']
+		cal = pruebaPittsburgh.valores[0]
+		lat = pruebaPittsburgh.valores[1]
+		dur = pruebaPittsburgh.valores[2]
+		efic = pruebaPittsburgh.valores[3]
+		pert = pruebaPittsburgh.valores[4]
+		med = pruebaPittsburgh.valores[5]
+		disf = pruebaPittsburgh.valores[6]
+		total = pruebaPittsburgh.puntuacionEscalar[7]
+		inter = pruebaPittsburgh.rangoPercentil
 		################# Aquí va la P de Cal de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(cal)
 		raw_html += '</td>'
 		
 		raw_html += '<td>'
@@ -568,7 +593,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Pert de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(pert)
 		raw_html += '</td>'
 		
 		raw_html += '</tr>'
@@ -582,7 +607,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Lat de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(lat)
 		raw_html += '</td>'
 		
 		raw_html += '<td>'
@@ -591,7 +616,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Med de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(med)
 		raw_html += '</td>'
 		
 		raw_html += '</tr>'
@@ -605,7 +630,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Dar de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(dur)
 		raw_html += '</td>'
 		
 		raw_html += '<td>'
@@ -614,7 +639,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Disf de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(disf)
 		raw_html += '</td>'
 		
 		raw_html += '</tr>'
@@ -627,7 +652,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Efic de PSQI #################
 		raw_html += '<td>'
-		raw_html += ''
+		raw_html += str(efic)
 		raw_html += '</td>'
 		
 		raw_html += '<td>'
@@ -636,7 +661,28 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		################# Aquí va la P de Total de PSQI #################
 		raw_html += '<td>'
+		raw_html += str(total)
+		raw_html += '</td>'
+		
+		raw_html += '</tr>'
+
+		############### Renglón creado para la interpretación #############
+		raw_html += '<tr>'
+		
+		raw_html += '<td>'
 		raw_html += ''
+		raw_html += '</td>'
+		
+		raw_html += '<td>'
+		raw_html += ''
+		raw_html += '</td>'
+		
+		raw_html += '<td>'
+		raw_html += 'Interpretación'
+		raw_html += '</td>'
+
+		raw_html += '<td>'
+		raw_html += inter
 		raw_html += '</td>'
 		
 		raw_html += '</tr>'
