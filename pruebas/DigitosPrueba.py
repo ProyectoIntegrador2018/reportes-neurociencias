@@ -6,9 +6,9 @@ class DigitosPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Dígitos"
         baremos = (pd.read_csv('./Baremos/Digitos.csv'), pd.read_csv('./Baremos/EscolaridadDigitos.csv'))
-        campos = ("Directos", "Inversos")
+        campos = ("DD", "DI")
 
-        super(DigitosPrueba,self).__init__(nombre, valores, baremos)
+        super(DigitosPrueba,self).__init__(nombre, valores, baremos, campos)
 
     def calcularPERP(self, datos):
         """

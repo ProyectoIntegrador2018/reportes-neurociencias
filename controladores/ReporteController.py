@@ -408,6 +408,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</th>'
 		
 		raw_html += '<th>'
+		raw_html += 'Motivos'
 		raw_html += '</th>'
 		
 		raw_html += '<th>'
@@ -419,6 +420,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</th>'
 		
 		raw_html += '<th>'
+		raw_html += 'Motivos'
 		raw_html += '</th>'
 		
 		raw_html += '<th>'
@@ -559,7 +561,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</th>'
 		
 		raw_html += '<th>'
-		raw_html += ''
+		raw_html += 'PSQI'
 		raw_html += '</th>'
 		
 		raw_html += '<th>'
