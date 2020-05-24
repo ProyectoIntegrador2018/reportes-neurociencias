@@ -4,6 +4,8 @@ from vistas.ReporteWindowWidget import *
 from ReporteModel import *
 from PruebaModel import *
 from ControllerModel import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class ReporteController(QtWidgets.QWidget, ControllerModel):
@@ -177,18 +179,19 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		iCantidadPruebas = -1
 
+
 		pruebasRegistradas = reporte["resultados"]
+		pe = [] #lista vacia de puntuaciones escalares
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
-
 			if pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
 				bFaltaActualizarPrueba = False
 
 				cantCampos = 0
-				
+
 				if isinstance(infoPrueba.campos, str):
 					#print("ip-campos no es str")
 					infoPrueba.campos = tuple([infoPrueba.campos])
@@ -207,6 +210,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 				#print("cantCampos: " + str(cantCampos))
 				print(pruebaName)
+				sublista = list([infoPrueba.puntuacionEscalar])
+				pe.append(sublista)
 
 				raw_html += '<tr>'
 				raw_html += '<th class="colored-background" rowspan="' + str(cantCampos) + '">'	
@@ -249,12 +254,64 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 						raw_html += str(infoPrueba.puntuacionEscalar[idx])
 						raw_html += '</td>'
 						raw_html += '</tr>'
-					raw_html += '</tr>'				
+					raw_html += '</tr>'	
+
+		#aplanar lista de listas
+		flattened = [item for sublist in pe for item in sublist]
+		#aplanar lista de tuplas
+		escalares = [] 
+		def reemovNestings(l): 
+		    for i in l: 
+		        if type(i) ==  tuple: 
+		            reemovNestings(i) 
+		        else: 
+		           	escalares.append(i) 
+		
+		reemovNestings(flattened)
+		'''
+		ESCALARES es la lista de todas las puntuaciones escalares de todas las pruebas
+		'''
+		escalares = [int(x) for x in escalares]
+		print(escalares) 
+		yPos = np.arange(35,0,-1)
+
 		raw_html += '</table>'
-
-
 		raw_html += '<table style="width:70"%>'
+		
 		#Aquí va la gráfica
+		x = np.arange(0,21)
+		xi = list(range(len(x)))
+		yi = np.arange(0,35)
+		a = (0,0)
+		b = (6.5, 34)
+
+		xcoords = [10]
+		colors = ['White']
+
+		for xc,c in zip(xcoords,colors):
+		    plt.axvline(x=xc, linewidth = 2.5, c=c, linestyle = 'dotted')
+
+		ax = plt.gca()
+		ax.axvspan(0, 6.5, facecolor='Tomato', alpha=0.7)
+		ax.axvspan(6.5, 13.5, facecolor='Yellow', alpha=0.7)
+		ax.axvspan(13.5, 20, facecolor='Chartreuse', alpha=0.7)
+
+		# Hide the right and top spines
+		ax.spines['right'].set_visible(False)
+		ax.spines['top'].set_visible(False)
+
+		#plt.grid(b=True, which='major', color='#666666',  linestyle='-')
+		plt.xticks(xi, x)
+		plt.yticks(yi)
+		plt.plot(escalares, yPos, marker = 'o', color = 'Red', linewidth=1)
+		plt.savefig('my_plot.png')
+
+		raw_html += '<tr>'
+		raw_html += '<td>'
+		raw_html += '<img src="my_plot.png">'
+		raw_html += '</td>'
+		raw_html += '</tr>'
+
 		raw_html += '</table>'
 		raw_html += '</div>'
 
