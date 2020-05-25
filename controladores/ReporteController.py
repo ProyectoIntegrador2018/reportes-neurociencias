@@ -12,12 +12,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal()
 
-	def __init__(self, mainWindow, url, reporteModel=None):
+	def __init__(self, mainWindow, url, image, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.reporteModel = reporteModel
 		self.url = url
 		self.mainWindow = mainWindow
 		self.url = url
+		self.image = image
 
 	def loadReporte(self):
 		self.createReporte()
@@ -304,11 +305,11 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		plt.xticks(xi, x)
 		plt.yticks(yi)
 		plt.plot(escalares, yPos, marker = 'o', color = 'Red', linewidth=1)
-		plt.savefig('my_plot.png')
+		plt.savefig(self.image)
 
 		raw_html += '<tr>'
 		raw_html += '<td>'
-		raw_html += '<img src="my_plot.png">'
+		raw_html += '<img src="reporte.png">'
 		raw_html += '</td>'
 		raw_html += '</tr>'
 
