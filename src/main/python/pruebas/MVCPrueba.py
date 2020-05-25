@@ -1,3 +1,4 @@
+#Prueba de Material Verbal Complejo
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl, QDir
 import pandas as pd
@@ -8,8 +9,9 @@ class MVCPrueba(PruebaModel.PruebaModel):
 		nombre = "MVC"
 		baremoMVC = QUrl(QDir.currentPath()+"/Baremos/MaterialVerbalComplejo.csv").toString()
 		baremos = (pd.read_csv(baremoMVC))
+		campos = ("MVC", "MVCt")
 
-		super(MVCPrueba,self).__init__(nombre, valores, baremos)
+		super(MVCPrueba,self).__init__(nombre, valores, baremos, campos)
 
 	def calcularPERP(self):
 		"""

@@ -11,9 +11,9 @@ class DigitosPrueba(PruebaModel.PruebaModel):
         escolaridadDigitos = QUrl(QDir.currentPath()+"/Baremos/EscolaridadDigitos.csv").toString()
         baremos = (pd.read_csv(baremoDigitos), 
                 pd.read_csv(escolaridadDigitos))
-        campos = ("Directos", "Inversos")
+        campos = ("DD", "DI")
 
-        super(DigitosPrueba,self).__init__(nombre, valores, baremos)
+        super(DigitosPrueba,self).__init__(nombre, valores, baremos, campos)
 
     def calcularPERP(self, datos):
         """

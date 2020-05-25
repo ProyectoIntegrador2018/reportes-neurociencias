@@ -21,8 +21,9 @@ class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
                     pd.read_csv(baremoR4),
                     pd.read_csv(baremoR5),
                     pd.read_csv(tablaConversion))
+        campos = ("T", "Dif")
 
-        super(MemoriaVisoespaciaPrueba,self).__init__(nombre, valores, baremos)
+        super(MemoriaVisoespaciaPrueba,self).__init__(nombre, valores, baremos, campos)
 
     def calcularPERP(self, datos):
         """

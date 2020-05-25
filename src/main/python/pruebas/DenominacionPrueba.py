@@ -9,8 +9,9 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
         nombre = "Denominacion"
         baremoDenominacion = QUrl(QDir.currentPath()+"/Baremos/DenominacionImagenes.csv").toString()
         baremos = (pd.read_csv(baremoDenominacion))
+        campos = ("D", "Dt")
 
-        super(DenominacionPrueba,self).__init__(nombre, valores, baremos)
+        super(DenominacionPrueba,self).__init__(nombre, valores, baremos, campos)
 
     def calcularPERP(self):
         """
