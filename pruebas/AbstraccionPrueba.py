@@ -6,7 +6,7 @@ class AbstraccionPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "Abs"
 		baremos = (pd.read_csv('./Baremos/TablaAbstraccion.csv'))
-		campos = ("Abs")
+		campos = ("ABS")
 
 		super(AbstraccionPrueba,self).__init__(nombre, valores, baremos, campos)
 

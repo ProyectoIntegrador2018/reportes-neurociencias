@@ -10,7 +10,7 @@ class MenuController(QtWidgets.QWidget):
 		self.entries = ['Información de Sujeto', 
 						'Prueba Fluidez Verbal', 
 						'Prueba Denominación', 
-						'Prueba Material Verbal Complejo', 
+						'Prueba Comprensión Verbal', 
 						'Prueba Memoria Visoespacial',
 						'Prueba TMT',
 						'Prueba Abstracción',
@@ -22,7 +22,7 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba Stroop',
 						'Prueba SCL-90',
 						'Prueba Torre de Londres',
-						'Prueba Motivos Deportivos de Butt',
+						'Prueba Motivos Deportivos',
 						'Prueba de Pittsburgh', 
 						'Reporte' ]
 
