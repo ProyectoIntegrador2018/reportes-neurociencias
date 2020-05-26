@@ -6,7 +6,7 @@ class StroopPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "Stroop"
         baremos = (pd.read_csv('./Baremos/Baremo_Stroop.csv'))
-        campos = ("P", "C", "PC")
+        campos = ("P", "C", "I")
         super(StroopPrueba,self).__init__(nombre, valores, baremos, campos)
         
         def calcularPERP(self, datos):

@@ -6,7 +6,7 @@ class DenominacionPrueba(PruebaModel.PruebaModel):
     def __init__(self,valores):
         nombre = "Denominacion"
         baremos = (pd.read_csv('./Baremos/DenominacionImagenes.csv'))
-        campos = ("D", "Dt")
+        campos = ("DV", "DVt")
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos, campos)
 

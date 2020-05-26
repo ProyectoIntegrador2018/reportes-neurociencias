@@ -43,6 +43,16 @@ tr:nth-child(even) {
 	width: 50%;
 }
 
+.table-pruebas {
+	float: left;
+	width: 20%;
+}
+
+.table-graph {
+	float: left;
+	width: 80%;
+}
+
 @media print and (color) {
    * {
       -webkit-print-color-adjust: exact !important;

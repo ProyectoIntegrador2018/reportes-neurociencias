@@ -10,7 +10,7 @@ class TOLPrueba(PruebaModel.PruebaModel):
             pd.read_csv('./Baremos/Baremo_TOL_VT_VR_30-39a.csv'),
             pd.read_csv('./Baremos/EscolaridadTOL.csv'),
             pd.read_csv('./Baremos/Baremo_TOL_MovimientosTotales.csv'))
-        campos = ("Total Correctos", "Movimientos Totales", "Tiempo de Latencia", "Tiempo de Ejecución", "Tiempo de Resolución", "VT", "VR")
+        campos = ("C", "M", "IT", "ET", "TT", "TV", "RV")
         super(TOLPrueba,self).__init__(nombre, valores, baremos, campos)
     
     def calcularPERP(self, datos):
