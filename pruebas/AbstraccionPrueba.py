@@ -4,7 +4,7 @@ import PruebaModel
 
 class AbstraccionPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "Abs"
+		nombre = "ABS"
 		baremos = (pd.read_csv('./Baremos/TablaAbstraccion.csv'))
 		campos = ("ABS")
 
