@@ -6,7 +6,7 @@ class LNSPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "LNS"
 		baremos = (pd.read_csv('./Baremos/TablaLNS.csv'), pd.read_csv('./Baremos/EscolaridadLNS.csv'))
-		campos = ("LNS SPAN", "LNS TOTAL")
+		campos = ("I", "T")
 
 		super(LNSPrueba,self).__init__(nombre, valores, baremos, campos)
 

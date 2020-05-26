@@ -679,8 +679,11 @@ class MasterController:
 
 			tempUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.html")
 			tempUrl = tempUrl.toString()
+			imageUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.png")
+			imageUrl = imageUrl.toString()
+
 			if isinstance(self.reporteController, type(None)):
-				self.reporteController = ReporteController(self.reporteView, tempUrl, self.reporteModel)
+				self.reporteController = ReporteController(self.reporteView, tempUrl, imageUrl, self.reporteModel)
 			self.reporteController.switch_window.connect(self.newReport)
 
 
