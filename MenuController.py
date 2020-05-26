@@ -23,8 +23,8 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba SCL-90',
 						'Prueba Torre de Londres',
 						'Prueba Motivos Deportivos de Butt',
-						'Reporte']
-
+						'Prueba de Pittsburgh', 
+						'Reporte' ]
 
 		self.pagesVisited = pagesVisited
 		self.qListItems = QtWidgets.QListWidget(self)

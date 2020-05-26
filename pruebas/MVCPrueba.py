@@ -1,3 +1,4 @@
+#Prueba de Material Verbal Complejo
 import pandas as pd
 import PruebaModel
 
@@ -5,8 +6,9 @@ class MVCPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "MVC"
 		baremos = (pd.read_csv('./Baremos/MaterialVerbalComplejo.csv'))
+		campos = ("MVC", "MVCt")
 
-		super(MVCPrueba,self).__init__(nombre, valores, baremos)
+		super(MVCPrueba,self).__init__(nombre, valores, baremos, campos)
 
 	def calcularPERP(self):
 		"""
