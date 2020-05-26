@@ -5,7 +5,7 @@ class SDMTPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "SDMT"
         baremos = (pd.read_csv('./Baremos/TablaSDMT.csv'), pd.read_csv('./Baremos/EscolaridadSDMT.csv'))
-        campos = ("SDMT")
+        campos = ("C")
 
         super(SDMTPrueba,self).__init__(nombre, valores, baremos, campos)
     

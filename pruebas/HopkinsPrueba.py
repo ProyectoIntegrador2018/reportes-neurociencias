@@ -8,7 +8,7 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 		baremos = (pd.read_csv('./Baremos/Baremo_Hopkins_Normal.csv'), 
                     pd.read_csv('./Baremos/Baremo_Hopkins_Diferido.csv'),
                     pd.read_csv('./Baremos/Tabla_Conversión_Psicométrica_Completa.csv'))
-		campos = ("total_recall", "delayed_recall")
+		campos = ("M.I.", "M.D.")
 
 		super(HopkinsPrueba,self).__init__(nombre, valores, baremos, campos)
 
