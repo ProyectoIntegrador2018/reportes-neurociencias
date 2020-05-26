@@ -60,6 +60,8 @@ Please install the following programs/libraries:
 * Git [Instrucciones](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * Python [Instrucciones](https://www.python.org/downloads/)
 * Pandas [Instrucciones](https://pandas.pydata.org/pandas-docs/version/0.23.3/install.html)
+* PyQt5 [Instrucciones](https://pypi.org/project/PyQt5/)
+* Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
 
 After installing please you can follow this simple steps:
 
