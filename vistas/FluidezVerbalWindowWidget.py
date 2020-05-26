@@ -48,20 +48,27 @@ class FluidezVerbalWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-        self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_8.setObjectName("label_8")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.sbAnimals = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.sbAnimals.setObjectName("sbAnimals")
-        self.sbAnimals.setRange(1,1000)
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbAnimals)
+        
+
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbWords = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbWords.setObjectName("sbWords")
         self.sbWords.setRange(1,1000)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbWords)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbWords)
+        
+
+        self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_8.setObjectName("label_8")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_8)
+        self.sbAnimals = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.sbAnimals.setObjectName("sbAnimals")
+        self.sbAnimals.setRange(1,1000)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbAnimals)
+        
+        
+
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)

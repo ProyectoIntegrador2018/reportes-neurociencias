@@ -6,7 +6,7 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 	def __init__(self, valores):
 		nombre = "Fluidez"
 		baremos = (pd.read_csv('./Baremos/TablaFluidezVerbal.csv'), pd.read_csv('./Baremos/EscolaridadFluidezVerbal.csv'))
-		campos = ("A", "P")
+		campos = ("P", "A")
 
 		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos, campos)
 
@@ -53,5 +53,5 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 		tempPal = tablaFV[tablaFV['PuntuacionEscalar'] == puntuacionEscalarPal].iloc[0]
 		puntuacionPercentilPal = (tempPal['RangoDePercentilMin'], tempPal['RangoDePercentilMax'])
 
-		self.puntuacionEscalar = (puntuacionEscalarAnim, puntuacionEscalarPal)
-		self.rangoPercentil = (puntuacionPercentilAnim, puntuacionPercentilPal)
+		self.puntuacionEscalar = (puntuacionEscalarPal, puntuacionEscalarAnim)
+		self.rangoPercentil = (puntuacionPercentilPal, puntuacionPercentilAnim)
