@@ -36,7 +36,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<div class="w3-container">'
 		raw_html += '<div class="w3-row">'
 		raw_html += '<div class="w3-col">'
-		raw_html += '<h1 class = "center-text">Evaluación Neurocognitiva del Deporte</h1>'
+		raw_html += '<h1 class = "center-text">Evaluación Neurocognitiva de ' + reporte["deporte"] + '</h1>'
 		raw_html += '<div class="new-table">'
 
 		"""
