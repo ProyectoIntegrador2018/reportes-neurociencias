@@ -53,6 +53,11 @@ tr:nth-child(even) {
 	width: 80%;
 }
 
+.grafica {
+	float: left;
+	width: 85%;
+}
+
 @media print and (color) {
    * {
       -webkit-print-color-adjust: exact !important;

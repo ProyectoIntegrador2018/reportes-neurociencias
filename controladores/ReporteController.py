@@ -276,7 +276,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		print(escalares) 
 		yPos = np.arange(34,-1,-1)
 		yLabels = ['VR', 'VT', 'TR', 'TE', 'TL', 'MV', 'TC', 'PC', 'C', 'P', 'delayed', 'total', 'VAR', 'CON', 'TOT', 'C', 'O',
-		 'TA', 'TR', 'LNSt', 'LNSs', 'SDMT', 'DI', 'DD', 'Abs', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'Dt', 'D', 'P', 'A']
+		 'TA', 'TR', 'LNSt', 'LNSs', 'SDMT', 'DI', 'DD', 'Abs', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'Dt', 'D', 'A', 'P']
 
 		raw_html += '</table>'
 		raw_html += '<table class="table-graph">'
@@ -314,10 +314,11 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		plt.ylim(-1,34.5)
 		plt.plot(escalares, yPos, marker = 'o', color = 'Red', linewidth=1)
 		plt.savefig(self.image, bbox_inches='tight')
+		plt.clf()
 
 		raw_html += '<tr>'
 		raw_html += '<td class="no-colored-background">'
-		raw_html += '<img src="reporte.png">'
+		raw_html += '<img src="reporte.png" class="grafica">'
 		raw_html += '</td>'
 		raw_html += '</tr>'
 

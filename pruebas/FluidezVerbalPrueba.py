@@ -53,5 +53,5 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 		tempPal = tablaFV[tablaFV['PuntuacionEscalar'] == puntuacionEscalarPal].iloc[0]
 		puntuacionPercentilPal = (tempPal['RangoDePercentilMin'], tempPal['RangoDePercentilMax'])
 
-		self.puntuacionEscalar = (puntuacionEscalarPal, puntuacionEscalarAnim)
+		self.puntuacionEscalar = (int(puntuacionEscalarPal), int(puntuacionEscalarAnim))
 		self.rangoPercentil = (puntuacionPercentilPal, puntuacionPercentilAnim)
