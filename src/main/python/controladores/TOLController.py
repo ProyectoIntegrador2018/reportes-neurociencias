@@ -45,7 +45,7 @@ class TOLController(QtWidgets.QWidget, ControllerModel):
         self.tolPrueba = TOLPrueba(valores)
 
         datos = [self.reporteModel.reporte['educacion'], self.reporteModel.reporte['edad']]
-        # datos = [19, 31]
+        # datos = [8, 22]
 
         self.tolPrueba.calcularPERP(datos)
         self.changeView()
