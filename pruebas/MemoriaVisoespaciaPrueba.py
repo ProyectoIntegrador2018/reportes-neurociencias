@@ -4,7 +4,7 @@ import PruebaModel
 
 class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "MemoriaVisoespacial"
+        nombre = "BVMT-R"
         baremos = (pd.read_csv('./Baremos/Baremo_BVMT-R-1.csv'),
                     pd.read_csv('./Baremos/Baremo_BVMT-R-2.csv'),
                     pd.read_csv('./Baremos/Baremo_BVMT-R-3.csv'), 

@@ -4,7 +4,7 @@ import PruebaModel
 
 class MVCPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "MVC"
+		nombre = "COMP V"
 		baremos = (pd.read_csv('./Baremos/MaterialVerbalComplejo.csv'))
 		campos = ("MVC", "MVCt")
 

@@ -4,7 +4,7 @@ import PruebaModel
 
 class FluidezVerbalPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "Fluidez"
+		nombre = "FLUIDEZ"
 		baremos = (pd.read_csv('./Baremos/TablaFluidezVerbal.csv'), pd.read_csv('./Baremos/EscolaridadFluidezVerbal.csv'))
 		campos = ("P", "A")
 

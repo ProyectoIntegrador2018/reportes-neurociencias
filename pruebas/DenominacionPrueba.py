@@ -4,7 +4,7 @@ import PruebaModel
 
 class DenominacionPrueba(PruebaModel.PruebaModel):
     def __init__(self,valores):
-        nombre = "Denominacion"
+        nombre = "DENOM"
         baremos = (pd.read_csv('./Baremos/DenominacionImagenes.csv'))
         campos = ("DV", "DVt")
 
