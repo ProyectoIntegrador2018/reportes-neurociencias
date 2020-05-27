@@ -38,35 +38,65 @@ tr:nth-child(even) {
 	border-top: 1px solid black;	
 }
 
-.table-BUTT {
-	float: left;
-	width: 55%;
+@media screen and (min-width: 480px) {
+	.new-table {
+		margin-top: 5px;
+	}
+
+	.table-BUTT {
+		float: left;
+		width: 100%;
+	}
+
+	.table-PSQI {
+		float: left;
+		width: 100%;
+	}
+
+	.table-pruebas {
+		width: 100%;
+	}
+
+	.fill {
+	    width: 100%;
+	}
+
+	.grafica {
+		float: left;
+		width: 100%;
+	}
 }
 
-.table-PSQI {
-	float: left;
-	width: 45%;
-}
 
-.table-pruebas {
-	float: left;
-	width: 20%;
-}
+@media screen and (min-width: 1024px) {
+	.new-table {
+		margin-top: 5px;
+	}
 
-.table-graph {
-	float: left;
-	width: 75%;
-}
+	.table-BUTT {
+		float: left;
+		width: 55%;
+	}
 
-.fill {
-	float: left;
-	height: 100%;
-    width: 75%
-}
+	.table-PSQI {
+		float: left;
+		width: 45%;
+	}
 
-.grafica {
-	float: left;
-	width: 100%;
+	.table-pruebas {
+		float: left;
+		width: 50%;
+	}
+
+	.fill {
+		float: left;
+	    width: 50%;
+	}
+
+	.grafica {
+		float: left;
+		width: 100%;
+	}
 }
 
 @media print and (color) {
@@ -74,6 +104,31 @@ tr:nth-child(even) {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
    }
+
+   .fill{
+   		float: left;
+   		width: 75%;
+   }
+
+   .table-pruebas {
+   		float: left;
+		width: 20%;
+	}
+
+   .grafica {
+   		float: left;
+   		width: 100%;
+   }
+
+   .table-BUTT {
+		float: left;
+		width: 55%;
+	}
+
+	.table-PSQI {
+		float: left;
+		width: 45%;
+	}
 }
 
 @media print {
