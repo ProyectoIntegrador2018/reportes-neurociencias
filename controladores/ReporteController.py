@@ -275,11 +275,9 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		escalares = [int(x) for x in escalares]
 		print(escalares) 
 		yPos = np.arange(34,-1,-1)
-		yLabels = ['VR', 'VT', 'TR', 'TE', 'TL', 'MV', 'TC', 'PC', 'C', 'P', 'delayed', 'total', 'VAR', 'CON', 'TOT', 'C', 'O',
-		 'TA', 'TR', 'LNSt', 'LNSs', 'SDMT', 'DI', 'DD', 'Abs', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'Dt', 'D', 'P', 'A']
-			
+		yLabels = ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']	
 		raw_html += '</table>'
-		raw_html += '<table class="table-graph">'
 		
 		#Aquí va la gráfica
 		x = np.arange(0,21)
@@ -316,6 +314,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		plt.savefig(self.image, bbox_inches='tight')
 		plt.clf() #con esta linea no se sobreescriben puntos en la grafica al actualizar los datos de las pruebas
 
+		"""
+		raw_html += '<table class="table-graph">'
 		raw_html += '<tr>'
 		raw_html += '<td class="no-colored-background">'
 		raw_html += '<img src="reporte.png" class="grafica">'
@@ -323,7 +323,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</tr>'
 
 		raw_html += '</table>'
+		"""
+		raw_html += '<div class="fill">'
+		raw_html += '<img src="reporte.png" class="grafica">'
 		raw_html += '</div>'
+		raw_html += '</div>'
+		
+		raw_html += '<div class="pagebreak"></div>'
 
 		#################################### AQUÍ ACABA LO DEL NOMBRE DE LAS PRUEBAS Y LA GRÁFICA ####################################
 
@@ -758,8 +764,6 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</tr>'
 		
 		raw_html += '</table>' 						#Cierra la tabla
-
-		raw_html += '</div>'
 
 		raw_html += '</div>'
 		raw_html += '</div>'

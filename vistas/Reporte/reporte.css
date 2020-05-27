@@ -38,9 +38,14 @@ tr:nth-child(even) {
 	border-top: 1px solid black;	
 }
 
-.table-PSQI, .table-BUTT {
+.table-BUTT {
 	float: left;
-	width: 50%;
+	width: 55%;
+}
+
+.table-PSQI {
+	float: left;
+	width: 45%;
 }
 
 .table-pruebas {
@@ -50,12 +55,18 @@ tr:nth-child(even) {
 
 .table-graph {
 	float: left;
-	width: 80%;
+	width: 75%;
+}
+
+.fill {
+	float: left;
+	height: 100%;
+    width: 75%
 }
 
 .grafica {
 	float: left;
-	width: 85%;
+	width: 100%;
 }
 
 @media print and (color) {
@@ -63,4 +74,8 @@ tr:nth-child(even) {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
    }
+}
+
+@media print {
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
 }
