@@ -43,6 +43,7 @@ class MenuController(QtWidgets.QWidget):
 		"""
 		chooseCSS = None
 		bckColor = None
+		fontColor = None
 		model = self.qListItems
 
 		flag_select = QtCore.Qt.ItemIsSelectable
@@ -64,13 +65,20 @@ class MenuController(QtWidgets.QWidget):
 					chooseCSS = 2
 			
 			tempItem = QtWidgets.QListWidgetItem(item)
+			#Cuando el elemento está disabled
 			if chooseCSS == 0:
-				bckColor = QtGui.QColor("#7fc97f")
+				bckColor = QtGui.QColor("#585858")
+				fontColor = QtGui.QColor("#FFFFFF")
+			#Cuando el elemento es el que se está mostrando
 			elif chooseCSS == 1:
-				bckColor = QtGui.QColor("#beaed4")
+				bckColor = QtGui.QColor("#f28b00")
+				fontColor = QtGui.QColor("#000000")
+			#Cuando el elemento está enabled pero no está actualmente mostrándose
 			else:
-				bckColor = QtGui.QColor("#fdc086")
+				bckColor = QtGui.QColor("#FFFFFF")
+				fontColor = QtGui.QColor("#000000")
 			tempItem.setBackground(bckColor)
+			tempItem.setForeground(fontColor)
 
 			self.listView.addItem(tempItem)
 
