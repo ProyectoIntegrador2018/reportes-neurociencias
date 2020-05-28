@@ -1,5 +1,7 @@
 #Vista de la prueba de Abstraccion
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QWidget
+from PyQt5.QtGui import QPixmap, QIcon
 
 
 class AbstraccionWindowWidget(object):
@@ -22,20 +24,29 @@ class AbstraccionWindowWidget(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+
         self.lblLogo = QtWidgets.QLabel(self.verticalLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lblLogo.sizePolicy().hasHeightForWidth())
         self.lblLogo.setSizePolicy(sizePolicy)
+        self.lblLogo.setMaximumSize(QtCore.QSize(1697/3.5, 312/3.5))
         self.lblLogo.setLineWidth(1)
+        self.lblLogo.setText("")
+        self.lblLogo.setPixmap(QtGui.QPixmap("logo3.png"))
+        self.lblLogo.setScaledContents(True)
         self.lblLogo.setAlignment(QtCore.Qt.AlignCenter)
         self.lblLogo.setObjectName("lblLogo")
         self.horizontalLayout.addWidget(self.lblLogo)
-        self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.horizontalLayout.addWidget(self.label)
+
+        # self.lblLogo.show()
+        # self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        # self.label.setAlignment(QtCore.Qt.AlignCenter)
+        # self.label.setObjectName("label")
+        # self.horizontalLayout.addWidget(self.label)
+        self.horizontalLayout.setStretch(0,1)
+        self.horizontalLayout.setStretch(1,3)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -73,7 +84,7 @@ class AbstraccionWindowWidget(object):
         self.verticalLayout_2.setStretch(1, 5)
         self.verticalLayout.addLayout(self.verticalLayout_2)
         self.verticalLayout.setStretch(0, 1)
-        self.verticalLayout.setStretch(1, 6)
+        self.verticalLayout.setStretch(0, 0)
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
@@ -94,18 +105,19 @@ class AbstraccionWindowWidget(object):
         """
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Prueba Abstracción"))
-        self.lblLogo.setText(_translate("Form", "Logo"))
-        self.label.setText(_translate("Form", "SYNAPPS"))
+        # self.lblLogo.setText(_translate("Form", "Logo"))
+        
+        # self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Abstracción"))
         self.label_8.setText(_translate("Form", "Puntuación en semejanza-abstracción: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     Form = QtWidgets.QWidget()
-#     ui = AbstraccionWindowWidget(Form)
-#     ui.setupUi(Form)
-#     Form.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = AbstraccionWindowWidget(Form)
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
