@@ -649,7 +649,6 @@ class MasterController:
 		"""
 		if isinstance(self.pittsburghController, type(None)):
 			self.pittsburghController = PittsburghController(self.pittsburghView, self.reporteModel)
-			print("cree un controller de pitsburgh")
 			self.pittsburghController.switch_window.connect(self.showReporte)
 
 		if len(invalidArgs) != 0:
@@ -671,6 +670,9 @@ class MasterController:
 		  invalidArgs: Lista de elementos inválidos
 		  prevPrueba: Prueba previa al Reporte
 		"""
+
+		print("Llamé a showReporte")
+
 		if len(invalidArgs) != 0:
 			self.modalController.showModal(invalidArgs)
 			self.pittsburghController.emptyInvalidArgs()

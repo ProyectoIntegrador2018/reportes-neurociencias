@@ -58,13 +58,15 @@ class TOLPrueba(PruebaModel.PruebaModel):
 
         tmpMovTotales = tablaTOL[(movimientosTotales >= tablaTOL["Mov Totales Min"]) & (movimientosTotales <= tablaTOL["Mov Totales Max"])].iloc[0]
         escalarMovTotales = tmpMovTotales['Escalar'] + ajustes["Movimientos Totales"]
-        percentilTotal = tablaTOL[tablaTOL['Escalar'] == escalarMovTotales].iloc[0]
-        percentilMovTotales = (percentilTotal["Percentil Min"], percentilTotal["Percentil Max"])
 
         if escalarMovTotales> 18:
             escalarMovTotales = 18
         elif escalarMovTotales < 2:
             escalarMovTotales = 2
+
+        percentilTotal = tablaTOL[tablaTOL['Escalar'] == escalarMovTotales].iloc[0]
+        percentilMovTotales = (percentilTotal["Percentil Min"], percentilTotal["Percentil Max"])
+
 
         # print("escalar mov totales: ", escalarMovTotales)
         # print("percentil mov totales: ", percentilMovTotales)

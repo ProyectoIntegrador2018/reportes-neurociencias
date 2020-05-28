@@ -1,6 +1,8 @@
 script.txt
 vistas/Reporte/reporte.html
+vistas/Reporte/reporte.png
 controladores/__pycache__/
 pruebas/__pycache__/
 vistas/__pycache__/
 __pycache__/
+venv/
