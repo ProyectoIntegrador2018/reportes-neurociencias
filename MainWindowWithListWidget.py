@@ -157,6 +157,12 @@ class MainWindowWithListWidget(object):
         self.leEquipo = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.leEquipo.setObjectName("leEquipo")
         self.formLayout.setWidget(11, QtWidgets.QFormLayout.FieldRole, self.leEquipo)
+        self.label_15 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_15.setObjectName("label_15")
+        self.formLayout.setWidget(12, QtWidgets.QFormLayout.LabelRole, self.label_15)
+        self.leDeporte = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.leDeporte.setObjectName("leDeporte")
+        self.formLayout.setWidget(12, QtWidgets.QFormLayout.FieldRole, self.leDeporte)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -212,6 +218,7 @@ class MainWindowWithListWidget(object):
         self.label_7.setText(_translate("Form", "Carrera:"))
         self.label_13.setText(_translate("Form", "Semestre:"))
         self.label_14.setText(_translate("Form", "Equipo:"))
+        self.label_15.setText(_translate("Form", "Deporte:"))
         self.pbStart.setText(_translate("Form", "Comenzar Captura"))
 
 """

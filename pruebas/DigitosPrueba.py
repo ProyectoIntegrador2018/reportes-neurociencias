@@ -4,7 +4,7 @@ import PruebaModel
 
 class DigitosPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "Dígitos"
+        nombre = "DIGITOS"
         baremos = (pd.read_csv('./Baremos/Digitos.csv'), pd.read_csv('./Baremos/EscolaridadDigitos.csv'))
         campos = ("DD", "DI")
 

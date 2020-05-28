@@ -1,6 +1,6 @@
 # Modelo del Reporte a generar
 class ReporteModel:
-	def __init__(self, nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo, prueba = None):
+	def __init__(self, nombreExaminado, identificador, fecha, genero, edad, fechaNacimiento, lateralidad, nombreExaminador, carrera, semestre, educacion, equipo, deporte, prueba = None):
 		self.reporte = { 
 			"nombreExaminado" : nombreExaminado,
 			"id" : identificador,
@@ -14,6 +14,7 @@ class ReporteModel:
 			"semestre" : semestre,
 			"educacion" : educacion,
 			"equipo" : equipo,
+			"deporte" : deporte,
 			"resultados" : dict()
 		}
 
@@ -63,5 +64,6 @@ class ReporteModel:
 		print("semestre: " + str(self.reporte["semestre"]))
 		print("educacion: " + str(self.reporte["educacion"]))
 		print("equipo: " + self.reporte["equipo"])
+		print("deporte: " + self.reporte["deporte"])
 		for nombre, prueba in self.reporte["resultados"].items():
 			prueba.printInfo()

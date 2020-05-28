@@ -4,7 +4,7 @@ import PruebaModel
 
 class HopkinsPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "Hopkins"
+		nombre = "HVLT-R"
 		baremos = (pd.read_csv('./Baremos/Baremo_Hopkins_Normal.csv'), 
                     pd.read_csv('./Baremos/Baremo_Hopkins_Diferido.csv'),
                     pd.read_csv('./Baremos/Tabla_Conversión_Psicométrica_Completa.csv'))

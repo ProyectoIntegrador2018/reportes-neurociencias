@@ -299,6 +299,7 @@ class MasterController:
 		 Args:
 		  reporte: Tipo de dato ReporteModel que ha sido exitosamente creado
 		"""
+		print("FluidezVerbal")
 		if isinstance(self.fluidezVerbalController, type(None)):
 			self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
 		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
@@ -587,7 +588,7 @@ class MasterController:
 			self.stroopController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(prevPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(13)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -609,7 +610,7 @@ class MasterController:
 			self.scl90Controller.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(scl90Prueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(14)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -632,7 +633,7 @@ class MasterController:
 			self.tolController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(tolPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(15)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -648,6 +649,7 @@ class MasterController:
 		"""
 		if isinstance(self.pittsburghController, type(None)):
 			self.pittsburghController = PittsburghController(self.pittsburghView, self.reporteModel)
+			print("cree un controller de pitsburgh")
 		self.pittsburghController.switch_window.connect(self.showReporte)
 
 		if len(invalidArgs) != 0:
@@ -655,7 +657,7 @@ class MasterController:
 			self.buttController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(buttPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(16)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -669,13 +671,16 @@ class MasterController:
 		  invalidArgs: Lista de elementos inválidos
 		  prevPrueba: Prueba previa al Reporte
 		"""
+
+		print("Llamé a showReporte")
+
 		if len(invalidArgs) != 0:
 			self.modalController.showModal(invalidArgs)
 			self.pittsburghController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(pittsburghPrueba)
 
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			tempUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.html")
 			tempUrl = tempUrl.toString()
@@ -683,6 +688,7 @@ class MasterController:
 			imageUrl = imageUrl.toString()
 
 			if isinstance(self.reporteController, type(None)):
+				print("reporteController es None")
 				self.reporteController = ReporteController(self.reporteView, tempUrl, imageUrl, self.reporteModel)
 			self.reporteController.switch_window.connect(self.newReport)
 
@@ -725,6 +731,8 @@ class MasterController:
 		del self.stroopView
 		del self.tmtWindow
 		del self.tolView
+		del self.buttView
+		del self.pittsburghView
 	
 
 		del self.abstraccionController
@@ -742,6 +750,8 @@ class MasterController:
 		del self.tmtController
 		del self.digitosController
 		del self.tolController
+		del self.buttController
+		del self.pittsburghController
 
 
 		if (resetMainWindow):
@@ -767,6 +777,9 @@ class MasterController:
 		self.stroopView = QtWidgets.QWidget()
 		self.tmtWindow = QtWidgets.QWidget()
 		self.tolView = QtWidgets.QWidget()
+		self.buttView = QtWidgets.QWidget()
+		self.pittsburghView = QtWidgets.QWidget()
+
 
 		self.abstraccionController = None
 		self.d2Controller = None
@@ -783,6 +796,9 @@ class MasterController:
 		self.tmtController = None
 		self.digitosController = None
 		self.tolController = None
+		self.buttController = None
+		self.pittsburghController = None
+
 
 def main():
 	"""
