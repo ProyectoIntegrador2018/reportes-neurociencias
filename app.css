@@ -5,78 +5,37 @@ QProgressBar {
 }
 
 QProgressBar::chunk {
-    background-color: #d99743;
+    background-color: #f28b00;
     width: 20px;
 }
 
-QSpinBox {
-    padding-right: 15px; /* make room for the arrows */
-    /*border-image: url(:/images/frame.png) 4;*/
-    border-width: 3;
+QDateEdit, QLineEdit, QComboBox {
+    margin-right: 10px;
+    border-width: 3px;
 }
 
-QLabel {
-    font: 14px;
+QSpinBox {
+    /*padding-right: 15px;  make room for the arrows */
+    /*border-image: url(:/images/frame.png) 4;*/
+    margin-right: 10px;
+    border-width: 3px;
+}
+
+QLabel, QLineEdit, QComboBox, QMessageBox {
+    font: 13px;
     color:#051e34;
 }
 
 
-QDateEdit{
-    margin-right:100px;
-    border-width:3px;
-}
-
-QLineEdit{
-    margin-right:100px;
-    border-width:3px;
-}
-
-QComboBox{
-    margin-right:100px;
-    border-width:3px;
-}
-
 QListView {
-	border: dashed;
-	border-width: 2px 4px;
-	border-radius: 40px;
+	border: solid;
+	border-width: 1px;
 }
-
-QListView::item {
-    padding: 10px;
-    color: black;
-    border-radius: 40px;
-}
-
-QListView::item:selected {
-    border: 10px solid blue;
-    background-color: black;
-    border-radius: 40px;
-}
-
-QListView::item:selected:!active {
-	border-radius: 40px;
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #ABAFE5, stop: 1 #8588B2);
-}
-
-QListView::item:selected:active {
-    border-radius: 40px;
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #6a6ea9, stop: 1 #888dd9);
-}
-
-QListView::item:hover {
-    border-radius: 40px;
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #FAFBFE, stop: 1 #DCDEF1);
-}
-
 
 QPushButton {
     background-color: #f6f9ff;
     border-style: outset;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 10px;
     border-color: #051e34;
     color:#051e34 ;
@@ -85,7 +44,13 @@ QPushButton {
     padding: 6px;
 }
 
+QPushButton:hover {
+    background-color: #585858;
+    color: white;
+    border-style: inset;
+}
+
 QPushButton:pressed {
-    background-color: #06367e;
+    background-color: #f28b00;
     border-style: inset;
 }
