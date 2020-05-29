@@ -13,10 +13,8 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 		tempUrl2 = QUrl(QDir.currentPath()+"/Baremos/EscolaridadFluidezVerbal.csv").toString()
 		baremos = (pd.read_csv(tempUrl), pd.read_csv(tempUrl2))
 
-		# baremos = (pd.read_csv("c:\\Users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaFluidezVerbal.csv"), 
-				# pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\EscolaridadFluidezVerbal.csv"))
-		nombre = "Fluidez"
-		campos = ("A", "P")
+		nombre = "FLUIDEZ"
+		campos = ("P", "A")
 
 		super(FluidezVerbalPrueba,self).__init__(nombre, valores, baremos, campos)
 
@@ -63,5 +61,5 @@ class FluidezVerbalPrueba(PruebaModel.PruebaModel):
 		tempPal = tablaFV[tablaFV['PuntuacionEscalar'] == puntuacionEscalarPal].iloc[0]
 		puntuacionPercentilPal = (tempPal['RangoDePercentilMin'], tempPal['RangoDePercentilMax'])
 
-		self.puntuacionEscalar = (puntuacionEscalarAnim, puntuacionEscalarPal)
-		self.rangoPercentil = (puntuacionPercentilAnim, puntuacionPercentilPal)
+		self.puntuacionEscalar = (int(puntuacionEscalarPal), int(puntuacionEscalarAnim))
+		self.rangoPercentil = (puntuacionPercentilPal, puntuacionPercentilAnim)

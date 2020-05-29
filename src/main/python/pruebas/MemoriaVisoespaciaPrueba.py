@@ -6,7 +6,6 @@ import PruebaModel
 
 class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "MemoriaVisoespacia"
         baremoR1 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-1.csv").toString()
         baremoR2 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-2.csv").toString()
         baremoR3 = QUrl(QDir.currentPath()+"/Baremos/Baremo_BVMT-R-3.csv").toString()
@@ -21,6 +20,8 @@ class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
                     pd.read_csv(baremoR4),
                     pd.read_csv(baremoR5),
                     pd.read_csv(tablaConversion))
+                    
+        nombre = "BVMT-R"
         campos = ("T", "Dif")
 
         super(MemoriaVisoespaciaPrueba,self).__init__(nombre, valores, baremos, campos)

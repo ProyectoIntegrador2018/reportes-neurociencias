@@ -1,5 +1,6 @@
 #Controlador de la vista MainWindow
 import sys
+import re
 from PyQt5 import QtWidgets, QtCore
 # from FluidezVerbalController import *
 from MainWindowWithListWidget import *
@@ -28,6 +29,9 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		
 		self.mainWindowView.pbStart.clicked.connect(self.getDatos)
 
+	def preventInjections(self, strVal):
+		acceptedChars = r'[\w .-]*'
+		return re.search(acceptedChars, strVal).group(0)
 
 	def changeView(self):
 		"""
@@ -52,6 +56,14 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		carrera = vista.leCarrera.text()
 		semestre = vista.sbSemestre.value()
 		equipo = vista.leEquipo.text()
+		deporte = vista.leDeporte.text()
+
+		nombre = self.preventInjections(nombre)
+		idVal = self.preventInjections(idVal)
+		examinador = self.preventInjections(examinador)
+		carrera = self.preventInjections(carrera)
+		equipo = self.preventInjections(equipo)
+		deporte = self.preventInjections(deporte)
 
 		if(len(nombre) == 0):
 			self.addMissingArg("Nombre")			
@@ -67,12 +79,14 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 			self.addMissingArg("Carrera")
 		if (len(equipo) == 0):
 			self.addMissingArg("Equipo")
+		if (len(deporte) == 0):
+			self.addMissingArg("Deporte")
 		
 		if len(self.missingArguments) == 0:
 			reporteModel = ReporteModel(nombreExaminado = nombre, identificador = idVal, fecha = fecha, 
 			genero = genero, edad = edad, fechaNacimiento = fechaNacimiento, lateralidad = lateralidad, 
 			nombreExaminador = examinador, carrera = carrera, semestre = semestre, educacion = educacion, 
-			equipo = equipo)
+			equipo = equipo, deporte = deporte)
 
 			self.reporte = reporteModel
 

@@ -6,11 +6,12 @@ import PruebaModel
 
 class DigitosPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "Dígitos"
         baremoDigitos = QUrl(QDir.currentPath()+"/Baremos/Digitos.csv").toString()
         escolaridadDigitos = QUrl(QDir.currentPath()+"/Baremos/EscolaridadDigitos.csv").toString()
         baremos = (pd.read_csv(baremoDigitos), 
                 pd.read_csv(escolaridadDigitos))
+                
+        nombre = "DIGITOS"
         campos = ("DD", "DI")
 
         super(DigitosPrueba,self).__init__(nombre, valores, baremos, campos)

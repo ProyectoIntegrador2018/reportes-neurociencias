@@ -9,10 +9,8 @@ class AbstraccionPrueba(PruebaModel.PruebaModel):
 		baremoAbstraccion = QUrl(QDir.currentPath()+"/Baremos/TablaAbstraccion.csv").toString()
 		baremos = (pd.read_csv(baremoAbstraccion))
 
-		# baremos = (pd.read_csv("c:/users/usuario/desktop/reportes-neurociencias/src/main/python/Baremos/TablaAbstraccion.csv"))
-		# baremos = (pd.read_csv("c:\\users\\usuario\\desktop\\reportes-neurociencias\\src\\main\\python\\Baremos\\TablaAbstraccion.csv"))
-		nombre = "Abs"
-		campos = ("Abs")
+		nombre = "ABS"
+		campos = ("ABS")
 
 		super(AbstraccionPrueba,self).__init__(nombre, valores, baremos, campos)
 

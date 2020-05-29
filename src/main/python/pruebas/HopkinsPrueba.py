@@ -6,7 +6,6 @@ import PruebaModel
 
 class HopkinsPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "Hopkins"
 		baremoHopkinsNormal = QUrl(QDir.currentPath()+"/Baremos/Baremo_Hopkins_Normal.csv").toString()
 		baremoHopkinsDiferido = QUrl(QDir.currentPath()+"/Baremos/Baremo_Hopkins_Diferido.csv").toString()
 		tablaConversion = QUrl(QDir.currentPath()+"/Baremos/Tabla_Conversión_Psicométrica_Completa.csv").toString()
@@ -14,7 +13,9 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 		baremos = (pd.read_csv(baremoHopkinsNormal), 
                     pd.read_csv(baremoHopkinsDiferido),
                     pd.read_csv(tablaConversion))
-		campos = ("total_recall", "delayed_recall")
+					
+		nombre = "HVLT-R"
+		campos = ("M.I.", "M.D.")
 
 		super(HopkinsPrueba,self).__init__(nombre, valores, baremos, campos)
 

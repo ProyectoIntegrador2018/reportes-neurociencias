@@ -6,10 +6,11 @@ import PruebaModel
 
 class DenominacionPrueba(PruebaModel.PruebaModel):
     def __init__(self,valores):
-        nombre = "Denominacion"
         baremoDenominacion = QUrl(QDir.currentPath()+"/Baremos/DenominacionImagenes.csv").toString()
         baremos = (pd.read_csv(baremoDenominacion))
-        campos = ("D", "Dt")
+        
+        nombre = "DENOM"
+        campos = ("DV", "DVt")
 
         super(DenominacionPrueba,self).__init__(nombre, valores, baremos, campos)
 

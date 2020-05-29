@@ -6,9 +6,10 @@ import PruebaModel
 
 class MVCPrueba(PruebaModel.PruebaModel):	
 	def __init__(self, valores):
-		nombre = "MVC"
 		baremoMVC = QUrl(QDir.currentPath()+"/Baremos/MaterialVerbalComplejo.csv").toString()
 		baremos = (pd.read_csv(baremoMVC))
+		
+		nombre = "COMP V"
 		campos = ("MVC", "MVCt")
 
 		super(MVCPrueba,self).__init__(nombre, valores, baremos, campos)

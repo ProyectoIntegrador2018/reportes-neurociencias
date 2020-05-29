@@ -12,7 +12,7 @@ class LNSPrueba(PruebaModel.PruebaModel):
 
 		baremos = (pd.read_csv(tablaLNS), 
 					pd.read_csv(escolaridadLNS))
-		campos = ("LNS SPAN", "LNS TOTAL")
+		campos = ("I", "T")
 
 		super(LNSPrueba,self).__init__(nombre, valores, baremos, campos)
 

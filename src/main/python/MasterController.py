@@ -300,9 +300,10 @@ class MasterController:
 		 Args:
 		  reporte: Tipo de dato ReporteModel que ha sido exitosamente creado
 		"""
+		print("FluidezVerbal")
 		if isinstance(self.fluidezVerbalController, type(None)):
 			self.fluidezVerbalController = FluidezVerbalController(self.fluidezWindow, self.reporteModel)
-		self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
+			self.fluidezVerbalController.switch_window.connect(self.showDenominacion)
 		
 			
 		self.addPaginaVisitada(1)
@@ -319,7 +320,7 @@ class MasterController:
 		"""
 		if isinstance(self.denominacionController, type(None)):
 			self.denominacionController = DenominacionController(self.denominacionWindow)
-		self.denominacionController.switch_window.connect(self.showMVC)
+			self.denominacionController.switch_window.connect(self.showMVC)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
@@ -344,7 +345,7 @@ class MasterController:
 		"""
 		if isinstance(self.mvcController, type(None)):
 			self.mvcController = MVCController(self.MVCWindow)
-		self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
+			self.mvcController.switch_window.connect(self.showMemoriaVisoespacia)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no validos:")
@@ -371,7 +372,7 @@ class MasterController:
 		"""
 		if isinstance(self.memoriaVisoespaciaController, type(None)):
 			self.memoriaVisoespaciaController = MemoriaVisoespaciaController(self.memoriaVisoespaciaWindow,self.reporteModel)
-		self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
+			self.memoriaVisoespaciaController.switch_window.connect(self.showTMT)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no validos:")
@@ -395,7 +396,7 @@ class MasterController:
 		"""
 		if isinstance(self.tmtController, type(None)):
 			self.tmtController = TMTController(self.tmtWindow, self.reporteModel)
-		self.tmtController.switch_window.connect(self.showAbstraccion)
+			self.tmtController.switch_window.connect(self.showAbstraccion)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Elementos no validos:")
@@ -421,7 +422,7 @@ class MasterController:
 		"""
 		if isinstance(self.abstraccionController, type(None)):
 			self.abstraccionController = AbstraccionController(self.abstraccionWindow, self.reporteModel)
-		self.abstraccionController.switch_window.connect(self.showDigitos)
+			self.abstraccionController.switch_window.connect(self.showDigitos)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -445,7 +446,7 @@ class MasterController:
 		"""
 		if isinstance(self.digitosController, type(None)):
 			self.digitosController = DigitosController(self.digitosView, self.reporteModel)
-		self.digitosController.switch_window.connect(self.showSDMT)
+			self.digitosController.switch_window.connect(self.showSDMT)
 
 		if len(invalidArgs) != 0:
 			self.modalController.setHeader("Deben de ser mayor a 0:")
@@ -471,7 +472,7 @@ class MasterController:
 		"""
 		if isinstance(self.sdmtController, type(None)):
 			self.sdmtController = SDMTController(self.sdmtView, self.reporteModel)
-		self.sdmtController.switch_window.connect(self.showLNS)
+			self.sdmtController.switch_window.connect(self.showLNS)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -493,7 +494,7 @@ class MasterController:
 		"""
 		if isinstance(self.lnsController, type(None)):
 			self.lnsController = LNSController(self.lnsView, self.reporteModel)
-		self.lnsController.switch_window.connect(self.showD2) 
+			self.lnsController.switch_window.connect(self.showD2) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -515,7 +516,7 @@ class MasterController:
 		"""
 		if isinstance(self.d2Controller, type(None)):
 			self.d2Controller = D2Controller(self.d2View, self.reporteModel)
-		self.d2Controller.switch_window.connect(self.showHopkins) 
+			self.d2Controller.switch_window.connect(self.showHopkins) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -537,7 +538,7 @@ class MasterController:
 		"""
 		if isinstance(self.hopkinsController, type(None)):
 			self.hopkinsController = HopkinsController(self.hopkinsView, self.reporteModel)
-		self.hopkinsController.switch_window.connect(self.showStroop) 
+			self.hopkinsController.switch_window.connect(self.showStroop) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -559,7 +560,7 @@ class MasterController:
 		"""
 		if isinstance(self.stroopController, type(None)):
 			self.stroopController = StroopController(self.stroopView, self.reporteModel)
-		self.stroopController.switch_window.connect(self.showSCL90) 
+			self.stroopController.switch_window.connect(self.showSCL90) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -581,14 +582,14 @@ class MasterController:
 		"""
 		if isinstance(self.scl90Controller, type(None)):
 			self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
-		self.scl90Controller.switch_window.connect(self.showTOL)
+			self.scl90Controller.switch_window.connect(self.showTOL)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
 			self.stroopController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(prevPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(13)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -603,14 +604,14 @@ class MasterController:
 		"""
 		if isinstance(self.tolController, type(None)):
 			self.tolController = TOLController(self.tolView, self.reporteModel)
-		self.tolController.switch_window.connect(self.showButt)
+			self.tolController.switch_window.connect(self.showButt)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
 			self.scl90Controller.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(scl90Prueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(14)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -625,7 +626,7 @@ class MasterController:
 		"""
 		if isinstance(self.buttController, type(None)):
 			self.buttController = ButtController(self.buttView, self.reporteModel)
-		self.buttController.switch_window.connect(self.showPittsburgh)
+			self.buttController.switch_window.connect(self.showPittsburgh)
 
 
 		if len(invalidArgs) != 0:
@@ -633,7 +634,7 @@ class MasterController:
 			self.tolController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(tolPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(15)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -649,14 +650,14 @@ class MasterController:
 		"""
 		if isinstance(self.pittsburghController, type(None)):
 			self.pittsburghController = PittsburghController(self.pittsburghView, self.reporteModel)
-		self.pittsburghController.switch_window.connect(self.showReporte)
+			self.pittsburghController.switch_window.connect(self.showReporte)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
 			self.buttController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(buttPrueba)
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			self.addPaginaVisitada(16)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
@@ -670,19 +671,26 @@ class MasterController:
 		  invalidArgs: Lista de elementos inválidos
 		  prevPrueba: Prueba previa al Reporte
 		"""
+
+		print("Llamé a showReporte")
+
 		if len(invalidArgs) != 0:
 			self.modalController.showModal(invalidArgs)
 			self.pittsburghController.emptyInvalidArgs()
 		else:
 			self.reporteModel.addPrueba(pittsburghPrueba)
 
-			self.reporteModel.printReporte()
+			#self.reporteModel.printReporte()
 
 			tempUrl = QUrl(QDir.currentPath()+"/Reporte/reporte.html")
 			tempUrl = tempUrl.toString()
+			imageUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.png")
+			imageUrl = imageUrl.toString()
+
 			if isinstance(self.reporteController, type(None)):
-				self.reporteController = ReporteController(self.reporteView, tempUrl, self.reporteModel)
-			self.reporteController.switch_window.connect(self.newReport)
+				print("reporteController es None")
+				self.reporteController = ReporteController(self.reporteView, tempUrl, imageUrl, self.reporteModel)
+				self.reporteController.switch_window.connect(self.newReport)
 
 
 			self.addPaginaVisitada(17)
@@ -723,6 +731,8 @@ class MasterController:
 		del self.stroopView
 		del self.tmtWindow
 		del self.tolView
+		del self.buttView
+		del self.pittsburghView
 	
 
 		del self.abstraccionController
@@ -740,6 +750,8 @@ class MasterController:
 		del self.tmtController
 		del self.digitosController
 		del self.tolController
+		del self.buttController
+		del self.pittsburghController
 
 
 		if (resetMainWindow):
@@ -765,6 +777,9 @@ class MasterController:
 		self.stroopView = QtWidgets.QWidget()
 		self.tmtWindow = QtWidgets.QWidget()
 		self.tolView = QtWidgets.QWidget()
+		self.buttView = QtWidgets.QWidget()
+		self.pittsburghView = QtWidgets.QWidget()
+
 
 		self.abstraccionController = None
 		self.d2Controller = None
@@ -781,17 +796,23 @@ class MasterController:
 		self.tmtController = None
 		self.digitosController = None
 		self.tolController = None
+		self.buttController = None
+		self.pittsburghController = None
+
 
 def main():
 	"""
 	 Método principal en la ejecución del programa
 	"""
+	app = QtWidgets.QApplication(sys.argv)
+	# appctxt = ApplicationContext()
+	app.setStyleSheet(open('app.css').read())
 	# app = QtWidgets.QApplication(sys.argv)
-	appctxt = ApplicationContext()
-	#app.setStyleSheet(open('app.css').read())
+	# appctxt.setStyleSheet(open('app.css').read())
 	masterController = MasterController()
 	masterController.showMainWindow()
-	sys.exit(appctxt.app.exec_())
+	# sys.exit(appctxt.app.exec_())
+	sys.exit(app.exec_())
 
 if __name__ == '__main__':
 	main()

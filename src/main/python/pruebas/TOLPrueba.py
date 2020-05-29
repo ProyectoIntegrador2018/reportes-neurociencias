@@ -6,7 +6,6 @@ import PruebaModel
 
 class TOLPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "Torre De Londres"
         baremoTOL = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL.csv").toString()
         baremoTOL_VT_VT_16_19 = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL_VT_VR_16-19a.csv").toString()
         baremoTOL_VT_VT_20_29 = QUrl(QDir.currentPath()+"/Baremos/Baremo_TOL_VT_VR_20-29a.csv").toString()
@@ -21,7 +20,8 @@ class TOLPrueba(PruebaModel.PruebaModel):
             pd.read_csv(tablaEscolaridad),
             pd.read_csv(baremoMovTotales))
             
-        campos = ("Total Correctos", "Movimientos Totales", "Tiempo de Latencia", "Tiempo de Ejecución", "Tiempo de Resolución", "VT", "VR")
+        nombre = "TOL-DX"
+        campos = ("C", "M", "IT", "ET", "TT", "TV", "RV")
         super(TOLPrueba,self).__init__(nombre, valores, baremos, campos)
     
     def calcularPERP(self, datos):

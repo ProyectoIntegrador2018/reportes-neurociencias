@@ -57,7 +57,7 @@ class D2Prueba(PruebaModel.PruebaModel):
 		peVAR= auxVAR['Escalar']
 		ppVAR= auxVAR['Percentil']
 
-		self.puntuacionEscalar = (peTR, peTA, peO, peC, peTOT, peCON, peVAR)
+		self.puntuacionEscalar = (int(peTR), int(peTA), int(peO), int(peC), int(peTOT), int(peCON), int(peVAR))
 		self.rangoPercentil = (ppTR, ppTA, ppO, ppC, ppTOT, ppCON, ppVAR)
 
 	def calcularPERP(self, datos):

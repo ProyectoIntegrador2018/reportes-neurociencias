@@ -10,7 +10,7 @@ class MenuController(QtWidgets.QWidget):
 		self.entries = ['Información de Sujeto', 
 						'Prueba Fluidez Verbal', 
 						'Prueba Denominación', 
-						'Prueba Material Verbal Complejo', 
+						'Prueba Comprensión Verbal', 
 						'Prueba Memoria Visoespacial',
 						'Prueba TMT',
 						'Prueba Abstracción',
@@ -22,7 +22,7 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba Stroop',
 						'Prueba SCL-90',
 						'Prueba Torre de Londres',
-						'Prueba Motivos Deportivos de Butt',
+						'Prueba Motivos Deportivos',
 						'Prueba de Pittsburgh', 
 						'Reporte' ]
 
@@ -30,29 +30,58 @@ class MenuController(QtWidgets.QWidget):
 		self.qListItems = QtWidgets.QListWidget(self)
 		self.qListItems.addItems(self.entries)
 		self.listView = QtWidgets.QListWidget(self)
+		self.listView.setSelectionRectVisible(True)
+					
 		self.currentWindow = 0
-		
+	
+	def styleEnabled(self, listItem):
+		pass
+
 	def poblarLista(self):
 		"""
 		 Método encargado de llenar la lista con los elementos especificados en el atributo entries.
 		"""
+		chooseCSS = None
+		bckColor = None
+		fontColor = None
 		model = self.qListItems
+
+		flag_select = QtCore.Qt.ItemIsSelectable
+		flag_disable = QtCore.Qt.NoItemFlags
+		flag_enable = QtCore.Qt.ItemIsEnabled
+
 		for index in range(model.count()):
 			item = model.item(index)
 			
 			if (index not in self.pagesVisited):
-				item.setFlags(QtCore.Qt.NoItemFlags)
+				item.setFlags(flag_disable)
+				chooseCSS = 0
 			else:
-				item.setFlags(QtCore.Qt.ItemIsEnabled)
-
+				if index == self.currentWindow:
+					item.setFlags(flag_enable)
+					chooseCSS = 1
+				else:
+					item.setFlags(flag_enable)
+					chooseCSS = 2
 			
-			if index == self.currentWindow:
-				item.setBackground(QtGui.QColor('#85C1E9'))
-			else:
-				item.setBackground(QtGui.QColor('#dcd7d1'))
 			tempItem = QtWidgets.QListWidgetItem(item)
+			#Cuando el elemento está disabled
+			if chooseCSS == 0:
+				bckColor = QtGui.QColor("#585858")
+				fontColor = QtGui.QColor("#FFFFFF")
+			#Cuando el elemento es el que se está mostrando
+			elif chooseCSS == 1:
+				bckColor = QtGui.QColor("#f28b00")
+				fontColor = QtGui.QColor("#000000")
+			#Cuando el elemento está enabled pero no está actualmente mostrándose
+			else:
+				bckColor = QtGui.QColor("#FFFFFF")
+				fontColor = QtGui.QColor("#000000")
+			tempItem.setBackground(bckColor)
+			tempItem.setForeground(fontColor)
+
 			self.listView.addItem(tempItem)
-		
+
 	def updateCurrentWindow(self, currentWindow):
 		"""
 		 Método empleado para actualizar la ventana actual en la que se encuentra la ListView de las pruebas

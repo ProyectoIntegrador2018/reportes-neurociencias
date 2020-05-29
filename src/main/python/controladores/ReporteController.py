@@ -4,27 +4,83 @@ from vistas.ReporteWindowWidget import *
 from ReporteModel import *
 from PruebaModel import *
 from ControllerModel import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class ReporteController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal()
 
-	def __init__(self, mainWindow, url, reporteModel=None):
+	def __init__(self, mainWindow, url, image, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.reporteModel = reporteModel
-		self.url = url
 		self.mainWindow = mainWindow
 		self.url = url
+		self.image = image
+		self.reporteView = None
 
 	def loadReporte(self):
 		self.createReporte()
-		self.reporteView = ReporteWindowWidget(self.mainWindow, self.url)
+		if isinstance(self.reporteView, type(None)):
+			self.reporteView = ReporteWindowWidget(self.mainWindow, self.url)
+		else:
+			del self.reporteView
+			self.reporteView = ReporteWindowWidget(self.mainWindow, self.url)
+		print(self.reporteView)
 		self.reporteView.pbStart.clicked.connect(self.launchBrowser)
 		self.reporteView.pbRestart.clicked.connect(self.changeView)
 
 	def launchBrowser(self):
 		Qt.QDesktopServices.openUrl(Qt.QUrl(self.url))
+
+	def createTableImg(self, escalares):
+		yPos = np.arange(34,-1,-1)
+		yLabels = ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']	
+		
+		x = np.arange(0,21)
+		xi = list(range(len(x)))
+		yi = np.arange(0,35)
+		a = (0,0)
+		b = (6.5, 34)
+
+		xcoords = [10]
+		colors = ['White']
+
+		for xc,c in zip(xcoords,colors):
+		    plt.axvline(x=xc, linewidth = 12, c=c, linestyle = '-')
+
+		ax = plt.gca()
+		rojo_lower = 0
+		rojo_upper = 7.5
+		amarillo_lower = rojo_upper
+		amarillo_upper = 12.5
+		verde_lower = amarillo_upper
+		verde_upper = 20
+		ax.axvspan(rojo_lower, rojo_upper, facecolor='Tomato', alpha=0.7)
+		ax.axvspan(amarillo_lower, amarillo_upper, facecolor='Yellow', alpha=0.7)
+		ax.axvspan(verde_lower, verde_upper, facecolor='Chartreuse', alpha=0.7)
+
+		# Hide the right and top spines
+		ax.spines['right'].set_visible(False)
+		ax.spines['top'].set_visible(False)
+
+		fig = plt.gcf()
+		graphWidth = 10.5
+		graphHeight = 15.835
+		fig.set_size_inches(graphWidth, graphHeight)
+		plt.grid(b=True, which='major', color='white',  linestyle='-')
+		plt.xticks(xi, x)
+		plt.yticks(yi, yLabels)
+		plt.tick_params(axis='x', colors= '#b0aba5', direction='out', length=4, width=12)
+		plt.tick_params(axis='y', colors='#b0aba5', direction='out', length=4, width=8)
+		plt.xlim(-0.1, 20.1)
+		plt.ylim(-1,34.5)
+		plt.plot(escalares, yPos, marker = 'o', color = 'Red', linewidth=1)
+		plt.savefig(self.image, bbox_inches='tight')
+		plt.clf() #con esta linea no se sobreescriben puntos en la grafica al actualizar los datos de las pruebas
+
 
 	def createReporte(self):
 		reporte = self.reporteModel.reporte
@@ -32,11 +88,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<link rel="stylesheet" href="w3-layout.css">'
 		raw_html += '<link rel="stylesheet" href="reporte.css">'
 		raw_html += '<link rel="stylesheet" media="print" href="reporte.css" />'
+		raw_html += '<link rel="stylesheet" media="screen" href="reporte.css" />'
 		raw_html += '<body>'
 		raw_html += '<div class="w3-container">'
 		raw_html += '<div class="w3-row">'
 		raw_html += '<div class="w3-col">'
-		raw_html += '<h1 class = "center-text">Evaluación Neurocognitiva del Deporte</h1>'
+		raw_html += '<h1 class = "center-text">Evaluación Neurocognitiva de ' + reporte["deporte"] + '</h1>'
 		raw_html += '<div class="new-table">'
 
 		"""
@@ -159,7 +216,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<div class="new-table">'
 
 		# Aquí van los nombres de las pruebas y las variables que se ingresaron
-		raw_html += '<table style="width:30%">' 	#Empieza una tabla
+		raw_html += '<table class="table-pruebas">' 	#Empieza una tabla
 		raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
 		raw_html += '<th>'
 		raw_html += 'Prueba'
@@ -177,18 +234,19 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		iCantidadPruebas = -1
 
+
 		pruebasRegistradas = reporte["resultados"]
+		pe = [] #lista vacia de puntuaciones escalares
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
-
 			if pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
 				bFaltaActualizarPrueba = False
 
 				cantCampos = 0
-				
+
 				if isinstance(infoPrueba.campos, str):
 					#print("ip-campos no es str")
 					infoPrueba.campos = tuple([infoPrueba.campos])
@@ -207,6 +265,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 				#print("cantCampos: " + str(cantCampos))
 				print(pruebaName)
+				sublista = list([infoPrueba.puntuacionEscalar])
+				pe.append(sublista)
 
 				raw_html += '<tr>'
 				raw_html += '<th class="colored-background" rowspan="' + str(cantCampos) + '">'	
@@ -249,14 +309,36 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 						raw_html += str(infoPrueba.puntuacionEscalar[idx])
 						raw_html += '</td>'
 						raw_html += '</tr>'
-					raw_html += '</tr>'				
+					raw_html += '</tr>'	
 		raw_html += '</table>'
 
+		#aplanar lista de listas
+		flattened = [item for sublist in pe for item in sublist]
+		#aplanar lista de tuplas
+		escalares = [] 
+		def reemovNestings(l): 
+		    for i in l: 
+		        if type(i) ==  tuple: 
+		            reemovNestings(i) 
+		        else: 
+		           	escalares.append(i) 
+		
+		reemovNestings(flattened)
+		'''
+		ESCALARES es la lista de todas las puntuaciones escalares de todas las pruebas
+		'''
+		escalares = [int(x) for x in escalares]
+		print(escalares)
 
-		raw_html += '<table style="width:70"%>'
-		#Aquí va la gráfica
-		raw_html += '</table>'
+		#Se crean las imagenes a mostrar
+		self.createTableImg(escalares)
+		
+		raw_html += '<div class="fill">'
+		raw_html += '<img src="reporte.png" class="grafica">'
 		raw_html += '</div>'
+		raw_html += '</div>'
+
+		raw_html += '<div class="pagebreak"></div>'
 
 		#################################### AQUÍ ACABA LO DEL NOMBRE DE LAS PRUEBAS Y LA GRÁFICA ####################################
 
@@ -691,8 +773,6 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</tr>'
 		
 		raw_html += '</table>' 						#Cierra la tabla
-
-		raw_html += '</div>'
 
 		raw_html += '</div>'
 		raw_html += '</div>'

@@ -12,7 +12,8 @@ class SDMTPrueba(PruebaModel.PruebaModel):
 
         baremos = (pd.read_csv(tablaSDMT), 
                     pd.read_csv(escolaridadSDMT))
-        campos = ("SDMT")
+                    
+        campos = ("C")
 
         super(SDMTPrueba,self).__init__(nombre, valores, baremos, campos)
     
