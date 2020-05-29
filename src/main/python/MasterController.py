@@ -804,18 +804,18 @@ def main():
 	"""
 	 Método principal en la ejecución del programa
 	"""
-	# app = QtWidgets.QApplication(sys.argv)
-	appctxt = ApplicationContext()
-	# cssUrl = QUrl(QDir.currentPath()+"/src/main/python/app.css").toString()
+	app = QtWidgets.QApplication(sys.argv)
+	# appctxt = ApplicationContext()
+	cssUrl = QUrl(QDir.currentPath()+"/app.css").toString()
 	# cssUrl = QUrl(QDir.currentPath()+"/app.css").toString()
 	# app.setStyleSheet(open('C:\\Users\\usuario\\Desktop\\reportes-neurociencias\\src\\main\\python\\app.css').read())
-	# app.setStyleSheet(open(cssUrl).read())
+	app.setStyleSheet(open(cssUrl).read())
 	# app = QtWidgets.QApplication(sys.argv)
 	# appctxt.setStyleSheet(open('app.css').read())
 	masterController = MasterController()
 	masterController.showMainWindow()
-	sys.exit(appctxt.app.exec_())
-	# sys.exit(app.exec_())
+	# sys.exit(appctxt.app.exec_())
+	sys.exit(app.exec_())
 
 if __name__ == '__main__':
 	main()
