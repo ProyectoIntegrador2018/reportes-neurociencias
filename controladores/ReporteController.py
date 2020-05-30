@@ -12,15 +12,19 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal()
 
-	def __init__(self, mainWindow, url, image, reporteModel=None):
+	def __init__(self, mainWindow, url, image, logo, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.reporteModel = reporteModel
 		self.mainWindow = mainWindow
 		self.url = url
 		self.image = image
+		self.logo = logo
 		self.reporteView = None
 
 	def loadReporte(self):
+		"""
+		 Método encargado de cargar la vista del reporte
+		"""
 		self.createReporte()
 		if isinstance(self.reporteView, type(None)):
 			self.reporteView = ReporteWindowWidget(self.mainWindow, self.url)
@@ -32,9 +36,15 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		self.reporteView.pbRestart.clicked.connect(self.changeView)
 
 	def launchBrowser(self):
+		"""
+		 Método encargado de abrir el reporte en el navegador predefinido para abrir los HTML
+		"""
 		Qt.QDesktopServices.openUrl(Qt.QUrl(self.url))
 
 	def createTableImg(self, escalares):
+		"""
+		 Método encargado de crear la gráfica del reporte
+		"""
 		yPos = np.arange(34,-1,-1)
 		yLabels = ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
 			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']	
@@ -68,7 +78,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		fig = plt.gcf()
 		graphWidth = 10.5
-		graphHeight = 15.835
+		graphHeight = 15
 		fig.set_size_inches(graphWidth, graphHeight)
 		plt.grid(b=True, which='major', color='white',  linestyle='-')
 		plt.xticks(xi, x)
@@ -81,8 +91,38 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		plt.savefig(self.image, bbox_inches='tight')
 		plt.clf() #con esta linea no se sobreescriben puntos en la grafica al actualizar los datos de las pruebas
 
+	
+	def createTableHeaders(self, encabezados):
+		"""
+		 Método encargado de generar las etiquetas HTML de encabezados de una tabla
+		 Args:
+		  encabezados: lista de elementos que serán encabezados en alguna tabla
+		"""
+		raw_html = ""
+		for elem in encabezados:
+			raw_html += '<th>'
+			raw_html += elem
+			raw_html += '</th>'
+		return raw_html
+
+	def createTableElements(self, elementos):
+		"""
+		 Método encargado de generar las etiquetas HTML de elementos de una tabla
+		 Args:
+		  elementos: lista de elementos que serán elementos en alguna tabla
+		"""
+		raw_html = ""
+		for elem in elementos:
+			raw_html += '<td>'
+			raw_html += elem
+			raw_html += '</td>'
+		return raw_html
+
 
 	def createReporte(self):
+		"""
+		 Método encargado de crear el HMTL del reporte
+		"""
 		reporte = self.reporteModel.reporte
 		raw_html = '<!DOCTYPE html><html><head></head>'
 		raw_html += '<link rel="stylesheet" href="w3-layout.css">'
@@ -93,7 +133,15 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<div class="w3-container">'
 		raw_html += '<div class="w3-row">'
 		raw_html += '<div class="w3-col">'
+		raw_html += '<div class="reporte-header">'
+		raw_html += '<div class="div-foto">'
+		raw_html += '<img src="logoReporte.png" class="logo-reporte">'
+		raw_html += '</div>'
+		raw_html += '<div class="div-titulo">'
 		raw_html += '<h1 class = "center-text">Evaluación Neurocognitiva de ' + reporte["deporte"] + '</h1>'
+		raw_html += '</div>'
+		raw_html += '</div>'
+		
 		raw_html += '<div class="new-table">'
 
 		"""
@@ -102,33 +150,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<table style="width:100%">' 	#Empieza una tabla
 
 		raw_html += '<tr class="row-info top-row">'							#Empieza una row de la tabla
-		raw_html += '<th>'
-		raw_html += 'Nombre'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'ID'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Fecha'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Género'
-		raw_html += '</th>'
+		headerElements = ['Nombre', 'ID', 'Fecha', 'Género']
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
 		raw_html += '<tr class="row-info">'							#Empieza una row de la tabla 
-		raw_html += '<td>'
-		raw_html += reporte["nombreExaminado"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["id"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["fecha"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["genero"]
-		raw_html += '</td>'
+		tableElements = [reporte["nombreExaminado"], reporte["id"], reporte["fecha"], reporte["genero"]]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		raw_html += '</table>'
 
@@ -138,39 +166,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		"""
 		raw_html += '<table style="width:100%">' 	#Empieza una tabla
 		raw_html += '<tr class="row-info">'							#Empieza una row de la tabla
-		raw_html += '<th>'
-		raw_html += 'Fecha de Nacimiento'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Edad'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Lateralidad'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Carrera'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Semestre'
-		raw_html += '</th>'
+		headerElements = ['Fecha de Nacimiento', 'Edad', 'Lateralidad', 'Carrera', 'Semestre']
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
 		raw_html += '<tr class="row-info">'							#Empieza una row de la tabla
-		raw_html += '<td>'
-		raw_html += reporte["fechaNacimiento"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += str(reporte["edad"])
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["lateralidad"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["carrera"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += str(reporte["semestre"])
-		raw_html += '</td>'
+		tableElements = [reporte["fechaNacimiento"], str(reporte["edad"]), reporte["lateralidad"], reporte["carrera"], str(reporte["semestre"])]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		raw_html += '</table>'
 
@@ -181,28 +183,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<table style="width:100%">' 	#Empieza una tabla
 
 		raw_html += '<tr class="row-info">'							#Empieza una row de la tabla
-		raw_html += '<th>'
-		raw_html += 'Educación'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Equipo'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Examinador'
-		raw_html += '</th>'
-
+		headerElements = ['Educación', 'Equipo', 'Examinador']
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
 		raw_html += '<tr class="row-info">'							#Empieza una row de la tabla
-		raw_html += '<td>'
-		raw_html += str(reporte["educacion"])
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["equipo"]
-		raw_html += '</td>'
-		raw_html += '<td>'
-		raw_html += reporte["nombreExaminador"]
-		raw_html += '</td>'
+		tableElements = [str(reporte["educacion"]), reporte["equipo"], reporte["nombreExaminador"]]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		raw_html += '</table>'
 		raw_html += '</div>'
@@ -218,18 +205,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		# Aquí van los nombres de las pruebas y las variables que se ingresaron
 		raw_html += '<table class="table-pruebas">' 	#Empieza una tabla
 		raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
-		raw_html += '<th>'
-		raw_html += 'Prueba'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Campo'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'PD'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += 'Pe'
-		raw_html += '</th>'
+		headerElements = ['Prueba', 'Campo', 'PD', 'Pe']
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
 		iCantidadPruebas = -1
@@ -274,13 +251,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 				raw_html += '</th>'
 
 				raw_html += '<td>'
+				# Si aún no actualizaban los campos...
 				if bFaltaActualizarPrueba:
 					raw_html += 'TEMP'
 				else:
 					raw_html += infoPrueba.campos[0]
 				raw_html += '</td>'
 				raw_html += '<td>'
-				#print(infoPrueba.valores)
 				raw_html += str(infoPrueba.valores[0])
 				raw_html += '</td>'
 				raw_html += '<td>'
@@ -289,9 +266,6 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 				except:
 					raw_html += str(infoPrueba.puntuacionEscalar)
 				raw_html += '</td>'
-
-				#print("infoPrueba.puntuacionEscalar: ")
-				#print(infoPrueba.puntuacionEscalar)
 
 				if cantCampos > 1:
 					for idx in range(1, cantCampos):
@@ -302,12 +276,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 						else:
 							raw_html += infoPrueba.campos[idx]
 						raw_html += '</td>'
-						raw_html += '<td>'
-						raw_html += str(infoPrueba.valores[idx])
-						raw_html += '</td>'
-						raw_html += '<td>'
-						raw_html += str(infoPrueba.puntuacionEscalar[idx])
-						raw_html += '</td>'
+						tableElements = [str(infoPrueba.valores[idx]), str(infoPrueba.puntuacionEscalar[idx])]
+						raw_html += self.createTableElements(tableElements)
 						raw_html += '</tr>'
 					raw_html += '</tr>'	
 		raw_html += '</table>'
@@ -352,129 +322,60 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<th>'
 		raw_html += '</th>'
 
-
-		raw_html += '<th>'
-		raw_html += 'SO'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'OB'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'IN'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'DE'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'AN'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'HO'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'FO'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'PA'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'PSI'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'GSI'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'PST'
-		raw_html += '</th>'
-
-		raw_html += '<th>'
-		raw_html += 'PSDI'
-		raw_html += '</th>'
-
+		headerElements = ['SO','OB', 'IN', 'DE', 'AN', 'HO', 'FO', 'PA', 'PSI', 'GSI', 'PST', 'PSDI']
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'							#Cierra una row de la tabla
 
 
 
 		raw_html += '<tr>'							#Empieza una row de la tabla
-		raw_html += '<td>'
-		raw_html += 'SCL-90'
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += 'PD'
-		raw_html += '</td>'
+		tableElements = ['SCL-90', 'PD']
+		
 
 		pruebaSCL90 = pruebasRegistradas['SCL-90']
 		for puntuacionDir in pruebaSCL90.valores:
-			raw_html += '<td>'
-			raw_html += str(puntuacionDir)
-			raw_html += '</td>'
+			tableElements.append(str(puntuacionDir))
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'							#Cierra una row de la tabla
 
+
 		raw_html += '<tr>'							#Empieza una row de la tabla
-		raw_html += '<td>'
-		raw_html += 'P. Gral.'
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += 'Pc'
-		raw_html += '</td>'
-
+		tableElements = ['P. Gral.', 'Pc']
+		# Se añaden cada uno de los valores percentiles obtenidos
 		for puntuacionPerc in pruebaSCL90.rangoPercentil[0]:
-			raw_html += '<td>'
-			raw_html += str(puntuacionPerc)
-			raw_html += '</td>'
+			tableElements.append(str(puntuacionPerc))
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'							#Cierra una row de la tabla
 
+
 		raw_html += '<tr>'							#Empieza una row de la tabla
-		raw_html += '<td>'
-		raw_html += 'DTM'
-		raw_html += '</td>'
+		tableElements = ['DTM', 'Pc']
 
-		raw_html += '<td>'
-		raw_html += 'Pc'
-		raw_html += '</td>'
-
+		#En caso de ameritarlo, se añaden los valores correspondientes a la segunda row
 		if len(pruebaSCL90.rangoPercentil[1]) > 0:
 			for puntuacionPerc in pruebaSCL90.rangoPercentil[1]:
-				raw_html += '<td>'
-				raw_html += str(puntuacionPerc)
-				raw_html += '</td>'
+				tableElements.append(str(puntuacionPerc))
 		else:
 			for puntuacionPerc in range(len(pruebaSCL90.rangoPercentil[0])):
-				raw_html += '<td>'
-				raw_html += '</td>'
+				tableElements.append('')
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'							#Cierra una row de la tabla
 
+		
 		raw_html += '<tr>'							#Empieza una row de la tabla
-		raw_html += '<td>'
-		raw_html += 'M. Psiq.'
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += 'Pc'
-		raw_html += '</td>'
-
+		tableElements = ['M. Psiq.', 'Pc']
+		
+		#En caso de que haya pasado a la tercera row
 		if len(pruebaSCL90.rangoPercentil[2]) > 0:
 			for puntuacionPerc in pruebaSCL90.rangoPercentil[2]:
-				raw_html += '<td>'
-				raw_html += str(puntuacionPerc)
-				raw_html += '</td>'
+				tableElements.append(str(puntuacionPerc))
 		else:
 			for puntuacionPerc in range(len(pruebaSCL90.rangoPercentil[0])):
-				raw_html += '<td>'
-				raw_html += '</td>'
+				tableElements.append('')
+
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'							#Cierra una row de la tabla
+		
 		raw_html += '</table>' 						#Cierra la tabla
 		raw_html += '</div>'
 		
@@ -489,39 +390,14 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<th>'
 		raw_html += '</th>'
 		
-		raw_html += '<th>'
-		raw_html += 'Motivos'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'PD'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'V'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'Motivos'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'PD'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'V'
-		raw_html += '</th>'
-		
+		headerElements = ['Motivos', 'PD', 'V']
+		raw_html += self.createTableHeaders(headerElements)
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
 		raw_html += '<tr>'
 		raw_html += '<td rowspan="3">'
 		raw_html += 'Motivos BUTT'
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += 'C'
 		raw_html += '</td>'
 
 		pruebaButt = pruebasRegistradas['Motivos Deportivos de Butt']
@@ -539,123 +415,46 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		intA = pruebaButt.rangoPercentil[4]
 		intT = pruebaButt.rangoPercentil[5]
 
-		########## AQUÍ VA EL PD DE C ##########
-		raw_html += '<td>'
-		raw_html += str(dirC)
-		raw_html += '</td>'
+		tableElements = ['C', str(dirC), str(intC)]
+		raw_html += self.createTableElements(tableElements)
 
-		########## AQUÍ VA EL V DE C ##########
-		raw_html += '<td>'
-		raw_html += str(intC)
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += 'Co'
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL PD DE Co ##########
-		raw_html += '<td>'
-		raw_html += str(dirCo)
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL V DE Co ##########
-		raw_html += '<td>'
-		raw_html += str(intCo)
-		raw_html += '</td>'
-
-		raw_html += '<tr>'
-		raw_html += '<td>'
-		raw_html += 'R'
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL PD DE R ##########
-		raw_html += '<td>'
-		raw_html += str(dirR)
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL V DE R ##########
-		raw_html += '<td>'
-		raw_html += str(intR)
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += 'A'
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL PD DE A ##########
-		raw_html += '<td>'
-		raw_html += str(dirA)
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL V DE A ##########
-		raw_html += '<td>'
-		raw_html += str(intA)
-		raw_html += '</td>'
-
-		raw_html += '</tr>'
+		tableElements = ['Co', str(dirCo), str(intCo)]
+		raw_html += self.createTableElements(tableElements)
 		
 		raw_html += '<tr>'
-		
-		raw_html += '<td>'
-		raw_html += 'S'
-		raw_html += '</td>'
+		tableElements = ['R', str(dirR), str(intR)]
+		raw_html += self.createTableElements(tableElements)
 
-		########## AQUÍ VA EL PD DE S ##########
-		raw_html += '<td>'
-		raw_html += str(dirS)
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL V DE S ##########
-		raw_html += '<td>'
-		raw_html += str(intS)
-		raw_html += '</td>'
-		
-
-		raw_html += '<td>'
-		raw_html += 'T'
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL PD DE T ##########
-		raw_html += '<td>'
-		raw_html += str(dirT)
-		raw_html += '</td>'
-
-		########## AQUÍ VA EL V DE T ##########
-		raw_html += '<td>'
-		raw_html += str(intT)
-		raw_html += '</td>'
-		
+		tableElements = ['A', str(dirA), str(intA)]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		
-		
-		raw_html += '</tr>'
 
+
+		raw_html += '<tr>'
+		tableElements = ['S', str(dirS), str(intS)]
+		raw_html += self.createTableElements(tableElements)
+		
+		tableElements = ['T', str(dirT), str(intT)]
+		raw_html += self.createTableElements(tableElements)
+		raw_html += '</tr>'
+		
+
+
+		raw_html += '</tr>' #Se cierra la row de Butt
 		raw_html += '</table>' 						#Cierra la tabla
 		
 		raw_html += '<table class="table-PSQI">' 	#Empieza una tabla
+		
 		raw_html += '<tr class="top-row">'
-		raw_html += '<th>'
-		raw_html += 'PSQI'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'P'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'PSQI'
-		raw_html += '</th>'
-		
-		raw_html += '<th>'
-		raw_html += 'P'
-		raw_html += '</th>'
+
+		headerElements = ['PSQI', 'P']
+		raw_html += self.createTableHeaders(headerElements)
+		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
 		raw_html += '<tr>'
 		
-		raw_html += '<td>'
-		raw_html += 'Cal.'
-		raw_html += '</td>'
 		
 		pruebaPittsburgh = pruebasRegistradas['PSQI']
 		cal = pruebaPittsburgh.valores[0]
@@ -667,89 +466,30 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		disf = pruebaPittsburgh.valores[6]
 		total = pruebaPittsburgh.puntuacionEscalar[7]
 		inter = pruebaPittsburgh.rangoPercentil
-		################# Aquí va la P de Cal de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(cal)
-		raw_html += '</td>'
 		
-		raw_html += '<td>'
-		raw_html += 'Pert.'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Pert de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(pert)
-		raw_html += '</td>'
-		
+
+		tableElements = ['Cal.', str(cal), 'Pert.', str(pert)]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		
 
 		raw_html += '<tr>'
-		
-		raw_html += '<td>'
-		raw_html += 'Lat.'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Lat de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(lat)
-		raw_html += '</td>'
-		
-		raw_html += '<td>'
-		raw_html += 'Med.'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Med de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(med)
-		raw_html += '</td>'
-		
+		tableElements = ['Lat.', str(lat), 'Med.', str(med)]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		
 
 		raw_html += '<tr>'
-		
-		raw_html += '<td>'
-		raw_html += 'Dur.'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Dar de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(dur)
-		raw_html += '</td>'
-		
-		raw_html += '<td>'
-		raw_html += 'Disf.'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Disf de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(disf)
-		raw_html += '</td>'
-		
+		tableElements = ['Dur.', str(dur), 'Disf.', str(disf)]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
+		
 		
 		raw_html += '<tr>'
-		
-		raw_html += '<td>'
-		raw_html += 'Efic.'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Efic de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(efic)
-		raw_html += '</td>'
-		
-		raw_html += '<td>'
-		raw_html += 'Total'
-		raw_html += '</td>'
-		
-		################# Aquí va la P de Total de PSQI #################
-		raw_html += '<td>'
-		raw_html += str(total)
-		raw_html += '</td>'
-		
+		tableElements = ['Efic.', str(efic), 'Total', str(total)]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
+
 
 		############### Renglón creado para la interpretación #############
 		raw_html += '<tr>'
@@ -762,14 +502,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += ''
 		raw_html += '</td>'
 		
-		raw_html += '<td>'
-		raw_html += 'Interpretación'
-		raw_html += '</td>'
-
-		raw_html += '<td>'
-		raw_html += inter
-		raw_html += '</td>'
-		
+		tableElements = ['Interpretación', inter]
+		raw_html += self.createTableElements(tableElements)
 		raw_html += '</tr>'
 		
 		raw_html += '</table>' 						#Cierra la tabla

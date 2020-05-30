@@ -106,7 +106,7 @@ class DigitosWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Prueba Digitos"))
         # self.lblLogo.setText(_translate("Form", "Logo"))
         # self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Digitos"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Dígitos"))
         self.label_8.setText(_translate("Form", "Directos (span): "))
         self.label_9.setText(_translate("Form", "Inversos (span):"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))

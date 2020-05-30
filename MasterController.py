@@ -202,20 +202,20 @@ class MasterController:
 			currentController = self.stroopController
 			self.menuController.updateCurrentWindow(12)
 		if elemSelected == 13:
-			self.nextWindow = self.scl90View
-			currentController = self.scl90Controller
-			self.menuController.updateCurrentWindow(13)
-		if elemSelected == 14:
 			self.nextWindow = self.tolView
 			currentController = self.tolController
-			self.menuController.updateCurrentWindow(14)
-		if elemSelected == 15:
+			self.menuController.updateCurrentWindow(13)
+		if elemSelected == 14:
 			self.nextWindow = self.buttView
 			currentController = self.buttController
-			self.menuController.updateCurrentWindow(15)
-		if elemSelected == 16:
+			self.menuController.updateCurrentWindow(14)
+		if elemSelected == 15:
 			self.nextWindow = self.pittsburghView
 			currentController = self.pittsburghController
+			self.menuController.updateCurrentWindow(15)
+		if elemSelected == 16:
+			self.nextWindow = self.scl90View
+			currentController = self.scl90Controller
 			self.menuController.updateCurrentWindow(16)
 		if elemSelected == 17:
 			self.nextWindow = self.reporteView
@@ -559,7 +559,7 @@ class MasterController:
 		"""
 		if isinstance(self.stroopController, type(None)):
 			self.stroopController = StroopController(self.stroopView, self.reporteModel)
-			self.stroopController.switch_window.connect(self.showSCL90) 
+			self.stroopController.switch_window.connect(self.showTOL) 
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -572,29 +572,7 @@ class MasterController:
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(12)
 
-	def showSCL90(self, invalidArgs, prevPrueba):
-		"""
-		 Metodo que se encarga de cargar la vista y el controlador de la prueba de SCL90
-		 Args: 
-		  invalidArgs: Lista de elementos inválidos
-		  prevPrueba: Prueba previa a la de SCL90
-		"""
-		if isinstance(self.scl90Controller, type(None)):
-			self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
-			self.scl90Controller.switch_window.connect(self.showTOL)
-
-		if len(invalidArgs) != 0:
-			self.displayModal(invalidArgs)
-			self.stroopController.emptyInvalidArgs()
-		else:
-			self.reporteModel.addPrueba(prevPrueba)
-			#self.reporteModel.printReporte()
-
-			self.addPaginaVisitada(13)
-			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(13)
-
-	def showTOL(self, invalidArgs, scl90Prueba):
+	def showTOL(self, invalidArgs, stroopPrueba):
 		"""
 		 Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
 		 Args: 
@@ -607,14 +585,14 @@ class MasterController:
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
-			self.scl90Controller.emptyInvalidArgs()
+			self.stroopController.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(scl90Prueba)
+			self.reporteModel.addPrueba(stroopPrueba)
 			#self.reporteModel.printReporte()
 
-			self.addPaginaVisitada(14)
+			self.addPaginaVisitada(13)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(14)
+			self.showSpecificWindowMenu(13)
 
 	def showButt(self, invalidArgs, tolPrueba):
 		"""
@@ -635,9 +613,9 @@ class MasterController:
 			self.reporteModel.addPrueba(tolPrueba)
 			#self.reporteModel.printReporte()
 
-			self.addPaginaVisitada(15)
+			self.addPaginaVisitada(14)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
-			self.showSpecificWindowMenu(15)
+			self.showSpecificWindowMenu(14)
 
 
 	def showPittsburgh(self, invalidArgs, buttPrueba):
@@ -649,7 +627,7 @@ class MasterController:
 		"""
 		if isinstance(self.pittsburghController, type(None)):
 			self.pittsburghController = PittsburghController(self.pittsburghView, self.reporteModel)
-			self.pittsburghController.switch_window.connect(self.showReporte)
+			self.pittsburghController.switch_window.connect(self.showSCL90)
 
 		if len(invalidArgs) != 0:
 			self.displayModal(invalidArgs)
@@ -658,11 +636,34 @@ class MasterController:
 			self.reporteModel.addPrueba(buttPrueba)
 			#self.reporteModel.printReporte()
 
+			self.addPaginaVisitada(15)
+			self.menuController.updatePagesVisited(self.paginasVisitadas)
+			self.showSpecificWindowMenu(15)
+
+
+	def showSCL90(self, invalidArgs, prevPrueba):
+		"""
+		 Metodo que se encarga de cargar la vista y el controlador de la prueba de SCL90
+		 Args: 
+		  invalidArgs: Lista de elementos inválidos
+		  prevPrueba: Prueba previa a la de SCL90
+		"""
+		if isinstance(self.scl90Controller, type(None)):
+			self.scl90Controller = SCL90Controller(self.scl90View, self.reporteModel)
+			self.scl90Controller.switch_window.connect(self.showReporte)
+
+		if len(invalidArgs) != 0:
+			self.displayModal(invalidArgs)
+			self.pittsburghController.emptyInvalidArgs()
+		else:
+			self.reporteModel.addPrueba(prevPrueba)
+			#self.reporteModel.printReporte()
+
 			self.addPaginaVisitada(16)
 			self.menuController.updatePagesVisited(self.paginasVisitadas)
 			self.showSpecificWindowMenu(16)
 
-	def showReporte(self, invalidArgs, pittsburghPrueba):
+	def showReporte(self, invalidArgs, prevPrueba):
 
 		"""
 		 Metodo que se encarga de cargar la vista y el controlador del Reporte
@@ -674,10 +675,11 @@ class MasterController:
 		print("Llamé a showReporte")
 
 		if len(invalidArgs) != 0:
-			self.modalController.showModal(invalidArgs)
-			self.pittsburghController.emptyInvalidArgs()
+			modalHeaderStr = "Elementos no válidos para género " + self.reporteModel.reporte["genero"] + ":"
+			self.displayModal(invalidArgs, modalHeader=modalHeaderStr)
+			self.scl90Controller.emptyInvalidArgs()
 		else:
-			self.reporteModel.addPrueba(pittsburghPrueba)
+			self.reporteModel.addPrueba(prevPrueba)
 
 			#self.reporteModel.printReporte()
 
@@ -685,10 +687,11 @@ class MasterController:
 			tempUrl = tempUrl.toString()
 			imageUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.png")
 			imageUrl = imageUrl.toString()
+			logoUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/logoReporte.png")
 
 			if isinstance(self.reporteController, type(None)):
 				print("reporteController es None")
-				self.reporteController = ReporteController(self.reporteView, tempUrl, imageUrl, self.reporteModel)
+				self.reporteController = ReporteController(self.reporteView, tempUrl, imageUrl, logoUrl, self.reporteModel)
 				self.reporteController.switch_window.connect(self.newReport)
 
 

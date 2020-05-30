@@ -108,7 +108,7 @@ class DenominacionWidget(object):
         # self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Denominación"))
         self.label_8.setText(_translate("Form", "Denominacion Imágenes: "))
-        self.label_9.setText(_translate("Form", "Denon imágenes T:"))
+        self.label_9.setText(_translate("Form", "Denom. imágenes T:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
 
 

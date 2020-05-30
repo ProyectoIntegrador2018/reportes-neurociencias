@@ -146,7 +146,7 @@ class TOLWindowWidget(object):
         Form.setWindowTitle(_translate("Form", "Prueba Torre de Londres"))
         # self.lblLogo.setText(_translate("Form", "Logo"))
         # self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Denominación"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba Torre de Londres"))
         self.label_8.setText(_translate("Form", "Total Correctos: "))
         self.label_9.setText(_translate("Form", "Movimimentos Totales:"))
         self.label_10.setText(_translate("Form", "Tiempo de Latencia:"))
