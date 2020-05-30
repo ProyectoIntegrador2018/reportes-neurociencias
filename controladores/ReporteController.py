@@ -12,12 +12,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal()
 
-	def __init__(self, mainWindow, url, image, reporteModel=None):
+	def __init__(self, mainWindow, url, image, logo, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.reporteModel = reporteModel
 		self.mainWindow = mainWindow
 		self.url = url
 		self.image = image
+		self.logo = logo
 		self.reporteView = None
 
 	def loadReporte(self):
