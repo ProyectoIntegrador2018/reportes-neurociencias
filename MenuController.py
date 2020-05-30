@@ -20,10 +20,10 @@ class MenuController(QtWidgets.QWidget):
 						'Prueba D2',
 						'Prueba Hopkins',
 						'Prueba Stroop',
-						'Prueba SCL-90',
 						'Prueba Torre de Londres',
 						'Prueba Motivos Deportivos',
 						'Prueba de Pittsburgh', 
+						'Prueba SCL-90',
 						'Reporte' ]
 
 		self.pagesVisited = pagesVisited
