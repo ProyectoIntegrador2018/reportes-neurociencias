@@ -38,6 +38,36 @@ tr:nth-child(even) {
 	border-top: 1px solid black;	
 }
 
+.logo-reporte {
+	max-width: 100%;
+    max-height: 100%;
+    display: block; /* remove extra space below image */
+}
+
+.reporte-header{
+	width: 100%;
+	overflow: hidden;
+	display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-foto {
+	float: left;
+	width: 40%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.div-titulo {
+	float: left;
+	width: 60%;
+	position: relative;
+}
+
+
 @media screen and (min-width: 480px) {
 	.new-table {
 		margin-top: 5px;
@@ -64,6 +94,10 @@ tr:nth-child(even) {
 	.grafica {
 		float: left;
 		width: 100%;
+	}
+
+	.div-titulo h1 {
+		font-size: 1.5em;	
 	}
 }
 
@@ -97,7 +131,22 @@ tr:nth-child(even) {
 		float: left;
 		width: 100%;
 	}
+
+	.div-titulo h1 {
+		font-size: 2em;	
+	}
+/*
+	.div-foto {
+		float: left;
+		width: 20%;
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    overflow: hidden
+	}
+*/
 }
+
 
 @media print and (color) {
    * {
@@ -128,6 +177,25 @@ tr:nth-child(even) {
 	.table-PSQI {
 		float: left;
 		width: 45%;
+	}
+
+	.div-foto {
+		float: left;
+		width: 20%;
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    overflow: hidden
+	}
+
+	.div-titulo {
+		float: left;
+		width: 75%;
+		position: relative;
+	}
+
+	h1 {
+		font-size: 1.5em;
 	}
 }
 
