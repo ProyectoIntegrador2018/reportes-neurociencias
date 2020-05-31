@@ -67,8 +67,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		ax.spines['top'].set_visible(False)
 
 		fig = plt.gcf()
-		graphWidth = 10.5
-		graphHeight = 15.835
+		graphWidth = 10.3
+		graphHeight = 15
 		fig.set_size_inches(graphWidth, graphHeight)
 		plt.grid(b=True, which='major', color='white',  linestyle='-')
 		plt.xticks(xi, x)
