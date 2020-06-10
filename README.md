@@ -23,8 +23,7 @@ Generación de Reportes Automáticos a partir de Pruebas Neuropsicológicas (◠
 
 ### Environment URLS
 
-* **Production** - [TBD](TBD)
-* **Development** - [TBD](TBD)
+* **Development** - [TBD](https://github.com/ProyectoIntegrador2018/reportes-neurociencias)
 
 ### Equipo de desarrollo
 
