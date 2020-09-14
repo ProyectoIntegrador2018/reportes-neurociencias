@@ -37,11 +37,11 @@ Versión 1:
 | Melanie Vielma  | A00818905@itesm.mx | Config Admin        |
 
 Versión 2:
-| Name            | Email              | Role                |
-| --------------- | -------------------| --------------------|
-| Javier Gutiérrez| A01193217@itesm.mx | Scrum Master        |
-| Alejandro Lozano| A01192979@itesm.mx | Product Owner Proxy |
-| Bernarno Orozco | A00819128@itesm.mx | Config Admin        |
+| Name             | Email               | Role                |
+| ---------------  | ------------------- | --------------------|
+| Javier Gutiérrez | A01193217@itesm.mx  | Scrum Master        |
+| Alejandro Lozano | A01192979@itesm.mx  | Product Owner Proxy |
+| Bernarno Orozco  | A00819128@itesm.mx  | Config Admin        |
 
 ### Technology Stack
 | Technology    | Version      |
