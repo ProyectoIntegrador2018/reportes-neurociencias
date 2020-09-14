@@ -27,12 +27,21 @@ Generación de Reportes Automáticos a partir de Pruebas Neuropsicológicas (◠
 
 ### Equipo de desarrollo
 
+Versión 1:
+
 | Name            | Email              | Role                |
 | --------------- | -------------------| --------------------|
 | Fernando Romero | A01039364@itesm.mx | Scrum Master        |
 | Emilio López    | A01651283@itesm.mx | Product Owner Proxy |
 | Laura Santacruz | A01196377@itesm.mx | Project Admin       |
 | Melanie Vielma  | A00818905@itesm.mx | Config Admin        |
+
+Versión 2:
+| Name             | Email               | Role                |
+| ---------------  | ------------------- | --------------------|
+| Javier Gutiérrez | A01193217@itesm.mx  | Scrum Master        |
+| Alejandro Lozano | A01192979@itesm.mx  | Product Owner Proxy |
+| Bernarno Orozco  | A00819128@itesm.mx  | Config Admin        |
 
 ### Technology Stack
 | Technology    | Version      |
@@ -43,7 +52,7 @@ Generación de Reportes Automáticos a partir de Pruebas Neuropsicológicas (◠
 ### Management tools
 
 * [Github repo](https://github.com/ProyectoIntegrador2018/reportes-neurociencias)
-* [Backlog](https://teams.microsoft.com/_#/school/tab::e4ebf4b1-cad0-4ba5-af36-7f7e5656e077/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
+* [Backlog](https://teams.microsoft.com/_#/school/tab::3486c230-987e-44f4-8449-6d0f424ed9ca/Equipo%201.07%20-%20Neuro%20JAB?threadId=19:6ea329083a1244509f40ee637eedb7d9@thread.tacv2&ctx=channel)
 * [Documentation](https://teams.microsoft.com/_#/school/files/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
 
 ## Development
