@@ -20,6 +20,7 @@ from controladores.ReporteController import *
 from controladores.TOLController import *
 from controladores.ButtController import*
 from controladores.PittsburghController import *
+from controladores.PruebaSeleccionController import *
 from ReporteModel import ReporteModel
 from Routes import Router
 
@@ -29,30 +30,33 @@ class MasterController:
         self.modalController = ModalController()
 
         self.pagesFunctions = {
+            "seleccionarPruebas": self.pruebasSeleccionadas,
             "informacionSujeto": self.asignaReporte,
             "fluidezVerbal": self.customShow("fluidezVerbal", FluidezVerbalController),
-            "denominacion": self.customShow("denominacion",DenominacionController),
+            "denominacion": self.customShow("denominacion", DenominacionController),
             "comprensionVerbal": self.customShow("comprensionVerbal", MVCController),
-            "memoriaVisoespacial": self.customShow("memoriaVisoespacial",MemoriaVisoespaciaController),
-            "tmt": self.customShow("tmt",TMTController),
-            "abstraccion": self.customShow("abstraccion",AbstraccionController),
-            "digitos": self.customShow("digitos",DigitosController),
-            "sdmt": self.customShow("sdmt",SDMTController),
-            "lns": self.customShow("lns",LNSController),
-            "d2": self.customShow("d2",D2Controller),
-            "hopkins": self.customShow("hopkins",HopkinsController),
-            "stroop": self.customShow("stroop",StroopController),
-            "torreLondres": self.customShow("torreLondres",TOLController),
-            "motivoDeportivo": self.customShow("motivoDeportivo",ButtController),
-            "pittsburgh": self.customShow("pittsburgh",PittsburghController),
-            "scl90": self.customShow("scl90",SCL90Controller),
-            "report": self.customShow("report",ReporteController),
+            "memoriaVisoespacial": self.customShow("memoriaVisoespacial", MemoriaVisoespaciaController),
+            "tmt": self.customShow("tmt", TMTController),
+            "abstraccion": self.customShow("abstraccion", AbstraccionController),
+            "digitos": self.customShow("digitos", DigitosController),
+            "sdmt": self.customShow("sdmt", SDMTController),
+            "lns": self.customShow("lns", LNSController),
+            "d2": self.customShow("d2", D2Controller),
+            "hopkins": self.customShow("hopkins", HopkinsController),
+            "stroop": self.customShow("stroop", StroopController),
+            "torreLondres": self.customShow("torreLondres", TOLController),
+            "motivoDeportivo": self.customShow("motivoDeportivo", ButtController),
+            "pittsburgh": self.customShow("pittsburgh", PittsburghController),
+            "scl90": self.customShow("scl90", SCL90Controller),
+            "report": self.customShow("report", ReporteController),
             # do not remove used for reseting and initialize pruebas
             "dummyWindow": self.newReport
         }
 
-        self.paginasVisitadas = ["informacionSujeto"]  # intial view
-        self.paginasDisponibles = [
+        self.router = None  # early init
+        self.paginasVisitadas = ["seleccionarPruebas"]  # intial view
+        self.initPossibleRoutes([
+            "seleccionarPruebas",
             "informacionSujeto",
             "fluidezVerbal",
             "denominacion",
@@ -73,30 +77,42 @@ class MasterController:
             "report",
             # do not remove used for reseting and initialize pruebas
             "dummyWindow",
-        ]
-
-        self.paginasDisponibles = self.fillAvailablePages(
-            self.paginasDisponibles)
+        ])
 
         self.router = Router(self.paginasDisponibles)
         self.router.setController(
+            "seleccionarPruebas", PruebaSeleccionController)
+
+        self.router.setController(
             "informacionSujeto", MainWindowController)
-        self.router.getController(
-            "informacionSujeto").newInfo()
 
         self.listMenu = self.router.getController(
             "informacionSujeto").getListMenu()
 
         self.menuController = MenuController(
             self.paginasVisitadas, self.router.getEntrieNames())
-        self.menuController.switch_window.connect(self.showSpecificWindowMenu)
+        self.menuController.switch_window.connect(
+            self.showSpecificWindowMenu)
 
+        # we substract 3 (
+        # 1 - selected pruebas
+        # 2 - informacion sujeto
+        # 3 - reporte view
+        # )
         self.progressBarController = ProgressBarController(
-            len(self.router)-2) #1 intial view and 2 final view
+            len(self.router)-2)
 
         self.currentWindow = self.router.getView("dummyWindow")
-        self.nextWindow = self.router.getView("informacionSujeto")
+        self.nextWindow = self.router.getView("seleccionarPruebas")
         self.reporteModel = None
+
+    def initPossibleRoutes(self, possibleRoutes):
+        self.paginasDisponibles = possibleRoutes
+        self.paginasDisponibles = self.fillAvailablePages(
+            self.paginasDisponibles)
+
+        if isinstance(self.router, Router):
+            self.router.updatePossibleRoutes(self.paginasDisponibles)
 
     def fillAvailablePages(self, pages):
         return [[page, self.pagesFunctions[page]] for page in pages]
@@ -105,7 +121,7 @@ class MasterController:
         """
          Método que se encarga de restablecer las páginas visitadas
         """
-        self.paginasVisitadas = ["informacionSujeto"]
+        self.paginasVisitadas = ["seleccionarPruebas"]
         return self.paginasVisitadas
 
     def addPaginaVisitada(self, routePage):
@@ -152,7 +168,11 @@ class MasterController:
           currentController: Valor que contiene el controlador de la prueba actual
         """
         self.menuController.clearMenu()
-        self.listMenu = currentController.getListMenu()
+        tmpMenu = currentController.getListMenu()
+        if tmpMenu is None:
+            return
+
+        self.listMenu = tmpMenu
         self.menuController.updateListView(self.listMenu)
         self.menuController.poblarLista()
 
@@ -163,15 +183,19 @@ class MasterController:
           currentController: Valor que contiene el controlador de la prueba actual
         """
         self.progressBarController.updateProgress(len(self.paginasVisitadas)-1)
-        self.progressBarController.setProgressBar(
-            currentController.getProgressBar())
+
+        tmpProgress = currentController.getProgressBar()
+        if tmpProgress is None:
+            return
+
+        self.progressBarController.setProgressBar(tmpProgress)
 
     def getRouteProgress(self, routeName):
         for idx, key in enumerate(self.paginasVisitadas):
             if key == routeName:
                 return idx
 
-        return len(self.paginasVisitadas)-1
+        return 0
 
     def showSpecificWindowMenu(self, elemSelected):
         """
@@ -181,7 +205,7 @@ class MasterController:
         """
         self.nextWindow, currentController = self.router.getRouteViewAndController(
             elemSelected)
-        # print("hola", self.nextWindow, currentController)
+        # print("hola", self.nextWindow, currentController, elemSelected)
         progress = self.getRouteProgress(elemSelected)
         self.menuController.updateCurrentWindow(progress)
 
@@ -216,6 +240,32 @@ class MasterController:
          Método que se encarga de cargar la vista de la pantalla a MainWindow, así como el controlador de la misma.
         """
         self.showSpecificWindowMenu(self.paginasVisitadas[0])
+
+    def pruebasSeleccionadas(self, listMissingElem, selectedPruebas):
+        """
+         Metodo para inicializar las pruebas seleccionadas
+         Args:
+          listMissingElem: Lista de elementos inválidos
+          selectedPruebas: Arreglo de string posibles
+        """
+        if len(listMissingElem) != 0:
+            self.displayModal(listMissingElem)
+            self.router.getController(
+                self.paginasVisitadas[-1]).emptyInvalidArgs()
+        else:
+            self.initPossibleRoutes(selectedPruebas)
+            entriNames = self.router.getEntrieNames()
+            entriNames.remove("Seleccionar pruebas")
+            self.menuController = MenuController(
+                self.paginasVisitadas, entriNames)
+            self.menuController.switch_window.connect(
+                self.showSpecificWindowMenu)
+            self.progressBarController = ProgressBarController(
+                len(self.router)-3)
+
+            self.addPaginaVisitada("seleccionarPruebas")
+            self.menuController.updatePagesVisited(self.paginasVisitadas)
+            self.showSpecificWindowMenu("informacionSujeto")
 
     def asignaReporte(self, listMissingElem, reporte):
         """
@@ -263,7 +313,8 @@ class MasterController:
             if len(invalidArgs) != 0:
                 self.displayModal(
                     invalidArgs, modalHeader="Deben de ser mayor a 0:")
-                self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
+                self.router.getController(
+                    self.paginasVisitadas[-1]).emptyInvalidArgs()
             else:
                 if not isinstance(prevPrueba, ReporteModel):
                     self.reporteModel.addPrueba(prevPrueba)
@@ -277,383 +328,12 @@ class MasterController:
 
         return F
 
-    # def showFluidezVerbal(self, invalidArgs, prevPrueba):
-    #     """
-    #      Método que se encarga de cargar la vista de la pantalla Fluidez Verbal, así como el controlador de la misma.
-    #      Args:
-    #       reporte: Tipo de dato ReporteModel que ha sido exitosamente creado
-    #     """
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(
-    #             invalidArgs, modalHeader="Deben de ser mayor a 0:")
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "fluidezVerbal", FluidezVerbalController, self.reporteModel)
-
-    #         self.addPaginaVisitada("fluidezVerbal")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("fluidezVerbal")
-
-    # def showDenominacion(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de Denominacion
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de Denominación
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(
-    #             invalidArgs, modalHeader="Deben de ser mayor a 0:")
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "denominacion", DenominacionController, self.reporteModel)
-
-    #         self.addPaginaVisitada("denominacion")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("denominacion")
-
-    # def showMVC(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de MVC
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de MVC
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "comprensionVerbal", MVCController)
-
-    #         self.addPaginaVisitada("comprensionVerbal")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("comprensionVerbal")
-
-    # def showMemoriaVisoespacia(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de Memoria Visoespacial
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de MEmoria Visoespacial
-    #     """
-        
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "memoriaVisoespacial", MemoriaVisoespaciaController, self.reporteModel)
-            
-    #         self.addPaginaVisitada("memoriaVisoespacial")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("memoriaVisoespacial")
-
-    # def showTMT(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de TMT
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de TMT
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "tmt", TMTController, self.reporteModel)
-
-    #         self.addPaginaVisitada("tmt")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("tmt")
-
-    # def showAbstraccion(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de Abstraccion
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de Abstraccion
-    #     """
-        
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "abstraccion", AbstraccionController, self.reporteModel)
-
-    #         self.addPaginaVisitada("abstraccion")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("abstraccion")
-
-    # def showDigitos(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de Digitos
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de Digitos
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "digitos", DigitosController, self.reporteModel)
-
-    #         self.addPaginaVisitada("digitos")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("digitos")
-
-    # def showSDMT(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de SDMT
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de SDMT
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "sdmt", SDMTController, self.reporteModel)
-
-    #         self.addPaginaVisitada("sdmt")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("sdmt")
-
-    # def showLNS(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de LNS
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de LNS
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "lns", LNSController, self.reporteModel)
-
-    #         self.addPaginaVisitada("lns")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("lns")
-
-    # def showD2(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de D2
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de D2
-    #     """
-        
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "d2", D2Controller, self.reporteModel)
-
-    #         self.addPaginaVisitada("d2")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("d2")
-
-    # def showHopkins(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de Hopkins
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de Hopkins
-    #     """
-        
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "hopkins", HopkinsController, self.reporteModel)
-
-    #         self.addPaginaVisitada("hopkins")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("hopkins")
-
-    # def showStroop(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de Stroop
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de Stroop
-    #     """
-        
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "stroop", StroopController, self.reporteModel)
-
-    #         self.addPaginaVisitada("stroop")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("stroop")
-
-    # def showTOL(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de TOL
-    #     """
-        
-
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "torreLondres", TOLController, self.reporteModel)
-
-    #         self.addPaginaVisitada("torreLondres")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("torreLondres")
-
-    # def showButt(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de TOL
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "motivoDeportivo", ButtController, self.reporteModel)
-
-    #         self.addPaginaVisitada("motivoDeportivo")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("motivoDeportivo")
-
-    # def showPittsburgh(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de TOL
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de TOL
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "pittsburgh", PittsburghController, self.reporteModel)
-
-    #         self.addPaginaVisitada("pittsburgh")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("pittsburgh")
-
-    # def showSCL90(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador de la prueba de SCL90
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa a la de SCL90
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "scl90", SCL90Controller, self.reporteModel)
-
-    #         self.addPaginaVisitada("scl90")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("scl90")
-
-    # def showReporte(self, invalidArgs, prevPrueba):
-    #     """
-    #      Metodo que se encarga de cargar la vista y el controlador del Reporte
-    #      Args: 
-    #       invalidArgs: Lista de elementos inválidos
-    #       prevPrueba: Prueba previa al Reporte
-    #     """
-    #     if len(invalidArgs) != 0:
-    #         self.displayModal(invalidArgs)
-    #         self.router.getController(self.paginasVisitadas[-1]).emptyInvalidArgs()
-    #     else:
-    #         if not isinstance(prevPrueba, ReporteModel):
-    #             self.reporteModel.addPrueba(prevPrueba)
-
-    #         self.router.setController(
-    #             "report", ReporteController, self.reporteModel)
-
-    #         self.addPaginaVisitada("report")
-    #         self.menuController.updatePagesVisited(self.paginasVisitadas)
-    #         self.showSpecificWindowMenu("report")
-            
-
     def newReport(self):
         """
          Metodo que se encarga de crear un nuevo reporte y regresar a la pantalla principal
         """
         self.resetReport(False)
+        self.router.getController("seleccionarPruebas").newInfo()
         self.router.getController("informacionSujeto").newInfo()
         self.showMainWindow()
 

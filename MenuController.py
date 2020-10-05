@@ -114,13 +114,13 @@ class MenuController(QtWidgets.QWidget):
         """
         if int(item.flags()) == QtCore.Qt.NoItemFlags:
             return
-            
+
         selectedIdx = self.listView.currentRow()
         if selectedIdx < 0 or selectedIdx > len(self.pagesVisited):
-            #early skip becasuse -1 and out of len of current possible pages
+            # early skip becasuse -1 and out of len of current possible pages
             return
 
-        if selectedIdx == self.currentWindow: 
+        if selectedIdx == self.currentWindow:
             return
 
         nextRoute = self.pagesVisited[selectedIdx]

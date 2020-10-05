@@ -131,7 +131,9 @@ class Router:
                 "switch_fun": None
             },
         }
+        self.updatePossibleRoutes(routingOrder)
 
+    def updatePossibleRoutes(self, routingOrder):
         self.possibleRoutes = routingOrder
         self.entries = None
         self.entries = self.getEntries()
@@ -191,16 +193,18 @@ class Router:
 
     def resetRouterViews(self, skipMain):
         for key in self.possibleRoutes:
-            if key[0] == "informacionSujeto":  # TODO change for intial view
+            if key[0] == "informacionSujeto"\
+                    or key[0] == "seleccionarPruebas":  # TODO change for intial view
                 continue
-            
+
             self.setView(key[0], None)
 
     def resetRouterControllers(self, skipMain):
         for key in self.possibleRoutes:
-            if key[0] == "informacionSujeto":  # TODO change for intial view
+            if key[0] == "informacionSujeto"\
+                    or key[0] == "seleccionarPruebas":  # TODO change for intial view
                 continue
-            
+
             self.setController(key[0], None)
 
     def findNextSwitchWindowFun(self, currentKey):
@@ -209,6 +213,9 @@ class Router:
 
         if currentKey == "informacionSujeto":
             return self.routes["informacionSujeto"]["switch_fun"]
+
+        if currentKey == "seleccionarPruebas":
+            return self.routes["seleccionarPruebas"]["switch_fun"]
 
         for idx, [key, _] in enumerate(self.possibleRoutes):
             if currentKey != key:

@@ -23,10 +23,12 @@ class MainWindowWithListWidget(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lblLogo = QtWidgets.QLabel(self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lblLogo.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.lblLogo.sizePolicy().hasHeightForWidth())
         self.lblLogo.setSizePolicy(sizePolicy)
         self.lblLogo.setMaximumSize(QtCore.QSize(1697/5, 312/5))
         self.lblLogo.setLineWidth(1)
@@ -52,61 +54,78 @@ class MainWindowWithListWidget(object):
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
         self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_10.sizePolicy().hasHeightForWidth())
         self.label_10.setSizePolicy(sizePolicy)
         self.label_10.setObjectName("label_10")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_10)
+        self.formLayout.setWidget(
+            0, QtWidgets.QFormLayout.LabelRole, self.label_10)
         self.leName = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.leName.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.leName.sizePolicy().hasHeightForWidth())
         self.leName.setSizePolicy(sizePolicy)
         self.leName.setObjectName("leName")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.leName)
+        self.formLayout.setWidget(
+            0, QtWidgets.QFormLayout.FieldRole, self.leName)
         self.label_11 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_11.setObjectName("label_11")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_11)
+        self.formLayout.setWidget(
+            1, QtWidgets.QFormLayout.LabelRole, self.label_11)
         self.leId = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.leId.setObjectName("leId")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.leId)
+        self.formLayout.setWidget(
+            1, QtWidgets.QFormLayout.FieldRole, self.leId)
         self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
+        self.formLayout.setWidget(
+            2, QtWidgets.QFormLayout.LabelRole, self.label_3)
         self.leExaminer = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.leExaminer.setObjectName("leExaminer")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.leExaminer)
+        self.formLayout.setWidget(
+            2, QtWidgets.QFormLayout.FieldRole, self.leExaminer)
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        
+        self.formLayout.setWidget(
+            3, QtWidgets.QFormLayout.LabelRole, self.label_8)
+
         ageMin = 15
         ageMax = 49
         self.sbAge = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbAge.setObjectName("sbAge")
         self.sbAge.setRange(ageMin, ageMax)
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbAge)
+        self.formLayout.setWidget(
+            3, QtWidgets.QFormLayout.FieldRole, self.sbAge)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_9)
+        self.formLayout.setWidget(
+            4, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbEscolaridad = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbEscolaridad.setObjectName("sbEscolaridad")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbEscolaridad)
+        self.formLayout.setWidget(
+            4, QtWidgets.QFormLayout.FieldRole, self.sbEscolaridad)
         self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_12.setObjectName("label_12")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_12)
+        self.formLayout.setWidget(
+            5, QtWidgets.QFormLayout.LabelRole, self.label_12)
         self.cbSexo = QtWidgets.QComboBox(self.verticalLayoutWidget)
         self.cbSexo.setEnabled(True)
         self.cbSexo.setEditable(False)
         self.cbSexo.setObjectName("cbSexo")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.cbSexo)
+        self.formLayout.setWidget(
+            5, QtWidgets.QFormLayout.FieldRole, self.cbSexo)
         self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        
+        self.formLayout.setWidget(
+            6, QtWidgets.QFormLayout.LabelRole, self.label_2)
+
         fechaActual = QtCore.QDate.currentDate()
         fechaMinYear = fechaActual.year() - ageMin
         fechaMinimaNacimiento = QtCore.QDate(fechaMinYear, 12, 31)
@@ -117,65 +136,80 @@ class MainWindowWithListWidget(object):
         self.deFechaNacimiento = QtWidgets.QDateEdit(self.verticalLayoutWidget)
         self.deFechaNacimiento.setObjectName("deFechaNacimiento")
         self.deFechaNacimiento.setDisplayFormat("dd/MMMM/yyyy")
-        self.deFechaNacimiento.setDateRange(fechaMaximaNacimiento, fechaMinimaNacimiento)
-        
+        self.deFechaNacimiento.setDateRange(
+            fechaMaximaNacimiento, fechaMinimaNacimiento)
+
         dateToShow = QtCore.QDate(fechaMinYear, 1, 1)
         self.deFechaNacimiento.setDate(dateToShow)
 
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.deFechaNacimiento)
-        
+        self.formLayout.setWidget(
+            6, QtWidgets.QFormLayout.FieldRole, self.deFechaNacimiento)
 
         self.label_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_5.setObjectName("label_5")
-        self.formLayout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.label_5)
+        self.formLayout.setWidget(
+            7, QtWidgets.QFormLayout.LabelRole, self.label_5)
         self.cbLateralidad = QtWidgets.QComboBox(self.verticalLayoutWidget)
         self.cbLateralidad.setEnabled(True)
         self.cbLateralidad.setEditable(False)
         self.cbLateralidad.setObjectName("cbLateralidad")
-        self.formLayout.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.cbLateralidad)
+        self.formLayout.setWidget(
+            7, QtWidgets.QFormLayout.FieldRole, self.cbLateralidad)
         self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_6.setObjectName("label_6")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.LabelRole, self.label_6)
-        
+        self.formLayout.setWidget(
+            8, QtWidgets.QFormLayout.LabelRole, self.label_6)
+
         self.deFecha = QtWidgets.QDateEdit(self.verticalLayoutWidget)
         self.deFecha.setObjectName("deFecha")
         self.deFecha.setDisplayFormat("dd/MMMM/yyyy")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.deFecha)
-        
+        self.formLayout.setWidget(
+            8, QtWidgets.QFormLayout.FieldRole, self.deFecha)
 
         self.label_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_7.setObjectName("label_7")
-        self.formLayout.setWidget(9, QtWidgets.QFormLayout.LabelRole, self.label_7)
+        self.formLayout.setWidget(
+            9, QtWidgets.QFormLayout.LabelRole, self.label_7)
         self.leCarrera = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.leCarrera.setObjectName("leCarrera")
-        self.formLayout.setWidget(9, QtWidgets.QFormLayout.FieldRole, self.leCarrera)
+        self.formLayout.setWidget(
+            9, QtWidgets.QFormLayout.FieldRole, self.leCarrera)
         self.label_13 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_13.setObjectName("label_13")
-        self.formLayout.setWidget(10, QtWidgets.QFormLayout.LabelRole, self.label_13)
+        self.formLayout.setWidget(
+            10, QtWidgets.QFormLayout.LabelRole, self.label_13)
         self.sbSemestre = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbSemestre.setObjectName("sbSemestre")
-        self.formLayout.setWidget(10, QtWidgets.QFormLayout.FieldRole, self.sbSemestre)
+        self.formLayout.setWidget(
+            10, QtWidgets.QFormLayout.FieldRole, self.sbSemestre)
         self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_14.setObjectName("label_14")
-        self.formLayout.setWidget(11, QtWidgets.QFormLayout.LabelRole, self.label_14)
+        self.formLayout.setWidget(
+            11, QtWidgets.QFormLayout.LabelRole, self.label_14)
         self.leEquipo = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.leEquipo.setObjectName("leEquipo")
-        self.formLayout.setWidget(11, QtWidgets.QFormLayout.FieldRole, self.leEquipo)
+        self.formLayout.setWidget(
+            11, QtWidgets.QFormLayout.FieldRole, self.leEquipo)
         self.label_15 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_15.setObjectName("label_15")
-        self.formLayout.setWidget(12, QtWidgets.QFormLayout.LabelRole, self.label_15)
+        self.formLayout.setWidget(
+            12, QtWidgets.QFormLayout.LabelRole, self.label_15)
         self.leDeporte = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.leDeporte.setObjectName("leDeporte")
-        self.formLayout.setWidget(12, QtWidgets.QFormLayout.FieldRole, self.leDeporte)
+        self.formLayout.setWidget(
+            12, QtWidgets.QFormLayout.FieldRole, self.leDeporte)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.horizontalLayout_2.setSizeConstraint(
+            QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.pbStart = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pbStart.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.pbStart.sizePolicy().hasHeightForWidth())
         self.pbStart.setSizePolicy(sizePolicy)
         self.pbStart.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.pbStart.setObjectName("pbStart")
@@ -189,12 +223,11 @@ class MainWindowWithListWidget(object):
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
-        
+
         self.progressBar = QtWidgets.QProgressBar(Form)
         self.progressBar.setGeometry(QtCore.QRect(127, 560, 601, 23))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
-
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -209,7 +242,8 @@ class MainWindowWithListWidget(object):
         Form.setWindowTitle(_translate("Form", "Información de Sujeto"))
         # self.lblLogo.setText(_translate("Form", "Logo"))
         # self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los datos del paciente"))
+        self.label_4.setText(_translate(
+            "Form", "Ingrese los datos del paciente"))
         self.label_10.setText(_translate("Form", "Nombre:"))
         self.label_11.setText(_translate("Form", "ID:"))
         self.label_3.setText(_translate("Form", "Examinador:"))
@@ -224,10 +258,3 @@ class MainWindowWithListWidget(object):
         self.label_14.setText(_translate("Form", "Equipo:"))
         self.label_15.setText(_translate("Form", "Deporte:"))
         self.pbStart.setText(_translate("Form", "Comenzar Captura"))
-
-"""
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    sys.exit(app.exec_())
-"""
