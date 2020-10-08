@@ -15,7 +15,11 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 
 	def __init__(self, mainWindow):
 		QtWidgets.QWidget.__init__(self)
-		self.mainWindowView = MainWindowWithListWidget(mainWindow)
+		self.mainWindow = mainWindow
+		self.newInfo()
+
+	def newInfo(self):
+		self.mainWindowView = MainWindowWithListWidget(self.mainWindow)
 		self.missingArguments = list()
 		self.reporte = None
 

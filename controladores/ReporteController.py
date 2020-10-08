@@ -12,14 +12,22 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal()
 
-	def __init__(self, mainWindow, url, image, logo, reporteModel=None):
+	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.reporteModel = reporteModel
 		self.mainWindow = mainWindow
-		self.url = url
-		self.image = image
-		self.logo = logo
+
+		tempUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.html")
+		tempUrl = tempUrl.toString()
+		imageUrl = QUrl(QDir.currentPath()+"/vistas/Reporte/reporte.png")
+		imageUrl = imageUrl.toString()
+		logoUrl = QUrl(QDir.currentPath() +
+										"/vistas/Reporte/logoReporte.png")
+		self.url = tempUrl
+		self.image = imageUrl
+		self.logo = logoUrl
 		self.reporteView = None
+		self.loadReporte()
 
 	def loadReporte(self):
 		"""
@@ -31,7 +39,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		else:
 			del self.reporteView
 			self.reporteView = ReporteWindowWidget(self.mainWindow, self.url)
-		print(self.reporteView)
+			
 		self.reporteView.pbStart.clicked.connect(self.launchBrowser)
 		self.reporteView.pbRestart.clicked.connect(self.changeView)
 
@@ -39,7 +47,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de abrir el reporte en el navegador predefinido para abrir los HTML
 		"""
-		Qt.QDesktopServices.openUrl(Qt.QUrl(self.url))
+		Qt.QDesktopServices.openUrl(Qt.QUrl.fromLocalFile(self.url))
 
 	def createTableImg(self, escalares):
 		"""
