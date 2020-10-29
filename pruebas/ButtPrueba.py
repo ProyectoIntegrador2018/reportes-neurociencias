@@ -28,13 +28,14 @@ class ButtPrueba(PruebaModel.PruebaModel):
 			sConflicto = 'Sin conflicto'
 
 		if rivalidad >= 3 or suficiencia >= 3 or agresividad >= 3:
-			sRivalidad = 'Está motivado'
-			sSuficiencia = 'Suficiente'
-			sAgresividad = 'Con fuerza'
-		else:
 			sRivalidad = 'Le falta motivación'
 			sSuficiencia = 'Insuficiente'
 			sAgresividad = 'Sin fuerza'
+		else:
+			sRivalidad = 'Está motivado'
+			sSuficiencia = 'Suficiente'
+			sAgresividad = 'Con fuerza'
+			
 
 		if cooperacion >= 4:
 			sCooperacion = 'Cooperativo'
@@ -49,7 +50,7 @@ class ButtPrueba(PruebaModel.PruebaModel):
 		if total <= 11:
 			sTotal = 'Baja motivación'
 		if total >= 12 and total <= 14:
-			sTotal = 'Media moti'
+			sTotal = 'Media motivación'
 		if total >= 15:
 			sTotal = 'Alta motivación'
 
