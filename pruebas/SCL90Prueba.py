@@ -76,9 +76,9 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 		# Cuenta los elementos que de puntuacionPercentilGeneral que sean mayores a 0.90
 		dimGT90 = sum(list(map(lambda puntPerc: 1 if puntPerc >= 90.0 else 0, puntuacionPercentilGeneral)))
 
-		if gsiValue >= 80.0 or dimGT80 >= 2:
+		if gsiValue > 80.1 or dimGT80 > 1:
 			bDTM = True
-		if gsiValue >= 90.0 or dimGT90 >= 2:
+		if gsiValue > 90.1 or dimGT90 > 1:
 			bMPsiq = True
 		
 		# Para que bMPsiq sea True, bDTM debe de ser True
@@ -98,12 +98,12 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 			
 			if sexo == 'Femenino':
 				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 80.0 else 0, puntuacionPercentilDTM)))
-				gsiLimit = 80.0
+				gsiLimit = 90.0
 			else:
 				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 70.0 else 0, puntuacionPercentilDTM)))
-				gsiLimit = 70.0
+				gsiLimit = 80.0
 
-			if gsiValue >= gsiLimit or dimDTM >= 2:
+			if gsiValue >= gsiLimit or dimDTM > 1:
 				bMPsiq = True
 
 		if bMPsiq:
