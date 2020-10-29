@@ -43,12 +43,13 @@ Versión 2:
 
 ### Technology Stack
 
-| Technology | Version |
-| ---------- | ------- |
-| Python     | 3.7.4   |
-| PyQt5      | 5.0.0   |
-| Pandas     | 1.0.3   |
-| Matplotlib | 3.2.1   |
+| Technology    | Version |
+| ------------- | ------- |
+| Python        | 3.7.4   |
+| PyQt5         | 5.0.0   |
+| Pandas        | 1.0.3   |
+| Matplotlib    | 3.2.1   |
+| PyQtWebEngine | 5.15.1  |
 
 ### Management tools
 
