@@ -305,216 +305,222 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		'''
 		ESCALARES es la lista de todas las puntuaciones escalares de todas las pruebas
 		'''
-		escalares = [int(x) for x in escalares]
-		print(escalares)
 
-		#Se crean las imagenes a mostrar
-		self.createTableImg(escalares)
+		### uncomment for image
+		# escalares = [int(x) for x in escalares]
+		# print(escalares)
+
+		# #Se crean las imagenes a mostrar
+		# self.createTableImg(escalares)
 		
-		raw_html += '<div class="fill">'
-		raw_html += '<img src="reporte.png" class="grafica">'
-		raw_html += '</div>'
+		# raw_html += '<div class="fill">'
+		# raw_html += '<img src="reporte.png" class="grafica">'
+		# raw_html += '</div>'
 		raw_html += '</div>'
 
 		raw_html += '<div class="pagebreak"></div>'
 
 		#################################### AQUÍ ACABA LO DEL NOMBRE DE LAS PRUEBAS Y LA GRÁFICA ####################################
 
-		raw_html += '<div class="new-table">'
-		raw_html += '<table style="width:100%">' 	#Empieza una tabla
-		raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
+		if "SCL-90" in pruebasRegistradas:
+			raw_html += '<div class="new-table">'
+			raw_html += '<table style="width:100%">' 	#Empieza una tabla
+			raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
 
-		### Headers de la tabla
-		raw_html += '<th>'
-		raw_html += '</th>'
-		raw_html += '<th>'
-		raw_html += '</th>'
+			### Headers de la tabla
+			raw_html += '<th>'
+			raw_html += '</th>'
+			raw_html += '<th>'
+			raw_html += '</th>'
 
-		headerElements = ['SO','OB', 'IN', 'DE', 'AN', 'HO', 'FO', 'PA', 'PSI', 'GSI', 'PST', 'PSDI']
-		raw_html += self.createTableHeaders(headerElements)
-		raw_html += '</tr>'							#Cierra una row de la tabla
-
-
-
-		raw_html += '<tr>'							#Empieza una row de la tabla
-		tableElements = ['SCL-90', 'PD']
-		
-
-		pruebaSCL90 = pruebasRegistradas['SCL-90']
-		for puntuacionDir in pruebaSCL90.valores:
-			tableElements.append(str(puntuacionDir))
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'							#Cierra una row de la tabla
+			headerElements = ['SO','OB', 'IN', 'DE', 'AN', 'HO', 'FO', 'PA', 'PSI', 'GSI', 'PST', 'PSDI']
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
 
 
-		raw_html += '<tr>'							#Empieza una row de la tabla
-		tableElements = ['P. Gral.', 'Pc']
-		# Se añaden cada uno de los valores percentiles obtenidos
-		for puntuacionPerc in pruebaSCL90.rangoPercentil[0]:
-			tableElements.append(str(puntuacionPerc))
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'							#Cierra una row de la tabla
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['SCL-90', 'PD']
+			
+
+			pruebaSCL90 = pruebasRegistradas['SCL-90']
+			for puntuacionDir in pruebaSCL90.valores:
+				tableElements.append(str(puntuacionDir))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
 
 
-		raw_html += '<tr>'							#Empieza una row de la tabla
-		tableElements = ['DTM', 'Pc']
-
-		#En caso de ameritarlo, se añaden los valores correspondientes a la segunda row
-		if len(pruebaSCL90.rangoPercentil[1]) > 0:
-			for puntuacionPerc in pruebaSCL90.rangoPercentil[1]:
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['P. Gral.', 'Pc']
+			# Se añaden cada uno de los valores percentiles obtenidos
+			for puntuacionPerc in pruebaSCL90.rangoPercentil[0]:
 				tableElements.append(str(puntuacionPerc))
-		else:
-			for puntuacionPerc in range(len(pruebaSCL90.rangoPercentil[0])):
-				tableElements.append('')
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'							#Cierra una row de la tabla
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
 
-		
-		raw_html += '<tr>'							#Empieza una row de la tabla
-		tableElements = ['M. Psiq.', 'Pc']
-		
-		#En caso de que haya pasado a la tercera row
-		if len(pruebaSCL90.rangoPercentil[2]) > 0:
-			for puntuacionPerc in pruebaSCL90.rangoPercentil[2]:
-				tableElements.append(str(puntuacionPerc))
-		else:
-			for puntuacionPerc in range(len(pruebaSCL90.rangoPercentil[0])):
-				tableElements.append('')
 
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'							#Cierra una row de la tabla
-		
-		raw_html += '</table>' 						#Cierra la tabla
-		raw_html += '</div>'
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['DTM', 'Pc']
+
+			#En caso de ameritarlo, se añaden los valores correspondientes a la segunda row
+			if len(pruebaSCL90.rangoPercentil[1]) > 0:
+				for puntuacionPerc in pruebaSCL90.rangoPercentil[1]:
+					tableElements.append(str(puntuacionPerc))
+			else:
+				for puntuacionPerc in range(len(pruebaSCL90.rangoPercentil[0])):
+					tableElements.append('')
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+			
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['M. Psiq.', 'Pc']
+			
+			#En caso de que haya pasado a la tercera row
+			if len(pruebaSCL90.rangoPercentil[2]) > 0:
+				for puntuacionPerc in pruebaSCL90.rangoPercentil[2]:
+					tableElements.append(str(puntuacionPerc))
+			else:
+				for puntuacionPerc in range(len(pruebaSCL90.rangoPercentil[0])):
+					tableElements.append('')
+
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+			
+			raw_html += '</table>' 						#Cierra la tabla
+			raw_html += '</div>'
 		
 
 		########################## AQUÍ EMPIEZA LAS OTRAS TRES PRUEBAS DE PSQI Y MOTIVOS BUTT ##########################
 
-		raw_html += '<div class="new-table">'
-		
-		raw_html += '<table class = "table-BUTT">' 	#Empieza una tabla
-		raw_html += '<tr class="top-row">'
-		
-		raw_html += '<th>'
-		raw_html += '</th>'
-		
-		headerElements = ['Motivos', 'PD', 'V']
-		raw_html += self.createTableHeaders(headerElements)
-		raw_html += self.createTableHeaders(headerElements)
-		raw_html += '</tr>'
+		if "Motivos Deportivos de Butt" in pruebasRegistradas:
+			raw_html += '<div class="new-table">'
+			
+			raw_html += '<table class = "table-BUTT">' 	#Empieza una tabla
+			raw_html += '<tr class="top-row">'
+			
+			raw_html += '<th>'
+			raw_html += '</th>'
+			
+			headerElements = ['Motivos', 'PD', 'V']
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += '</tr>'
 
-		raw_html += '<tr>'
-		raw_html += '<td rowspan="3">'
-		raw_html += 'Motivos BUTT'
-		raw_html += '</td>'
+			raw_html += '<tr>'
+			raw_html += '<td rowspan="3">'
+			raw_html += 'Motivos BUTT'
+			raw_html += '</td>'
 
-		pruebaButt = pruebasRegistradas['Motivos Deportivos de Butt']
-		dirC = pruebaButt.valores[0]
-		dirR = pruebaButt.valores[1]
-		dirS = pruebaButt.valores[2]
-		dirCo = pruebaButt.valores[3]
-		dirA = pruebaButt.valores[4]
-		dirT = pruebaButt.valores[5]
+			pruebaButt = pruebasRegistradas['Motivos Deportivos de Butt']
+			dirC = pruebaButt.valores[0]
+			dirR = pruebaButt.valores[1]
+			dirS = pruebaButt.valores[2]
+			dirCo = pruebaButt.valores[3]
+			dirA = pruebaButt.valores[4]
+			dirT = pruebaButt.valores[5]
 
-		intC = pruebaButt.rangoPercentil[0]
-		intR = pruebaButt.rangoPercentil[1]
-		intS = pruebaButt.rangoPercentil[2]
-		intCo = pruebaButt.rangoPercentil[3]
-		intA = pruebaButt.rangoPercentil[4]
-		intT = pruebaButt.rangoPercentil[5]
+			intC = pruebaButt.rangoPercentil[0]
+			intR = pruebaButt.rangoPercentil[1]
+			intS = pruebaButt.rangoPercentil[2]
+			intCo = pruebaButt.rangoPercentil[3]
+			intA = pruebaButt.rangoPercentil[4]
+			intT = pruebaButt.rangoPercentil[5]
 
-		tableElements = ['C', str(dirC), str(intC)]
-		raw_html += self.createTableElements(tableElements)
+			tableElements = ['C', str(dirC), str(intC)]
+			raw_html += self.createTableElements(tableElements)
 
-		tableElements = ['Co', str(dirCo), str(intCo)]
-		raw_html += self.createTableElements(tableElements)
-		
-		raw_html += '<tr>'
-		tableElements = ['R', str(dirR), str(intR)]
-		raw_html += self.createTableElements(tableElements)
+			tableElements = ['Co', str(dirCo), str(intCo)]
+			raw_html += self.createTableElements(tableElements)
+			
+			raw_html += '<tr>'
+			tableElements = ['R', str(dirR), str(intR)]
+			raw_html += self.createTableElements(tableElements)
 
-		tableElements = ['A', str(dirA), str(intA)]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
-		
-
-
-		raw_html += '<tr>'
-		tableElements = ['S', str(dirS), str(intS)]
-		raw_html += self.createTableElements(tableElements)
-		
-		tableElements = ['T', str(dirT), str(intT)]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
-		
+			tableElements = ['A', str(dirA), str(intA)]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+			
 
 
-		raw_html += '</tr>' #Se cierra la row de Butt
-		raw_html += '</table>' 						#Cierra la tabla
-		
-		raw_html += '<table class="table-PSQI">' 	#Empieza una tabla
-		
-		raw_html += '<tr class="top-row">'
-
-		headerElements = ['PSQI', 'P']
-		raw_html += self.createTableHeaders(headerElements)
-		raw_html += self.createTableHeaders(headerElements)
-		raw_html += '</tr>'
-
-		raw_html += '<tr>'
-		
-		
-		pruebaPittsburgh = pruebasRegistradas['PSQI']
-		cal = pruebaPittsburgh.valores[0]
-		lat = pruebaPittsburgh.valores[1]
-		dur = pruebaPittsburgh.valores[2]
-		efic = pruebaPittsburgh.valores[3]
-		pert = pruebaPittsburgh.valores[4]
-		med = pruebaPittsburgh.valores[5]
-		disf = pruebaPittsburgh.valores[6]
-		total = pruebaPittsburgh.puntuacionEscalar[7]
-		inter = pruebaPittsburgh.rangoPercentil
-		
-
-		tableElements = ['Cal.', str(cal), 'Pert.', str(pert)]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
-		
-
-		raw_html += '<tr>'
-		tableElements = ['Lat.', str(lat), 'Med.', str(med)]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
-		
-
-		raw_html += '<tr>'
-		tableElements = ['Dur.', str(dur), 'Disf.', str(disf)]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
-		
-		
-		raw_html += '<tr>'
-		tableElements = ['Efic.', str(efic), 'Total', str(total)]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
+			raw_html += '<tr>'
+			tableElements = ['S', str(dirS), str(intS)]
+			raw_html += self.createTableElements(tableElements)
+			
+			tableElements = ['T', str(dirT), str(intT)]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+			
 
 
-		############### Renglón creado para la interpretación #############
-		raw_html += '<tr>'
+			raw_html += '</tr>' #Se cierra la row de Butt
+			raw_html += '</table>' 						#Cierra la tabla
 		
-		raw_html += '<td>'
-		raw_html += ''
-		raw_html += '</td>'
-		
-		raw_html += '<td>'
-		raw_html += ''
-		raw_html += '</td>'
-		
-		tableElements = ['Interpretación', inter]
-		raw_html += self.createTableElements(tableElements)
-		raw_html += '</tr>'
-		
-		raw_html += '</table>' 						#Cierra la tabla
+		##### start PSQI table
+		if "PSQI" in pruebasRegistradas:
+			raw_html += '<table class="table-PSQI">' 	#Empieza una tabla
+			
+			raw_html += '<tr class="top-row">'
+
+			headerElements = ['PSQI', 'P']
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += '</tr>'
+
+			raw_html += '<tr>'
+			
+			
+			pruebaPittsburgh = pruebasRegistradas['PSQI']
+			cal = pruebaPittsburgh.valores[0]
+			lat = pruebaPittsburgh.valores[1]
+			dur = pruebaPittsburgh.valores[2]
+			efic = pruebaPittsburgh.valores[3]
+			pert = pruebaPittsburgh.valores[4]
+			med = pruebaPittsburgh.valores[5]
+			disf = pruebaPittsburgh.valores[6]
+			total = pruebaPittsburgh.puntuacionEscalar[7]
+			inter = pruebaPittsburgh.rangoPercentil
+			
+
+			tableElements = ['Cal.', str(cal), 'Pert.', str(pert)]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+			
+
+			raw_html += '<tr>'
+			tableElements = ['Lat.', str(lat), 'Med.', str(med)]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+			
+
+			raw_html += '<tr>'
+			tableElements = ['Dur.', str(dur), 'Disf.', str(disf)]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+			
+			
+			raw_html += '<tr>'
+			tableElements = ['Efic.', str(efic), 'Total', str(total)]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+
+
+			############### Renglón creado para la interpretación #############
+			raw_html += '<tr>'
+			
+			raw_html += '<td>'
+			raw_html += ''
+			raw_html += '</td>'
+			
+			raw_html += '<td>'
+			raw_html += ''
+			raw_html += '</td>'
+			
+			tableElements = ['Interpretación', inter]
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'
+			
+			raw_html += '</table>' 						#Cierra la tabla
 
 		raw_html += '</div>'
 		raw_html += '</div>'
