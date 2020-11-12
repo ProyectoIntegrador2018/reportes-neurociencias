@@ -42,7 +42,7 @@ class ButtPrueba(PruebaModel.PruebaModel):
 		else:
 			sCooperacion = 'No cooperativo'
 
-		total = (rivalidad + suficiencia + cooperacion + agresividad) - conflicto
+		total = (rivalidad + suficiencia + cooperacion + agresividad)
 
 		tempValores = self.valores
 		self.valores = (tempValores[0], tempValores[1], tempValores[2], tempValores[3], tempValores[4], total)
