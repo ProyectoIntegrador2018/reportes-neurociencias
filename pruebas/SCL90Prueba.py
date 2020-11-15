@@ -96,18 +96,12 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 			dimDTM = 0
 			valLimit = 0.0
 			
-			if sexo == 'Femenino' and gsiValue > 9 :
-				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 60.0 else 0, puntuacionPercentilDTM)))
-				gsiLimit = 80.0
-			else if sexo == 'Femenino' and gsiValue < 9:
+			if sexo == 'Femenino':
 				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 80.0 else 0, puntuacionPercentilDTM)))
 				gsiLimit = 80.0
-			else if sexo == 'Masculino' and gsiValue < 11:
-				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 75.0 else 0, puntuacionPercentilDTM)))
-				gsiLimit = 70.0
 			else:
-				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 85.0 else 0, puntuacionPercentilDTM)))
 				gsiLimit = 70.0
+				
 			if gsiValue >= gsiLimit or dimDTM >= 2:
 				bMPsiq = True
 
