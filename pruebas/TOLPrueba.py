@@ -3,7 +3,7 @@ import PruebaModel
 
 class TOLPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
-        nombre = "TOL-DX"
+        nombre = "Denominación"
         baremos = (pd.read_csv('./Baremos/Baremo_TOL.csv'),
             pd.read_csv('./Baremos/Baremo_TOL_VT_VR_16-19a.csv'),
             pd.read_csv('./Baremos/Baremo_TOL_VT_VR_20-29a.csv'),

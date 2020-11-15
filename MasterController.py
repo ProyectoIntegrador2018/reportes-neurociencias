@@ -23,6 +23,7 @@ from controladores.PittsburghController import *
 from controladores.PruebaSeleccionController import *
 from ReporteModel import ReporteModel
 from Routes import Router
+import resources
 
 
 class MasterController:

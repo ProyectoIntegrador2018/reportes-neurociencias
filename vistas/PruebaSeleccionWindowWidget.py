@@ -139,12 +139,13 @@ class PruebaSeleccionWindowWidget(object):
             "labelPruebasSeleccionadasDisplay")
 
         self.pushButtonContinuar = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButtonContinuar.setGeometry(QtCore.QRect(355, 550, 85, 25))
+        self.pushButtonContinuar.setGeometry(QtCore.QRect(250, 550, 85, 25))
         self.pushButtonContinuar.setObjectName("pushButtonContinuar")
 
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(10, 0, 251, 61))
+        self.label.setGeometry(QtCore.QRect(10, 0, 300, 61))
         self.label.setObjectName("label")
+        self.label.setScaledContents(True)
         self.listWidgetPruebas.raise_()
         self.checkBoxPruebaFluidezVerbal.raise_()
         self.checkBoxPruebaDenominacion.raise_()
