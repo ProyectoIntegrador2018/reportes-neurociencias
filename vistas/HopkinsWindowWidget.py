@@ -53,7 +53,7 @@ class HopkinsWindowWidget(object):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbSpan = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbSpan.setObjectName("sbSpan")
-        self.sbSpan.setRange(16,33)
+        self.sbSpan.setRange(16,36)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSpan)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
