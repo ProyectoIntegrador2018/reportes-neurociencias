@@ -6,7 +6,7 @@ class PittsburghPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "PSQI"
         baremos = pd.read_csv('./Baremos/Pittsburgh.csv')
-        campos = ("Componente 1", "Componente 2", "Componente 3", "Componente 4", "Componente 5", "Componente 6", "Componente 7", "total")
+        campos = ("1.", "2.", "3.", "4.", "5.", "6.", "7.", "total")
         super(PittsburghPrueba,self).__init__(nombre, valores, baremos, campos)
     def calcularPERP(self, datos):
         """

@@ -102,7 +102,7 @@ class SCL90Prueba(PruebaModel.PruebaModel):
 			else:
 				dimDTM = sum(list(map(lambda puntPerc: 1 if puntPerc >= 70.0 else 0, puntuacionPercentilDTM)))
 				gsiLimit = 70.0
-
+				
 			if gsiValue >= gsiLimit or dimDTM >= 2:
 				bMPsiq = True
 
