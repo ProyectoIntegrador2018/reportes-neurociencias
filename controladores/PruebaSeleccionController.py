@@ -62,7 +62,6 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         self.switch_window.emit(self.invalidArgs, totalRoutes)
 
     def getData(self):
-        print(len(self.pruebasSeleccionadas))
         if len(self.pruebasSeleccionadas) == 0:
             self.invalidArgs = ["ALMENOS SELECCIONAR UNA PRUEBA"]
 
@@ -99,7 +98,6 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         self.seleccionView.checkBoxPruebaDePittsburgh.setChecked(False)
         self.seleccionView.checkBoxPruebaSCL90.setChecked(False)
         self.seleccionView.labelPruebasSeleccionadasDisplay.setText("0")
-        print(self.pruebasSeleccionadas)
 
     def addSelectedPrueba(self, checkboxName, checkboxItem):
         if checkboxName not in self.pruebasSeleccionadas and checkboxItem.isChecked():

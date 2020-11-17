@@ -48,6 +48,7 @@ class DenominacionWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
 
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
@@ -55,6 +56,7 @@ class DenominacionWidget(object):
         self.sbDenomImg = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDenomImg.setObjectName("sbDenomImg")
         self.sbDenomImg.setRange(0,14)
+        self.sbDenomImg.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDenomImg)
 
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -63,6 +65,7 @@ class DenominacionWidget(object):
         self.sbDenomImgT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDenomImgT.setObjectName("sbDenomImgT")
         self.sbDenomImgT.setRange(0,42)
+        self.sbDenomImgT.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbDenomImgT)
 
         self.verticalLayout_2.addLayout(self.formLayout)

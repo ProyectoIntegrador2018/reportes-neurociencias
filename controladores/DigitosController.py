@@ -18,7 +18,7 @@ class DigitosController(QtWidgets.QWidget, ControllerModel):
         self.invalidArgs = list()
     
     def changeView(self):
-        print("ando en changeView de Prueba Digitos")
+        # print("ando en changeView de Prueba Digitos")
         self.switch_window.emit(self.invalidArgs, self.digitosPrueba)
     
     def getDatos(self):

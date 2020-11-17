@@ -48,6 +48,7 @@ class DigitosWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
 
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
@@ -55,6 +56,7 @@ class DigitosWindowWidget(object):
         self.sbDirectos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbDirectos.setObjectName("sbDirectos")
         self.sbDirectos.setRange(0,9)
+        self.sbDirectos.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbDirectos)
 
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -63,6 +65,7 @@ class DigitosWindowWidget(object):
         self.sbInversos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbInversos.setObjectName("sbInversos")
         self.sbInversos.setRange(0,8)
+        self.sbInversos.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbInversos)
 
         self.verticalLayout_2.addLayout(self.formLayout)

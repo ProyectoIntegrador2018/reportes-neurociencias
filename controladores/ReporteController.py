@@ -6,6 +6,8 @@ from PruebaModel import *
 from ControllerModel import *
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+import csv
 
 
 class ReporteController(QtWidgets.QWidget, ControllerModel):
@@ -27,6 +29,29 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		self.image = imageUrl
 		self.logo = logoUrl
 		self.reporteView = None
+		self.pruebayLabels = {
+			"FLUIDEZ":[('RV', 'TV')],
+			"DENOM":[('TT', 'ET')],
+			"COMP V":[('IT', 'M')],
+			"BVMT-R":[('C', 'I')],
+			"TMT":[('C', 'P')],
+			"ABS":['M.D.'],
+			"DIGITOS":[('M.I.', 'VAR')],
+			"SDMT":['CON'],
+			"LNS":[('TOT', 'C')],
+			"D2":[('O', 'TA', 'TR', 'T', 'I', 'C', 'DI')],
+			"HVLT-R":[('DD', 'ABS')],
+			"STROOP":[('B', 'A', 'Dif')],
+			"TOL-DX":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
+			# ['FLUIDEZ', 'DENOM', 'COMP V', 'BVMT-R', 'TMT', 'ABS', 'DIGITOS', 'SDMT', 'LNS', 'D2', 'HVLT-R', 'STROOP', 'TOL-DX']
+			# [[(3, 3)], [(1, 1)], [(1, 1)], [(3, 3)], [(18, 18)], [1], [(3, 3)], [3], [(3.0, 3.0)], [(3, 3, 19, 13, 3, 3, 19)], [(5, 5)], [(2, 2, 2)], [(5, 18, 2, 18, 18, 11, 10)]]
+			# ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O', 'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']
+			# [3, 3, 1, 1, 1, 1, 3, 3, 18, 18, 1, 3, 3, 3, 3, 3, 3, 3, 19, 13, 3, 3, 19, 5, 5, 2, 2, 2, 5, 18, 2, 18, 18, 11, 10]
+		}
+		self.csvHeaders = ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']
+		self.escalares = []
+		self.escalaresLabel = []
 		self.loadReporte()
 
 	def loadReporte(self):
@@ -42,6 +67,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			
 		self.reporteView.pbStart.clicked.connect(self.launchBrowser)
 		self.reporteView.pbRestart.clicked.connect(self.changeView)
+		self.reporteView.pdSaveCsv.clicked.connect(self.exportCsvClick)
 
 	def launchBrowser(self):
 		"""
@@ -49,19 +75,19 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		"""
 		Qt.QDesktopServices.openUrl(Qt.QUrl.fromLocalFile(self.url))
 
-	def createTableImg(self, escalares):
+	def createTableImg(self, escalares, escalaresLabel):
 		"""
 		 Método encargado de crear la gráfica del reporte
 		"""
-		yPos = np.arange(34,-1,-1)
-		yLabels = ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
-			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']	
+		yPos = np.arange(len(escalaresLabel)-1,-1,-1)
+		escalaresLabel.reverse()
+		yLabels = escalaresLabel
 		
 		x = np.arange(0,21)
 		xi = list(range(len(x)))
-		yi = np.arange(0,35)
+		yi = np.arange(0,len(escalaresLabel))
 		a = (0,0)
-		b = (6.5, 34)
+		b = (6.5, len(escalaresLabel)-1)
 
 		xcoords = [10]
 		colors = ['White']
@@ -94,7 +120,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		plt.tick_params(axis='x', colors= '#b0aba5', direction='out', length=4, width=12)
 		plt.tick_params(axis='y', colors='#b0aba5', direction='out', length=4, width=8)
 		plt.xlim(-0.1, 20.1)
-		plt.ylim(-1,34.5)
+		plt.ylim(-1,len(escalaresLabel)-0.5)
 		plt.plot(escalares, yPos, marker = 'o', color = 'Red', linewidth=1)
 		plt.savefig(self.image, bbox_inches='tight')
 		plt.clf() #con esta linea no se sobreescriben puntos en la grafica al actualizar los datos de las pruebas
@@ -222,6 +248,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		pruebasRegistradas = reporte["resultados"]
 		pe = [] #lista vacia de puntuaciones escalares
+		peLabel = [] # lista vacia para yLabel en imagen
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
@@ -249,9 +276,10 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 					cantCampos = len(infoPrueba.valores)
 
 				#print("cantCampos: " + str(cantCampos))
-				print(pruebaName)
+				# print(pruebaName)
 				sublista = list([infoPrueba.puntuacionEscalar])
 				pe.append(sublista)
+				peLabel.append(self.pruebayLabels[pruebaName])
 
 				raw_html += '<tr>'
 				raw_html += '<th class="colored-background" rowspan="' + str(cantCampos) + '">'	
@@ -291,31 +319,39 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '</table>'
 
 		#aplanar lista de listas
+		# print(pruebasRegistradas.keys())
+		# print(peLabel)
+		# print(pe)
+		# print(['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
+		# 	'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P'])
 		flattened = [item for sublist in pe for item in sublist]
 		#aplanar lista de tuplas
-		escalares = [] 
-		def reemovNestings(l): 
-		    for i in l: 
-		        if type(i) ==  tuple: 
-		            reemovNestings(i) 
-		        else: 
-		           	escalares.append(i) 
+		def reemovNestings(l, arr): 
+			for i in l: 
+				if type(i) ==  tuple: 
+					reemovNestings(i, arr) 
+				else: 
+					arr.append(i) 
+			return arr
 		
-		reemovNestings(flattened)
+		escalares = reemovNestings(flattened, [])
+		flattened = [item for sublist in peLabel for item in sublist]
+		escalaresLabel = reemovNestings(flattened, [])
+		self.escalares = escalares
+		self.escalaresLabel = escalaresLabel
 		'''
 		ESCALARES es la lista de todas las puntuaciones escalares de todas las pruebas
 		'''
 
 		### uncomment for image
-		# escalares = [int(x) for x in escalares]
-		# print(escalares)
+		escalares = [int(x) for x in escalares]
 
-		# #Se crean las imagenes a mostrar
-		# self.createTableImg(escalares)
+		#Se crean las imagenes a mostrar
+		self.createTableImg(escalares, escalaresLabel)
 		
-		# raw_html += '<div class="fill">'
-		# raw_html += '<img src="reporte.png" class="grafica">'
-		# raw_html += '</div>'
+		raw_html += '<div class="fill">'
+		raw_html += '<img src="reporte.png" class="grafica">'
+		raw_html += '</div>'
 		raw_html += '</div>'
 
 		raw_html += '<div class="pagebreak"></div>'
@@ -538,6 +574,42 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		"""
 		self.switch_window.emit()
 
+	def exportCsvClick(self):
+		options = QtWidgets.QFileDialog.Options()
+		options |= QtWidgets.QFileDialog.DontUseNativeDialog
+		fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","CSV (*.csv)", options=options)
+		if not fileName:
+			return
+
+		self.saveToCsv(fileName)
+
+	def saveToCsv(self, fileName):
+		reporte = self.reporteModel.reporte
+
+		append_write = ""
+		if os.path.exists(fileName):
+			append_write = 'a' # append if already exists
+		else:
+			append_write = 'w' # make a new file if not
+
+		data = self.getRowData()
+		with open(fileName,append_write) as f:
+			w = csv.DictWriter(f, self.csvHeaders)
+			if append_write == 'w':
+				w.writeheader()
+			
+			w.writerow(data)
+
+	def getRowData(self):
+		dicInfo = {}
+		
+		for key, value in zip(self.escalaresLabel, self.escalares):
+			dicInfo[key] = value
+		for key in self.csvHeaders:
+			if key not in dicInfo:
+				dicInfo[key] = "nan"
+		
+		return dicInfo
 
 	def getDatos(self):
 		pass

@@ -48,7 +48,7 @@ class PittsburghWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-        
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
 
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
@@ -56,6 +56,7 @@ class PittsburghWindowWidget(object):
         self.comp1 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp1.setObjectName("comp1")
         self.comp1.setRange(0.00,3.00)
+        self.comp1.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.comp1)
         
 
@@ -65,6 +66,7 @@ class PittsburghWindowWidget(object):
         self.comp2 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp2.setObjectName("comp2")
         self.comp2.setRange(0.00,3.00)
+        self.comp2.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.comp2)
 
 
@@ -74,6 +76,7 @@ class PittsburghWindowWidget(object):
         self.comp3 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp3.setObjectName("comp3")
         self.comp3.setRange(0.00,3.00)
+        self.comp3.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.comp3)
 
 
@@ -83,6 +86,7 @@ class PittsburghWindowWidget(object):
         self.comp4 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp4.setObjectName("comp4")
         self.comp4.setRange(0.00,3.00)
+        self.comp4.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.comp4)
 
 
@@ -92,6 +96,7 @@ class PittsburghWindowWidget(object):
         self.comp5 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp5.setObjectName("comp5")
         self.comp5.setRange(0.00,3.00)
+        self.comp5.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.comp5)
 
 
@@ -101,6 +106,7 @@ class PittsburghWindowWidget(object):
         self.comp6 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp6.setObjectName("comp6")
         self.comp6.setRange(0.00,3.00)
+        self.comp6.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.comp6)
 
 
@@ -110,6 +116,7 @@ class PittsburghWindowWidget(object):
         self.comp7 = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.comp7.setObjectName("comp7")
         self.comp7.setRange(0.00,3.00)
+        self.comp7.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.comp7)
 
         self.verticalLayout_2.addLayout(self.formLayout)

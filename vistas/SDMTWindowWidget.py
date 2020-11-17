@@ -48,6 +48,7 @@ class SDMTWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
@@ -56,6 +57,7 @@ class SDMTWindowWidget(object):
         self.sbSDMT.setObjectName("sbSDMT")
         #no estoy muy segura del rango, checar con Beatriz
         self.sbSDMT.setRange(1,100)
+        self.sbSDMT.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbSDMT)
 
         self.verticalLayout_2.addLayout(self.formLayout)

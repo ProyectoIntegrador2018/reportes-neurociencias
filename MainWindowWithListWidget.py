@@ -53,6 +53,7 @@ class MainWindowWithListWidget(object):
         self.formLayout = QtWidgets.QFormLayout()
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
         self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -101,6 +102,7 @@ class MainWindowWithListWidget(object):
         self.sbAge = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbAge.setObjectName("sbAge")
         self.sbAge.setRange(ageMin, ageMax)
+        self.sbAge.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(
             3, QtWidgets.QFormLayout.FieldRole, self.sbAge)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -109,6 +111,7 @@ class MainWindowWithListWidget(object):
             4, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbEscolaridad = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbEscolaridad.setObjectName("sbEscolaridad")
+        self.sbEscolaridad.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(
             4, QtWidgets.QFormLayout.FieldRole, self.sbEscolaridad)
         self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -119,6 +122,7 @@ class MainWindowWithListWidget(object):
         self.cbSexo.setEnabled(True)
         self.cbSexo.setEditable(False)
         self.cbSexo.setObjectName("cbSexo")
+        self.cbSexo.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(
             5, QtWidgets.QFormLayout.FieldRole, self.cbSexo)
         self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -136,6 +140,7 @@ class MainWindowWithListWidget(object):
         self.deFechaNacimiento = QtWidgets.QDateEdit(self.verticalLayoutWidget)
         self.deFechaNacimiento.setObjectName("deFechaNacimiento")
         self.deFechaNacimiento.setDisplayFormat("dd/MMMM/yyyy")
+        self.deFechaNacimiento.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.deFechaNacimiento.setDateRange(
             fechaMaximaNacimiento, fechaMinimaNacimiento)
 
@@ -153,6 +158,7 @@ class MainWindowWithListWidget(object):
         self.cbLateralidad.setEnabled(True)
         self.cbLateralidad.setEditable(False)
         self.cbLateralidad.setObjectName("cbLateralidad")
+        self.cbLateralidad.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(
             7, QtWidgets.QFormLayout.FieldRole, self.cbLateralidad)
         self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -163,6 +169,7 @@ class MainWindowWithListWidget(object):
         self.deFecha = QtWidgets.QDateEdit(self.verticalLayoutWidget)
         self.deFecha.setObjectName("deFecha")
         self.deFecha.setDisplayFormat("dd/MMMM/yyyy")
+        self.deFecha.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(
             8, QtWidgets.QFormLayout.FieldRole, self.deFecha)
 
@@ -180,6 +187,7 @@ class MainWindowWithListWidget(object):
             10, QtWidgets.QFormLayout.LabelRole, self.label_13)
         self.sbSemestre = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbSemestre.setObjectName("sbSemestre")
+        self.sbSemestre.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(
             10, QtWidgets.QFormLayout.FieldRole, self.sbSemestre)
         self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget)

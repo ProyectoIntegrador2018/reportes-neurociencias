@@ -48,7 +48,7 @@ class SCL90WindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
-        
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
 
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
@@ -56,6 +56,7 @@ class SCL90WindowWidget(object):
         self.dsbSOM = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbSOM.setObjectName("dsbSOM")
         self.dsbSOM.setRange(0.00,4.00)
+        self.dsbSOM.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.dsbSOM)
         
 
@@ -65,6 +66,7 @@ class SCL90WindowWidget(object):
         self.dsbOBS = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbOBS.setObjectName("dsbOBS")
         self.dsbOBS.setRange(0.00,4.00)
+        self.dsbOBS.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.dsbOBS)
 
 
@@ -74,6 +76,7 @@ class SCL90WindowWidget(object):
         self.dsbINT = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbINT.setObjectName("dsbINT")
         self.dsbINT.setRange(0.00,4.00)
+        self.dsbINT.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.dsbINT)
 
 
@@ -83,6 +86,7 @@ class SCL90WindowWidget(object):
         self.dsbDEP = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbDEP.setObjectName("dsbDEP")
         self.dsbDEP.setRange(0.00,4.00)
+        self.dsbDEP.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.dsbDEP)
 
 
@@ -92,6 +96,7 @@ class SCL90WindowWidget(object):
         self.dsbANS = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbANS.setObjectName("dsbANS")
         self.dsbANS.setRange(0.00,4.00)
+        self.dsbANS.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.dsbANS)
 
 
@@ -101,6 +106,7 @@ class SCL90WindowWidget(object):
         self.dsbHOS = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbHOS.setObjectName("dsbHOS")
         self.dsbHOS.setRange(0.00,4.00)
+        self.dsbHOS.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.dsbHOS)
 
 
@@ -110,6 +116,7 @@ class SCL90WindowWidget(object):
         self.dsbFOB = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbFOB.setObjectName("dsbFOB")
         self.dsbFOB.setRange(0.00,3.95)
+        self.dsbFOB.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.dsbFOB)
 
 
@@ -119,6 +126,7 @@ class SCL90WindowWidget(object):
         self.dsbPAR = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbPAR.setObjectName("dsbPAR")
         self.dsbPAR.setRange(0.00,4.00)
+        self.dsbPAR.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.dsbPAR)
 
 
@@ -128,6 +136,7 @@ class SCL90WindowWidget(object):
         self.dsbPSI = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbPSI.setObjectName("dsbPSI")
         self.dsbPSI.setRange(0.00,3.89)
+        self.dsbPSI.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.dsbPSI)
 
 
@@ -137,6 +146,7 @@ class SCL90WindowWidget(object):
         self.dsbGSI = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbGSI.setObjectName("dsbGSI")
         self.dsbGSI.setRange(0.08,3.86)
+        self.dsbGSI.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(9, QtWidgets.QFormLayout.FieldRole, self.dsbGSI)
 
 
@@ -146,6 +156,7 @@ class SCL90WindowWidget(object):
         self.dsbPST = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbPST.setObjectName("dsbPST")
         self.dsbPST.setRange(5,90.0)
+        self.dsbPST.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(10, QtWidgets.QFormLayout.FieldRole, self.dsbPST)
 
 
@@ -155,6 +166,7 @@ class SCL90WindowWidget(object):
         self.dsbPSDI = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
         self.dsbPSDI.setObjectName("dsbPSDI")
         self.dsbPSDI.setRange(1.03,4.00)
+        self.dsbPSDI.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(11, QtWidgets.QFormLayout.FieldRole, self.dsbPSDI)
         
 

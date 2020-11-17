@@ -72,6 +72,16 @@ class ReporteWindowWidget(object):
         self.pbStart.setObjectName("pbStart")
         self.horizontalLayout_2.addWidget(self.pbStart)
 
+        self.pdSaveCsv = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pdSaveCsv.sizePolicy().hasHeightForWidth())
+        self.pdSaveCsv.setSizePolicy(sizePolicy)
+        self.pdSaveCsv.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pdSaveCsv.setObjectName("pdSaveCsv")
+        self.horizontalLayout_2.addWidget(self.pdSaveCsv)
+
         self.pbRestart = QtWidgets.QPushButton(self.verticalLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -112,6 +122,7 @@ class ReporteWindowWidget(object):
         # self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Vista previa del reporte"))
         self.pbStart.setText(_translate("Form", "Abrir en Navegador"))
+        self.pdSaveCsv.setText(_translate("Form", "Guardar csv"))
         self.pbRestart.setText(_translate("Form", "Nuevo Reporte"))
 
 

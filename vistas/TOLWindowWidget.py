@@ -48,6 +48,7 @@ class TOLWindowWidget(object):
         self.formLayout.setFormAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.formLayout.setContentsMargins(7, -1, 7, -1)
         self.formLayout.setObjectName("formLayout")
+        self.formLayout.setFieldGrowthPolicy(QtWidgets.QFormLayout.ExpandingFieldsGrow)
 
         self.label_8 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_8.setObjectName("label_8")
@@ -55,6 +56,7 @@ class TOLWindowWidget(object):
         self.sbTotalCorrectos = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTotalCorrectos.setObjectName("sbTotalCorrectos")
         self.sbTotalCorrectos.setRange(0,10)
+        self.sbTotalCorrectos.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbTotalCorrectos)
 
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -63,6 +65,7 @@ class TOLWindowWidget(object):
         self.sbMovimientosTotales = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbMovimientosTotales.setObjectName("sbMovimientosTotales")
         self.sbMovimientosTotales.setRange(0,1000)
+        self.sbMovimientosTotales.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbMovimientosTotales)
 
         self.label_10 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -71,6 +74,7 @@ class TOLWindowWidget(object):
         self.sbTiempoLatencia = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTiempoLatencia.setObjectName("sbTiempoLatencia")
         self.sbTiempoLatencia.setRange(0,1000)
+        self.sbTiempoLatencia.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.sbTiempoLatencia)
 
         self.label_11 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -79,6 +83,7 @@ class TOLWindowWidget(object):
         self.sbTiempoEjecucion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTiempoEjecucion.setObjectName("sbTiempoEjecucion")
         self.sbTiempoEjecucion.setRange(0,1000)
+        self.sbTiempoEjecucion.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbTiempoEjecucion)
 
         self.label_12 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -87,6 +92,7 @@ class TOLWindowWidget(object):
         self.sbTiempoResolucion = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTiempoResolucion.setObjectName("sbTiempoResolucion")
         self.sbTiempoResolucion.setRange(0,1000)
+        self.sbTiempoResolucion.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbTiempoResolucion)
 
         self.label_13 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -95,6 +101,7 @@ class TOLWindowWidget(object):
         self.sbVT = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbVT.setObjectName("sbVT")
         self.sbVT.setRange(0,100)
+        self.sbVT.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.sbVT)
 
         self.label_14 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -103,6 +110,7 @@ class TOLWindowWidget(object):
         self.sbVR = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbVR.setObjectName("sbVR")
         self.sbVR.setRange(0,100)
+        self.sbVR.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.sbVR)
 
         self.verticalLayout_2.addLayout(self.formLayout)

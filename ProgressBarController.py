@@ -7,7 +7,6 @@ class ProgressBarController(QtWidgets.QWidget):
         QtWidgets.QWidget.__init__(self)
         self.pruebasRealizadas = 0
         self.numDePruebas = numDePruebas
-        print(self.numDePruebas)
 
     def setProgressBar(self, progressBar):
         """

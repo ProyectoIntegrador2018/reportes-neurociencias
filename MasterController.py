@@ -105,6 +105,7 @@ class MasterController:
 
         self.currentWindow = self.router.getView("dummyWindow")
         self.nextWindow = self.router.getView("seleccionarPruebas")
+        self.nextController = None
         self.reporteModel = None
 
     def initPossibleRoutes(self, possibleRoutes):
@@ -152,7 +153,9 @@ class MasterController:
             if routePage == "informacionSujeto":
                 currentController.updateButtonText("Actualizar Información")
             else:
-                currentController.updateButtonText("Actualizar Datos")
+                fun_update = getattr(currentController, "updateButtonText", None)
+                if callable(fun_update):
+                    currentController.updateButtonText("Actualizar Datos")
 
     def loadView(self):
         """
@@ -204,16 +207,16 @@ class MasterController:
          Args:
           elemSelected: Lista que contiene el elemento seleccionado
         """
-        self.nextWindow, currentController = self.router.getRouteViewAndController(
+        self.nextWindow, self.nextController = self.router.getRouteViewAndController(
             elemSelected)
-        # print("hola", self.nextWindow, currentController, elemSelected)
+        # print("hola", self.nextWindow, self.nextController, elemSelected)
         progress = self.getRouteProgress(elemSelected)
         self.menuController.updateCurrentWindow(progress)
 
         if self.windowsAreDifferent():
-            self.connectMenu(currentController)
-            self.connectProgressBar(currentController)
-            self.updateButtonText(elemSelected, currentController)
+            self.connectMenu(self.nextController)
+            self.connectProgressBar(self.nextController)
+            self.updateButtonText(elemSelected, self.nextController)
             self.loadView()
 
     def windowsAreDifferent(self):
@@ -230,7 +233,7 @@ class MasterController:
           modalTitle: Título de la ventana
           modalHeader: Encabezado de la ventana
         """
-        print("modal 1")
+        # print("modal 1")
         self.modalController.setWindowTitle(modalTitle)
         self.modalController.setHeader(modalHeader)
         self.modalController.setContenido(listMissingElem)
@@ -357,7 +360,8 @@ def main():
      Método principal en la ejecución del programa
     """
     app = QtWidgets.QApplication(sys.argv)
-    app.setStyleSheet(open('app.css').read())
+    with open('app.css', 'r') as f:
+        app.setStyleSheet(f.read())
     masterController = MasterController()
     masterController.showMainWindow()
     sys.exit(app.exec_())
