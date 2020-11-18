@@ -613,7 +613,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			append_write = 'w' # make a new file if not
 
 		data = self.getRowData()
-		with open(fileName,append_write) as f:
+		with open(fileName,append_write, newline='', encoding='utf-8') as f:
 			w = csv.DictWriter(f, self.csvHeaders)
 			if append_write == 'w':
 				w.writeheader()
