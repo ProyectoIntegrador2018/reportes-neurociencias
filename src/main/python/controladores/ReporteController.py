@@ -34,8 +34,9 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		tempUrl = os.path.join(tmpdir, "reporte.html")
 		cssUrl = APPCTXT().get_resource("./vistas/Reporte/reporte.css")
 		copyfile(cssUrl, os.path.join(tmpdir, 'reporte.css'))
-		imageUrl = APPCTXT().get_resource("./vistas/Reporte/reporte.png")
-		copyfile(imageUrl, os.path.join(tmpdir, 'reporte.png'))
+		imageUrl = os.path.join(tmpdir, 'reporte.png')
+		# imageUrl = APPCTXT().get_resource("./vistas/Reporte/reporte.png")
+		# copyfile(imageUrl, os.path.join(tmpdir, 'reporte.png'))
 		logoUrl = APPCTXT().get_resource("./vistas/Reporte/logoReporte.png")
 		copyfile(logoUrl, os.path.join(tmpdir, 'logoReporte.png'))
 		print(tmpdir)
@@ -137,8 +138,11 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		plt.xlim(-0.1, 20.1)
 		plt.ylim(-1,len(escalaresLabel)-0.5)
 		plt.plot(escalares, yPos, marker = 'o', color = 'Red', linewidth=1)
+		if os.path.isfile(self.image):
+			os.remove(self.image)
 		plt.savefig(self.image, bbox_inches='tight')
 		plt.clf() #con esta linea no se sobreescriben puntos en la grafica al actualizar los datos de las pruebas
+		plt.close(fig)
 
 	
 	def createTableHeaders(self, encabezados):
@@ -360,7 +364,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		### uncomment for image
 		escalares = [int(x) for x in escalares]
-
+		print(escalaresLabel, escalares)
 		#Se crean las imagenes a mostrar
 		self.createTableImg(escalares, escalaresLabel)
 		
