@@ -8,3 +8,6 @@ __pycache__/
 venv/
 ui/
 TODO
+target/
+src/**/**.pyo
+*.DS_Store

@@ -1,0 +1,64 @@
+QProgressBar {
+  border: 2px solid grey;
+  text-align: center;
+  border-radius: 5px;
+}
+
+QProgressBar::chunk {
+  background-color: #f28b00;
+  width: 20px;
+}
+
+QDateEdit,
+QLineEdit,
+QComboBox {
+  margin-right: 10px;
+  border-width: 3px;
+}
+
+QSpinBox {
+  /*padding-right: 15px;  make room for the arrows */
+  /*border-image: url(:/images/frame.png) 4;*/
+  margin-right: 10px;
+  border-width: 3px;
+}
+
+QLabel,
+QLineEdit,
+QComboBox,
+QMessageBox {
+  font: 13px;
+  color: #051e34;
+}
+
+QListView {
+  border: solid;
+  border-width: 1px;
+}
+
+QPushButton {
+  background-color: #f6f9ff;
+  border-style: outset;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: #051e34;
+  color: #051e34;
+  font: 14px;
+  min-width: 10em;
+  padding: 6px;
+}
+
+QPushButton:hover {
+  background-color: #585858;
+  color: white;
+  border-style: inset;
+}
+
+QPushButton:pressed {
+  background-color: #f28b00;
+  border-style: inset;
+}
+
+QComboBox {
+  padding-left: 8px;
+}
