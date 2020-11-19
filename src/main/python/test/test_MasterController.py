@@ -9,12 +9,16 @@ from MasterController import MasterController
 class TestMainWindow(UsesQApplication):
 
     def setUp(self):
-        self.app = QtWidgets.QApplication([])
-        self.app.setStyleSheet(open('app.css').read())
+        super(TestMainWindow, self).setUp()
+        # self.app = QtWidgets.QApplication([])
+        cssUrl = self.app.get_resource("app.css")
+        with open(cssUrl, 'r') as f:
+            self.app.app.setStyleSheet(f.read())
+        # self.app.app.setStyleSheet(open('app.css').read())
         self.ui = MasterController()
 
     def tearDown(self):
-        self.app.deleteLater()
+        self.app.app.deleteLater()
 
     def fillInfo(self, form, info):
         field = form.findChild(QtWidgets.QLineEdit, "leName")

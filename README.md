@@ -135,3 +135,19 @@ Tener `fbs` instalado. Para esto se recomienda usar un virtual environment con l
 Correr `fbs freeze`. Este comando va a volver a generar la carpeta de `target` con el `.exe` del proyecto adentro (en caso de window), en caso de mac te generar un archivo .app.
 
 Para crear el instalador correr el comando `fbs installer` para mas informacion dirigete a la documentacion de fbs
+
+### Ejecutar Pruebas
+
+para correr las pruebas unitarias:
+
+1. cambiar de directorio a `src/main/python`
+
+```bash
+$ cd ./src/main/python
+```
+
+2. ejecutar pruebas con unittest
+
+```bash
+$ python -m unittest
+```

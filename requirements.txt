@@ -1,0 +1,8 @@
+git+https://github.com/Infinity0106/fbs.git
+matplotlib==3.1.0
+numpy==1.19.1
+pandas==0.25.3
+PyInstaller==3.5
+PyQt5==5.12.1
+PyQtWebEngine==5.12.1
+setuptools==50.3.2
