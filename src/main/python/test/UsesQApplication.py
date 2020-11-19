@@ -1,7 +1,9 @@
 import unittest
 
 
-from PyQt5.QtWidgets import QApplication
+# from PyQt5.QtWidgets import QApplication
+from fbs_runtime.application_context.PyQt5 import ApplicationContext
+# ApplicationContext()
 _instance = None
 
 class UsesQApplication(unittest.TestCase):
@@ -16,7 +18,8 @@ class UsesQApplication(unittest.TestCase):
         super(UsesQApplication, self).setUp()
         global _instance
         if _instance is None:
-            _instance = QApplication([])
+            # _instance = QApplication([])
+            _instance = ApplicationContext()
 
         self.app = _instance
 

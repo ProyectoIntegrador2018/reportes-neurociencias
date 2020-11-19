@@ -9,5 +9,6 @@ venv/
 ui/
 TODO
 target/
+target_tmp/
 src/**/**.pyo
 *.DS_Store
