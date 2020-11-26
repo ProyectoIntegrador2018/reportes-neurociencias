@@ -23,6 +23,9 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		self.reporteModel = reporteModel
 		self.mainWindow = mainWindow
 
+		self.hasSaveCSV = False
+		self.csvDialogHasShown = False
+
 		tmpdir = os.path.join(tempfile.gettempdir(), "synapps")
 		if not os.path.exists(tmpdir):
 			os.makedirs(tmpdir)
@@ -58,13 +61,11 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"D2":[('O', 'TA', 'TR', 'T', 'I', 'C', 'DI')],
 			"HVLT-R":[('DD', 'ABS')],
 			"STROOP":[('B', 'A', 'Dif')],
-			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
-			# ['FLUIDEZ', 'DENOM', 'COMP V', 'BVMT-R', 'TMT', 'ABS', 'DIGITOS', 'SDMT', 'LNS', 'D2', 'HVLT-R', 'STROOP', 'TOL-DX']
-			# [[(3, 3)], [(1, 1)], [(1, 1)], [(3, 3)], [(18, 18)], [1], [(3, 3)], [3], [(3.0, 3.0)], [(3, 3, 19, 13, 3, 3, 19)], [(5, 5)], [(2, 2, 2)], [(5, 18, 2, 18, 18, 11, 10)]]
-			# ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O', 'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']
-			# [3, 3, 1, 1, 1, 1, 3, 3, 18, 18, 1, 3, 3, 3, 3, 3, 3, 3, 19, 13, 3, 3, 19, 5, 5, 2, 2, 2, 5, 18, 2, 18, 18, 11, 10]
+			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')]
 		}
-		self.csvHeaders = ['RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
+		self.csvHeaders = ["nombreExaminado","id","fecha","genero","edad","fechaNacimiento",
+			"lateralidad","nombreExaminador","carrera","semestre","educacion","equipo","deporte",
+			'RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
 			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']
 		self.escalares = []
 		self.escalaresLabel = []
@@ -601,7 +602,9 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		if not fileName:
 			return
 
-		self.saveToCsv(fileName)
+		if not self.hasSaveCSV:
+			self.saveToCsv(fileName)
+			self.hasSaveCSV = True
 
 	def saveToCsv(self, fileName):
 		reporte = self.reporteModel.reporte
@@ -629,6 +632,11 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			if key not in dicInfo:
 				dicInfo[key] = "nan"
 		
+		# append user info
+		tmp = dict(self.reporteModel.reporte)
+		del tmp["resultados"]
+		dicInfo.update(tmp)
+
 		return dicInfo
 
 	def getDatos(self):
