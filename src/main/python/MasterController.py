@@ -349,6 +349,14 @@ class MasterController:
         """
          Metodo que se encarga de crear un nuevo reporte y regresar a la pantalla principal
         """
+        reporteController = self.router.getController("report")
+        if not reporteController.hasSaveCSV and not reporteController.csvDialogHasShown:
+            self.displayModal([], 
+                    modalTitle="Guarda los datos",
+                    modalHeader="No has guardado el reporte en CSV, tus datos se perderan \nSi planeas guardar tus datos da click en Guardar CSV")
+            reporteController.csvDialogHasShown = True
+            return
+
         self.resetReport(False)
         self.router.getController("seleccionarPruebas").newInfo()
         self.router.getController("informacionSujeto").newInfo()
@@ -392,3 +400,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
