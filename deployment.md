@@ -17,6 +17,8 @@ Tener las siguientes herramientas instaladas y configuradas:
 - Pandas [Instrucciones](https://pandas.pydata.org/pandas-docs/version/0.23.3/install.html)
 - PyQt5 [Instrucciones](https://pypi.org/project/PyQt5/)
 - Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
+- Pyinstaller [Instrucciones](https://pyinstaller.readthedocs.io/en/stable/installation.html)
+- Fbs [Instrucciones](https://pypi.org/project/fbs/)
 
 ### Clonar o actualizar repositorio
 
@@ -54,6 +56,8 @@ Por favor instala los siguientes paquetes/librerías:
 - Pandas [Instrucciones](https://pandas.pydata.org/pandas-docs/version/0.23.3/install.html)
 - PyQt5 [Instrucciones](https://pypi.org/project/PyQt5/)
 - Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
+- Pyinstaller [Instrucciones](https://pyinstaller.readthedocs.io/en/stable/installation.html)
+- Fbs [Instrucciones](https://pypi.org/project/fbs/)
 
 Después de instalar lo anterior sigue los siguientes pasos:
 
@@ -92,3 +96,11 @@ Tener `fbs` instalado. Para esto se recomienda usar un virtual environment con l
 Correr `fbs freeze`. Este comando va a volver a generar la carpeta de `target` con el `.exe` del proyecto adentro (en caso de window), en caso de mac te generar un archivo .app.
 
 Para crear el instalador correr el comando `fbs installer` para mas informacion dirigete a la documentacion de fbs
+
+### Para ejecutar en Mac
+
+Para que el programa genere reportes en Mac, es necesario correrlo desde terminal. Dentro de la ruta del proyecto, ejecutar el siguiente comando:
+
+```bash
+$ open ./reportes_neurociencias.app
+```
