@@ -41,6 +41,16 @@ Versión 2:
 | Alejandro Lozano | A01192979@itesm.mx | Product Owner Proxy |
 | Bernarno Orozco | A00819128@itesm.mx | Config Admin |
 
+
+Versión 3:
+
+| Name          | Email              | Role                |
+| --------------| ------------------ | ------------------- |
+| Martin Ruiz   | A00821630@itesm.mx | Scrum Master        |
+| Pablo Andrade | A01193740@itesm.mx | Product Owner Proxy |
+| Alberto Juárez| A01281913@itesm.mx | Project Admin       |
+| Jesús Rivera  | A00820643@itesm.mx | Config Admin        |
+
 ### Technology Stack
 
 | Technology    | Version |
