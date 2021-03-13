@@ -66,7 +66,7 @@ Versión 3:
 ### Management tools
 
 - [Github repo](https://github.com/ProyectoIntegrador2018/reportes-neurociencias)
-- [Backlog](https://teams.microsoft.com/_#/school/tab::3486c230-987e-44f4-8449-6d0f424ed9ca/Equipo%201.07%20-%20Neuro%20JAB?threadId=19:6ea329083a1244509f40ee637eedb7d9@thread.tacv2&ctx=channel)
+- [Backlog](https://teams.microsoft.com/l/file/EBA7B996-65E1-44BE-AD2D-88DDAC1C7B51?tenantId=c65a3ea6-0f7c-400b-8934-5a6dc1705645&fileType=xlsx&objectUrl=https%3A%2F%2Ftecmx.sharepoint.com%2Fsites%2FProy.IntegradorFJ2021-grupo2-Equipo2.4%2FShared%20Documents%2FEquipo%202.4%2FNeuroPy%2FApertura%2FAP%20E2.4%20Product%20Backlog.xlsx&baseUrl=https%3A%2F%2Ftecmx.sharepoint.com%2Fsites%2FProy.IntegradorFJ2021-grupo2-Equipo2.4&serviceName=teams&threadId=19:e54d4fd06c2547bf91ed6ea875e587fe@thread.tacv2&groupId=b3aaaa65-86d9-4ba0-807a-3b0e17ae6d90)
 - [Documentation](https://teams.microsoft.com/_#/school/files/Proyecto?threadId=19:5c8da14bf8e34bdc9d277b396f93fc4f@thread.tacv2&ctx=channel)
 
 ## Development
