@@ -1,8 +1,7 @@
-#Controlador de la vista MainWindow
+# Controlador de la vista MainWindow
 import sys
 import re
 from PyQt5 import QtWidgets, QtCore
-# from FluidezVerbalController import *
 from MainWindowWithListWidget import *
 from ReporteModel import *
 from datetime import datetime
@@ -45,7 +44,7 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de Fluidez Verbal
+		 Método que toma los datos ingresados en la vista de Informacion de Sujeto
 		"""
 		vista = self.mainWindowView
 		nombre = vista.leName.text()
