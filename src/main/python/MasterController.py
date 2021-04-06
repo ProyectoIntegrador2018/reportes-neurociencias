@@ -218,9 +218,12 @@ class MasterController:
          Args:
           elemSelected: Lista que contiene el elemento seleccionado
         """
-        self.nextWindow, self.nextController = self.router.getRouteViewAndController(
-            elemSelected)
-        # print("hola", self.nextWindow, self.nextController, elemSelected)
+        self.nextWindow, self.nextController = self.router.getRouteViewAndController(elemSelected)
+        
+        if elemSelected == "report":
+            self.router.setController(elemSelected, self.nextController.__class__, self.reporteModel)
+            self.nextWindow, self.nextController = self.router.getRouteViewAndController(elemSelected)
+            
         progress = self.getRouteProgress(elemSelected)
         self.menuController.updateCurrentWindow(progress)
 
@@ -336,8 +339,8 @@ class MasterController:
                 if not isinstance(prevPrueba, ReporteModel):
                     self.reporteModel.addPrueba(prevPrueba)
 
-                self.router.setController(
-                    nameKey, ClassRef, self.reporteModel)
+                if self.router.getController(nameKey) is None or nameKey == "report" :
+                    self.router.setController(nameKey, ClassRef, self.reporteModel)
 
                 self.addPaginaVisitada(nameKey)
                 self.menuController.updatePagesVisited(self.paginasVisitadas)
