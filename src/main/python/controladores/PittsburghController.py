@@ -8,20 +8,27 @@ from PruebaModel import *
 from ControllerModel import *
 
 class PittsburghController(QtWidgets.QWidget, ControllerModel):
-    switch_window = QtCore.pyqtSignal(object, object)
+    switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def __init__(self, mainWindow, reporteModel = None):
         QtWidgets.QWidget.__init__(self)
         self.pittsburghView = PittsburghWindowWidget(mainWindow)
         self.pittsburghView.pbStart.clicked.connect(self.getDatos)
+        self.pittsburghView.backButton.clicked.connect(self.returnView)
         self.reporteModel = reporteModel
         self.invalidArgs = list()
-    
+
+    def returnView(self):
+        """
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+        self.switch_window.emit(self.invalidArgs, self.pittsburghPrueba, True)
+	
     def changeView(self):
         """
         Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
         """
-        self.switch_window.emit(self.invalidArgs, self.pittsburghPrueba)
+        self.switch_window.emit(self.invalidArgs, self.pittsburghPrueba, False)
     
 
     def getDatos(self):

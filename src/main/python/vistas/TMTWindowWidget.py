@@ -1,17 +1,16 @@
 #Vista de la prueba TMT
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AppCtxt import APPCTXT
+from .mixins import WindowWidgetMixin
 
-class TMTWindowWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
-
+class TMTWindowWidget(WindowWidgetMixin):
     def setupUi(self, Form):
         """
          Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
          Args:
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
+        super().setupUI(Form)
         Form.setObjectName("Form")
         Form.resize(800, 598)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
@@ -110,6 +109,7 @@ class TMTWindowWidget(object):
         self.label_8.setText(_translate("Form", "Puntuación en TMT A: "))
         self.label_9.setText(_translate("Form", "Puntuación en TMT B: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+        self.backButton.setText(_translate("Form", "Regresar al Menu"))
 
 
 # if __name__ == "__main__":

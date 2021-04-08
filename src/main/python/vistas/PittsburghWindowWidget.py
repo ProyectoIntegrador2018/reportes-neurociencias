@@ -1,17 +1,16 @@
 #Vista de la prueba de Pittsburgh
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AppCtxt import APPCTXT
+from .mixins import WindowWidgetMixin
 
-class PittsburghWindowWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
-
+class PittsburghWindowWidget(WindowWidgetMixin):
     def setupUi(self, Form):
         """
          Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
          Args:
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
+        super().setupUI(Form)
         Form.setObjectName("Form")
         Form.resize(800, 598)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
@@ -169,6 +168,7 @@ class PittsburghWindowWidget(object):
         self.label_13.setText(_translate("Form", "Componente 6:"))
         self.label_14.setText(_translate("Form", "Componente 7:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+        self.backButton.setText(_translate("Form", "Regresar al Menu"))
 
 
 #if __name__ == "__main__":

@@ -7,22 +7,29 @@ from pruebas.DenominacionPrueba import DenominacionPrueba
 from ControllerModel import * 
 
 class DenominacionController(QtWidgets.QWidget, ControllerModel):
-
-    switch_window = QtCore.pyqtSignal(object, object)
+    # Atributo empleado para realizar el cambio de vista
+    switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def __init__(self, mainWindow, reporteModel=None):
         QtWidgets.QWidget.__init__(self)
         self.denominacionView = DenominacionWidget(mainWindow)
         self.denominacionView.pbStart.clicked.connect(self.getDatos)
+        self.denominacionView.backButton.clicked.connect(self.returnView)
         self.reporteModel = reporteModel
         self.invalidArgs = list()
     
+    def returnView(self):
+        """
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+        self.switch_window.emit(self.invalidArgs, self.denominacionPrueba, True)
+	
     def changeView(self):
         """
         Metodo de notificar los elementos que seran pasados a la siguiene vista como parametros
         """
         # print("Ando en changeView de Denominacion")
-        self.switch_window.emit(self.invalidArgs, self.denominacionPrueba)
+        self.switch_window.emit(self.invalidArgs, self.denominacionPrueba, False)
     
     def getDatos(self):
         """

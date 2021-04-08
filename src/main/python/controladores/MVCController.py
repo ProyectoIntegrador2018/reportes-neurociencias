@@ -6,17 +6,24 @@ from PruebaModel import *
 from ReporteModel import *
 
 class MVCController(QtWidgets.QWidget):
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.MVCView = MVCWindowWidget(mainWindow)
 		self.MVCView.pbStart.clicked.connect(self.getDatos)
+		self.MVCView.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.MVCPrueba, True)
 	
 	def changeView(self):
-		self.switch_window.emit(self.invalidArgs, self.MVCPrueba)
+		self.switch_window.emit(self.invalidArgs, self.MVCPrueba, False)
 
 
 	def getDatos(self):

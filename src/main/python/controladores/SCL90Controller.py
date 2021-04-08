@@ -10,20 +10,27 @@ from ControllerModel import *
 
 class SCL90Controller(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.SCL90View = SCL90WindowWidget(mainWindow)
 		self.SCL90View.pbStart.clicked.connect(self.getDatos)
+		self.SCL90View.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+	
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.SCL90Prueba, True)
 	
 	def changeView(self):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.SCL90Prueba)
+		self.switch_window.emit(self.invalidArgs, self.SCL90Prueba, False)
 
 
 	def getDatos(self):

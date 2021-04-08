@@ -8,20 +8,27 @@ from PruebaModel import *
 from ControllerModel import *
 
 class TOLController(QtWidgets.QWidget, ControllerModel):
-    switch_window = QtCore.pyqtSignal(object, object)
+    switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def __init__(self, mainWindow, reporteModel = None):
         QtWidgets.QWidget.__init__(self)
         self.tolView = TOLWindowWidget(mainWindow)
         self.tolView.pbStart.clicked.connect(self.getDatos)
+        self.tolView.backButton.clicked.connect(self.returnView)
         self.reporteModel = reporteModel
         self.invalidArgs = list()
     
+    def returnView(self):
+        """
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+        self.switch_window.emit(self.invalidArgs, self.tolPrueba, True)
+
     def changeView(self):
         """
         Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
         """
-        self.switch_window.emit(self.invalidArgs, self.tolPrueba)
+        self.switch_window.emit(self.invalidArgs, self.tolPrueba, False)
     
 
     def getDatos(self):

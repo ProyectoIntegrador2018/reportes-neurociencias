@@ -285,52 +285,68 @@ class MasterController:
             self.menuController.updatePagesVisited(self.paginasVisitadas)
             self.showSpecificWindowMenu("informacionSujeto")
 
-    def asignaReporte(self, listMissingElem, reporte):
+    def asignaReporte(self, listMissingElem, reporte, reset=False):
         """
          Método que se encarga de asignar los valores agregados al reporte
          Args:
           listMissingElem: Lista de elementos inválidos
           reporte: Objeto de tipo reporte que será asignado al reporte de todas las pruebas
         """
-
-        listModElem = list()
-        if len(listMissingElem) != 0:
-            self.displayModal(listMissingElem)
-
-        else:
-            if isinstance(self.reporteModel, type(None)):
-                self.reporteModel = reporte
-            else:
-                if self.reporteModel.reporte['educacion'] != reporte.reporte['educacion']:
-                    listModElem.append("Escolaridad")
-                if self.reporteModel.reporte['edad'] != reporte.reporte['edad']:
-                    listModElem.append("Edad")
-                if self.reporteModel.reporte['genero'] != reporte.reporte['genero']:
-                    listModElem.append("Género")
-
-                if len(listModElem) == 0:
-                    tempResultados = self.reporteModel.updateReporte(reporte)
-                    self.reporteModel.updateResultados(tempResultados)
-                else:
-                    modalTitle = "Favor de volver a ingresar las pruebas"
-                    modalHeader = "Los cambios realizados a los siguientes elementos modifican el valor de algunas pruebas: "
-                    self.displayModal(listModElem, modalTitle, modalHeader)
-                    self.menuController.resetPagesVisited(
-                        self.resetPaginasVisitadas())
-                    resetMainWindow = False
-                    self.resetReport(resetMainWindow)
-                    self.reporteModel = reporte
+        if reset:
             nextKey = self.router.getNextPageKey("informacionSujeto")
             func = self.pagesFunctions[nextKey]
             self.addPaginaVisitada("informacionSujeto")
             self.menuController.updatePagesVisited(self.paginasVisitadas)
-            func([], self.reporteModel)
+            func([], self.reporteModel, True)
 
-        self.router.getController("informacionSujeto").emptyMissingArgs()
+            self.resetReport(False)
+            self.router.getController("seleccionarPruebas").newInfo()
+            self.router.getController("informacionSujeto").newInfo()
+            self.showMainWindow()
+        else:
+            listModElem = list()
+            if len(listMissingElem) != 0:
+                self.displayModal(listMissingElem)
+
+            else:
+                if isinstance(self.reporteModel, type(None)):
+                    self.reporteModel = reporte
+                else:
+                    if self.reporteModel.reporte['educacion'] != reporte.reporte['educacion']:
+                        listModElem.append("Escolaridad")
+                    if self.reporteModel.reporte['edad'] != reporte.reporte['edad']:
+                        listModElem.append("Edad")
+                    if self.reporteModel.reporte['genero'] != reporte.reporte['genero']:
+                        listModElem.append("Género")
+
+                    if len(listModElem) == 0:
+                        tempResultados = self.reporteModel.updateReporte(reporte)
+                        self.reporteModel.updateResultados(tempResultados)
+                    else:
+                        modalTitle = "Favor de volver a ingresar las pruebas"
+                        modalHeader = "Los cambios realizados a los siguientes elementos modifican el valor de algunas pruebas: "
+                        self.displayModal(listModElem, modalTitle, modalHeader)
+                        self.menuController.resetPagesVisited(
+                            self.resetPaginasVisitadas())
+                        resetMainWindow = False
+                        self.resetReport(resetMainWindow)
+                        self.reporteModel = reporte
+                nextKey = self.router.getNextPageKey("informacionSujeto")
+                func = self.pagesFunctions[nextKey]
+                self.addPaginaVisitada("informacionSujeto")
+                self.menuController.updatePagesVisited(self.paginasVisitadas)
+                func([], self.reporteModel)
+
+            self.router.getController("informacionSujeto").emptyMissingArgs()
 
     def customShow(self, nameKey, ClassRef):
-        def F(invalidArgs, prevPrueba):
-            if len(invalidArgs) != 0:
+        def F(invalidArgs, prevPrueba, reset=False):
+            if reset:
+                self.resetReport(False)
+                self.router.getController("seleccionarPruebas").newInfo()
+                self.router.getController("informacionSujeto").newInfo()
+                self.showMainWindow()
+            elif len(invalidArgs) != 0:
                 self.displayModal(
                     invalidArgs, modalHeader="Deben de ser mayor a 0:")
                 self.router.getController(

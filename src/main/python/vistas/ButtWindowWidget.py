@@ -1,18 +1,16 @@
 #Vista de la prueba Motivos de Butt
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AppCtxt import APPCTXT
+from .mixins import WindowWidgetMixin
 
-
-class ButtWindowWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
-
+class ButtWindowWidget(WindowWidgetMixin):
     def setupUi(self, Form):
         """
          Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
          Args:
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
+        super().setupUI(Form)
         Form.setObjectName("Form")
         Form.resize(800, 598)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
@@ -138,6 +136,7 @@ class ButtWindowWidget(object):
         self.label_12.setText(_translate("Form", "Agresividad: "))
 
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+        self.backButton.setText(_translate("Form", "Regresar al Menu"))
 
 
 # if __name__ == "__main__":

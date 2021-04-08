@@ -1,20 +1,18 @@
-#Vista de la prueba de Abstraccion
+# Vista de la prueba de Abstraccion
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QWidget
 from PyQt5.QtGui import QPixmap, QIcon
 from AppCtxt import APPCTXT
+from .mixins import WindowWidgetMixin
 
-
-class AbstraccionWindowWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
-
+class AbstraccionWindowWidget(WindowWidgetMixin):
     def setupUi(self, Form):
         """
          Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
          Args:
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
+        super().setupUI(Form)
         Form.setObjectName("Form")
         Form.resize(800, 598)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
@@ -114,6 +112,7 @@ class AbstraccionWindowWidget(object):
         self.label_4.setText(_translate("Form", "Ingrese los datos de la prueba Abstracción"))
         self.label_8.setText(_translate("Form", "Puntuación en semejanza-abstracción: "))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+        self.backButton.setText(_translate("Form", "Regresar al Menu"))
 
 
 if __name__ == "__main__":

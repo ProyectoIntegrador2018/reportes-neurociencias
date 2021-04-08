@@ -229,6 +229,11 @@ class MainWindowWithListWidget(object):
         self.verticalLayout.addLayout(self.verticalLayout_2)
         self.verticalLayout.setStretch(0, 6)
         self.verticalLayout.setStretch(0, 0)
+
+        self.backButton = QtWidgets.QPushButton(Form)
+        self.backButton.setGeometry(QtCore.QRect(15, 50, 20, 30))
+        self.backButton.setObjectName("returnButton")
+
         self.lWVistas = QtWidgets.QListWidget(Form)
         self.lWVistas.setGeometry(QtCore.QRect(0, 90, 221, 451))
         self.lWVistas.setObjectName("lWVistas")
@@ -267,3 +272,5 @@ class MainWindowWithListWidget(object):
         self.label_14.setText(_translate("Form", "Equipo:"))
         self.label_15.setText(_translate("Form", "Deporte:"))
         self.pbStart.setText(_translate("Form", "Comenzar Captura"))
+        self.backButton.setText(_translate("Form", "Regresar al Menu"))
+
