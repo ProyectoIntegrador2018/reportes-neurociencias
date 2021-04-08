@@ -10,20 +10,27 @@ from ControllerModel import *
 
 class LNSController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.lnsView = LNSWindowWidget(mainWindow)
 		self.lnsView.pbStart.clicked.connect(self.getDatos)
+		self.lnsView.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+	
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.lnsPrueba, True)
 	
 	def changeView(self):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.lnsPrueba)
+		self.switch_window.emit(self.invalidArgs, self.lnsPrueba, False)
 
 
 	def getDatos(self):

@@ -7,23 +7,29 @@ from pruebas.D2Prueba import *
 from PruebaModel import *
 from ControllerModel import *
 
-
 class D2Controller(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.d2View = D2WindowWidget(mainWindow)
 		self.d2View.pbStart.clicked.connect(self.getDatos)
+		self.d2View.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.d2Prueba, True)
 	
 	def changeView(self):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.d2Prueba)
+		self.switch_window.emit(self.invalidArgs, self.d2Prueba, False)
 
 
 	def getDatos(self):

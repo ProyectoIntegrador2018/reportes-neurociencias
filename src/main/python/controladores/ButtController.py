@@ -10,20 +10,27 @@ from ControllerModel import *
 
 class ButtController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.buttView = ButtWindowWidget(mainWindow)
 		self.buttView.pbStart.clicked.connect(self.getDatos)
+		self.buttView.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+	
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.buttPrueba, True)
 	
 	def changeView(self):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.buttPrueba)
+		self.switch_window.emit(self.invalidArgs, self.buttPrueba, False)
 
 
 	def getDatos(self):

@@ -11,21 +11,27 @@ from ControllerModel import *
 
 class HopkinsController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.hopkinsView = HopkinsWindowWidget(mainWindow)
 		self.hopkinsView.pbStart.clicked.connect(self.getDatos)
+		self.hopkinsView.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+	
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.hopkinsPrueba, True)
 	
 	def changeView(self):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.hopkinsPrueba)
-
+		self.switch_window.emit(self.invalidArgs, self.hopkinsPrueba, False)
 
 	def getDatos(self):
 		"""

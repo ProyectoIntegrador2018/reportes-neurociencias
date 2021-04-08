@@ -5,18 +5,24 @@ from ReporteModel import *
 from ControllerModel import *
 
 class SDMTController(QtWidgets.QWidget, ControllerModel):
-    switch_window = QtCore.pyqtSignal(object, object)
+    switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def __init__(self, mainWindow, ReporteModel = None):
         QtWidgets.QWidget.__init__(self)
         self.sdmtView = SDMTWindowWidget(mainWindow)
         self.sdmtView.pbStart.clicked.connect(self.getDatos)
+        self.sdmtView.backButton.clicked.connect(self.returnView)
         self.reporteModel = ReporteModel
         self.invalidArgs = list()
     
-
+    def returnView(self):
+        """
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+        self.switch_window.emit(self.invalidArgs, self.sdmtPrueba, True)
+	
     def changeView(self):
-        self.switch_window.emit(self.invalidArgs, self.sdmtPrueba)
+        self.switch_window.emit(self.invalidArgs, self.sdmtPrueba, False)
     
 
     def getDatos(self):
