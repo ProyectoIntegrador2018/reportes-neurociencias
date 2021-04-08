@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import csv
+import pdfkit
+#from weasyprint import HTML, CSS
 from AppCtxt import APPCTXT
 # from MasterController import appctxt
 import tempfile
@@ -24,6 +26,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		self.mainWindow = mainWindow
 
 		self.hasSaveCSV = False
+		self.hasSavePDF = False
 		self.csvDialogHasShown = False
 
 		tmpdir = os.path.join(tempfile.gettempdir(), "synapps")
@@ -45,6 +48,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		print(tmpdir)
 
 		self.url = tempUrl
+		self.cssUrl = cssUrl
 		self.image = imageUrl
 		self.logo = logoUrl
 		self.reporteView = None
@@ -90,7 +94,43 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de abrir el reporte en el navegador predefinido para abrir los HTML
 		"""
-		Qt.QDesktopServices.openUrl(Qt.QUrl.fromLocalFile(self.url))
+		#Qt.QDesktopServices.openUrl(Qt.QUrl.fromLocalFile(self.url))
+		options = QtWidgets.QFileDialog.Options()
+		options |= QtWidgets.QFileDialog.DontUseNativeDialog
+		options |= QtWidgets.QFileDialog.DontConfirmOverwrite
+		fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","PDF (*.pdf)", options=options)
+		if not fileName:
+			return
+
+		if not self.hasSavePDF:
+			self.saveToPdf(fileName)
+			self.hasSavePDF = True
+
+	def saveToPdf(self, fileName):
+		options = {
+			'disable-smart-shrinking': '',
+			"enable-local-file-access": None,
+  			"print-media-type": None,
+		}
+
+		pdfkit.from_file(self.url, fileName + '.pdf',options=options)
+		#HTML(self.url).write_pdf(fileName)
+		# reporte = self.reporteModel.reporte
+
+		# append_write = ""
+		# if os.path.exists(fileName):
+		# 	append_write = 'a' # append if already exists
+		# else:
+		# 	append_write = 'w' # make a new file if not
+
+		# data = self.getRowData()
+		# with open(fileName,append_write, newline='', encoding='utf-8') as f:
+		# 	w = csv.DictWriter(f, self.csvHeaders)
+		# 	if append_write == 'w':
+		# 		w.writeheader()
+			
+		# 	w.writerow(data)
+		
 
 	def createTableImg(self, escalares, escalaresLabel):
 		"""
@@ -178,7 +218,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		 Método encargado de crear el HMTL del reporte
 		"""
 		reporte = self.reporteModel.reporte
-		raw_html = '<!DOCTYPE html><html><head></head>'
+		raw_html = '<!DOCTYPE html><html><head><meta charset="utf-8"></head>'
 		raw_html += '<link rel="stylesheet" href="w3-layout.css">'
 		raw_html += '<link rel="stylesheet" href="reporte.css">'
 		raw_html += '<link rel="stylesheet" media="print" href="reporte.css" />'
@@ -606,9 +646,10 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.saveToCsv(fileName)
 			self.hasSaveCSV = True
 
+
 	def saveToCsv(self, fileName):
 		reporte = self.reporteModel.reporte
-
+		fileName = fileName + '.csv'
 		append_write = ""
 		if os.path.exists(fileName):
 			append_write = 'a' # append if already exists
