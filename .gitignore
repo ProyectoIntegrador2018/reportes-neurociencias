@@ -12,5 +12,3 @@ target/
 target_tmp/
 src/**/**.pyo
 *.DS_Store
-.ipynb_checkpoints/
-prueba_hopkins.ipynb
