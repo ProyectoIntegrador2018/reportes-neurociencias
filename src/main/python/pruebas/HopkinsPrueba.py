@@ -87,12 +87,3 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 
 		self.puntuacionEscalar = (escalar_normal, escalar_delayed)
 		self.rangoPercentil = (percentile_normal, percentile_delayed)
-
-# Pruebas unitarias
-if __name__ == "__main__":
-	import sys
-	#app = QtWidgets.QApplication(sys.argv)
-	#fluidezWindow = QtWidgets.QWidget()
-	#fluidezVerbalController = HopkinsController(fluidezWindow)
-	#fluidezWindow.show()
-	#sys.exit(app.exec_())
