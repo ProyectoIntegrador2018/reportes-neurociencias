@@ -39,6 +39,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 18
 			if delayed_recall <= 5:
 				delayed_recall = 5
+			delayedDf.rango18_22 = delayedDf.rango18_22.fillna(0)
+			totalDf.rango18_22 = [math.floor(x) for x in totalDf.rango18_22]
+			delayedDf.rango18_22 = [math.floor(x) for x in delayedDf.rango18_22]
+			
 			percentile_normal = totalDf.percentile[totalDf.rango18_22 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango18_22 == delayed_recall].iloc[0]
