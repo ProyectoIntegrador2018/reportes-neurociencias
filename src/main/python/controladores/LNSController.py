@@ -1,108 +1,31 @@
-#Controlador de la vista de LNSWindowWidget
-from PyQt5 import QtWidgets, QtCore
-from vistas.LNSWindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.LNSPrueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.LNSWindowWidget import LNSWindowWidget
+from pruebas.LNSPrueba import LNSPrueba
+from .mixins import WindowControllerMixin
 
 
-class LNSController(QtWidgets.QWidget, ControllerModel):
+class LNSController(WindowControllerMixin):
 	#Atributo empleado para realizar el cambio de vista
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
-	def __init__(self, mainWindow, reporteModel=None):
-		QtWidgets.QWidget.__init__(self)
-		self.lnsView = LNSWindowWidget(mainWindow)
-		self.lnsView.pbStart.clicked.connect(self.getDatos)
-		self.lnsView.backButton.clicked.connect(self.returnView)
-		self.reporteModel = reporteModel
-		self.invalidArgs = list()
-	
-	def returnView(self):
-		"""
-		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
-		"""
-		self.switch_window.emit(self.invalidArgs, self.lnsPrueba, True)
-	
-	def changeView(self):
-		"""
-		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
-		"""
-		self.switch_window.emit(self.invalidArgs, self.lnsPrueba, False)
-
+	def getWidgetClass(self):
+		return LNSWindowWidget
 
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de LNS
 		"""
-		view = self.lnsView
+		view = self.view
 		span = view.sbSpan.value()
 		total = view.sbTotal.value()
 
 		valores = (span, total)
 		
-		self.lnsPrueba = LNSPrueba(valores)
+		self.test = LNSPrueba(valores)
 
 		#toma anos de escolaridad del paciente
 		datos = self.reporteModel.reporte['educacion']
 		
-		self.lnsPrueba.calcularPERP(datos)
+		self.test.calcularPERP(datos)
 			
 		self.changeView()
-
-	def emptyInvalidArgs(self):
-		"""
-		 Método que se encarga de vacíar la lista de elementos inválidos en la vista
-		"""
-		self.invalidArgs = list()
-
-	def addInvalidArg(self, arg):
-		"""
-		 Método que se encarga de añadir a la lista de elementos inválidos, aquel parámetro especificado
-		 Args:
-		  arg: String a añadir a la lista de elementos inválidos
-		"""
-		
-		if len(self.invalidArgs) == 0:
-			self.invalidArgs = [arg]
-		else:
-			tempList = self.invalidArgs
-			tempList.append(arg)
-			self.invalidArgs = tempList
-
-	def getListMenu(self):
-		"""
-		 Método que se regresa el id del menu en la vista de LNS
-		"""
-		return self.lnsView.lWVistas
-
-	def getProgressBar(self):
-		"""
-		 Método que se encarga de regresar el valor de la barra de progreso
-		"""
-		return self.lnsView.progressBar
-
-
-	def getProgressBar(self):
-		"""
-		 Método que se encarga de regresar el valor de la barra de progreso
-		"""
-		return self.lnsView.progressBar
-
-	def updateButtonText(self, text):
-		"""
-		 Método que se encarga de actulaizar el texto del botón de la vista
-		"""
-		self.lnsView.pbStart.setText(text)
-
-
-# Pruebas unitarias
-#if __name__ == "__main__":
-#    import sys
-#    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = LNSController(fluidezWindow)
-#    fluidezWindow.show()
-#    sys.exit(app.exec_())
