@@ -118,6 +118,12 @@ class Router:
                 "view": None,
                 "switch_fun": None
             },
+            "bsi18": {
+                "name": 'Prueba BSI-18',
+                "controller": None,
+                "view": None,
+                "switch_fun": None
+            },
             "report": {
                 "name": 'Reporte',
                 "controller": None,

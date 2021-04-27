@@ -10,7 +10,7 @@ from ControllerModel import *
 
 class MainWindowController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow):
 		QtWidgets.QWidget.__init__(self)
@@ -31,6 +31,7 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		self.mainWindowView.deFecha.setDate(QtCore.QDate.currentDate())
 		
 		self.mainWindowView.pbStart.clicked.connect(self.getDatos)
+		self.mainWindowView.backButton.clicked.connect(self.returnView)
 
 	def preventInjections(self, strVal):
 		acceptedChars = r'[\w .-]*'
@@ -40,7 +41,13 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.missingArguments, self.reporte)
+		self.switch_window.emit(self.missingArguments, self.reporte, False)
+
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.missingArguments, self.reporte, True)
 
 	def getDatos(self):
 		"""

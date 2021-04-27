@@ -8,20 +8,27 @@ from ControllerModel import *
 
 
 class MemoriaVisoespaciaController(QtWidgets.QWidget,ControllerModel):
-    switch_window = QtCore.pyqtSignal(object, object)
+    switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def __init__(self, mainWindow, reporteModel=None):
         QtWidgets.QWidget.__init__(self)
         self.memoriaVisoespaciaView = MemoriaVisoespaciaWidget(mainWindow)
         self.memoriaVisoespaciaView.pbStart.clicked.connect(self.getDatos)
+        self.memoriaVisoespaciaView.backButton.clicked.connect(self.returnView)
         self.reporteModel = reporteModel
         self.invalidArgs = list()
     
+    def returnView(self):
+        """
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+        self.switch_window.emit(self.invalidArgs, self.memoriaVisoespaciaPrueba, True)
+	
     def changeView(self):
         """
         Metodo de notificar los elementos que seran pasados a la siguiene vista como parametros
         """
-        self.switch_window.emit(self.invalidArgs, self.memoriaVisoespaciaPrueba)
+        self.switch_window.emit(self.invalidArgs, self.memoriaVisoespaciaPrueba, False)
     
     def getDatos(self):
         """

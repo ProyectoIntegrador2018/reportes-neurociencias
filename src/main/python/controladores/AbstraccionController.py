@@ -7,25 +7,30 @@ from pruebas.AbstraccionPrueba import *
 from PruebaModel import *
 from ControllerModel import *
 
-
 class AbstraccionController(QtWidgets.QWidget, ControllerModel):
 	#Atributo empleado para realizar el cambio de vista
-	switch_window = QtCore.pyqtSignal(object, object)
+	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.abstraccionView = AbstraccionWindowWidget(mainWindow)
 		self.abstraccionView.pbStart.clicked.connect(self.getDatos)
+		self.abstraccionView.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel
 		self.invalidArgs = list()
+
+	def returnView(self):
+		"""
+		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
+		"""
+		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba, True)
 	
 	def changeView(self):
 		"""
 		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
 		"""
-		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba)
-
-
+		self.switch_window.emit(self.invalidArgs, self.abstraccionPrueba, False)
+		
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de TMT

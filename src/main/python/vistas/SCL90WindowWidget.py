@@ -1,17 +1,16 @@
 #Vista de la prueba de SCL-90
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AppCtxt import APPCTXT
+from .mixins import WindowWidgetMixin
 
-class SCL90WindowWidget(object):
-    def __init__(self, Form):
-        self.setupUi(Form)
-
+class SCL90WindowWidget(WindowWidgetMixin):
     def setupUi(self, Form):
         """
          Método empleado para especificar el contenido de la Interfáz gráfica, es generado por pyuic5.
          Args:
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
+        super().setupUI(Form)
         Form.setObjectName("Form")
         Form.resize(800, 598)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
@@ -225,6 +224,7 @@ class SCL90WindowWidget(object):
         self.label_18.setText(_translate("Form", "PST:"))
         self.label_19.setText(_translate("Form", "PSDI:"))
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
+        self.backButton.setText(_translate("Form", "Regresar al Menu"))
 
 
 #if __name__ == "__main__":
