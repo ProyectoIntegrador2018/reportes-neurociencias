@@ -1,8 +1,6 @@
-from PyQt5 import QtWidgets, QtCore
-from pruebas.SDMTPrueba import *
-from vistas.SDMTWindowWidget import *
-from ReporteModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from pruebas.SDMTPrueba import SDMTPrueba
+from vistas.SDMTWindowWidget import SDMTWindowWidget
 from .mixins import WindowControllerMixin
 
 class SDMTController(WindowControllerMixin):

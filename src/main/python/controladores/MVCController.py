@@ -1,9 +1,6 @@
-from PyQt5 import QtWidgets, QtCore
-from vistas.MVCWindowWidget import *
-from MainWindowController import *
-from pruebas.MVCPrueba import *
-from PruebaModel import *
-from ReporteModel import *
+from PyQt5 import QtCore
+from vistas.MVCWindowWidget import MVCWindowWidget
+from pruebas.MVCPrueba import MVCPrueba
 from .mixins import WindowControllerMixin
 
 class MVCController(WindowControllerMixin):

@@ -1,11 +1,6 @@
-#Controlador de la vista de LNSWindowWidget
-from PyQt5 import QtWidgets, QtCore
-from vistas.StroopWindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.StroopPrueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.StroopWindowWidget import StroopWindowWidget
+from pruebas.StroopPrueba import StroopPrueba
 from .mixins import WindowControllerMixin
 
 class StroopController(WindowControllerMixin):

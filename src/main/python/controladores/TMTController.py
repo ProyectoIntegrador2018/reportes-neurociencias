@@ -1,11 +1,6 @@
-#Controlador de la vista de TMTWindow
-from PyQt5 import QtWidgets, QtCore
-from vistas.TMTWindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.TMTPrueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.TMTWindowWidget import TMTWindowWidget
+from pruebas.TMTPrueba import TMTPrueba
 from .mixins import WindowControllerMixin
 
 class TMTController(WindowControllerMixin):

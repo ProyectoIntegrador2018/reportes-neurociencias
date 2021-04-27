@@ -1,11 +1,6 @@
-# Contolador de la vista de Torre de Londres
-from PyQt5 import QtWidgets, QtCore
-from vistas.PittsburghWindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.PittsburghPrueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.PittsburghWindowWidget import PittsburghWindowWidget
+from pruebas.PittsburghPrueba import PittsburghPrueba
 from .mixins import WindowControllerMixin
 
 class PittsburghController(WindowControllerMixin):

@@ -1,11 +1,6 @@
-# Contolador de la vista de Torre de Londres
-from PyQt5 import QtWidgets, QtCore
-from vistas.TOLWindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.TOLPrueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.TOLWindowWidget import TOLWindowWidget
+from pruebas.TOLPrueba import TOLPrueba
 from .mixins import WindowControllerMixin
 
 class TOLController(WindowControllerMixin):

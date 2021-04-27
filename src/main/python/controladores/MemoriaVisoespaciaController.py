@@ -1,10 +1,6 @@
-from PyQt5 import QtWidgets, QtCore
-from vistas.MemoriaVisoespaciaWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.MemoriaVisoespaciaPrueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.MemoriaVisoespaciaWidget import MemoriaVisoespaciaWidget
+from pruebas.MemoriaVisoespaciaPrueba import MemoriaVisoespaciaPrueba
 from .mixins import WindowControllerMixin
 
 class MemoriaVisoespaciaController(WindowControllerMixin):
