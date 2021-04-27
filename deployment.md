@@ -19,6 +19,8 @@ Tener las siguientes herramientas instaladas y configuradas:
 - Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
 - Pyinstaller [Instrucciones](https://pyinstaller.readthedocs.io/en/stable/installation.html)
 - Fbs [Instrucciones](https://pypi.org/project/fbs/)
+- pdfkit [Instrucciones](https://pypi.org/project/pdfkit/)
+- wkhtmltopdf[Instrucciones](https://wkhtmltopdf.org/downloads.html)
 
 ### Clonar o actualizar repositorio
 
@@ -58,6 +60,8 @@ Por favor instala los siguientes paquetes/librerías:
 - Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
 - Pyinstaller [Instrucciones](https://pyinstaller.readthedocs.io/en/stable/installation.html)
 - Fbs [Instrucciones](https://pypi.org/project/fbs/)
+- pdfkit [Instrucciones](https://pypi.org/project/pdfkit/)
+- wkhtmltopdf[Instrucciones](https://wkhtmltopdf.org/downloads.html)
 
 Después de instalar lo anterior sigue los siguientes pasos:
 
@@ -76,7 +80,7 @@ C:\Users\usuario> cd Desktop/reportes-neurociencias
 3. Installacion de dependencias con pip:
 
 ```
-C:\Users\usuario\Desktop\reportes-neurociencias> pip install PyQt5==5.0.0 Pandas==1.0.3 Matplotlib==3.2.1 PyQtWebEngine==5.15.1 fbs==0.9.0 PyInstaller==3.5
+C:\Users\usuario\Desktop\reportes-neurociencias> pip install PyQt5==5.0.0 Pandas==1.0.3 Matplotlib==3.2.1 PyQtWebEngine==5.15.1 fbs==0.9.0 PyInstaller==3.5 pdfkit==0.6.1
 ```
 
 4. Corre el siguiente comando para utilizar el primer entregable del proyecto:
