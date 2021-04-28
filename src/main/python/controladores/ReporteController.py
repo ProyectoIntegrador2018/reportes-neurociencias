@@ -65,12 +65,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"D2":[('O', 'TA', 'TR', 'T', 'I', 'C', 'DI')],
 			"HVLT-R":[('DD', 'ABS')],
 			"STROOP":[('B', 'A', 'Dif')],
-			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')]
+			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
+			"BSI-18":[('SOM', 'DEP', 'ANS', 'IGS')]
 		}
 		self.csvHeaders = ["nombreExaminado","id","fecha","genero","edad","fechaNacimiento",
 			"lateralidad","nombreExaminador","carrera","semestre","educacion","equipo","deporte",
 			'RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
-			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P']
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','SOM', 'DEP', 'ANS', 'IGS']
 		self.escalares = []
 		self.escalaresLabel = []
 		self.loadReporte()
@@ -312,7 +313,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
-			if pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
+			if pruebaName != 'BSI-18' and pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
 				bFaltaActualizarPrueba = False
@@ -372,6 +373,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 						else:
 							raw_html += infoPrueba.campos[idx]
 						raw_html += '</td>'
+						print(idx, infoPrueba.valores, infoPrueba.puntuacionEscalar)
 						tableElements = [str(infoPrueba.valores[idx]), str(infoPrueba.puntuacionEscalar[idx])]
 						raw_html += self.createTableElements(tableElements)
 						raw_html += '</tr>'
@@ -485,6 +487,46 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			
 			raw_html += '</table>' 						#Cierra la tabla
 			raw_html += '</div>'
+		
+		if "BSI-18" in pruebasRegistradas:
+			raw_html += '<div class="new-table">'
+			raw_html += '<table style="width:100%">' 	#Empieza una tabla
+			raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
+
+			### Headers de la tabla
+			raw_html += '<th>'
+			raw_html += '</th>'
+			raw_html += '<th>'
+			raw_html += '</th>'
+
+			headerElements = ["SOM", "DEP", "ANS", "IGS"]
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['BSI-18', 'PD']
+			
+
+			pruebaBSI18 = pruebasRegistradas['BSI-18']
+			for puntuacionDir in pruebaBSI18.valores:
+				tableElements.append(str(puntuacionDir))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['P. Gral.', 'Pc']
+			# Se añaden cada uno de los valores percentiles obtenidos
+			for puntuacionPerc in pruebaBSI18.rangoPercentil:
+				tableElements.append(str(puntuacionPerc))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['DTM', 'Pc']
 		
 
 		########################## AQUÍ EMPIEZA LAS OTRAS TRES PRUEBAS DE PSQI Y MOTIVOS BUTT ##########################

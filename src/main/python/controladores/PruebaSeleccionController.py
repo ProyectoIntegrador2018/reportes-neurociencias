@@ -51,6 +51,8 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
             lambda: self.addSelectedPrueba("pittsburgh", self.seleccionView.checkBoxPruebaDePittsburgh))
         self.seleccionView.checkBoxPruebaSCL90.stateChanged.connect(
             lambda: self.addSelectedPrueba("scl90", self.seleccionView.checkBoxPruebaSCL90))
+        self.seleccionView.checkBoxPruebaBSI18.stateChanged.connect(
+            lambda: self.addSelectedPrueba("bsi18", self.seleccionView.checkBoxPruebaBSI18))
 
         self.seleccionView.pushButtonContinuar.clicked.connect(self.getData)
 
@@ -97,6 +99,7 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         self.seleccionView.checkBoxPruebaMotivosDeportivos.setChecked(False)
         self.seleccionView.checkBoxPruebaDePittsburgh.setChecked(False)
         self.seleccionView.checkBoxPruebaSCL90.setChecked(False)
+        self.seleccionView.checkBoxPruebaBSI18.setChecked(False)
         self.seleccionView.labelPruebasSeleccionadasDisplay.setText("0")
 
     def addSelectedPrueba(self, checkboxName, checkboxItem):

@@ -24,6 +24,7 @@ from controladores.SDMTController import *
 from controladores.LNSController import *
 from controladores.D2Controller import *
 from controladores.SCL90Controller import *
+from controladores.BSI18Controller import *
 from controladores.HopkinsController import *
 from controladores.StroopController import *
 from controladores.ReporteController import ReporteController
@@ -60,6 +61,7 @@ class MasterController:
             "motivoDeportivo": self.customShow("motivoDeportivo", ButtController),
             "pittsburgh": self.customShow("pittsburgh", PittsburghController),
             "scl90": self.customShow("scl90", SCL90Controller),
+            "bsi18": self.customShow("bsi18", BSI18Controller),
             "report": self.customShow("report", ReporteController),
             # do not remove used for reseting and initialize pruebas
             "dummyWindow": self.newReport
@@ -86,6 +88,7 @@ class MasterController:
             "motivoDeportivo",
             "pittsburgh",
             "scl90",
+            "bsi18",
             "report",
             # do not remove used for reseting and initialize pruebas
             "dummyWindow",
