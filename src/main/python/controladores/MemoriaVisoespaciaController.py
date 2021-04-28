@@ -9,6 +9,9 @@ class MemoriaVisoespaciaController(WindowControllerMixin):
     def getWidgetClass(self):
         return MemoriaVisoespaciaWidget
 
+    def getTestClass(self):
+        return MemoriaVisoespaciaPrueba
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia

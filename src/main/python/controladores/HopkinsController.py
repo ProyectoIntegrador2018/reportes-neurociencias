@@ -10,6 +10,9 @@ class HopkinsController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return HopkinsWindowWidget
 
+	def getTestClass(self):
+		return HopkinsPrueba
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Hopkins

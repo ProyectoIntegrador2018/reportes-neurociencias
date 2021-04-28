@@ -7,9 +7,11 @@ class DenominacionController(WindowControllerMixin):
     # Atributo empleado para realizar el cambio de vista
     switch_window = QtCore.pyqtSignal(object, object, bool)
     
-
     def getWidgetClass(self):
 	    return DenominacionWidget
+
+    def getTestClass(self):
+        return DenominacionPrueba
 
     def getDatos(self):
         """

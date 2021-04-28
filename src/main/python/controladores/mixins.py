@@ -8,6 +8,7 @@ class WindowControllerMixin(QtWidgets.QWidget, ControllerModel):
 	def __init__(self, mainWindow, reporteModel=None):
 		QtWidgets.QWidget.__init__(self)
 		self.view = self.getWidgetClass()(mainWindow)
+		self.test = self.getTestClass()
 		self.view.pbStart.clicked.connect(self.getDatos)
 		self.view.backButton.clicked.connect(self.returnView)
 		self.reporteModel = reporteModel

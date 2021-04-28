@@ -11,6 +11,9 @@ class FluidezVerbalController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return FluidezVerbalWindowWidget
 
+	def getTestClass(self):
+		return FluidezVerbalPrueba
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Fluidez Verbal

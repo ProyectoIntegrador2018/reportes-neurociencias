@@ -9,6 +9,9 @@ class TOLController(WindowControllerMixin):
     def getWidgetClass(self):
         return TOLWindowWidget
 
+    def getTestClass(self):
+        return TOLPrueba
+
     def getDatos(self):
         """
 		Método que toma los datos ingresados en la vista de Fluidez Verbal

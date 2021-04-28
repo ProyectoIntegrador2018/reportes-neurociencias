@@ -11,6 +11,9 @@ class LNSController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return LNSWindowWidget
 
+	def getTestClass(self):
+		return LNSPrueba
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de LNS

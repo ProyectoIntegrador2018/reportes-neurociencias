@@ -9,6 +9,9 @@ class SDMTController(WindowControllerMixin):
     def getWidgetClass(self):
         return SDMTWindowWidget
 
+    def getTestClass(self):
+        return SDMTPrueba
+        
     def getDatos(self):
         """
 		Método que toma los datos ingresados en la vista de Fluidez Verbal

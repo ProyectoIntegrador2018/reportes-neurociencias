@@ -10,6 +10,9 @@ class SCL90Controller(WindowControllerMixin):
 	def getWidgetClass(self):
 		return SCL90WindowWidget
 
+	def getTestClass(self):
+		return SCL90Prueba
+
 	def getDatos(self):
 		"""
 		Método que toma los datos ingresados en la vista de Fluidez Verbal
