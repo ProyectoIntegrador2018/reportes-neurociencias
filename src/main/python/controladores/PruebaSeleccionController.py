@@ -19,6 +19,8 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
                           "dummyWindow", ]
         self.pruebasSeleccionadas = []
 
+        self.seleccionView.checkBoxPruebaBussyPerry.stateChanged.connect(
+            lambda: self.addSelectedPrueba("bussyPerry", self.seleccionView.checkBoxPruebaBussyPerry))
         self.seleccionView.checkBoxPruebaFluidezVerbal.stateChanged.connect(
             lambda: self.addSelectedPrueba("fluidezVerbal", self.seleccionView.checkBoxPruebaFluidezVerbal))
         self.seleccionView.checkBoxPruebaDenominacion.stateChanged.connect(

@@ -24,6 +24,13 @@ class PruebaSeleccionWindowWidget(object):
         self.listWidgetPruebas.setGeometry(QtCore.QRect(10, 61, 430, 485))
         self.listWidgetPruebas.setObjectName("listWidgetPruebas")
 
+        self.checkBoxPruebaBussyPerry = QtWidgets.QCheckBox(
+            self.centralwidget)
+        self.checkBoxPruebaBussyPerry.setGeometry(
+            QtCore.QRect(20, 80, 250, 20))
+        self.checkBoxPruebaBussyPerry.setObjectName(
+            "checkBoxPruebaBussyPerry")
+
         self.checkBoxPruebaFluidezVerbal = QtWidgets.QCheckBox(
             self.centralwidget)
         self.checkBoxPruebaFluidezVerbal.setGeometry(
@@ -148,6 +155,7 @@ class PruebaSeleccionWindowWidget(object):
         self.label.setScaledContents(True)
         self.listWidgetPruebas.raise_()
         self.checkBoxPruebaFluidezVerbal.raise_()
+        self.checkBoxPruebaBussyPerry.raise_()
         self.checkBoxPruebaDenominacion.raise_()
         self.checkBoxComprensionVerbal.raise_()
         self.checkBoxPruebaMemoriaVisoespacial.raise_()
@@ -182,6 +190,8 @@ class PruebaSeleccionWindowWidget(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Seleeccion de Pruebas"))
+        self.checkBoxPruebaBussyPerry.setText(
+            _translate("Form", "Prueba Buss y Perry"))
         self.checkBoxPruebaFluidezVerbal.setText(
             _translate("Form", "Prueba Fluidez Verbal"))
         self.checkBoxPruebaDenominacion.setText(
