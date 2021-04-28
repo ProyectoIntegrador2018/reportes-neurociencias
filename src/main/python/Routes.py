@@ -52,6 +52,12 @@ class Router:
                 "view": None,
                 "switch_fun": None
             },
+            "bussyPerry": {
+                "name": 'Prueba Buss y Perry',
+                "controller": None,
+                "view": None,
+                "switch_fun": None
+            },
             "abstraccion": {
                 "name": 'Prueba Abstracción',
                 "controller": None,

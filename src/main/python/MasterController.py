@@ -19,6 +19,7 @@ from controladores.MVCController import *
 from controladores.MemoriaVisoespaciaController import *
 from controladores.DigitosController import *
 from controladores.TMTController import *
+from controladores.BussyPerryController import *
 from controladores.AbstraccionController import *
 from controladores.SDMTController import *
 from controladores.LNSController import *
@@ -50,6 +51,7 @@ class MasterController:
             "comprensionVerbal": self.customShow("comprensionVerbal", MVCController),
             "memoriaVisoespacial": self.customShow("memoriaVisoespacial", MemoriaVisoespaciaController),
             "tmt": self.customShow("tmt", TMTController),
+            "bussyPerry": self.customShow("bussyPerry", BussyPerryController),
             "abstraccion": self.customShow("abstraccion", AbstraccionController),
             "digitos": self.customShow("digitos", DigitosController),
             "sdmt": self.customShow("sdmt", SDMTController),
@@ -77,6 +79,7 @@ class MasterController:
             "comprensionVerbal",
             "memoriaVisoespacial",
             "tmt",
+            "bussyPerry",
             "abstraccion",
             "digitos",
             "sdmt",
