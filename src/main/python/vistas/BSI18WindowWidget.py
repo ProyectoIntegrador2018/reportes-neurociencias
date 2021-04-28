@@ -88,7 +88,7 @@ class BSI18WindowWidget(WindowWidgetMixin):
             self.labels.append(QtWidgets.QLabel(self.verticalLayoutWidget))
             self.labels[-1].setObjectName("label_"+str(x+1))
             self.formLayout.setWidget(x,QtWidgets.QFormLayout.LabelRole, self.labels[-1])
-            
+
             self.questions.append(QtWidgets.QSpinBox(self.verticalLayoutWidget))
             self.questions[-1].setObjectName("Q"+str(x+1))
             self.questions[-1].setRange(0,4)
