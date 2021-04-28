@@ -10,6 +10,9 @@ class DigitosController(WindowControllerMixin):
     def getWidgetClass(self):
        return DigitosWindowWidget
 
+    def getTestClass(self):
+        return DigitosPrueba
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la vista de Digitos

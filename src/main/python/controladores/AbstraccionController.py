@@ -12,6 +12,9 @@ class AbstraccionController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return AbstraccionWindowWidget
 
+	def getTestClass(self):
+		return AbstraccionPrueba
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de TMT

@@ -10,6 +10,9 @@ class StroopController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return StroopWindowWidget
 
+	def getTestClass(self):
+		return StroopPrueba
+
 	def getDatos(self):
 		"""
 		Método que toma los datos ingresados en la vista de LNS

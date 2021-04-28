@@ -9,6 +9,9 @@ class MVCController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return MVCWindowWidget
 
+	def getTestClass(self):
+		return MVCPrueba
+
 	def getDatos(self):
 		"""
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia

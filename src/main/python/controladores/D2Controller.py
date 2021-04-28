@@ -11,6 +11,9 @@ class D2Controller(WindowControllerMixin):
 	def getWidgetClass(self):
 		return D2WindowWidget
 
+	def getTestClass(self):
+		return D2Prueba
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de D2

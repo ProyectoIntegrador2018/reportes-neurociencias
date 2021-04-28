@@ -10,6 +10,9 @@ class TMTController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return TMTWindowWidget
 
+	def getTestClass(self):
+		return TMTPrueba
+
 	def getDatos(self):
 		"""
 		Método que toma los datos ingresados en la vista de TMT

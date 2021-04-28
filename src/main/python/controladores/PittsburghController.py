@@ -9,6 +9,9 @@ class PittsburghController(WindowControllerMixin):
     def getWidgetClass(self):
         return PittsburghWindowWidget
 
+    def getTestClass(self):
+        return PittsburghPrueba
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia

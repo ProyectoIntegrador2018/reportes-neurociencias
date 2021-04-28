@@ -12,6 +12,9 @@ class ButtController(WindowControllerMixin):
 	def getWidgetClass(self):
 		return ButtWindowWidget
 
+	def getTestClass(self):
+		return ButtPrueba
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Butt
