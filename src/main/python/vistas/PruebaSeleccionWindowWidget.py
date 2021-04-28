@@ -132,6 +132,11 @@ class PruebaSeleccionWindowWidget(object):
         self.checkBoxPruebaSCL90.setObjectName("checkBoxPruebaSCL90")
         # self.checkBoxPruebaSCL90.stateChanged.connect(lambda:self.changeCheckboxState("Prueba SCL90"))
 
+        self.checkBoxPruebaBSI18 = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBoxPruebaBSI18.setGeometry(QtCore.QRect(20, 522, 250, 20))
+        self.checkBoxPruebaBSI18.setObjectName("checkBoxPruebaBSI18")
+        # self.checkBoxPruebaBSI18.stateChanged.connect(lambda:self.changeCheckboxState("Prueba BSI18"))
+
         self.labelPruebasSeleccionadas = QtWidgets.QLabel(self.centralwidget)
         self.labelPruebasSeleccionadas.setGeometry(
             QtCore.QRect(30, 545, 170, 25))
@@ -171,6 +176,7 @@ class PruebaSeleccionWindowWidget(object):
         self.checkBoxPruebaMotivosDeportivos.raise_()
         self.checkBoxPruebaDePittsburgh.raise_()
         self.checkBoxPruebaSCL90.raise_()
+        self.checkBoxPruebaBSI18.raise_()
         self.labelPruebasSeleccionadas.raise_()
         self.labelPruebasSeleccionadasDisplay.raise_()
         self.pushButtonContinuar.raise_()
@@ -218,6 +224,7 @@ class PruebaSeleccionWindowWidget(object):
         self.checkBoxPruebaDePittsburgh.setText(
             _translate("Form", "Prueba de Pittsburgh"))
         self.checkBoxPruebaSCL90.setText(_translate("Form", "Prueba SCL-90"))
+        self.checkBoxPruebaBSI18.setText(_translate("Form", "Prueba BSI-18"))
         self.labelPruebasSeleccionadas.setText(
             _translate("Form", "prueba(s) seleccionadas"))
         self.labelPruebasSeleccionadasDisplay.setText(_translate("Form", "0"))
