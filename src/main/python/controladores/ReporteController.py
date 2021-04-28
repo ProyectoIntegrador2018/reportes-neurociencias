@@ -45,7 +45,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		# copyfile(imageUrl, os.path.join(tmpdir, 'reporte.png'))
 		logoUrl = APPCTXT().get_resource("./vistas/Reporte/logoReporte.png")
 		copyfile(logoUrl, os.path.join(tmpdir, 'logoReporte.png'))
-		print(tmpdir)
+		#print(tmpdir)
 
 		self.url = tempUrl
 		self.cssUrl = cssUrl
@@ -407,7 +407,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		### uncomment for image
 		escalares = [int(x) for x in escalares]
-		print(escalaresLabel, escalares)
+		#print(escalaresLabel, escalares)
 		#Se crean las imagenes a mostrar
 		self.createTableImg(escalares, escalaresLabel)
 		
@@ -502,7 +502,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			headerElements = ["SOM", "DEP", "ANS", "IGS"]
 			raw_html += self.createTableHeaders(headerElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
-
+			
 
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
@@ -510,8 +510,20 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			
 
 			pruebaBSI18 = pruebasRegistradas['BSI-18']
+
+			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
+			self.escalares = reemovNestings(pruebaBSI18.puntuacionEscalar, escalares)
+
 			for puntuacionDir in pruebaBSI18.valores:
 				tableElements.append(str(puntuacionDir))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['BSI-18', 'PT']
+			# Se añaden cada uno de los valores T obtenidos
+			for puntuacionT in pruebaBSI18.puntuacionEscalar:
+				tableElements.append(str(puntuacionT))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
 
@@ -711,6 +723,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		for key, value in zip(self.escalaresLabel, self.escalares):
 			dicInfo[key] = value
+		#print(dicInfo)
 		for key in self.csvHeaders:
 			if key not in dicInfo:
 				dicInfo[key] = "nan"
