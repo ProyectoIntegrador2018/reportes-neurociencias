@@ -9,7 +9,7 @@ preguntas = ['1. Sensación de desmayo o mareo: ',
               '3. Nerviosismo o temblor:',
               '4. Dolores en el corazón o en el pecho:',
               '5. Sentirse solo:',
-              '6. Sentirse tenso o alterado:'
+              '6. Sentirse tenso o alterado:',
               '7. Náuseas o malestar de estómago:',
               '8. Sentimientos de tristeza:',
               '9. Sustos repentinos sin razón:',
@@ -83,11 +83,12 @@ class BSI18WindowWidget(WindowWidgetMixin):
         # Crear los labels de cada parámetro y su entrada
         # Agregarlos a los layouts
         self.labels = []
+        self.questions = []
         for x, _ in enumerate(preguntas):
             self.labels.append(QtWidgets.QLabel(self.verticalLayoutWidget))
             self.labels[-1].setObjectName("label_"+str(x+1))
             self.formLayout.setWidget(x,QtWidgets.QFormLayout.LabelRole, self.labels[-1])
-            self.questions = []
+
             self.questions.append(QtWidgets.QSpinBox(self.verticalLayoutWidget))
             self.questions[-1].setObjectName("Q"+str(x+1))
             self.questions[-1].setRange(0,4)
