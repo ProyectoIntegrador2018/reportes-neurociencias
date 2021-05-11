@@ -49,7 +49,7 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 
 		# Cuenta el número de omisiones por dimensión
 		# Suma los valores de las respuestas por dimensión
-		for x, q in enumerate(view.questions):
+		'''for x, q in enumerate(view.questions):
 			for y, i in enumerate(ids):
 				if x+1 in i:
 					print(x, q.value(), y, i)
@@ -57,7 +57,8 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 						omisiones[y] = omisiones[y] + 1
 					else:
 						valores[y] = valores[y] + int(q.value())
-
+		'''
+		valores = [dim.value() for dim in view.questions]
 		# Manda los valores obtenidos para procesar la prueba
 		self.BSI18Prueba = BSI18Prueba(valores)
 		
@@ -67,6 +68,13 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 		for x, om in enumerate(omisiones):
 			if 2 < om:
 				self.invalidArgs.append("Maximo 2 omisiones por dimensión")
+			elif 0 < om:
+				prom = valores[x]/(6.0-om)
+				if prom > int(prom)+.5:
+					prom = prom + 1
+				else:
+					prom = int(prom)
+				valores[x] = 6 * prom
 		
 		# Verifica que ya no haya argumentos inválidos
 		if len(self.invalidArgs) == 0:

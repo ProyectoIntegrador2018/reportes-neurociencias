@@ -12,7 +12,8 @@ class BSI18Prueba(PruebaModel.PruebaModel):
 					pd.read_csv(APPCTXT().get_resource('./Baremos/BSI18_VARONES_PACIENTES_CON_CANCER.csv')),
 					pd.read_csv(APPCTXT().get_resource('./Baremos/BSI18_MUJERES_PACIENTES_CON_CANCER.csv')),
 					pd.read_csv(APPCTXT().get_resource('./Baremos/BSI18_MUJERES_Y_VARONES_PACIENTES_CON_CANCER.csv')),
-					pd.read_csv(APPCTXT().get_resource('./Baremos/BSI18_PRERCENTILES_EQUIVALENTES_PUNTUACIONES_T.csv')))
+					pd.read_csv(APPCTXT().get_resource('./Baremos/BSI18_PRERCENTILES_EQUIVALENTES_PUNTUACIONES_T.csv')),
+					pd.read_csv(APPCTXT().get_resource('./Baremos/Tabla_Conversión_Psicométrica_Completa.csv')))
 		campos = ("DIRECTA", "SOM", "DEP", "ANS", "IGS")
 
 		super(BSI18Prueba,self).__init__(nombre, valores, baremos, campos)
@@ -31,6 +32,7 @@ class BSI18Prueba(PruebaModel.PruebaModel):
 		mujeresCancer =  self.baremos[4]
 		mujeresVaronesCancer = self.baremos[5]
 		percentiles = self.baremos[6]
+		conversion = self.baremos[7]
 		
 		# Extrae los datos que recibe del controlador
 		valoresList = self.valores
@@ -78,5 +80,10 @@ class BSI18Prueba(PruebaModel.PruebaModel):
 		ANSp = percentiles.Percentil[percentiles.Puntuacion_T == ANS].iloc[0]
 		IGSp = percentiles.Percentil[percentiles.Puntuacion_T == IGS].iloc[0]
 
-		self.puntuacionEscalar = (SOM, DEP, ANS, IGS)
+		SOMe = conversion.puntuacion_escalar[conversion.puntuacion_percentil == str(SOMp)].iloc[0]
+		DEPe = conversion.puntuacion_escalar[conversion.puntuacion_percentil == str(DEPp)].iloc[0]
+		ANSe = conversion.puntuacion_escalar[conversion.puntuacion_percentil == str(ANSp)].iloc[0]
+		IGSe = conversion.puntuacion_escalar[conversion.puntuacion_percentil == str(IGSp)].iloc[0]
+
+		self.puntuacionEscalar = (SOMe, DEPe, ANSe, IGSe)
 		self.rangoPercentil = (SOMp, DEPp, ANSp, IGSp)

@@ -66,12 +66,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"HVLT-R":[('DD', 'ABS')],
 			"STROOP":[('B', 'A', 'Dif')],
 			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
-			"BSI-18":[('SOM', 'DEP', 'ANS', 'IGS')]
+			"BSI-18":[('SOM', 'DEP', 'ANS', 'GSI')]
 		}
 		self.csvHeaders = ["nombreExaminado","id","fecha","genero","edad","fechaNacimiento",
 			"lateralidad","nombreExaminador","carrera","semestre","educacion","equipo","deporte",
 			'RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
-			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','SOM', 'DEP', 'ANS', 'IGS']
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc']
 		self.escalares = []
 		self.escalaresLabel = []
 		self.loadReporte()
@@ -500,6 +500,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			raw_html += '</th>'
 
 			headerElements = ["SOM", "DEP", "ANS", "IGS"]
+			
 			raw_html += self.createTableHeaders(headerElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
 			
@@ -510,9 +511,13 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			
 
 			pruebaBSI18 = pruebasRegistradas['BSI-18']
+			headerElements = ["SOM", "DEP", "ANS", "IGS"]
+			csvLabels = ['bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc']
 
-			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
+			self.escalaresLabel = reemovNestings(csvLabels, escalaresLabel)
+			self.escalares = reemovNestings(pruebaBSI18.valores, escalares)		
 			self.escalares = reemovNestings(pruebaBSI18.puntuacionEscalar, escalares)
+			self.escalares = reemovNestings(pruebaBSI18.rangoPercentil, escalares)
 
 			for puntuacionDir in pruebaBSI18.valores:
 				tableElements.append(str(puntuacionDir))
@@ -520,8 +525,8 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			raw_html += '</tr>'							#Cierra una row de la tabla
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
-			tableElements = ['BSI-18', 'PT']
-			# Se añaden cada uno de los valores T obtenidos
+			tableElements = ['BSI-18', 'Pe']
+			# Se añaden cada uno de los valores escalares obtenidos
 			for puntuacionT in pruebaBSI18.puntuacionEscalar:
 				tableElements.append(str(puntuacionT))
 			raw_html += self.createTableElements(tableElements)
