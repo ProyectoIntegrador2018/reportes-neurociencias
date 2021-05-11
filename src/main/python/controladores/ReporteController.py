@@ -11,7 +11,7 @@ import csv
 import pdfkit
 #from weasyprint import HTML, CSS
 from AppCtxt import APPCTXT
-# from MasterController import appctxt
+# from Controller import appctxt
 import tempfile
 from shutil import copyfile
 
@@ -503,8 +503,6 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			
 			raw_html += self.createTableHeaders(headerElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
-			
-
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
 			tableElements = ['BSI-18', 'PD']
@@ -517,7 +515,9 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.escalaresLabel = reemovNestings(csvLabels, escalaresLabel)
 			self.escalares = reemovNestings(pruebaBSI18.valores, escalares)		
 			self.escalares = reemovNestings(pruebaBSI18.puntuacionEscalar, escalares)
+
 			self.escalares = reemovNestings(pruebaBSI18.rangoPercentil, escalares)
+
 
 			for puntuacionDir in pruebaBSI18.valores:
 				tableElements.append(str(puntuacionDir))

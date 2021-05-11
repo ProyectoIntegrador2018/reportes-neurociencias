@@ -51,7 +51,7 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 		# Suma los valores de las respuestas por dimensión
 		'''for x, q in enumerate(view.questions):
 			for y, i in enumerate(ids):
-				if x+1 in i:
+				if x+1 in i
 					print(x, q.value(), y, i)
 					if q.value() == -1:
 						omisiones[y] = omisiones[y] + 1

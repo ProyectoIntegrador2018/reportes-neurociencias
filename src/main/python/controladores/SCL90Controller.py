@@ -1,11 +1,6 @@
-#Controlador de la vista de SCL90Window
-from PyQt5 import QtWidgets, QtCore
-from vistas.SCL90WindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
-from pruebas.SCL90Prueba import *
-from PruebaModel import *
-from ControllerModel import *
+from PyQt5 import QtCore
+from vistas.SCL90WindowWidget import SCL90WindowWidget
+from pruebas.SCL90Prueba import SCL90Prueba
 from .mixins import WindowControllerMixin
 
 class SCL90Controller(WindowControllerMixin):
@@ -15,9 +10,12 @@ class SCL90Controller(WindowControllerMixin):
 	def getWidgetClass(self):
 		return SCL90WindowWidget
 
+	def getTestClass(self):
+		return SCL90Prueba
+
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de Fluidez Verbal
+		Método que toma los datos ingresados en la vista de Fluidez Verbal
 		"""
 		view = self.view
 		
