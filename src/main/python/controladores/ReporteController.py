@@ -7,6 +7,7 @@ from ControllerModel import *
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import sys
 import csv
 import pdfkit
 #from weasyprint import HTML, CSS
@@ -114,8 +115,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"enable-local-file-access": None,
   			"print-media-type": None,
 		}
-
-		pdfkit.from_file(self.url, fileName + '.pdf',options=options)
+		
+		if sys.platform == 'win32':
+			config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+			pdfkit.from_file(self.url, fileName + '.pdf',options=options, configuration=config)
+		else:
+			pdfkit.from_file(self.url, fileName + '.pdf',options=options)
 		#HTML(self.url).write_pdf(fileName)
 		# reporte = self.reporteModel.reporte
 
