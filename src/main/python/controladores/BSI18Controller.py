@@ -39,22 +39,28 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 		"""
 		view = self.BSI18View
 		# Inicia los valores y las omisiones en 0 para las 3 dimensiones
-		valores = omisiones = [0, 0, 0]	
+		valores = [0, 0, 0]
+		omisiones = [0, 0, 0]	
 		
 		# Establecemos los numeros de las preguntas de las dimensiones
-		ids = [[1,4,7,10], #SOM
+		ids = [[1,4,7,10,13,16], #SOM
 				[2,5,8,11,14,17], #DEP
 				[3,6,9,12,15,18]] #ANS
 
 		# Cuenta el número de omisiones por dimensión
 		# Suma los valores de las respuestas por dimensión
-		for x, q in enumerate(view.questions):
+		'''for x, q in enumerate(view.questions):
 			for y, i in enumerate(ids):
 				if x+1 in i:
-					if q == -1:
+
+					print(x, q.value(), y, i)
+					if q.value() == -1:
 						omisiones[y] = omisiones[y] + 1
 					else:
-						valores[y] += int(q.value())
+						valores[y] = valores[y] + int(q.value())
+
+		'''
+		valores = [dim.value() for dim in view.questions]
 
 		# Manda los valores obtenidos para procesar la prueba
 		self.BSI18Prueba = BSI18Prueba(valores)
@@ -64,7 +70,15 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 		# Verifica el número de omisiones de cada dimensión
 		for x, om in enumerate(omisiones):
 			if 2 < om:
-				self.invalidArgs.append("Maximo 2 omisiones por dimension")
+				self.invalidArgs.append("Maximo 2 omisiones por dimensión")
+
+			elif 0 < om:
+				prom = valores[x]/(6.0-om)
+				if prom > int(prom)+.5:
+					prom = prom + 1
+				else:
+					prom = int(prom)
+				valores[x] = 6 * prom
 		
 		# Verifica que ya no haya argumentos inválidos
 		if len(self.invalidArgs) == 0:

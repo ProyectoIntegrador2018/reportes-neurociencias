@@ -11,7 +11,7 @@ import csv
 import pdfkit
 #from weasyprint import HTML, CSS
 from AppCtxt import APPCTXT
-# from MasterController import appctxt
+# from Controller import appctxt
 import tempfile
 from shutil import copyfile
 
@@ -45,7 +45,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		# copyfile(imageUrl, os.path.join(tmpdir, 'reporte.png'))
 		logoUrl = APPCTXT().get_resource("./vistas/Reporte/logoReporte.png")
 		copyfile(logoUrl, os.path.join(tmpdir, 'logoReporte.png'))
-		print(tmpdir)
+		#print(tmpdir)
 
 		self.url = tempUrl
 		self.cssUrl = cssUrl
@@ -67,12 +67,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"HVLT-R":[('DD', 'ABS')],
 			"STROOP":[('B', 'A', 'Dif')],
 			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
-			"BSI-18":[('SOM', 'DEP', 'ANS', 'IGS')]
+			"BSI-18":[('SOM', 'DEP', 'ANS', 'GSI')]
 		}
 		self.csvHeaders = ["nombreExaminado","id","fecha","genero","edad","fechaNacimiento",
 			"lateralidad","nombreExaminador","carrera","semestre","educacion","equipo","deporte",
 			'RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
-			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','SOM', 'DEP', 'ANS', 'IGS','Ira','AgFis','AgVer','Hos']
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc','Ira','AgFis','AgVer','Hos']
 		self.escalares = []
 		self.escalaresLabel = []
 		self.loadReporte()
@@ -408,7 +408,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		### uncomment for image
 		escalares = [int(x) for x in escalares]
-		print(escalaresLabel, escalares)
+		#print(escalaresLabel, escalares)
 		#Se crean las imagenes a mostrar
 		self.createTableImg(escalares, escalaresLabel)
 		
@@ -450,7 +450,6 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla					#Cierra una row de la tabla
-
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
 			tableElements = ['DTM', 'Pc']
@@ -535,18 +534,38 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			raw_html += '</th>'
 
 			headerElements = ["SOM", "DEP", "ANS", "IGS"]
+			
 			raw_html += self.createTableHeaders(headerElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
-
-
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
 			tableElements = ['BSI-18', 'PD']
 			
 
 			pruebaBSI18 = pruebasRegistradas['BSI-18']
+			headerElements = ["SOM", "DEP", "ANS", "IGS"]
+			csvLabels = ['bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc']
+
+			self.escalaresLabel = reemovNestings(csvLabels, escalaresLabel)
+			self.escalares = reemovNestings(pruebaBSI18.valores, escalares)		
+			self.escalares = reemovNestings(pruebaBSI18.puntuacionEscalar, escalares)
+
+			self.escalares = reemovNestings(pruebaBSI18.rangoPercentil, escalares)
+
+
+
 			for puntuacionDir in pruebaBSI18.valores:
 				tableElements.append(str(puntuacionDir))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+
+			tableElements = ['BSI-18', 'Pe']
+			# Se añaden cada uno de los valores escalares obtenidos
+
+			for puntuacionT in pruebaBSI18.puntuacionEscalar:
+				tableElements.append(str(puntuacionT))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
 
@@ -746,6 +765,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		
 		for key, value in zip(self.escalaresLabel, self.escalares):
 			dicInfo[key] = value
+		#print(dicInfo)
 		for key in self.csvHeaders:
 			if key not in dicInfo:
 				dicInfo[key] = "nan"

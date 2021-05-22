@@ -4,12 +4,13 @@ from AppCtxt import APPCTXT
 from .mixins import WindowWidgetMixin
 
 # Definición de los parámetros
+dimensiones = ['SOM (1,4,7,10,13,16)', 'DEP (2,5,8,11,14,17)', 'ANS (3,6,9,12,15,18)'] 
 preguntas = ['1. Sensación de desmayo o mareo: ',
               '2. No sentir interés por las cosas:',
               '3. Nerviosismo o temblor:',
               '4. Dolores en el corazón o en el pecho:',
               '5. Sentirse solo:',
-              '6. Sentirse tenso o alterado:'
+              '6. Sentirse tenso o alterado:',
               '7. Náuseas o malestar de estómago:',
               '8. Sentimientos de tristeza:',
               '9. Sustos repentinos sin razón:',
@@ -83,17 +84,26 @@ class BSI18WindowWidget(WindowWidgetMixin):
         # Crear los labels de cada parámetro y su entrada
         # Agregarlos a los layouts
         self.labels = []
-        for x, _ in enumerate(preguntas):
+        self.questions = []
+        self.mygroupbox = QtWidgets.QGroupBox('this is my groupbox')
+        for x, _ in enumerate(dimensiones):
+
             self.labels.append(QtWidgets.QLabel(self.verticalLayoutWidget))
             self.labels[-1].setObjectName("label_"+str(x+1))
             self.formLayout.setWidget(x,QtWidgets.QFormLayout.LabelRole, self.labels[-1])
-            self.questions = []
+
             self.questions.append(QtWidgets.QSpinBox(self.verticalLayoutWidget))
             self.questions[-1].setObjectName("Q"+str(x+1))
-            self.questions[-1].setRange(0,4)
+            self.questions[-1].setRange(0,24)
             self.questions[-1].setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
             self.formLayout.setWidget(x, QtWidgets.QFormLayout.FieldRole, self.questions[-1])
-        
+        #self.mygroupbox.setLayout(self.formLayout)
+        #self.scroll = QtWidgets.QScrollArea()
+        #self.scroll.setWidget(self.formLayout)
+        #self.scroll.setWidget(self.mygroupbox)
+        #self.scroll.setWidget(self.formLayout)
+        #self.scroll.setWidgetResizable(True)
+        #self.scroll.setFixedHeight(400)
         self.verticalLayout_2.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -135,7 +145,8 @@ class BSI18WindowWidget(WindowWidgetMixin):
         Form.setWindowTitle(_translate("Form", "Prueba BSI-18"))
         # self.lblLogo.setText(_translate("Form", "Logo"))
         # self.label.setText(_translate("Form", "SYNAPPS"))
-        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de BSI-18"))
+        self.label_4.setText(_translate("Form", "Ingrese los puntajes de la prueba de BSI-18\n(Seleccione -1 en caso de que no haya respuesta)"))
+        #self.instructions.setText(_translate("Form", "(Seleccione -1 en caso de que no haya respuesta)"))
 
         '''preguntas = ['1. Sensación de desmayo o mareo: ', 
                       '2. No sentir interés por las cosas:',
@@ -158,8 +169,8 @@ class BSI18WindowWidget(WindowWidgetMixin):
                       ]
         '''
         # Agregar los textos a los labels de la información
-        print(len(preguntas), len(self.labels))
-        for x, label in enumerate(preguntas):
+        #print(len(preguntas), len(self.labels))
+        for x, label in enumerate(dimensiones):
           self.labels[x].setText(_translate("Form", label))
 
         self.pbStart.setText(_translate("Form", "Registrar Prueba"))
