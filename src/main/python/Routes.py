@@ -52,6 +52,12 @@ class Router:
                 "view": None,
                 "switch_fun": None
             },
+            "emd": {
+                "name": 'Prueba EMD',
+                "controller": None,
+                "view": None,
+                "switch_fun": None
+            },
             "bussyPerry": {
                 "name": 'Prueba Buss y Perry',
                 "controller": None,
