@@ -446,19 +446,10 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
 			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
     
-			for puntuacionDir in pruebaBP.valores:
+			for puntuacionDir in self.escalares:
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
-			raw_html += '</tr>'							#Cierra una row de la tabla
-
-
-			raw_html += '<tr>'							#Empieza una row de la tabla
-			tableElements = ['Buss y Perry Rangos', 'Pc']
-			# Se añaden cada uno de los valores percentiles obtenidos
-			for puntuacionPerc in pruebaBP.rangoPercentil:
-				tableElements.append(str(puntuacionPerc))
-			raw_html += self.createTableElements(tableElements)
-			raw_html += '</tr>'							#Cierra una row de la tabla
+			raw_html += '</tr>'							#Cierra una row de la tabla					#Cierra una row de la tabla
 
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
