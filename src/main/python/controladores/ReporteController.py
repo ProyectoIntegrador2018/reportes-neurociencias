@@ -490,7 +490,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
 			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
     
-			for puntuacionDir in pruebaBP.valores:
+			for puntuacionDir in self.escalares:
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
