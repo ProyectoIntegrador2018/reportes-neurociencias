@@ -122,7 +122,7 @@ Después de instalar lo anterior sigue los siguientes pasos:
 $ git clone https://github.com/ProyectoIntegrador2018/reportes-neurociencias.git
 ```
 
-2. Abre la línea de comandos de su sistema operativo y busca el repositorio. Ejemplo:
+2. Genera un nuevo ambiente con python 3.7 y busca el repositorio. Ejemplo:
 
 ```
 C:\Users\usuario> cd Desktop/reportes-neurociencias
@@ -131,7 +131,7 @@ C:\Users\usuario> cd Desktop/reportes-neurociencias
 3. Installacion de dependencias con pip:
 
 ```
-C:\Users\usuario\Desktop\reportes-neurociencias> pip install PyQt5==5.0.0 Pandas==1.0.3 Matplotlib==3.2.1 PyQtWebEngine==5.15.1 fbs==0.9.0 PyInstaller==3.5 pdfkit==0.6.1
+C:\Users\usuario\Desktop\reportes-neurociencias> pip install -r requirements.txt
 ```
 
 4. Corre el siguiente comando para utilizar el primer entregable del proyecto:
