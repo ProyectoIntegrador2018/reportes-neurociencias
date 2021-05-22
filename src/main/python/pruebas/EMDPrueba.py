@@ -21,13 +21,13 @@ class EMDPrueba(PruebaModel.PruebaModel):
 		"""
 		print(self.valores)
 
-		(me,mico,mie,mia,micu,amed,mid) = self.valores
+		# (me,mico,mie,mia,micu,amed,mid) = self.valores
 
-		if me == 1:
-			print("hola aqui pasa algo")
-			me = "Cambio"
+		# if me == 1:
+		# 	print("hola aqui pasa algo")
+		# 	me = "Cambio"
 
-		#self.puntuacionEscalar = (uno,dos,tres,cuatro,cinco,seis,siete)
+		# #self.puntuacionEscalar = (uno,dos,tres,cuatro,cinco,seis,siete)
         
-        self.puntuacionEscalar = (me,mico,mie,mia,micu,amed,mid)
+        # self.puntuacionEscalar = (me,mico,mie,mia,micu,amed,mid)
 		# self.rangoPercentil = ((6,42),(4,28),(4,28),(4,28),(4,28),(5,35),(2,14))
