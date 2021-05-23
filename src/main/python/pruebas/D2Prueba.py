@@ -35,7 +35,9 @@ class D2Prueba(PruebaModel.PruebaModel):
 		ppC = auxC['Percentil']
 
 		tot = tr - (o + c)
+		if tot < 0: tot = 0
 		con = ta - c 
+		if con < 0: con = 0
 
 		tempValores = self.valores
 		self.valores = (tempValores[0], tempValores[1], tempValores[2], tempValores[3], tot, con, self.valores[4])
