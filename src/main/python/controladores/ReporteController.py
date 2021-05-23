@@ -58,6 +58,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"COMP V":[('IT', 'M')],
 			"BVMT-R":[('C', 'I')],
 			"TMT":[('C', 'P')],
+			"EMD": [('ME', 'MICO','MIE','MIA','MICU','AEMD','MID')],
 			"BussYPerry": [('AgFis','AgVer','Ira','Hos')],
 			"ABS":['M.D.'],
 			"DIGITOS":[('M.I.', 'VAR')],
@@ -72,9 +73,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		self.csvHeaders = ["nombreExaminado","id","fecha","genero","edad","fechaNacimiento",
 			"lateralidad","nombreExaminador","carrera","semestre","educacion","equipo","deporte",
 			'RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
-
-			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc','Ira','AgFis','AgVer','Hos']
-
+			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc','Ira','AgFis','AgVer','Hos','ME', 'MICO','MIE','MIA','MICU','AEMD','MID']
 		self.escalares = []
 		self.escalaresLabel = []
 		self.loadReporte()
@@ -316,7 +315,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		for pruebaName in pruebasRegistradas.keys():
 			iCantidadPruebas += 1
 			
-			if pruebaName != 'BSI-18' and pruebaName != 'BussYPerry' and pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
+			if pruebaName != 'BSI-18' and pruebaName != 'EMD' and pruebaName != 'BussYPerry' and pruebaName != 'SCL-90' and pruebaName != 'Motivos Deportivos de Butt' and pruebaName != 'PSQI':
 				#print(pruebaName)
 				infoPrueba = pruebasRegistradas[pruebaName]
 				bFaltaActualizarPrueba = False
@@ -465,6 +464,40 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
 			tableElements = ['DTM', 'Pc']
+
+		if "EMD" in pruebasRegistradas:
+			raw_html += '<div class="new-table">'
+			raw_html += '<table style="width:100%">' 	#Empieza una tabla
+			raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
+
+			### Headers de la tabla
+			raw_html += '<th>'
+			raw_html += '</th>'
+			raw_html += '<th>'
+			raw_html += '</th>'
+
+			headerElements = ['ME', 'MICO','MIE','MIA','MICU','AEMD','MID']
+			
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['EMD', 'PD']
+			
+
+			pruebaBP = pruebasRegistradas['EMD']
+
+			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
+			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
+    
+			for puntuacionDir in self.escalares:
+				tableElements.append(str(puntuacionDir))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['DTM', 'Pc']
+
 
 		if "SCL-90" in pruebasRegistradas:
 			raw_html += '<div class="new-table">'
