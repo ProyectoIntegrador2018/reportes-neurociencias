@@ -75,6 +75,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"lateralidad","nombreExaminador","carrera","semestre","educacion","equipo","deporte",
 			'RV', 'TV', 'TT', 'ET', 'IT', 'M', 'C', 'I', 'C', 'P', 'M.D.', 'M.I.', 'VAR', 'CON', 'TOT', 'C', 'O',
 			'TA', 'TR', 'T', 'I', 'C', 'DI', 'DD', 'ABS', 'B', 'A', 'Dif', 'T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P','bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc','Ira','AgFis','AgVer','Hos','ME', 'MICO','MIE','MIA','MICU','AEMD','MID']
+
 		self.escalares = []
 		self.escalaresLabel = []
 		self.loadReporte()
@@ -452,20 +453,10 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
 			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
     
-			for puntuacionDir in pruebaBP.valores:
+			for puntuacionDir in self.escalares:
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
-			raw_html += '</tr>'							#Cierra una row de la tabla
-
-
-			raw_html += '<tr>'							#Empieza una row de la tabla
-			tableElements = ['Buss y Perry Rangos', 'Pc']
-			# Se añaden cada uno de los valores percentiles obtenidos
-			for puntuacionPerc in pruebaBP.rangoPercentil:
-				tableElements.append(str(puntuacionPerc))
-			raw_html += self.createTableElements(tableElements)
-			raw_html += '</tr>'							#Cierra una row de la tabla
-
+			raw_html += '</tr>'							#Cierra una row de la tabla					#Cierra una row de la tabla
 
 			raw_html += '<tr>'							#Empieza una row de la tabla
 			tableElements = ['DTM', 'Pc']
