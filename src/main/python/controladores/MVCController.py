@@ -12,6 +12,11 @@ class MVCController(WindowControllerMixin):
 	def getTestClass(self):
 		return MVCPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbMVC.setValue(data['sbMVC'])
+		view.sbMVCT.setValue(data['sbMVCT'])
+
 	def getDatos(self):
 		"""
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia

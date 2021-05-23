@@ -13,6 +13,12 @@ class StroopController(WindowControllerMixin):
 	def getTestClass(self):
 		return StroopPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbTR.setValue(data['sbTR'])
+		view.sbTA.setValue(data['sbTA'])
+		view.sbO.setValue(data['sbO'])
+
 	def getDatos(self):
 		"""
 		Método que toma los datos ingresados en la vista de LNS

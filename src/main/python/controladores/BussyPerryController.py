@@ -44,7 +44,7 @@ class BussyPerryController(QtWidgets.QWidget, ControllerModel):
 		ira = view.sbTMTC.value()
 		hos = view.sbTMTD.value()
 
-		valores = (agFis, agVer,ira,hos)
+		valores = (agFis, agVer, ira, hos)
 		
 		self.bpPrueba = BussyPerryPrueba(valores)
 		

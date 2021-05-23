@@ -13,6 +13,21 @@ class SCL90Controller(WindowControllerMixin):
 	def getTestClass(self):
 		return SCL90Prueba
 
+	def setField(self, data):
+		view = self.view
+		view.dsbSOM.setValue(data['dsbSOM'])
+		view.dsbOBS.setValue(data['dsbOBS'])
+		view.dsbINT.setValue(data['dsbINT'])
+		view.dsbDEP.setValue(data['dsbDEP'])
+		view.dsbANS.setValue(data['dsbANS'])
+		view.dsbHOS.setValue(data['dsbHOS'])
+		view.dsbFOB.setValue(data['dsbFOB'])
+		view.dsbPAR.setValue(data['dsbPAR'])
+		view.dsbPSI.setValue(data['dsbPSI'])
+		view.dsbGSI.setValue(data['dsbGSI'])
+		view.dsbPST.setValue(data['dsbPST'])
+		view.dsbPSDI.setValue(data['dsbPSDI'])
+
 	def getDatos(self):
 		"""
 		Método que toma los datos ingresados en la vista de Fluidez Verbal

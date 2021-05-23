@@ -13,15 +13,18 @@ class DenominacionController(WindowControllerMixin):
     def getTestClass(self):
         return DenominacionPrueba
 
+    def setField(self, data):
+        view = self.view
+        view.sbDenomImg.setValue(data['sbDenomImg'])
+        view.sbDenomImgT.setValue(data['sbDenomImgT'])
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la prueba de denominacion
         """
         view = self.view
         denomimgs = view.sbDenomImg.value()
-        # print("Valor denominacion imagenes: ", denomimgs)
         denomimgT = view.sbDenomImgT.value()
-        # print("Valor denominacion imagenes T: ", denomimgT)
 
         valores = (denomimgs, denomimgT)
 

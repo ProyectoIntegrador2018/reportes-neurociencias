@@ -15,6 +15,10 @@ class AbstraccionController(WindowControllerMixin):
 	def getTestClass(self):
 		return AbstraccionPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbAbstraccion.setValue(data['sbAbstraccion'])
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de TMT

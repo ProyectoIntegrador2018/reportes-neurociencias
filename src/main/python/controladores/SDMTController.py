@@ -11,7 +11,11 @@ class SDMTController(WindowControllerMixin):
 
     def getTestClass(self):
         return SDMTPrueba
-        
+    
+    def setField(self, data):
+        view = self.view
+        view.sbSDMT.setValue(data['sbSDMT'])
+
     def getDatos(self):
         """
 		Método que toma los datos ingresados en la vista de Fluidez Verbal

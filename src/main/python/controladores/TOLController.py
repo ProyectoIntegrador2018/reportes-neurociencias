@@ -12,6 +12,16 @@ class TOLController(WindowControllerMixin):
     def getTestClass(self):
         return TOLPrueba
 
+    def setField(self, data):
+        view = self.view
+        view.sbTotalCorrectos.setValue(data['sbTotalCorrectos'])
+        view.sbMovimientosTotales.setValue(data['sbMovimientosTotales'])
+        view.sbTiempoLatencia.setValue(data['sbTiempoLatencia'])
+        view.sbTiempoEjecucion.setValue(data['sbTiempoEjecucion'])
+        view.sbTiempoResolucion.setValue(data['sbTiempoResolucion'])
+        view.sbVT.setValue(data['sbVT'])
+        view.sbVR.setValue(data['sbVR'])
+
     def getDatos(self):
         """
 		Método que toma los datos ingresados en la vista de Fluidez Verbal

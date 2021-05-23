@@ -12,6 +12,16 @@ class PittsburghController(WindowControllerMixin):
     def getTestClass(self):
         return PittsburghPrueba
 
+    def setField(self, data):
+        view = self.view
+        view.comp1.setValue(data['comp1'])
+        view.comp2.setValue(data['comp2'])
+        view.comp3.setValue(data['comp3'])
+        view.comp4.setValue(data['comp4'])
+        view.comp5.setValue(data['comp5'])
+        view.comp6.setValue(data['comp6'])
+        view.comp7.setValue(data['comp7'])
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia

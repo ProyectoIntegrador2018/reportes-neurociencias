@@ -6,12 +6,6 @@ from AppCtxt import APPCTXT
 class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
     def __init__(self, valores):
         nombre = "BVMT-R"
-        # baremos = (pd.read_csv('./Baremos/Baremo_BVMT-R-1.csv'),
-        #             pd.read_csv('./Baremos/Baremo_BVMT-R-2.csv'),
-        #             pd.read_csv('./Baremos/Baremo_BVMT-R-3.csv'), 
-        #             pd.read_csv('./Baremos/Baremo_BVMT-R-4.csv'),
-        #             pd.read_csv('./Baremos/Baremo_BVMT-R-5.csv'),
-        #             pd.read_csv('./Baremos/Tabla_Conversión_Psicométrica_Completa.csv'))
         baremos = (pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_BVMT-R-1.csv')),
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_BVMT-R-2.csv')),
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_BVMT-R-3.csv')), 
@@ -110,12 +104,6 @@ class MemoriaVisoespaciaPrueba(PruebaModel.PruebaModel):
             escalar_normal  = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_normal].iloc[0]
             percentil_delayed = baremoData5.percentile[baremoData5.delayed_recall == delayedRecall].iloc[0]
             escalar_delayed = tablaDf.puntuacion_escalar[tablaDf.puntuacion_percentil == percentil_delayed].iloc[0]
-        
-        #print("\nRESULTADOS\n")
-        #print ("Puntaje percentil (total recall): " + str(percentil_normal)+"%")
-        #print ("Puntaje escalar: (total recall): " + str(escalar_normal))
-        #print ("Puntaje percentil (delayed recall): " + str(percentil_delayed)+"%")
-        #print ("Puntaje escalar (delayed recall): " + str(escalar_delayed))
 
         self.puntuacionEscalar = (int(escalar_normal), int(escalar_delayed))
         self.rangoPercentil = (int(percentil_normal), int(percentil_delayed))

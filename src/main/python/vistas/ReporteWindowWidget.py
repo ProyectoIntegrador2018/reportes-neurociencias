@@ -122,7 +122,7 @@ class ReporteWindowWidget(object):
         # self.label.setText(_translate("Form", "SYNAPPS"))
         self.label_4.setText(_translate("Form", "Vista previa del reporte"))
         self.pbStart.setText(_translate("Form", "Guardar PDF"))
-        self.pdSaveCsv.setText(_translate("Form", "Guardar CSV"))
+        self.pdSaveCsv.setText(_translate("Form", "Guardar Excel"))
         self.pbRestart.setText(_translate("Form", "Nuevo Reporte"))
 
 

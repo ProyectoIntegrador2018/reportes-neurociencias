@@ -13,6 +13,7 @@ from MainWindowController import *
 from ModalController import *
 from MenuController import *
 from ProgressBarController import *
+from MainWindowWithListWidget import *
 from controladores.FluidezVerbalController import *
 from controladores.DenominacionController import *
 from controladores.MVCController import *
@@ -97,10 +98,12 @@ class MasterController:
             "dummyWindow",
         ])
 
+        self.loadedInfo = False
+        self.testsInfo = None
         self.router = Router(self.paginasDisponibles)
         self.router.setController(
             "seleccionarPruebas", PruebaSeleccionController)
-
+        
         self.router.setController(
             "informacionSujeto", MainWindowController)
 
@@ -265,7 +268,7 @@ class MasterController:
         """
         self.showSpecificWindowMenu(self.paginasVisitadas[0])
 
-    def pruebasSeleccionadas(self, listMissingElem, selectedPruebas):
+    def pruebasSeleccionadas(self, listMissingElem, selectedPruebas, data):
         """
          Metodo para inicializar las pruebas seleccionadas
          Args:
@@ -290,6 +293,19 @@ class MasterController:
             self.addPaginaVisitada("seleccionarPruebas")
             self.menuController.updatePagesVisited(self.paginasVisitadas)
             self.showSpecificWindowMenu("informacionSujeto")
+        
+        if(data):
+            self.testsInfo = data
+            self.loadedInfo = True
+        else:
+            self.testsInfo = None
+            self.loadedInfo = False
+
+        if(data['info_personal']):
+            self.router.getController("informacionSujeto")
+            info = self.router.getController("informacionSujeto")
+            
+            info.setField(data['info_personal'])
 
     def asignaReporte(self, listMissingElem, reporte, reset=False):
         """
@@ -363,7 +379,13 @@ class MasterController:
 
                 if self.router.getController(nameKey) is None or nameKey == "report" :
                     self.router.setController(nameKey, ClassRef, self.reporteModel)
-
+                    if(self.loadedInfo):
+                        testController = self.router.getController(nameKey)
+                        try:
+                            testController.setField(self.testsInfo[nameKey])
+                        except:
+                            pass
+                        
                 self.addPaginaVisitada(nameKey)
                 self.menuController.updatePagesVisited(self.paginasVisitadas)
                 self.showSpecificWindowMenu(nameKey)
@@ -378,7 +400,7 @@ class MasterController:
         if not reporteController.hasSaveCSV and not reporteController.csvDialogHasShown:
             self.displayModal([], 
                     modalTitle="Guarda los datos",
-                    modalHeader="No has guardado el reporte en CSV, tus datos se perderan \nSi planeas guardar tus datos da click en Guardar CSV")
+                    modalHeader="No has guardado el reporte en Excel, tus datos se perderan \nSi planeas guardar tus datos da click en Guardar Excel")
             reporteController.csvDialogHasShown = True
             return
 
@@ -399,7 +421,6 @@ class MasterController:
 
         self.router.resetRouterViews(resetMainWindow)
         self.router.resetRouterControllers(resetMainWindow)
-
 
 def main():
     """

@@ -9,7 +9,7 @@ class BussyPerryPrueba(PruebaModel.PruebaModel):
 		baremos = (pd.read_csv(APPCTXT().get_resource('./Baremos/TablaTMT.csv')),
 					pd.read_csv(APPCTXT().get_resource('./Baremos/EscolaridadTMTA.csv')),
 					pd.read_csv(APPCTXT().get_resource('./Baremos/EscolaridadTMTB.csv')))
-		campos = ("A", "B")
+		campos = ("agFis", "agVer", "ira", "hos")
 
 		super(BussyPerryPrueba,self).__init__(nombre, valores, baremos, campos)
 

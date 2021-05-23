@@ -9,6 +9,7 @@ import numpy as np
 import os
 import csv
 import pdfkit
+import pandas as pd
 #from weasyprint import HTML, CSS
 from AppCtxt import APPCTXT
 # from Controller import appctxt
@@ -66,7 +67,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			"D2":[('O', 'TA', 'TR', 'T', 'I', 'C', 'DI')],
 			"HVLT-R":[('DD', 'ABS')],
 			"STROOP":[('B', 'A', 'Dif')],
-			"Denominación":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
+			"Torre de Londres":[('T', 'MVCt', 'MVC', 'DVt', 'DV', 'A', 'P')],
 			"BSI-18":[('SOM', 'DEP', 'ANS', 'IGS')]
 		}
 		self.csvHeaders = ["nombreExaminado","id","fecha","genero","edad","fechaNacimiento",
@@ -734,7 +735,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		options = QtWidgets.QFileDialog.Options()
 		options |= QtWidgets.QFileDialog.DontUseNativeDialog
 		options |= QtWidgets.QFileDialog.DontConfirmOverwrite
-		fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","CSV (*.csv)", options=options)
+		fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","Excel (*.xlsx)", options=options)
 		if not fileName:
 			return
 
@@ -745,34 +746,38 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 	def saveToCsv(self, fileName):
 		reporte = self.reporteModel.reporte
-		fileName = fileName + '.csv'
-		append_write = ""
-		if os.path.exists(fileName):
-			append_write = 'a' # append if already exists
-		else:
-			append_write = 'w' # make a new file if not
+		fileName = fileName + '.xlsx'
 
-		data = self.getRowData()
-		with open(fileName,append_write, newline='', encoding='utf-8') as f:
-			w = csv.DictWriter(f, self.csvHeaders)
-			if append_write == 'w':
-				w.writeheader()
+		userInfo = self.getUserInfo()
+
+		pruebasRegistradas = reporte["resultados"]
+
+		# Write each dataframe to a different worksheet.
+		writer = pd.ExcelWriter(fileName, engine='xlsxwriter')
+		for pruebaName in pruebasRegistradas.keys():
+			infoPrueba = pruebasRegistradas[pruebaName]
+			data = {}
+			for key, value in zip(infoPrueba.campos, infoPrueba.valores):
+				data[key] = [value]
 			
-			w.writerow(data)
+			print(data)
+			# Write each dataframe to a different worksheet.
+			df = pd.DataFrame.from_dict(data, orient='index', columns=['Valor'])
+			df.to_excel(writer, sheet_name=pruebaName)
 
-	def getRowData(self):
+		df = pd.DataFrame.from_dict(userInfo, orient='index', columns=['Valor'])
+		df.to_excel(writer, sheet_name="Datos")
+
+		# Close the Pandas Excel writer and output the Excel file.
+		writer.save()
+
+	def getUserInfo(self):
 		dicInfo = {}
-		
-		for key, value in zip(self.escalaresLabel, self.escalares):
-			dicInfo[key] = value
-		#print(dicInfo)
-		for key in self.csvHeaders:
-			if key not in dicInfo:
-				dicInfo[key] = "nan"
 		
 		# append user info
 		tmp = dict(self.reporteModel.reporte)
 		del tmp["resultados"]
+		print(tmp)
 		dicInfo.update(tmp)
 
 		return dicInfo

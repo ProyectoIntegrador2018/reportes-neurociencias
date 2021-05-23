@@ -154,6 +154,10 @@ class PruebaSeleccionWindowWidget(object):
         self.pushButtonContinuar.setGeometry(QtCore.QRect(250, 550, 85, 25))
         self.pushButtonContinuar.setObjectName("pushButtonContinuar")
 
+        self.backButton = QtWidgets.QPushButton(Form)
+        self.backButton.setGeometry(QtCore.QRect(250, 580, 85, 30))
+        self.backButton.setObjectName("returnButton")
+
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 0, 300, 61))
         self.label.setObjectName("label")
@@ -231,3 +235,4 @@ class PruebaSeleccionWindowWidget(object):
         self.pushButtonContinuar.setText(_translate("Form", "Continuar"))
         self.label.setText(_translate(
             "Form", "<html><head/><body><p><img src=\":/newPrefix/logoChico.png\"/></p></body></html>"))
+        self.backButton.setText(_translate("Form", "Importar Reporte"))
