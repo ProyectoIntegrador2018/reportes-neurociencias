@@ -278,7 +278,7 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
     def file_open(self):
         fileName =  QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', 'c:\\',"Image files (*.xlsx)")
 
-        df = pd.read_excel(fileName[0], sheet_name=None, index_col=0)
+        df = pd.read_excel(fileName[0], sheet_name=None, index_col=0, engine='openpyxl')
         for name, sheet in df.items():
             pruebaName = self.pruebasMapper[name]
             pruebaData = {}
