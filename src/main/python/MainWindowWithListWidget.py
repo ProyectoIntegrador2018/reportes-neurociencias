@@ -99,7 +99,7 @@ class MainWindowWithListWidget(object):
             3, QtWidgets.QFormLayout.LabelRole, self.label_8)
 
         ageMin = 15
-        ageMax = 49
+        ageMax = 90
         self.sbAge = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbAge.setObjectName("sbAge")
         self.sbAge.setRange(ageMin, ageMax)

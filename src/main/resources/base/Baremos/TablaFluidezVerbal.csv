@@ -15,5 +15,5 @@ PuntuacionEscalar,RangoDePercentilMin,RangoDePercentilMax,AnimalesMin,AnimalesMa
 15,95,97,32,33,25,26
 16,98,98,34,36,27,27
 17,99,99,37,37,28,29
-18,99,100,38,1000,30,1000
+18,100,1000,38,1000,30,1000
 ,,,,,,
