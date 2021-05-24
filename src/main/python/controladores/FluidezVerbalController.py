@@ -26,7 +26,7 @@ class FluidezVerbalController(WindowControllerMixin):
 		
 		self.test = FluidezVerbalPrueba(valores)
 		
-		datos = [self.reporteModel.reporte['educacion']]
+		datos = [self.reporteModel.reporte['educacion'], self.reporteModel.reporte['edad']]
 		
 		if palabrasConP == 0:
 			self.addInvalidArg("Palabras con P")
