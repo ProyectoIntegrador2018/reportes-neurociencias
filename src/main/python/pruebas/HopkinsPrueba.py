@@ -52,6 +52,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 18
 			if delayed_recall <= 5:
 				delayed_recall = 5
+			delayedDf.rango18_22 = delayedDf.rango18_22.fillna(0)
+			totalDf.rango18_22 = [math.floor(x) for x in totalDf.rango18_22]
+			delayedDf.rango18_22 = [math.floor(x) for x in delayedDf.rango18_22]
+
 			percentile_normal = totalDf.percentile[totalDf.rango23_27 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango23_27 == delayed_recall].iloc[0]
@@ -61,6 +65,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 17
 			if delayed_recall <= 5:
 				delayed_recall = 5
+			delayedDf.rango28_32 = delayedDf.rango28_32.fillna(0)
+			totalDf.rango28_32 = [math.floor(x) for x in totalDf.rango28_32]
+			delayedDf.rango28_32 = [math.floor(x) for x in delayedDf.rango28_32]
+
 			percentile_normal = totalDf.percentile[totalDf.rango28_32 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango28_32 == delayed_recall].iloc[0]
@@ -70,6 +78,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 16
 			if delayed_recall <= 5:
 				delayed_recall = 5
+			delayedDf.rango33_37 = delayedDf.rango33_37.fillna(0)
+			totalDf.rango33_37 = [math.floor(x) for x in totalDf.rango33_37]
+			delayedDf.rango33_37 = [math.floor(x) for x in delayedDf.rango33_37]
+
 			percentile_normal = totalDf.percentile[totalDf.rango33_37 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango33_37 == delayed_recall].iloc[0]
@@ -79,6 +91,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 16
 			if delayed_recall <= 4:
 				delayed_recall = 4
+			delayedDf.rango38_42 = delayedDf.rango38_42.fillna(0)
+			totalDf.rango38_42 = [math.floor(x) for x in totalDf.rango38_42]
+			delayedDf.rango38_42 = [math.floor(x) for x in delayedDf.rango38_42]
+
 			percentile_normal = totalDf.percentile[totalDf.rango38_42 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango38_42 == delayed_recall].iloc[0]
@@ -88,6 +104,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 15
 			if delayed_recall <= 4:
 				delayed_recall = 4
+			delayedDf.rango43_47 = delayedDf.rango43_47.fillna(0)
+			totalDf.rango43_47 = [math.floor(x) for x in totalDf.rango43_47]
+			delayedDf.rango43_47 = [math.floor(x) for x in delayedDf.rango43_47]
+
 			percentile_normal = totalDf.percentile[totalDf.rango43_47 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango43_47 == delayed_recall].iloc[0]
@@ -97,6 +117,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 15
 			if delayed_recall <= 4:
 				delayed_recall = 4
+			delayedDf.rango48_52 = delayedDf.rango48_52.fillna(0)
+			totalDf.rango48_52 = [math.floor(x) for x in totalDf.rango48_52]
+			delayedDf.rango48_52 = [math.floor(x) for x in delayedDf.rango48_52]
+
 			percentile_normal = totalDf.percentile[totalDf.rango48_52 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango48_52 == delayed_recall].iloc[0]
@@ -106,24 +130,23 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 14
 			if delayed_recall <= 3:
 				delayed_recall = 3
-			print(totalDf.percentile)
-			print(totalDf.rango53_57)
-			print(totalDf.rango53_57 == total_recall)
-			print(totalDf.percentile[totalDf.rango53_57 == total_recall])
-			print(totalDf.percentile[totalDf.rango53_57 == total_recall].iloc)
+			delayedDf.rango53_57 = delayedDf.rango53_57.fillna(0)
+			totalDf.rango53_57 = [math.floor(x) for x in totalDf.rango53_57]
+			delayedDf.rango53_57 = [math.floor(x) for x in delayedDf.rango53_57]
+
 			percentile_normal = totalDf.percentile[totalDf.rango53_57 == total_recall].iloc[0]
-			print(percentile_normal)
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
-			print(escalar_normal)
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango53_57 == delayed_recall].iloc[0]
-			print(percentile_delayed)
 			escalar_delayed = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_delayed)))].iloc[0]
-			print(escalar_delayed)
 		elif ((edad <= 62) and (edad >= 58)):
 			if total_recall <= 14:
 				total_recall = 14
 			if delayed_recall <= 3:
 				delayed_recall = 3
+			delayedDf.rango58_62 = delayedDf.rango58_62.fillna(0)
+			totalDf.rango58_62 = [math.floor(x) for x in totalDf.rango58_62]
+			delayedDf.rango58_62 = [math.floor(x) for x in delayedDf.rango58_62]
+
 			percentile_normal = totalDf.percentile[totalDf.rango58_62 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango58_62 == delayed_recall].iloc[0]
@@ -133,6 +156,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 13
 			if delayed_recall <= 3:
 				delayed_recall = 3
+			delayedDf.rango63_67 = delayedDf.rango63_67.fillna(0)
+			totalDf.rango63_67 = [math.floor(x) for x in totalDf.rango63_67]
+			delayedDf.rango63_67 = [math.floor(x) for x in delayedDf.rango63_67]
+
 			percentile_normal = totalDf.percentile[totalDf.rango63_67 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango63_67 == delayed_recall].iloc[0]
@@ -142,6 +169,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 13
 			if delayed_recall <= 3:
 				delayed_recall = 3
+			delayedDf.rango68_72 = delayedDf.rango68_72.fillna(0)
+			totalDf.rango68_72 = [math.floor(x) for x in totalDf.rango68_72]
+			delayedDf.rango68_72 = [math.floor(x) for x in delayedDf.rango68_72]
+
 			percentile_normal = totalDf.percentile[totalDf.rango68_72 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango68_72 == delayed_recall].iloc[0]
@@ -151,6 +182,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 12
 			if delayed_recall <= 2:
 				delayed_recall = 2
+			delayedDf.rango73_77 = delayedDf.rango73_77.fillna(0)
+			totalDf.rango73_77 = [math.floor(x) for x in totalDf.rango73_77]
+			delayedDf.rango73_77 = [math.floor(x) for x in delayedDf.rango73_77]
+
 			percentile_normal = totalDf.percentile[totalDf.rango73_77 == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango73_77 == delayed_recall].iloc[0]
@@ -160,6 +195,10 @@ class HopkinsPrueba(PruebaModel.PruebaModel):
 				total_recall = 11
 			if delayed_recall <= 2:
 				delayed_recall = 2
+			delayedDf.rango78_ = delayedDf.rango78_.fillna(0)
+			totalDf.rango78_ = [math.floor(x) for x in totalDf.rango78_]
+			delayedDf.rango78_ = [math.floor(x) for x in delayedDf.rango78_]
+
 			percentile_normal = totalDf.percentile[totalDf.rango78_ == total_recall].iloc[0]
 			escalar_normal = conversionDf['puntuacion_escalar'][conversionDf.puntuacion_percentil == str(math.floor(int(percentile_normal)))].iloc[0]
 			percentile_delayed = delayedDf['percentile'][delayedDf.rango78_ == delayed_recall].iloc[0]
