@@ -14,12 +14,6 @@ Tener las siguientes herramientas instaladas y configuradas:
 
 - Git [Instrucciones](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - Python [Instrucciones](https://www.python.org/downloads/)
-- Pandas [Instrucciones](https://pandas.pydata.org/pandas-docs/version/0.23.3/install.html)
-- PyQt5 [Instrucciones](https://pypi.org/project/PyQt5/)
-- Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
-- Pyinstaller [Instrucciones](https://pyinstaller.readthedocs.io/en/stable/installation.html)
-- Fbs [Instrucciones](https://pypi.org/project/fbs/)
-- pdfkit [Instrucciones](https://pypi.org/project/pdfkit/)
 - wkhtmltopdf[Instrucciones](https://wkhtmltopdf.org/downloads.html)
 
 ### Clonar o actualizar repositorio
@@ -55,12 +49,6 @@ Por favor instala los siguientes paquetes/librerías:
 
 - Git [Instrucciones](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - Python [Instrucciones](https://www.python.org/downloads/)
-- Pandas [Instrucciones](https://pandas.pydata.org/pandas-docs/version/0.23.3/install.html)
-- PyQt5 [Instrucciones](https://pypi.org/project/PyQt5/)
-- Matplotlib [Instrucciones](https://matplotlib.org/3.1.1/users/installing.html)
-- Pyinstaller [Instrucciones](https://pyinstaller.readthedocs.io/en/stable/installation.html)
-- Fbs [Instrucciones](https://pypi.org/project/fbs/)
-- pdfkit [Instrucciones](https://pypi.org/project/pdfkit/)
 - wkhtmltopdf[Instrucciones](https://wkhtmltopdf.org/downloads.html)
 
 Después de instalar lo anterior sigue los siguientes pasos:
