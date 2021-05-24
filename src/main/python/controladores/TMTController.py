@@ -13,6 +13,11 @@ class TMTController(WindowControllerMixin):
 	def getTestClass(self):
 		return TMTPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbTMTA.setValue(data['sbTMTA'])
+		view.sbTMTB.setValue(data['sbTMTB'])
+
 	def getDatos(self):
 		"""
 		Método que toma los datos ingresados en la vista de TMT

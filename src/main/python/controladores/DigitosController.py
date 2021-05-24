@@ -13,6 +13,11 @@ class DigitosController(WindowControllerMixin):
     def getTestClass(self):
         return DigitosPrueba
 
+    def setField(self, data):
+        view = self.view
+        view.sbDirectos.setValue(data['sbDirectos'])
+        view.sbInversos.setValue(data['sbInversos'])
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la vista de Digitos

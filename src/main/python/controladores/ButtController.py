@@ -15,6 +15,14 @@ class ButtController(WindowControllerMixin):
 	def getTestClass(self):
 		return ButtPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbConflicto.setValue(data['sbConflicto'])
+		view.sbRivalidad.setValue(data['sbRivalidad'])
+		view.sbSuficiencia.setValue(data['sbSuficiencia'])
+		view.sbCooperacion.setValue(data['sbCooperacion'])
+		view.sbAgresividad.setValue(data['sbAgresividad'])
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Butt

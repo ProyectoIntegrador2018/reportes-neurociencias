@@ -14,6 +14,11 @@ class LNSController(WindowControllerMixin):
 	def getTestClass(self):
 		return LNSPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbSpan.setValue(data['sbSpan'])
+		view.sbTotal.setValue(data['sbTotal'])
+		
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de LNS

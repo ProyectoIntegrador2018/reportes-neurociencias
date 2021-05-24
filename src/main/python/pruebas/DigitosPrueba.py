@@ -35,9 +35,6 @@ class DigitosPrueba(PruebaModel.PruebaModel):
         
 
         ajustes = tablaEscolaridadDigitos[tablaEscolaridadDigitos["Escolaridad"] == escolaridad].iloc[0]
-        # print("Ajustes")
-        # print("Ajuste Directos ", ajustes['Directos'])
-        # print("Ajuste inversos ", ajustes['Inversos'])
 
         tmpDirectos = tablaDigitos[tablaDigitos["Directos"] == directos].iloc[0]
         escalarDirectos = tmpDirectos['Escalar'] + ajustes['Directos']

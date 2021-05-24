@@ -12,6 +12,11 @@ class MemoriaVisoespaciaController(WindowControllerMixin):
     def getTestClass(self):
         return MemoriaVisoespaciaPrueba
 
+    def setField(self, data):
+        view = self.view
+        view.sbDenomImg.setValue(data['sbDenomImg'])
+        view.sbDenomImgT.setValue(data['sbDenomImgT'])
+
     def getDatos(self):
         """
         Metodo para tomar los datos ingresados en la prueba de memoria visoespacia

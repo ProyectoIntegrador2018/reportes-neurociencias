@@ -49,6 +49,31 @@ class MainWindowController(QtWidgets.QWidget, ControllerModel):
 		"""
 		self.switch_window.emit(self.missingArguments, self.reporte, True)
 
+	def setField(self, data):
+		vista = self.mainWindowView
+		vista.leName.setText(data['leName'])
+		vista.leId.setText(data['leId'])
+		vista.leExaminer.setText(data['leExaminer'])
+		vista.sbAge.setValue(data['sbAge'])
+		vista.sbEscolaridad.setValue(data['sbEscolaridad'])
+		if(data['cbSexo'] == 'Femenino'):
+			vista.cbSexo.setCurrentIndex(0)
+		else:
+			vista.cbSexo.setCurrentIndex(1)
+		print(str(data['deFechaNacimiento']).split(' ')[0])
+		vista.deFechaNacimiento.setDate(QtCore.QDate.fromString(data['deFechaNacimiento'], "dd/MMMM/yyyy"))
+		if(data['cbLateralidad'] == 'Diestro'):
+			vista.cbLateralidad.setCurrentIndex(0)
+		elif(data['cbLateralidad'] == 'Zurdo'):
+			vista.cbLateralidad.setCurrentIndex(1)
+		else:
+			vista.cbLateralidad.setCurrentIndex(2)
+		vista.deFecha.setDate(QtCore.QDate.fromString(data['deFecha'], "dd/MMMM/yyyy"))
+		vista.leCarrera.setText(data['leCarrera'])
+		vista.sbSemestre.setValue(data['sbSemestre'])
+		vista.leEquipo.setText(data['leEquipo'])
+		vista.leDeporte.setText(data['leDeporte'])
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Informacion de Sujeto

@@ -14,6 +14,11 @@ class FluidezVerbalController(WindowControllerMixin):
 	def getTestClass(self):
 		return FluidezVerbalPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbWords.setValue(data['sbWords'])
+		view.sbAnimals.setValue(data['sbAnimals'])
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Fluidez Verbal

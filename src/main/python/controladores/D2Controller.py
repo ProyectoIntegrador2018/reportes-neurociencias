@@ -14,6 +14,14 @@ class D2Controller(WindowControllerMixin):
 	def getTestClass(self):
 		return D2Prueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbTR.setValue(data['sbTR'])
+		view.sbTA.setValue(data['sbTA'])
+		view.sbO.setValue(data['sbO'])
+		view.sbC.setValue(data['sbC'])
+		view.sbVAR.setValue(data['sbVAR'])
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de D2

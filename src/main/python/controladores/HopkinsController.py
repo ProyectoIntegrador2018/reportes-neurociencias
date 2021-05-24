@@ -13,6 +13,11 @@ class HopkinsController(WindowControllerMixin):
 	def getTestClass(self):
 		return HopkinsPrueba
 
+	def setField(self, data):
+		view = self.view
+		view.sbSpan.setValue(data['sbSpan'])
+		view.sbTotal.setValue(data['sbTotal'])
+
 	def getDatos(self):
 		"""
 		 Método que toma los datos ingresados en la vista de Hopkins
