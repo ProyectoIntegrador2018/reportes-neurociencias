@@ -30,7 +30,7 @@ class DigitosController(WindowControllerMixin):
 
         self.test = DigitosPrueba(valores)
 
-        datos = [self.reporteModel.reporte['educacion']]
+        datos = [self.reporteModel.reporte['educacion'],self.reporteModel.reporte['edad']]
 
         self.test.calcularPERP(datos)
 

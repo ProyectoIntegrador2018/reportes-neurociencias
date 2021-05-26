@@ -16,7 +16,10 @@ class StroopPrueba(PruebaModel.PruebaModel):
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_Stroop_72-74.csv')),
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_Stroop_75-77.csv')),
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_Stroop_78-80.csv')),
-                    pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_Stroop_81-90.csv'))]
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_Stroop_81-90.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_Stroop_p.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_Stroop_c.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_Stroop_pc.csv'))]
         campos = ("P", "C", "I")
         super(StroopPrueba,self).__init__(nombre, valores, baremos, campos)
         
@@ -46,8 +49,11 @@ class StroopPrueba(PruebaModel.PruebaModel):
         """
         stroopData = self.baremos[0]
         edades = list()
+        educa = list()
         for x in range(1,11):
             edades.append(self.baremos[x])
+        for x in range(11,14):
+            educa.append(self.baremos[x])
         P = self.valores[0]
         C = self.valores[1]
         PC = self.valores[2]
@@ -75,6 +81,7 @@ class StroopPrueba(PruebaModel.PruebaModel):
                 ran = 8
             elif 81 <= edad <= 90:
                 ran = 9
+            
             #print(edades[ran]['Percentil Min'][(edades[ran]['Pmin'] <= P) & (P <= edades[ran]['Pmax'])].iloc[0])
             p_percentil = int(edades[ran]['Percentil Min'][(edades[ran]['Pmin'] <= P) & (P <= edades[ran]['Pmax'])].iloc[0])
             p_escalar = int(edades[ran]['Escalar'][(edades[ran]['Pmin'] <= P) & (P <= edades[ran]['Pmax'])].iloc[0])
@@ -84,6 +91,37 @@ class StroopPrueba(PruebaModel.PruebaModel):
             
             pc_percentil = int(edades[ran]['Percentil Min'][(edades[ran]['PCmin'] <= PC) & (PC <= edades[ran]['PCmax'])].iloc[0])
             pc_escalar = int(edades[ran]['Escalar'][(edades[ran]['PCmin'] <= PC) & (PC <= edades[ran]['PCmax'])].iloc[0])
+
+            NSSa = p_escalar
+            p_escalar = educa[0][str(escolaridad)][educa[0].NSSa == NSSa].iloc[0]
+            NSSa = c_escalar
+            c_escalar = educa[0][str(escolaridad)][educa[1].NSSa == NSSa].iloc[0]
+            NSSa = pc_escalar
+            pc_escalar = educa[0][str(escolaridad)][educa[2].NSSa == NSSa].iloc[0]
+            
+            '''
+            escalares = list() 
+            percentiles = list()
+            labels = edades[ran].columns.values
+            
+            par = 1
+            for x in range(5):
+                par += 2
+                #print(self.valores[x],edades[ran][labels[x][1]])
+                escalares.append(int(edades[ran]['Escalar'][(edades[ran][labels[par]] <= self.valores[x]) & (self.valores[x] <= edades[ran][labels[par+1]])].iloc[0]))
+                percentiles.append(int(edades[ran]['Percentil Min'][(edades[ran][labels[par]] <= self.valores[x]) & (self.valores[x] <= edades[ran][labels[par+1]])].iloc[0]))
+
+                NSSa = escalares[-1]
+                escalares[-1] = educa[x][str(escolaridad)][educa[x].NSSa == NSSa].iloc[0]
+
+            p_escalar = escalares[0]
+            c_escalar = escalares[1]
+            pc_escalar = escalares[2]
+
+            p_percentil = percentiles[0]
+            c_percentil = percentiles[1]
+            pc_percentil = percentiles[2]
+            '''
         else:
             p_percentil = ((stroopData.percentile_inf[stroopData.P == P].iloc[0]),(stroopData.percentile_sup[stroopData.P == P].iloc[0]))
             c_percentil = ((stroopData.percentile_inf[stroopData.C == C].iloc[0]),(stroopData.percentile_sup[stroopData.C == C].iloc[0]))

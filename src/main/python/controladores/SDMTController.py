@@ -27,7 +27,7 @@ class SDMTController(WindowControllerMixin):
 
         self.test = SDMTPrueba(valores)
 
-        datos = [self.reporteModel.reporte['educacion']]
+        datos = [self.reporteModel.reporte['educacion'],self.reporteModel.reporte['edad']]
 
        
         self.test.calcularPERP(datos)

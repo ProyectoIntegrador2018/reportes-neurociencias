@@ -20,7 +20,12 @@ class TOLPrueba(PruebaModel.PruebaModel):
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_TOL_72-74.csv')),
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_TOL_75-77.csv')),
                     pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_TOL_78-80.csv')),
-                    pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_TOL_81-90.csv')))
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Baremo_TOL_81-90.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_TOL_correct.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_TOL_mov.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_TOL_time.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_TOL_exec.csv')),
+                    pd.read_csv(APPCTXT().get_resource('./Baremos/Escolaridad_TOL_solve.csv')))
         campos = ("C", "M", "IT", "ET", "TT", "TV", "RV")
         super(TOLPrueba,self).__init__(nombre, valores, baremos, campos)
     
@@ -38,8 +43,11 @@ class TOLPrueba(PruebaModel.PruebaModel):
         tablaescolaridadTOL = self.baremos[4]
         tablaTOLMovTotales = self.baremos[5]
         edades = list()
+        educa = list()
         for x in range(6,16):
             edades.append(self.baremos[x])
+        for x in range(16,21):
+            educa.append(self.baremos[x])
 
         totalCorrectos = self.valores[0]
         movimientosTotales = self.valores[1]
@@ -86,11 +94,15 @@ class TOLPrueba(PruebaModel.PruebaModel):
                 escalares.append(int(edades[ran]['Escalar'][(edades[ran][labels[x][1]] <= self.valores[x]) & (self.valores[x] <= edades[ran][labels[x][0]])].iloc[0]))
                 percentiles.append(int(edades[ran]['Percentil Min'][(edades[ran][labels[x][1]] <= self.valores[x]) & (self.valores[x] <= edades[ran][labels[x][0]])].iloc[0]))
 
+                NSSa = escalares[-1]
+                escalares[-1] = educa[x][str(escolaridad)][educa[x].NSSa == NSSa].iloc[0]
+
             escalarTotalCorrectos = escalares[0]
             escalarMovTotales = escalares[1]
             escalarLatencia = escalares[2]
             escalarEjecucion = escalares[3]
             escalarResolucion = escalares[4]
+            
             #escalarVT = escalares[]
             #escalarVR = escalares[]
 

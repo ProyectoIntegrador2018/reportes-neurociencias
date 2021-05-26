@@ -32,7 +32,7 @@ class LNSController(WindowControllerMixin):
 		self.test = LNSPrueba(valores)
 
 		#toma anos de escolaridad del paciente
-		datos = self.reporteModel.reporte['educacion']
+		datos = (self.reporteModel.reporte['educacion'],self.reporteModel.reporte['edad'])
 		
 		self.test.calcularPERP(datos)
 			
