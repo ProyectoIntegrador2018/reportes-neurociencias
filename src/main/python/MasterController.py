@@ -304,7 +304,7 @@ class MasterController:
             self.testsInfo = None
             self.loadedInfo = False
 
-        if(data['info_personal']):
+        if('info_personal' in data):
             self.router.getController("informacionSujeto")
             info = self.router.getController("informacionSujeto")
             
