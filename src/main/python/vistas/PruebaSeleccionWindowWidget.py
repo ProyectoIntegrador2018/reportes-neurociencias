@@ -15,6 +15,7 @@ class PruebaSeleccionWindowWidget(object):
         self.setupUi(Form)
 
     def setupUi(self, Form):
+        self.resize = False
         Form.setObjectName("Form")
         Form.resize(450, 616)
         self.centralwidget = QtWidgets.QWidget(Form)
@@ -23,139 +24,94 @@ class PruebaSeleccionWindowWidget(object):
         self.listWidgetPruebas = QtWidgets.QListWidget(self.centralwidget)
         self.listWidgetPruebas.setGeometry(QtCore.QRect(10, 61, 430, 485))
         self.listWidgetPruebas.setObjectName("listWidgetPruebas")
+        self.widgetPruebas = QtWidgets.QWidget(self.listWidgetPruebas)
+        self.formPruebas = QtWidgets.QFormLayout(self.widgetPruebas)
+        self.formPruebas.setVerticalSpacing(4)
 
-        self.checkBoxPruebaEMD = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaEMD.setGeometry(
-            QtCore.QRect(20, 60, 250, 20))
-        self.checkBoxPruebaEMD.setObjectName(
-            "checkBoxPruebaEMD")
+        self.checkBoxPruebaEMD = QtWidgets.QCheckBox()
+        self.checkBoxPruebaEMD.setObjectName("checkBoxPruebaEMD")
 
-        self.checkBoxPruebaBussyPerry = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaBussyPerry.setGeometry(
-            QtCore.QRect(20, 80, 250, 20))
-        self.checkBoxPruebaBussyPerry.setObjectName(
-            "checkBoxPruebaBussyPerry")
+        self.checkBoxPruebaBussyPerry = QtWidgets.QCheckBox()
+        self.checkBoxPruebaBussyPerry.setObjectName("checkBoxPruebaBussyPerry")
 
-        self.checkBoxPruebaFluidezVerbal = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaFluidezVerbal.setGeometry(
-            QtCore.QRect(20, 106, 250, 20))
-        self.checkBoxPruebaFluidezVerbal.setObjectName(
-            "checkBoxPruebaFluidezVerbal")
-        # self.checkBoxPruebaFluidezVerbal.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Fluidez Verbal"))
+        self.checkBoxPruebaFluidezVerbal = QtWidgets.QCheckBox( self.widgetPruebas)
+        self.checkBoxPruebaFluidezVerbal.setObjectName("checkBoxPruebaFluidezVerbal")
 
-        self.checkBoxPruebaDenominacion = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaDenominacion.setGeometry(
-            QtCore.QRect(20, 132, 250, 20))
-        self.checkBoxPruebaDenominacion.setObjectName(
-            "checkBoxPruebaDenominacion")
-        # self.checkBoxPruebaDenominacion.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Denominacion"))
+        self.checkBoxPruebaDenominacion = QtWidgets.QCheckBox( self.widgetPruebas)
+        self.checkBoxPruebaDenominacion.setObjectName("checkBoxPruebaDenominacion")
 
-        self.checkBoxComprensionVerbal = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxComprensionVerbal.setGeometry(
-            QtCore.QRect(20, 158, 250, 20))
-        self.checkBoxComprensionVerbal.setObjectName(
-            "checkBoxComprensionVerbal")
-        # self.checkBoxComprensionVerbal.stateChanged.connect(lambda:self.changeCheckboxState("Comprension Verbal"))
+        self.checkBoxComprensionVerbal = QtWidgets.QCheckBox( self.centralwidget)
+        self.checkBoxComprensionVerbal.setObjectName("checkBoxComprensionVerbal")
 
-        self.checkBoxPruebaMemoriaVisoespacial = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaMemoriaVisoespacial.setGeometry(
-            QtCore.QRect(20, 184, 250, 20))
-        self.checkBoxPruebaMemoriaVisoespacial.setObjectName(
-            "checkBoxPruebaMemoriaVisoespacial")
-        # self.checkBoxPruebaMemoriaVisoespacial.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Memoria Visoespacial"))
+        self.checkBoxPruebaMemoriaVisoespacial = QtWidgets.QCheckBox( self.centralwidget)
+        self.checkBoxPruebaMemoriaVisoespacial.setObjectName("checkBoxPruebaMemoriaVisoespacial")
 
-        self.checkBoxPruebaTMT = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaTMT.setGeometry(QtCore.QRect(20, 210, 250, 20))
+        self.checkBoxPruebaTMT = QtWidgets.QCheckBox()
         self.checkBoxPruebaTMT.setObjectName("checkBoxPruebaTMT")
-        # self.checkBoxPruebaTMT.stateChanged.connect(lambda:self.changeCheckboxState("Prueba TMT"))
 
-        self.checkBoxPruebaAbstraccion = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaAbstraccion.setGeometry(
-            QtCore.QRect(20, 236, 250, 20))
-        self.checkBoxPruebaAbstraccion.setObjectName(
-            "checkBoxPruebaAbstraccion")
-        # self.checkBoxPruebaAbstraccion.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Abstraccion"))
+        self.checkBoxPruebaAbstraccion = QtWidgets.QCheckBox( self.centralwidget)
+        self.checkBoxPruebaAbstraccion.setObjectName("checkBoxPruebaAbstraccion")
 
-        self.checkBoxPruebaDigitos = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaDigitos.setGeometry(QtCore.QRect(20, 262, 250, 20))
+        self.checkBoxPruebaDigitos = QtWidgets.QCheckBox()
         self.checkBoxPruebaDigitos.setObjectName("checkBoxPruebaDigitos")
-        # self.checkBoxPruebaDigitos.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Digitos"))
 
-        self.checkBoxPruebaSDMT = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaSDMT.setGeometry(QtCore.QRect(20, 288, 250, 20))
+        self.checkBoxPruebaSDMT = QtWidgets.QCheckBox()
         self.checkBoxPruebaSDMT.setObjectName("checkBoxPruebaSDMT")
-        # self.checkBoxPruebaSDMT.stateChanged.connect(lambda:self.changeCheckboxState("Prueba SDMT"))
 
-        self.checkBoxPruebaLNS = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaLNS.setGeometry(QtCore.QRect(20, 314, 250, 20))
+        self.checkBoxPruebaLNS = QtWidgets.QCheckBox()
         self.checkBoxPruebaLNS.setObjectName("checkBoxPruebaLNS")
-        # self.checkBoxPruebaLNS.stateChanged.connect(lambda:self.changeCheckboxState("Prueba LNS"))
 
-        self.checkBoxPruebaD2 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaD2.setGeometry(QtCore.QRect(20, 340, 250, 20))
+        self.checkBoxPruebaD2 = QtWidgets.QCheckBox()
         self.checkBoxPruebaD2.setObjectName("checkBoxPruebaD2")
-        # self.checkBoxPruebaD2.stateChanged.connect(lambda:self.changeCheckboxState("Prueba D2"))
 
-        self.checkBoxPruebaHopkins = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaHopkins.setGeometry(QtCore.QRect(20, 366, 250, 20))
+        self.checkBoxPruebaHopkins = QtWidgets.QCheckBox()
         self.checkBoxPruebaHopkins.setObjectName("checkBoxPruebaHopkins")
-        # self.checkBoxPruebaHopkins.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Hopkins"))
 
-        self.checkBoxPruebaStroop = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaStroop.setGeometry(QtCore.QRect(20, 392, 250, 20))
+        self.checkBoxPruebaStroop = QtWidgets.QCheckBox()
         self.checkBoxPruebaStroop.setObjectName("checkBoxPruebaStroop")
-        # self.checkBoxPruebaStroop.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Stroop"))
 
-        self.checkBoxTorreDeLondres = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxTorreDeLondres.setGeometry(QtCore.QRect(20, 418, 250, 20))
+        self.checkBoxTorreDeLondres = QtWidgets.QCheckBox()
         self.checkBoxTorreDeLondres.setObjectName("checkBoxTorreDeLondres")
-        # self.checkBoxTorreDeLondres.stateChanged.connect(lambda:self.changeCheckboxState("Torre De Londres"))
 
-        self.checkBoxPruebaMotivosDeportivos = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaMotivosDeportivos.setGeometry(
-            QtCore.QRect(20, 444, 250, 20))
-        self.checkBoxPruebaMotivosDeportivos.setObjectName(
-            "checkBoxPruebaMotivosDeportivos")
-        # self.checkBoxPruebaMotivosDeportivos.stateChanged.connect(lambda:self.changeCheckboxState("Prueba Motivos Deportivos"))
+        self.checkBoxPruebaMotivosDeportivos = QtWidgets.QCheckBox( self.centralwidget)
+        self.checkBoxPruebaMotivosDeportivos.setObjectName("checkBoxPruebaMotivosDeportivos")
 
-        self.checkBoxPruebaDePittsburgh = QtWidgets.QCheckBox(
-            self.centralwidget)
-        self.checkBoxPruebaDePittsburgh.setGeometry(
-            QtCore.QRect(20, 470, 250, 20))
-        self.checkBoxPruebaDePittsburgh.setObjectName(
-            "checkBoxPruebaDePittsburgh")
-        # self.checkBoxPruebaDePittsburgh.stateChanged.connect(lambda:self.changeCheckboxState("Prueba De Pittsburgh"))
+        self.checkBoxPruebaDePittsburgh = QtWidgets.QCheckBox( self.centralwidget)
+        self.checkBoxPruebaDePittsburgh.setObjectName("checkBoxPruebaDePittsburgh")
 
-        self.checkBoxPruebaSCL90 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaSCL90.setGeometry(QtCore.QRect(20, 496, 250, 20))
+        self.checkBoxPruebaSCL90 = QtWidgets.QCheckBox()
         self.checkBoxPruebaSCL90.setObjectName("checkBoxPruebaSCL90")
-        # self.checkBoxPruebaSCL90.stateChanged.connect(lambda:self.changeCheckboxState("Prueba SCL90"))
 
-        self.checkBoxPruebaBSI18 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBoxPruebaBSI18.setGeometry(QtCore.QRect(20, 522, 250, 20))
+        self.checkBoxPruebaBSI18 = QtWidgets.QCheckBox()
         self.checkBoxPruebaBSI18.setObjectName("checkBoxPruebaBSI18")
-        # self.checkBoxPruebaBSI18.stateChanged.connect(lambda:self.changeCheckboxState("Prueba BSI18"))
+        
+        self.formPruebas.addRow(self.checkBoxPruebaEMD)
+        self.formPruebas.addRow(self.checkBoxPruebaBussyPerry)
+        self.formPruebas.addRow(self.checkBoxPruebaFluidezVerbal)
+        self.formPruebas.addRow(self.checkBoxPruebaDenominacion)
+        self.formPruebas.addRow(self.checkBoxComprensionVerbal)
+        self.formPruebas.addRow(self.checkBoxPruebaMemoriaVisoespacial)
+        self.formPruebas.addRow(self.checkBoxPruebaTMT)
+        self.formPruebas.addRow(self.checkBoxPruebaAbstraccion)
+        self.formPruebas.addRow(self.checkBoxPruebaDigitos)
+        self.formPruebas.addRow(self.checkBoxPruebaSDMT)
+        self.formPruebas.addRow(self.checkBoxPruebaLNS)
+        self.formPruebas.addRow(self.checkBoxPruebaD2)
+        self.formPruebas.addRow(self.checkBoxPruebaHopkins)
+        self.formPruebas.addRow(self.checkBoxPruebaStroop)
+        self.formPruebas.addRow(self.checkBoxTorreDeLondres)
+        self.formPruebas.addRow(self.checkBoxPruebaMotivosDeportivos)
+        self.formPruebas.addRow(self.checkBoxPruebaDePittsburgh)
+        self.formPruebas.addRow(self.checkBoxPruebaSCL90)
+        self.formPruebas.addRow(self.checkBoxPruebaBSI18)
 
         self.labelPruebasSeleccionadas = QtWidgets.QLabel(self.centralwidget)
-        self.labelPruebasSeleccionadas.setGeometry(
-            QtCore.QRect(30, 545, 170, 25))
-        self.labelPruebasSeleccionadas.setObjectName(
-            "labelPruebasSeleccionadas")
+        self.labelPruebasSeleccionadas.setGeometry( QtCore.QRect(30, 545, 170, 25))
+        self.labelPruebasSeleccionadas.setObjectName("labelPruebasSeleccionadas")
 
-        self.labelPruebasSeleccionadasDisplay = QtWidgets.QLabel(
-            self.centralwidget)
-        self.labelPruebasSeleccionadasDisplay.setGeometry(
-            QtCore.QRect(10, 545, 16, 25))
-        self.labelPruebasSeleccionadasDisplay.setObjectName(
-            "labelPruebasSeleccionadasDisplay")
+        self.labelPruebasSeleccionadasDisplay = QtWidgets.QLabel( self.centralwidget)
+        self.labelPruebasSeleccionadasDisplay.setGeometry( QtCore.QRect(10, 545, 16, 25))
+        self.labelPruebasSeleccionadasDisplay.setObjectName("labelPruebasSeleccionadasDisplay")
 
         self.pushButtonContinuar = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonContinuar.setGeometry(QtCore.QRect(250, 550, 85, 25))
@@ -169,6 +125,7 @@ class PruebaSeleccionWindowWidget(object):
         self.label.setGeometry(QtCore.QRect(10, 0, 300, 61))
         self.label.setObjectName("label")
         self.label.setScaledContents(True)
+
         self.listWidgetPruebas.raise_()
         self.checkBoxPruebaFluidezVerbal.raise_()
         self.checkBoxPruebaEMD.raise_()
@@ -193,56 +150,38 @@ class PruebaSeleccionWindowWidget(object):
         self.labelPruebasSeleccionadasDisplay.raise_()
         self.pushButtonContinuar.raise_()
         self.label.raise_()
-        # Form.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(Form)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 271, 18))
-        self.menubar.setObjectName("menubar")
-        # Form.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(Form)
-        self.statusbar.setObjectName("statusbar")
-        # Form.setStatusBar(self.statusbar)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Seleeccion de Pruebas"))
-        self.checkBoxPruebaEMD.setText(
-            _translate("Form", "Prueba EMD"))
-        self.checkBoxPruebaBussyPerry.setText(
-            _translate("Form", "Prueba Buss y Perry"))
-        self.checkBoxPruebaFluidezVerbal.setText(
-            _translate("Form", "Prueba Fluidez Verbal"))
-        self.checkBoxPruebaDenominacion.setText(
-            _translate("Form", "Prueba Denominación"))
-        self.checkBoxComprensionVerbal.setText(
-            _translate("Form", "Prueba Comprensión Verbal"))
-        self.checkBoxPruebaMemoriaVisoespacial.setText(
-            _translate("Form", "Prueba Memoria Visoespacial"))
+        Form.setWindowTitle(_translate("Form", "Seleccion de Pruebas"))
+
+        self.checkBoxPruebaEMD.setText(_translate("Form", "Prueba EMD"))
+        self.checkBoxPruebaBussyPerry.setText(_translate("Form", "Prueba Buss y Perry"))
+        self.checkBoxPruebaFluidezVerbal.setText(_translate("Form", "Prueba Fluidez Verbal"))
+        self.checkBoxPruebaDenominacion.setText(_translate("Form", "Prueba Denominación"))
+        self.checkBoxComprensionVerbal.setText(_translate("Form", "Prueba Comprensión Verbal"))
+        self.checkBoxPruebaMemoriaVisoespacial.setText(_translate("Form", "Prueba Memoria Visoespacial"))
         self.checkBoxPruebaTMT.setText(_translate("Form", "Prueba TMT"))
-        self.checkBoxPruebaAbstraccion.setText(
-            _translate("Form", "Prueba Abstracción"))
-        self.checkBoxPruebaDigitos.setText(
-            _translate("Form", "Prueba Dígitos"))
+        self.checkBoxPruebaAbstraccion.setText(_translate("Form", "Prueba Abstracción"))
+        self.checkBoxPruebaDigitos.setText(_translate("Form", "Prueba Dígitos"))
         self.checkBoxPruebaSDMT.setText(_translate("Form", "Prueba SDMT"))
         self.checkBoxPruebaLNS.setText(_translate("Form", "Prueba LNS"))
         self.checkBoxPruebaD2.setText(_translate("Form", "Prueba D2"))
-        self.checkBoxPruebaHopkins.setText(
-            _translate("Form", "Prueba Hopkins"))
+        self.checkBoxPruebaHopkins.setText(_translate("Form", "Prueba Hopkins"))
         self.checkBoxPruebaStroop.setText(_translate("Form", "Prueba Stroop"))
-        self.checkBoxTorreDeLondres.setText(
-            _translate("Form", "Prueba Torre de Londres"))
-        self.checkBoxPruebaMotivosDeportivos.setText(
-            _translate("Form", "Prueba Motivos Deportivos"))
-        self.checkBoxPruebaDePittsburgh.setText(
-            _translate("Form", "Prueba de Pittsburgh"))
+        self.checkBoxTorreDeLondres.setText(_translate("Form", "Prueba Torre de Londres"))
+        self.checkBoxPruebaMotivosDeportivos.setText(_translate("Form", "Prueba Motivos Deportivos"))
+        self.checkBoxPruebaDePittsburgh.setText(_translate("Form", "Prueba de Pittsburgh"))
         self.checkBoxPruebaSCL90.setText(_translate("Form", "Prueba SCL-90"))
         self.checkBoxPruebaBSI18.setText(_translate("Form", "Prueba BSI-18"))
-        self.labelPruebasSeleccionadas.setText(
-            _translate("Form", "prueba(s) seleccionadas"))
+
+        self.labelPruebasSeleccionadas.setText(_translate("Form", "prueba(s) seleccionadas"))
         self.labelPruebasSeleccionadasDisplay.setText(_translate("Form", "0"))
+
         self.pushButtonContinuar.setText(_translate("Form", "Continuar"))
-        self.label.setText(_translate(
-            "Form", "<html><head/><body><p><img src=\":/newPrefix/logoChico.png\"/></p></body></html>"))
+        self.label.setText(_translate("Form", "<html><head/><body><p><img src=\":/newPrefix/logoChico.png\"/></p></body></html>"))
+
         self.backButton.setText(_translate("Form", "Importar Reporte"))
