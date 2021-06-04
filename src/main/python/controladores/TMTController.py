@@ -8,12 +8,21 @@ class TMTController(WindowControllerMixin):
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def getWidgetClass(self):
+		"""
+        Metodo que regresa el objeto Widget del Controlador
+        """
 		return TMTWindowWidget
 
 	def getTestClass(self):
+		"""
+        Metodo que regresa el objeto Prueba del Controlador
+        """
 		return TMTPrueba
 
 	def setField(self, data):
+		"""
+        Metodo que que setea los valores en el Controlador
+        """
 		view = self.view
 		view.sbTMTA.setValue(data['sbTMTA'])
 		view.sbTMTB.setValue(data['sbTMTB'])

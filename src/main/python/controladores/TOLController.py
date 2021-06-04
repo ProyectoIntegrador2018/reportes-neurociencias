@@ -7,12 +7,21 @@ class TOLController(WindowControllerMixin):
     switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def getWidgetClass(self):
+        """
+        Metodo que regresa el objeto Widget del Controlador
+        """
         return TOLWindowWidget
 
     def getTestClass(self):
+        """
+        Metodo que regresa el objeto Prueba del Controlador
+        """
         return TOLPrueba
 
     def setField(self, data):
+        """
+        Metodo que que setea los valores en el Controlador
+        """
         view = self.view
         view.sbTotalCorrectos.setValue(data['sbTotalCorrectos'])
         view.sbMovimientosTotales.setValue(data['sbMovimientosTotales'])
@@ -24,7 +33,7 @@ class TOLController(WindowControllerMixin):
 
     def getDatos(self):
         """
-		Método que toma los datos ingresados en la vista de Fluidez Verbal
+		Método que toma los datos ingresados en la vista
 		"""
         view = self.view
 

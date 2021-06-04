@@ -7,12 +7,21 @@ class PittsburghController(WindowControllerMixin):
     switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def getWidgetClass(self):
+        """
+        Metodo que regresa el objeto Widget del Controlador
+        """
         return PittsburghWindowWidget
 
     def getTestClass(self):
+        """
+        Metodo que regresa el objeto Prueba del Controlador
+        """
         return PittsburghPrueba
 
     def setField(self, data):
+        """
+        Metodo que que setea los valores en el Controlador
+        """
         view = self.view
         view.comp1.setValue(data['comp1'])
         view.comp2.setValue(data['comp2'])
@@ -24,7 +33,7 @@ class PittsburghController(WindowControllerMixin):
 
     def getDatos(self):
         """
-        Metodo para tomar los datos ingresados en la prueba de memoria visoespacia
+        Metodo para tomar los datos ingresados en la prueba de Pittsburgh
         """
         view = self.view
 

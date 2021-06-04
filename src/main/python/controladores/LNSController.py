@@ -9,12 +9,21 @@ class LNSController(WindowControllerMixin):
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def getWidgetClass(self):
+		"""
+        Metodo que regresa el objeto Widget del Controlador
+        """
 		return LNSWindowWidget
 
 	def getTestClass(self):
+		"""
+        Metodo que regresa el objeto Prueba del Controlador
+        """
 		return LNSPrueba
 
 	def setField(self, data):
+		"""
+        Metodo que que setea los valores en el Controlador
+        """
 		view = self.view
 		view.sbSpan.setValue(data['sbSpan'])
 		view.sbTotal.setValue(data['sbTotal'])

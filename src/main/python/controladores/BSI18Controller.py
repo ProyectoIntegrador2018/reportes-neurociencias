@@ -1,43 +1,40 @@
 #Controlador de la vista de BSI18Window
 from PyQt5 import QtWidgets, QtCore
 from vistas.BSI18WindowWidget import *
-from MainWindowController import *
-from ReporteModel import *
 from pruebas.BSI18Prueba import *
-from PruebaModel import *
-from ControllerModel import *
+from .mixins import WindowControllerMixin
 
 
-class BSI18Controller(QtWidgets.QWidget, ControllerModel):
-	#Atributo empleado para realizar el cambio de vista
+class BSI18Controller(WindowControllerMixin):
+	#Atributo empleado para realizar el cambio de vistal
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
-	def __init__(self, mainWindow, reporteModel=None):
-		QtWidgets.QWidget.__init__(self)
-		self.BSI18View = BSI18WindowWidget(mainWindow)
-		self.BSI18View.pbStart.clicked.connect(self.getDatos)
-		self.BSI18View.backButton.clicked.connect(self.returnView)
-		self.reporteModel = reporteModel
-		self.invalidArgs = list()
-	
-	def returnView(self):
+	def getWidgetClass(self):
 		"""
-		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
-		"""
-		self.switch_window.emit(self.invalidArgs, self.BSI18Prueba, True)
-	
-	def changeView(self):
-		"""
-		 Método encargado de notificar los elementos que serán pasados como parámetros a la siguiente vista
-		"""
-		self.switch_window.emit(self.invalidArgs, self.BSI18Prueba, False)
+        Metodo que regresa el objeto Widget del Controlador
+        """
+		return BSI18WindowWidget
 
+	def getTestClass(self):
+		"""
+        Metodo que regresa el objeto Prueba del Controlador
+        """
+		return BSI18Prueba
+
+	def setField(self, data):
+		"""
+        Metodo que que setea los valores en el Controlador
+        """
+		view = self.view
+		view.questions[0].setValue(data['Q1'])
+		view.questions[1].setValue(data['Q2'])
+		view.questions[2].setValue(data['Q3'])
 
 	def getDatos(self):
 		"""
-		 Método que toma los datos ingresados en la vista de Fluidez Verbal
+		 Método que toma los datos ingresados en la vista de BSI18
 		"""
-		view = self.BSI18View
+		view = self.view
 		# Inicia los valores y las omisiones en 0 para las 3 dimensiones
 		valores = [0, 0, 0]
 		omisiones = [0, 0, 0]	
@@ -63,7 +60,7 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 		valores = [dim.value() for dim in view.questions]
 
 		# Manda los valores obtenidos para procesar la prueba
-		self.BSI18Prueba = BSI18Prueba(valores)
+		self.test = BSI18Prueba(valores)
 		
 		datos = (self.reporteModel.reporte['genero'], False)#El False es por el cancer, lo voy a poner después
 		
@@ -82,57 +79,6 @@ class BSI18Controller(QtWidgets.QWidget, ControllerModel):
 		
 		# Verifica que ya no haya argumentos inválidos
 		if len(self.invalidArgs) == 0:
-			self.BSI18Prueba.calcularPERP(datos)
+			self.test.calcularPERP(datos)
 			
 		self.changeView()
-
-	def emptyInvalidArgs(self):
-		"""
-		 Método que se encarga de vacíar la lista de elementos inválidos en la vista
-		"""
-		self.invalidArgs = list()
-
-	def addInvalidArg(self, arg):
-		"""
-		 Método que se encarga de añadir a la lista de elementos inválidos, aquel parámetro especificado
-		 Args:
-		  arg: String a añadir a la lista de elementos inválidos
-		"""
-		self.invalidArgs.append(arg)
-		'''
-		if len(self.invalidArgs) == 0:
-			self.invalidArgs = [arg]
-		else:
-			tempList = self.invalidArgs
-			tempList.append(arg)
-			self.invalidArgs = tempList
-		'''
-
-	def getListMenu(self):
-		"""
-		 Método que se regresa el id del menu en la vista de Fluidez Verbal
-		"""
-		return self.BSI18View.lWVistas
-
-	def getProgressBar(self):
-		"""
-		 Método que se encarga de regresar el valor de la barra de progreso
-		"""
-		return self.BSI18View.progressBar
-
-	def updateButtonText(self, text):
-		"""
-		 Método que se encarga de actuañizar el texto del botón de la vista
-		 Args:
-		  text: Objeto de tipo str que contiene el nuevo valor a asignar al botón presente en las pruebas
-		"""
-		self.BSI18View.pbStart.setText(text)
-
-# Pruebas unitarias
-#if __name__ == "__main__":
-#    import sys
-#    app = QtWidgets.QApplication(sys.argv)
-#    fluidezWindow = QtWidgets.QWidget()
-#    fluidezVerbalController = FluidezVerbalController(fluidezWindow)
-#    fluidezWindow.show()
-#    sys.exit(app.exec_())

@@ -10,12 +10,21 @@ class ButtController(WindowControllerMixin):
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def getWidgetClass(self):
+		"""
+        Metodo que regresa el objeto Widget del Controlador
+        """
 		return ButtWindowWidget
 
 	def getTestClass(self):
+		"""
+        Metodo que regresa el objeto Prueba del Controlador
+        """
 		return ButtPrueba
 
 	def setField(self, data):
+		"""
+        Metodo que que setea los valores en el Controlador
+        """
 		view = self.view
 		view.sbConflicto.setValue(data['sbConflicto'])
 		view.sbRivalidad.setValue(data['sbRivalidad'])
