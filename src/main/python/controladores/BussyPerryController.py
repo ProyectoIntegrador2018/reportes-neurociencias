@@ -48,13 +48,13 @@ class BussyPerryController(WindowControllerMixin):
 		
 		datos = [self.reporteModel.reporte['educacion'], self.reporteModel.reporte['edad']]
 		
-		if agFis == 0:
+		if agFis < 9 or agFis > 45:
 			self.addInvalidArg("Agresion Fisica")
-		if agVer == 0:
+		if agVer < 5 or agVer > 25:
 			self.addInvalidArg("Agresion Verbal")
-		if ira == 0:
+		if ira < 11 or ira > 31:
 			self.addInvalidArg("Ira")
-		if hos == 0:
+		if hos < 8 or hos > 40:
 			self.addInvalidArg("Hostilidad")
 
 		if len(self.invalidArgs) == 0:
