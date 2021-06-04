@@ -228,7 +228,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		 Método encargado de crear el HMTL del reporte
 		"""
 		reporte = self.reporteModel.reporte
-		raw_html = '<!DOCTYPE html><html><head><meta charset="utf-8"></head>'
+		raw_html = '<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; utf-8"></head>'
 		raw_html += '<link rel="stylesheet" href="w3-layout.css">'
 		raw_html += '<link rel="stylesheet" href="reporte.css">'
 		raw_html += '<link rel="stylesheet" media="print" href="reporte.css" />'
@@ -242,7 +242,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<img src="logoReporte.png" class="logo-reporte">'
 		raw_html += '</div>'
 		raw_html += '<div class="div-titulo">'
-		raw_html += '<h1 class = "center-text">Evaluación Neurocognitiva de ' + reporte["deporte"] + '</h1>'
+		raw_html += '<h1 class = "center-text">Evaluaci&oacute;n Neurocognitiva de ' + reporte["deporte"] + '</h1>'
 		raw_html += '</div>'
 		raw_html += '</div>'
 		
@@ -254,7 +254,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<table style="width:100%">' 	#Empieza una tabla
 
 		raw_html += '<tr class="row-info top-row">'							#Empieza una row de la tabla
-		headerElements = ['Nombre', 'ID', 'Fecha', 'Género']
+		headerElements = ['Nombre', 'ID', 'Fecha', 'G&eacute;nero']
 		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
@@ -287,7 +287,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		raw_html += '<table style="width:100%">' 	#Empieza una tabla
 
 		raw_html += '<tr class="row-info">'							#Empieza una row de la tabla
-		headerElements = ['Educación', 'Equipo', 'Examinador']
+		headerElements = ['Educaci&oacute;n', 'Equipo', 'Examinador']
 		raw_html += self.createTableHeaders(headerElements)
 		raw_html += '</tr>'
 
@@ -750,7 +750,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			raw_html += ''
 			raw_html += '</td>'
 			
-			tableElements = ['Interpretación', inter]
+			tableElements = ['Interpretaci&oacute;n', inter]
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'
 			
