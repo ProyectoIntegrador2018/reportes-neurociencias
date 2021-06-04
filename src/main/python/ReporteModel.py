@@ -45,6 +45,7 @@ class ReporteModel:
 		  prueba: Elemento de la Clase Prueba
 		"""
 		tempReporte = self.reporte["resultados"]
+		print(prueba)
 		tempReporte[prueba.nombre] = prueba
 		self.reporte["resultados"] = tempReporte
 

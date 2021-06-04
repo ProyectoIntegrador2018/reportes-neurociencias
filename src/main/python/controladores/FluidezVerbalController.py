@@ -9,12 +9,21 @@ class FluidezVerbalController(WindowControllerMixin):
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def getWidgetClass(self):
+		"""
+        Metodo que regresa el objeto Widget del Controlador
+        """
 		return FluidezVerbalWindowWidget
 
 	def getTestClass(self):
+		"""
+        Metodo que regresa el objeto Prueba del Controlador
+        """
 		return FluidezVerbalPrueba
 
 	def setField(self, data):
+		"""
+        Metodo que que setea los valores en el Controlador
+        """
 		view = self.view
 		view.sbWords.setValue(data['sbWords'])
 		view.sbAnimals.setValue(data['sbAnimals'])

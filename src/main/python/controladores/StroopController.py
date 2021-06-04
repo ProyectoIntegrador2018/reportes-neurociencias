@@ -8,12 +8,21 @@ class StroopController(WindowControllerMixin):
 	switch_window = QtCore.pyqtSignal(object, object, bool)
 
 	def getWidgetClass(self):
+		"""
+        Metodo que regresa el objeto Widget del Controlador
+        """
 		return StroopWindowWidget
 
 	def getTestClass(self):
+		"""
+        Metodo que regresa el objeto Prueba del Controlador
+        """
 		return StroopPrueba
 
 	def setField(self, data):
+		"""
+        Metodo que que setea los valores en el Controlador
+        """
 		view = self.view
 		view.sbTR.setValue(data['sbTR'])
 		view.sbTA.setValue(data['sbTA'])
@@ -21,7 +30,7 @@ class StroopController(WindowControllerMixin):
 
 	def getDatos(self):
 		"""
-		Método que toma los datos ingresados en la vista de LNS
+		Método que toma los datos ingresados en la vista de Stroop
 		"""
 		view = self.view
 		P = view.sbTR.value()

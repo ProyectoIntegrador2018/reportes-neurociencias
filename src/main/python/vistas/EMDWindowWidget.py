@@ -11,6 +11,10 @@ class EMDWindowWidget(WindowWidgetMixin):
           Form: Ventana en la que se deplegará la interfáz gráfica (es un tipo de dato QtWidget.QWidget) 
         """
         super().setupUI(Form)
+        self.backButton = QtWidgets.QPushButton(Form)
+        self.backButton.setGeometry(QtCore.QRect(15, 50, 20, 30))
+        self.backButton.setObjectName("returnButton")
+        
         Form.setObjectName("Form")
         Form.resize(800, 598)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)

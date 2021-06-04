@@ -8,12 +8,21 @@ class DigitosController(WindowControllerMixin):
     switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def getWidgetClass(self):
-       return DigitosWindowWidget
+        """
+        Metodo que regresa el objeto Widget del Controlador
+        """
+        return DigitosWindowWidget
 
     def getTestClass(self):
+        """
+        Metodo que regresa el objeto Prueba del Controlador
+        """
         return DigitosPrueba
 
     def setField(self, data):
+        """
+        Metodo que que setea los valores en el Controlador
+        """
         view = self.view
         view.sbDirectos.setValue(data['sbDirectos'])
         view.sbInversos.setValue(data['sbInversos'])
