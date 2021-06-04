@@ -776,7 +776,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 		options = QtWidgets.QFileDialog.Options()
 		options |= QtWidgets.QFileDialog.DontUseNativeDialog
 		options |= QtWidgets.QFileDialog.DontConfirmOverwrite
-		fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","Excel (*.xlsx)", options=options)
+		fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,"Guardar Reporte",os.path.expanduser('~/reporte.xlsx'),"Excel (*.xlsx)", options=options)
 		if not fileName:
 			return
 
@@ -787,7 +787,7 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 	def saveToCsv(self, fileName):
 		reporte = self.reporteModel.reporte
-		fileName = fileName + '.xlsx'
+		fileName = fileName
 
 		userInfo = self.getUserInfo()
 

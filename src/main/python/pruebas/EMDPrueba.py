@@ -9,7 +9,7 @@ class EMDPrueba(PruebaModel.PruebaModel):
 		baremos = (pd.read_csv(APPCTXT().get_resource('./Baremos/TablaTMT.csv')),
 					pd.read_csv(APPCTXT().get_resource('./Baremos/EscolaridadTMTA.csv')),
 					pd.read_csv(APPCTXT().get_resource('./Baremos/EscolaridadTMTB.csv')))
-		campos = ("A", "B")
+		campos = ("ME", "MICO", "MIE", "MIA", "MICU", "Amotivacion", "MID")
 
 		super(EMDPrueba,self).__init__(nombre, valores, baremos, campos)
 

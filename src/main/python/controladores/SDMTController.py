@@ -7,18 +7,27 @@ class SDMTController(WindowControllerMixin):
     switch_window = QtCore.pyqtSignal(object, object, bool)
 
     def getWidgetClass(self):
+        """
+        Metodo que regresa el objeto Widget del Controlador
+        """
         return SDMTWindowWidget
 
     def getTestClass(self):
+        """
+        Metodo que regresa el objeto Prueba del Controlador
+        """
         return SDMTPrueba
     
     def setField(self, data):
+        """
+        Metodo que que setea los valores en el Controlador
+        """
         view = self.view
         view.sbSDMT.setValue(data['sbSDMT'])
 
     def getDatos(self):
         """
-		Método que toma los datos ingresados en la vista de Fluidez Verbal
+		Método que toma los datos ingresados en la vista SDMT
 		"""
         view = self.view
         sdmtVal = view.sbSDMT.value()

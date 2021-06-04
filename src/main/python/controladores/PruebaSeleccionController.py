@@ -113,6 +113,26 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         "TMT": {
             "A": 'sbTMTA',
             "B": 'sbTMTB',
+        },
+        "BSI-18": {
+            "DIRECTA": 'Q1',
+            "SOM": 'Q2',
+            "DEP": 'Q3',
+        },
+        "BussYPerry": {
+            'agFis': 'sbTMTA',
+            'agVer': 'sbTMTB',
+            'ira': 'sbTMTC',
+            'hos': 'sbTMTD',
+        },
+        "EMD": {
+            'ME': 'sbTMTA',
+            'MICO': 'sbTMTB',
+            'MIE': 'sbTMTC',
+            'MIA': 'sbTMTD',
+            'MICU': 'sbTMTE',
+            'Amotivacion': 'sbTMTF',
+            'MID': 'sbTMTG',
         }
     }
 
@@ -137,6 +157,7 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         "Datos": 'info_personal',
         "PSQI": 'pittsburgh',
         "SCL-90": 'scl90',
+        "EMD": 'emd'
     }
 
     data = {}
@@ -202,7 +223,7 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
             "COMP V": self.seleccionView.checkBoxComprensionVerbal,
             "BVMT-R": self.seleccionView.checkBoxPruebaMemoriaVisoespacial,
             "TMT": self.seleccionView.checkBoxPruebaTMT,
-            "BussYPerry": "bussyPerry",
+            "BussYPerry": self.seleccionView.checkBoxPruebaBussyPerry,
             "ABS": self.seleccionView.checkBoxPruebaAbstraccion,
             "DIGITOS": self.seleccionView.checkBoxPruebaDigitos,
             "Motivos Deportivos de Butt": self.seleccionView.checkBoxPruebaMotivosDeportivos,
@@ -213,8 +234,9 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
             "HVLT-R": self.seleccionView.checkBoxPruebaHopkins,
             "PSQI": self.seleccionView.checkBoxPruebaDePittsburgh,
             "STROOP": self.seleccionView.checkBoxPruebaStroop,
-            "BSI-18": "bsi18",
-            "SCL-90": self.seleccionView.checkBoxPruebaSCL90
+            "BSI-18": self.seleccionView.checkBoxPruebaBSI18,
+            "SCL-90": self.seleccionView.checkBoxPruebaSCL90,
+            "EMD": self.seleccionView.checkBoxPruebaEMD,
         }
 
     def changeView(self):
@@ -244,6 +266,8 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
 
     def newInfo(self):
         self.resetPruebas()
+        self.seleccionView.checkBoxPruebaBussyPerry.setChecked(False)
+        self.seleccionView.checkBoxPruebaEMD.setChecked(False)
         self.seleccionView.checkBoxPruebaFluidezVerbal.setChecked(False)
         self.seleccionView.checkBoxPruebaDenominacion.setChecked(False)
         self.seleccionView.checkBoxComprensionVerbal.setChecked(False)
