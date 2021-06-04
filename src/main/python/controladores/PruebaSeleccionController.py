@@ -113,6 +113,10 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         "TMT": {
             "A": 'sbTMTA',
             "B": 'sbTMTB',
+        },
+        "EMD": {
+            "A":'A',
+            "B":'A',
         }
     }
 
@@ -137,6 +141,7 @@ class PruebaSeleccionController(QtWidgets.QWidget, ControllerModel):
         "Datos": 'info_personal',
         "PSQI": 'pittsburgh',
         "SCL-90": 'scl90',
+        "EMD": 'emd'
     }
 
     data = {}
