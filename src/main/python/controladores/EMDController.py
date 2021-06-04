@@ -53,19 +53,19 @@ class EMDController(WindowControllerMixin):
 		#datos = [self.reporteModel.reporte['educacion'], self.reporteModel.reporte['edad']]
 		#if me == 5:
 		#	me = "Hola"
-		if me == 0:
+		if me < 6 or me > 42:
 			self.addInvalidArg("ME")
-		if mico == 0:
+		if mico < 4 or mico > 28:
 			self.addInvalidArg("MICO")
-		if mie == 0:
+		if mie < 4 or mie > 28:
 			self.addInvalidArg("MIE")
-		if mia == 0:
+		if mia < 4 or mia > 28:
 			self.addInvalidArg("MIA")
-		if micu == 0:
+		if micu < 4 or micu > 28:
 			self.addInvalidArg("MICU")
-		if amed == 0:
+		if amed < 5 or amed > 35:
 			self.addInvalidArg("Amotivación")
-		if mid == 0:
+		if mid < 2 or mid > 14:
 			self.addInvalidArg("MID")
 
 		if len(self.invalidArgs) == 0:

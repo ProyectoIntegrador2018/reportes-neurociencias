@@ -429,6 +429,42 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 		#################################### AQUÍ ACABA LO DEL NOMBRE DE LAS PRUEBAS Y LA GRÁFICA ####################################
 
+
+		if "EMD" in pruebasRegistradas:
+			raw_html += '<div class="new-table">'
+			raw_html += '<table style="width:100%">' 	#Empieza una tabla
+			raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
+
+			### Headers de la tabla
+			raw_html += '<th>'
+			raw_html += '</th>'
+			raw_html += '<th>'
+			raw_html += '</th>'
+
+			headerElements = ['ME', 'MICO','MIE','MIA','MICU','AEMD','MID']
+			
+			raw_html += self.createTableHeaders(headerElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+			raw_html += '<tr>'							#Empieza una row de la tabla
+			tableElements = ['EMD', 'PD']
+			
+
+			pruebaEMD = pruebasRegistradas['EMD']
+
+			self.escalaresLabel, self.escalares = None, None
+			escalares = reemovNestings(flattened, [])
+			escalaresLabel = reemovNestings(flattened, [])
+			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
+			self.escalares = reemovNestings(pruebaEMD.puntuacionEscalar, escalares)
+    
+			for puntuacionDir in self.escalares:
+				tableElements.append(str(puntuacionDir))
+			raw_html += self.createTableElements(tableElements)
+			raw_html += '</tr>'							#Cierra una row de la tabla
+
+
+
 		if "BussYPerry" in pruebasRegistradas:
 			raw_html += '<div class="new-table">'
 			raw_html += '<table style="width:100%">' 	#Empieza una tabla
@@ -451,6 +487,9 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 
 			pruebaBP = pruebasRegistradas['BussYPerry']
 
+			self.escalaresLabel, self.escalares = None, None
+			escalares = reemovNestings(flattened, [])
+			escalaresLabel = reemovNestings(flattened, [])
 			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
 			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
     
@@ -458,42 +497,6 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla					#Cierra una row de la tabla
-
-			raw_html += '<tr>'							#Empieza una row de la tabla
-			tableElements = ['DTM', 'Pc']
-
-		if "EMD" in pruebasRegistradas:
-			raw_html += '<div class="new-table">'
-			raw_html += '<table style="width:100%">' 	#Empieza una tabla
-			raw_html += '<tr class="top-row">'							#Empieza una row de la tabla
-
-			### Headers de la tabla
-			raw_html += '<th>'
-			raw_html += '</th>'
-			raw_html += '<th>'
-			raw_html += '</th>'
-
-			headerElements = ['ME', 'MICO','MIE','MIA','MICU','AEMD','MID']
-			
-			raw_html += self.createTableHeaders(headerElements)
-			raw_html += '</tr>'							#Cierra una row de la tabla
-
-			raw_html += '<tr>'							#Empieza una row de la tabla
-			tableElements = ['EMD', 'PD']
-			
-
-			pruebaBP = pruebasRegistradas['EMD']
-
-			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
-			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
-    
-			for puntuacionDir in self.escalares:
-				tableElements.append(str(puntuacionDir))
-			raw_html += self.createTableElements(tableElements)
-			raw_html += '</tr>'							#Cierra una row de la tabla
-
-			raw_html += '<tr>'							#Empieza una row de la tabla
-			tableElements = ['DTM', 'Pc']
 
 
 		if "SCL-90" in pruebasRegistradas:
