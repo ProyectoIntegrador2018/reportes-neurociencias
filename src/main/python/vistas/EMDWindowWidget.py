@@ -58,7 +58,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_8)
         self.sbTMTA = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTA.setObjectName("sbTMTA")
-        self.sbTMTA.setRange(1,1000)
+        self.sbTMTA.setRange(6,42)
         self.sbTMTA.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.sbTMTA)
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -66,7 +66,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.sbTMTB = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTB.setObjectName("sbTMTB")
-        self.sbTMTB.setRange(1,1000)
+        self.sbTMTB.setRange(4,28)
         self.sbTMTB.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.sbTMTB)
 
@@ -75,7 +75,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_10)
         self.sbTMTC = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTC.setObjectName("sbTMTC")
-        self.sbTMTC.setRange(1,1000)
+        self.sbTMTC.setRange(4,28)
         self.sbTMTC.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.sbTMTC)
 
@@ -84,7 +84,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_11)
         self.sbTMTD = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTD.setObjectName("sbTMTD")
-        self.sbTMTD.setRange(1,1000)
+        self.sbTMTD.setRange(4,28)
         self.sbTMTD.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.sbTMTD)
 
@@ -93,7 +93,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_12)
         self.sbTMTE = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTE.setObjectName("sbTMTE")
-        self.sbTMTE.setRange(1,1000)
+        self.sbTMTE.setRange(4,28)
         self.sbTMTE.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.sbTMTE)
         
@@ -102,7 +102,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_13)
         self.sbTMTF = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTF.setObjectName("sbTMTF")
-        self.sbTMTF.setRange(1,1000)
+        self.sbTMTF.setRange(5,35)
         self.sbTMTF.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.sbTMTF)
         
@@ -111,7 +111,7 @@ class EMDWindowWidget(WindowWidgetMixin):
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_14)
         self.sbTMTG = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.sbTMTG.setObjectName("sbTMTG")
-        self.sbTMTG.setRange(1,1000)
+        self.sbTMTG.setRange(2,14)
         self.sbTMTG.setSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.sbTMTG)
 
