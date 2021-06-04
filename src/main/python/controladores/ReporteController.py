@@ -455,10 +455,12 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.escalaresLabel, self.escalares = None, None
 			escalares = reemovNestings(flattened, [])
 			escalaresLabel = reemovNestings(flattened, [])
-			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
+			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)	
+			self.escalares = reemovNestings(pruebaEMD.valores, escalares)
+		
 			self.escalares = reemovNestings(pruebaEMD.puntuacionEscalar, escalares)
     
-			for puntuacionDir in self.escalares:
+			for puntuacionDir in pruebaEMD.puntuacionEscalar:
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla
@@ -490,10 +492,11 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			self.escalaresLabel, self.escalares = None, None
 			escalares = reemovNestings(flattened, [])
 			escalaresLabel = reemovNestings(flattened, [])
-			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)			
+			self.escalaresLabel = reemovNestings(headerElements, escalaresLabel)
+			self.escalares = reemovNestings(pruebaBP.valores, escalares)
 			self.escalares = reemovNestings(pruebaBP.puntuacionEscalar, escalares)
     
-			for puntuacionDir in self.escalares:
+			for puntuacionDir in pruebaBP.puntuacionEscalar:
 				tableElements.append(str(puntuacionDir))
 			raw_html += self.createTableElements(tableElements)
 			raw_html += '</tr>'							#Cierra una row de la tabla					#Cierra una row de la tabla
@@ -590,6 +593,10 @@ class ReporteController(QtWidgets.QWidget, ControllerModel):
 			pruebaBSI18 = pruebasRegistradas['BSI-18']
 			headerElements = ["SOM", "DEP", "ANS", "IGS"]
 			csvLabels = ['bsiSOMd', 'bsiDEPd', 'bsiANSd', 'bsiIGSd','bsiSOMe', 'bsiDEPe', 'bsiANSe', 'bsiIGSe','bsiSOMpc', 'bsiDEPpc', 'bsiANSpc', 'bsiIGSpc']
+
+			self.escalaresLabel, self.escalares = None, None
+			escalares = reemovNestings(flattened, [])
+			escalaresLabel = reemovNestings(flattened, [])
 
 			self.escalaresLabel = reemovNestings(csvLabels, escalaresLabel)
 			self.escalares = reemovNestings(pruebaBSI18.valores, escalares)		
